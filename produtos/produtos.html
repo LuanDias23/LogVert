@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Produtos | LogVert</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="sidebar" id="sidebar" aria-hidden="true">
+        <div class="sidebar-header">
+            <h3 class="sidebar-title">MENU</h3>
+            <button class="close-btn" aria-label="Fechar menu">&times;</button>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li><a class="sidebar-link" href="../menu.lojista/menu.html"><i class="fa-solid fa-house"></i><span>Início</span></a></li>
+            <li><a class="sidebar-link" href="../produtos/produtos.html"><i class="fa-solid fa-box"></i><span>Adicionar Produto</span></a></li>
+            <li><a class="sidebar-link" href="#"><i class="fa-solid fa-truck"></i><span>Adicionar Venda</span></a></li>
+            <li><a class="sidebar-link" href="#"><i class="fa-solid fa-file-invoice"></i><span>Trocas</span></a></li>
+            <li><a class="sidebar-link" href="#"><i class="fa-solid fa-question"></i><span>FAQ</span></a></li>
+            <li class="sidebar-separator"></li>
+            <li><a class="sidebar-link" href="../login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
+        </ul>
+    </div>
+
+    <div class="overlay" id="overlay" tabindex="-1" aria-hidden="true"></div>
+
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="logosemfundo.jpg" alt="Logo da Empresa" height="50">
+        </div>
+        <nav class="main-nav" aria-label="Navegação principal">
+            <a href="../menu.lojista/menu.html" aria-label="Página Inicial"><i class="fa-solid fa-house"></i></a>
+            <a href="../login.html" aria-label="Sair"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+            <a href="#" id="menu-toggle" aria-label="Abrir menu"><i class="fa-solid fa-bars"></i></a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="card">
+            <h2>ADICIONAR PRODUTO</h2>
+            <form id="form-adicionar">
+                <div class="input-group">
+                    <label for="add-produto">Produto</label>
+                    <input type="text" id="add-produto" name="produto" required>
+                </div>
+                <div class="input-group">
+                    <label for="add-descricao">Descrição</label>
+                    <input type="text" id="add-descricao" name="descricao" required>
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="add-preco">Preço unitário</label>
+                        <input type="number" id="add-preco" name="preco" step="0.01" min="0" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="add-estoque">Qntd. Estoque</label>
+                        <input type="number" id="add-estoque" name="estoque" min="0" required>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="add-categoria">Categoria</label>
+                    <input type="text" id="add-categoria" name="categoria" required>
+                </div>
+                <div class="input-group">
+                    <label for="add-imagem">Imagem</label>
+                    <div class="file-input-wrapper">
+                        <input type="file" id="add-imagem" name="imagem" accept="image/*">
+                        <i class="fas fa-copy icon"></i>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-add">Adicionar</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2>EDITAR OU REMOVER PRODUTO</h2>
+            <form id="form-buscar">
+                <div class="input-group">
+                    <label for="search-id">Localizar pelo ID do Produto</label>
+                    <div class="search-wrapper">
+                        <input type="text" id="search-id" name="search-id" placeholder="Digite o ID e clique em buscar">
+                        <button type="button" id="btn-buscar" class="btn-search">Buscar</button>
+                    </div>
+                </div>
+            </form>
+
+            <form id="form-editar-remover">
+                <fieldset id="fieldset-edit" disabled>
+                    <div class="input-group">
+                        <label for="edit-produto">Produto</label>
+                        <input type="text" id="edit-produto" name="produto">
+                    </div>
+                    <div class="input-group">
+                        <label for="edit-descricao">Descrição</label>
+                        <input type="text" id="edit-descricao" name="descricao">
+                    </div>
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="edit-preco">Preço unitário</label>
+                            <input type="number" id="edit-preco" name="preco" step="0.01" min="0">
+                        </div>
+                        <div class="input-group">
+                            <label for="edit-estoque">Qntd. Estoque</label>
+                            <input type="number" id="edit-estoque" name="estoque" min="0">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="edit-categoria">Categoria</label>
+                        <input type="text" id="edit-categoria" name="categoria">
+                    </div>
+                    <div class="input-group">
+                        <label for="edit-imagem">Imagem</label>
+                        <div class="file-input-wrapper">
+                            <input type="file" id="edit-imagem" name="imagem" accept="image/*">
+                            <i class="fas fa-copy icon"></i>
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" id="btn-remover" class="btn btn-remove">Remover</button>
+                        <button type="submit" id="btn-editar" class="btn btn-edit">Salvar Alterações</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
