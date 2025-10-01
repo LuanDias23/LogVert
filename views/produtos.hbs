@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Vendas | LogVert</title>
+    <title>Produtos | LogVert</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-    <link rel="stylesheet" href="/vendas/style.css">
+    <link rel="stylesheet" href="/css/pages/produtos.css">
 </head>
 <body>
 
@@ -19,7 +19,7 @@
 
         <ul class="sidebar-menu">
             <li><a class="sidebar-link" href="../menu.lojista/menu.html"><i class="fa-solid fa-house"></i><span>Início</span></a></li>
-            <li><a class="sidebar-link" href="../vendas/vendas.html"><i class="fa-solid fa-box"></i><span>Adicionar Produto</span></a></li>
+            <li><a class="sidebar-link" href="../produtos/produtos.html"><i class="fa-solid fa-box"></i><span>Adicionar Produto</span></a></li>
             <li><a class="sidebar-link" href="#"><i class="fa-solid fa-truck"></i><span>Adicionar Venda</span></a></li>
             <li><a class="sidebar-link" href="#"><i class="fa-solid fa-file-invoice"></i><span>Trocas</span></a></li>
             <li><a class="sidebar-link" href="#"><i class="fa-solid fa-question"></i><span>FAQ</span></a></li>
@@ -32,7 +32,7 @@
 
     <header class="main-header">
         <div class="logo-container">
-            <img src="logosemfundo.jpg" alt="Logo da Empresa" height="50">
+            <img src="/img/logo2.jpg" alt="Logo da Empresa" height="50">
         </div>
         <nav class="main-nav" aria-label="Navegação principal">
             <a href="../menu.lojista/menu.html" aria-label="Página Inicial"><i class="fa-solid fa-house"></i></a>
@@ -43,10 +43,10 @@
 
     <main class="container">
         <div class="card">
-            <h2>ADICIONAR VENDA</h2>
+            <h2>ADICIONAR PRODUTO</h2>
             <form id="form-adicionar">
                 <div class="input-group">
-                    <label for="add-venda">Venda</label>
+                    <label for="add-produto">Produto</label>
                     <input type="text" id="add-produto" name="produto" required>
                 </div>
                 <div class="input-group">
@@ -79,10 +79,10 @@
         </div>
 
         <div class="card">
-            <h2>EDITAR OU REMOVER VENDA</h2>
+            <h2>EDITAR OU REMOVER PRODUTO</h2>
             <form id="form-buscar">
                 <div class="input-group">
-                    <label for="search-id">Localizar pelo ID da Venda</label>
+                    <label for="search-id">Localizar pelo ID do Produto</label>
                     <div class="search-wrapper">
                         <input type="text" id="search-id" name="search-id" placeholder="Digite o ID e clique em buscar">
                         <button type="button" id="btn-buscar" class="btn-search">Buscar</button>
@@ -93,8 +93,8 @@
             <form id="form-editar-remover">
                 <fieldset id="fieldset-edit" disabled>
                     <div class="input-group">
-                        <label for="edit-produto">Venda</label>
-                        <input type="text" id="edit-venda" name="venda">
+                        <label for="edit-produto">Produto</label>
+                        <input type="text" id="edit-produto" name="produto">
                     </div>
                     <div class="input-group">
                         <label for="edit-descricao">Descrição</label>
@@ -130,6 +130,6 @@
         </div>
     </main>
 
-    <script src="/vendas/script.js"></script>
+    <script src="/js/pages/produtos.js"></script>
 </body>
 </html>
