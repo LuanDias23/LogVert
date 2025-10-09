@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogVert | Suporte</title>
+    <link rel="stylesheet" href="faq.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="sidebar" id="sidebar" aria-hidden="true">
+        </div>
+    <div class="overlay" id="overlay"></div>
+
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="../produtos/logosemfundo.jpg" alt="LogVert Logo">
+        </div>
+        <nav class="main-nav">
+            <a href="../menu.lojista/menuLojista.html" title="Início"><i class="fas fa-home"></i></a>
+            <a href="../login/login.html" title="Sair"><i class="fas fa-sign-out-alt"></i></a>
+            <a href="#" id="menu-toggle" title="Abrir Menu"><i class="fas fa-bars"></i></a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2>CONTATE NOSSO SUPORTE</h2>
+            <form id="form-suporte">
+                <div class="input-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="assunto">Assunto:</label>
+                    <input type="text" id="assunto" name="assunto" required>
+                </div>
+                
+                 <div class="input-group">
+                    <label for="descricao">Descrição:</label>
+                    <textarea id="descricao" name="descricao" rows="6" required></textarea>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-submit">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="faq-sidebar.js"></script>
+    <script src="faq.js"></script>
+
+</body>
+</html>
