@@ -2,7 +2,7 @@
 
 ## 🌊 Fluxo de Navegação
 
-A jornada do usuário na aplicação segue um fluxo simples e direto:
+A jornada do usuário na aplicação segue um fluxo simples e direto
 
 1.  **Página de Apresentação (`index.html`):** O ponto de entrada do projeto, apresentando a proposta da LogVert.
 2.  **Página de Login (`login/login.html`):** A partir da página de apresentação, o usuário navega para o login, onde pode escolher entre o perfil de **Lojista** ou **Cliente**.
