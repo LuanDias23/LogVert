@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogVert | Recuperar Acesso Cliente</title>
+    <link rel="stylesheet" href="esqueci_senha.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div id="login-particles"></div>
+
+    <a href="../login/login.html" class="back-to-home" title="Voltar para o Login">
+        <i class="fas fa-arrow-left"></i>
+        <span>Voltar</span>
+    </a>
+
+    <div class="page-container">
+        <div class="login-card cliente">
+            <div class="card-content">
+                <img src="../assets/logosemfundo.png" alt="Logo LogVert" class="logo">
+                <h2>Recuperar Acesso</h2>
+                <p>Digite o código do pedido e seu CPF ou E-mail utilizado na compra.</p>
+                <form action="#" method="GET"> <div class="input-group">
+                        <label for="codigo">Código do Pedido</label>
+                        <input type="text" id="codigo" required>
+                    </div>
+                     <div class="input-group">
+                        <label for="identificador_cliente">CPF ou E-mail</label>
+                        <input type="text" id="identificador_cliente" required>
+                    </div>
+                    <button type="submit" class="btn btn-login">Verificar Dados</button>
+                     </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="esqueci_senha.js"></script>
+</body>
+</html>
