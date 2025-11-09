@@ -1,17 +1,47 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('form-venda');
+document.addEventListener('DOMContentLoaded', () => {
+    // --- LÓGICA DO MODAL ---
+    const openModalBtn = document.getElementById('openModalBtn');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const modalOverlay = document.getElementById('addVendaModal'); // <--- ID Atualizado
 
-    if (form) {
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
+    if (openModalBtn) {
+        openModalBtn.addEventListener('click', () => {
+            modalOverlay.classList.add('active');
+        });
+    }
 
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', () => {
+            modalOverlay.classList.remove('active');
+        });
+    }
 
-            console.log('Dados da Venda:', data);
-            alert('Venda adicionada com sucesso! Verifique o console para ver os dados.');
+    if (modalOverlay) {
+        // Fecha o modal se clicar fora da área de conteúdo (no overlay)
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                modalOverlay.classList.remove('active');
+            }
+        });
+    }
+
+    // Lógica para lidar com o envio do formulário
+    const addVendaForm = document.getElementById('addVendaForm'); // <--- ID Atualizado
+    if (addVendaForm) {
+        addVendaForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Impede o envio real do formulário
             
-            form.reset();
+            // Aqui você adicionaria a lógica para salvar os dados
+            const nome = document.getElementById('nome').value;
+            console.log(`Venda para "${nome}" salva!`);
+            
+            // Fechar o modal após salvar
+            modalOverlay.classList.remove('active');
+            
+            // Limpar o formulário (opcional)
+            addVendaForm.reset();
+            
+            // Aqui você também poderia adicionar a nova venda na tabela
         });
     }
 });

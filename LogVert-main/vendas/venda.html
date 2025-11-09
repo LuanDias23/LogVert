@@ -3,98 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LogVert | Adicionar Venda</title>
-    <link rel="stylesheet" href="venda.css">
+    <title>LogVert | Gestão de Vendas</title>
+    <link rel="stylesheet" href="../menu.lojista/menuLojista.css">
+    <link rel="stylesheet" href="venda.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-    <div class="sidebar" id="sidebar" aria-hidden="true">
-        <div class="sidebar-header">
-            <h3 class="sidebar-title">MENU</h3>
-            <button class="close-btn" id="close-btn" aria-label="Fechar menu">&times;</button>
+    <div id="dashboard-particles"></div>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="../assets/logosemfundo.png" alt="Logo LogVert" class="sidebar-logo">
+            </div>
+            <ul class="sidebar-menu">
+                <li><a class="sidebar-link" href="../menu.lojista/menuLojista.html"><i class="fa-solid fa-house"></i><span>Início</span></a></li>
+                <li><a class="sidebar-link" href="../produtos/produtos.html"><i class="fa-solid fa-box"></i><span>Produtos</span></a></li>
+                <li><a class="sidebar-link active" href="venda.html"><i class="fa-solid fa-truck"></i><span>Vendas</span></a></li>
+                <li class="sidebar-separator"></li>
+                <li><a class="sidebar-link" href="../devolucoes/devolucoes.html"><i class="fa-solid fa-arrow-rotate-left"></i><span>Devoluções</span></a></li>
+                <li><a class="sidebar-link" href="#"><i class="fa-solid fa-file-invoice"></i><span>Trocas</span></a></li>
+                <li><a class="sidebar-link" href="../faq/faq.html"><i class="fa-solid fa-question"></i><span>FAQ</span></a></li>
+                <li><a class="sidebar-link" href="../chatbot/chatbot.html"><i class="fa-solid fa-robot"></i><span>Chatbot</span></a></li> 
+                <li class="sidebar-separator"></li>
+                <li><a class="sidebar-link" href="../login/login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
+            </ul>
+            <div class="sidebar-toggle-wrapper">
+                <button class="sidebar-toggle" id="sidebarToggle" title="Minimizar menu">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+            </div>
+        </aside>
+
+        <div class="main-container">
+            <header class="main-header">
+                <div class="header-content">
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="header-title">Gestão de Vendas</h1>
+                    <div class="header-user-actions">
+                        </div>
+                </div>
+            </header>
+
+            <main class="main-content">
+                <div class="stat-cards-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="color: var(--primary-blue);"><i class="fas fa-dollar-sign"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-title">Vendas Totais</span>
+                            <span class="stat-value">R$ 12.450,00</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="color: #f39c12;"><i class="fas fa-shipping-fast"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-title">Pedidos Pendentes</span>
+                            <span class="stat-value">8</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="color: var(--primary-green);"><i class="fas fa-chart-line"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-title">Ticket Médio</span>
+                            <span class="stat-value">R$ 180,50</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page-header">
+                    <h2>Histórico de Vendas</h2>
+                    <button class="btn-add-new" id="openModalBtn"><i class="fas fa-plus"></i> Adicionar Venda</button>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Protocolo</th>
+                                <th>Cliente</th>
+                                <th>Valor</th>
+                                <th>Data</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#12054</td>
+                                <td>João da Silva</td>
+                                <td>R$ 89,90</td>
+                                <td>01/11/2025</td>
+                                <td><span class="status-active">Entregue</span></td>
+                                <td class="action-buttons">
+                                    <button class="btn-icon btn-edit" title="Ver Detalhes"><i class="fas fa-eye"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#12053</td>
+                                <td>Maria Oliveira</td>
+                                <td>R$ 120,00</td>
+                                <td>01/11/2025</td>
+                                <td><span class="status-inactive">Pendente</span></td>
+                                <td class="action-buttons">
+                                     <button class="btn-icon btn-edit" title="Ver Detalhes"><i class="fas fa-eye"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
         </div>
-        <ul class="sidebar-menu">
-            <li><a class="sidebar-link" href="../menu.lojista/menuLojista.html"><i class="fa-solid fa-house"></i><span>Início</span></a></li>
-            <li><a class="sidebar-link" href="../produtos/produtos.html"><i class="fa-solid fa-box"></i><span>Adicionar Produto</span></a></li>
-            <li><a class="sidebar-link" href="#"><i class="fa-solid fa-truck"></i><span>Adicionar Venda</span></a></li>
-            <li><a class="sidebar-link" href="#"><i class="fa-solid fa-file-invoice"></i><span>Trocas</span></a></li>
-            <li><a class="sidebar-link" href="#"><i class="fa-solid fa-question"></i><span>FAQ</span></a></li>
-            <li class="sidebar-separator"></li>
-            <li><a class="sidebar-link" href="../login/login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
-        </ul>
     </div>
-    <div class="overlay" id="overlay"></div>
-
-    <header class="main-header">
-        <div class="logo-container">
-            <img src="../produtos/logosemfundo.jpg" alt="LogVert Logo">
-        </div>
-        <nav class="main-nav">
-            <a href="../menu.lojista/menuLojista.html" title="Início"><i class="fas fa-home"></i></a>
-            <a href="../login/login.html" title="Sair"><i class="fas fa-sign-out-alt"></i></a>
-            <a href="#" id="menu-toggle" title="Abrir Menu"><i class="fas fa-bars"></i></a>
-        </nav>
-    </header>
-
-    <div class="container">
-        <div class="card">
-            <h2>Adicionar Nova Venda</h2>
-            <form id="form-venda">
-                <div class="input-group">
-                    <label for="nome">Nome do Cliente</label>
-                    <input type="text" id="nome" name="nome" required>
-                </div>
-
-                <div class="form-row">
-                    <div class="input-group">
-                        <label for="data">Data da Venda</label>
-                        <input type="text" id="data" name="data" placeholder="dd/mm/aaaa" required>
+    
+    <div class="modal-overlay" id="addVendaModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Adicionar Nova Venda</h2>
+                <button class="close-modal" id="closeModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addVendaForm" class="form-container">
+                    <div class="form-group">
+                        <label for="nome">Nome do Cliente</label>
+                        <input type="text" id="nome" required>
                     </div>
-                    <div class="input-group">
-                        <label for="protocolo">Protocolo</label>
-                        <input type="text" id="protocolo" name="protocolo" required>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="data">Data</label>
+                            <input type="text" id="data" placeholder="dd/mm/aaaa">
+                        </div>
+                        <div class="form-group">
+                            <label for="protocolo">Protocolo</label>
+                            <input type="text" id="protocolo">
+                        </div>
                     </div>
-                </div>
-
-                <div class="input-group">
-                    <label for="endereco">Endereço</label>
-                    <input type="text" id="endereco" name="endereco" required>
-                </div>
-
-                <div class="form-row">
-                    <div class="input-group">
-                        <label for="numero">Nº</label>
-                        <input type="text" id="numero" name="numero" required>
+                     <div class="form-row">
+                        <div class="form-group" style="flex: 2;">
+                            <label for="endereco">Endereço</label>
+                            <input type="text" id="endereco">
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label for="numero">Nº</label>
+                            <input type="text" id="numero">
+                        </div>
                     </div>
-                    <div class="input-group">
+                    <div class="form-group">
                         <label for="cep">CEP</label>
-                        <input type="text" id="cep" name="cep" required>
+                        <input type="text" id="cep">
                     </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="input-group">
-                        <label for="produto">Produto</label>
-                        <input type="text" id="produto" name="produto" required>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="produto">Produto(s)</label>
+                            <input type="text" id="produto">
+                        </div>
+                        <div class="form-group">
+                            <label for="quantidade">Qntd</label>
+                            <input type="number" id="quantidade">
+                        </div>
                     </div>
-                    <div class="input-group">
-                        <label for="quantidade">Quantidade</label>
-                        <input type="number" id="quantidade" name="quantidade" required>
+                    <div class="form-group">
+                        <label for="pagamento">Pagamento</label>
+                        <input type="text" id="pagamento">
                     </div>
-                </div>
-                
-                 <div class="input-group">
-                    <label for="pagamento">Forma de Pagamento</label>
-                    <input type="text" id="pagamento" name="pagamento" required>
-                </div>
-
-                <div class="form-buttons">
-                    <button type="submit" class="btn btn-add">Adicionar Venda</button>
-                </div>
-            </form>
+                    <button type="submit" class="btn-submit-modal">Salvar Venda</button>
+                </form>
+            </div>
         </div>
     </div>
 
-    <script src="venda-sidebar.js"></script> <script src="venda.js"></script> </body>
+    <div class="overlay"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="../menu.lojista/menuLojista.js"></script>
+    <script src="venda.js"></script>
+</body>
 </html>

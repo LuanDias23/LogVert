@@ -1,180 +1,224 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+/* 1. Importa o design principal do seu dashboard */
+@import url('../menu.lojista/menuLojista.css');
 
-:root {
-    --primary-green: #3A8E5A;
-    --dark-green: #2E6B45;
-    --button-remove: #6c757d;
-    --button-remove-hover: #5a6268;
-    --background-card: #f8f9fa;
-    --border-color: #dee2e6;
-    --text-color: #495057;
-    --header-height: 70px;
-}
+/* 2. Estilos específicos da página de Produtos */
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-    font-family: 'Roboto', sans-serif;
-    color: var(--text-color);
-    background: linear-gradient(135deg, #E6F3EC, #FFFFFF);
-    line-height: 1.6;
-    min-height: 100vh;
-}
-
-.main-header {
-    background-color: var(--primary-green);
-    height: var(--header-height);
+.page-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 1rem;
-    color: white;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color-dark);
+}
+.page-header h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0; /* Remove a margem padrão de h2 */
+    text-transform: none; /* Remove o uppercase do .section-title */
+    letter-spacing: 0; /* Remove o espaçamento do .section-title */
+    border: none;
+    display: block;
+    padding: 0;
 }
 
-.logo-container img { height: 45px; }
+.btn-add-new {
+    background-color: var(--primary-blue);
+    color: var(--text-light);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+.btn-add-new:hover {
+    background-color: #1565c0; /* primary-blue-dark */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
+}
 
-.main-nav {
+/* 3. Estilos da Tabela */
+.table-container {
+    width: 100%;
+    background-color: var(--card-background);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color-dark);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden; /* Para arredondar as bordas da tabela */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th, td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color-dark);
+}
+
+thead th {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.status-active {
+    color: var(--primary-green);
+    font-weight: 500;
+}
+.status-inactive {
+    color: #e53935; /* Vermelho para inativo */
+    font-weight: 500;
+}
+
+.action-buttons {
     display: flex;
     gap: 1rem;
-    align-items: center;
 }
-
-.main-nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2rem;
-    margin-left: 0.5rem;
-    transition: opacity 0.3s ease;
+.btn-icon {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: color 0.2s;
 }
-.main-nav a:hover { opacity: 0.85; }
+.btn-icon:hover { color: var(--text-light); }
+.btn-edit:hover { color: var(--primary-blue); }
+.btn-delete:hover { color: #e53935; }
 
-.container {
+
+/* 4. Estilos do Modal (Pop-up) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 2rem;
-    padding: 2rem;
-    margin-top: 20px;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
 }
 
-.card {
-    background-color: var(--background-card);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+.modal-content {
+    background-color: var(--background-blue-deep);
+    border: 1px solid var(--border-color-dark);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     width: 100%;
     max-width: 500px;
-    border: 1px solid var(--border-color);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+.modal-overlay.active .modal-content {
+    transform: scale(1);
 }
 
-.card h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-    color: #333;
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color-dark);
+}
+.modal-header h2 {
+    font-size: 1.3rem;
+    margin: 0;
+}
+.close-modal {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.8rem;
+    cursor: pointer;
+    line-height: 1;
 }
 
-.input-group { margin-bottom: 1rem; }
-.input-group label {
+.modal-body {
+    padding: 1.5rem;
+}
+
+/* 5. Estilos do Formulário (Reutilizando seu padrão) */
+.form-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.form-group {
+    text-align: left;
+}
+.form-group label {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
-    font-size: 0.9rem;
+    color: var(--text-muted);
 }
-
-input[type="text"], input[type="number"], input[type="file"] {
+.form-group input,
+.form-group textarea {
     width: 100%;
-    padding: 0.75rem;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
+    padding: 12px;
+    border: 1px solid var(--border-color-dark);
+    border-radius: 8px;
+    background-color: var(--background-dark);
+    color: var(--text-light);
     font-size: 1rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Roboto', sans-serif;
 }
-
-input:focus {
+.form-group input:focus,
+.form-group textarea:focus {
     outline: none;
-    border-color: var(--primary-green);
-    box-shadow: 0 0 0 2px rgba(58, 142, 90, 0.2);
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.3);
+}
+.form-row {
+    display: flex;
+    gap: 1rem;
+}
+.form-row .form-group {
+    flex: 1;
 }
 
-.form-row { display:flex; gap:1rem; }
-.form-row .input-group { flex: 1; }
-
-.file-input-wrapper { position: relative; }
-.file-input-wrapper .icon {
-    position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #aaa;
-}
-
-.btn {
-    display: inline-block;
+.btn-submit-modal {
     width: 100%;
-    padding: 0.8rem 1.5rem;
+    padding: 14px;
     border: none;
-    border-radius: 5px;
-    color: #fff;
+    border-radius: 8px;
+    background-color: var(--primary-blue);
+    color: var(--text-light);
     font-size: 1rem;
     font-weight: 700;
     cursor: pointer;
-    text-align: center;
-    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
 }
-
-.btn-add { background-color: var(--primary-green); }
-.btn-add:hover { background-color: var(--dark-green); }
-
-.btn-edit { background-color: var(--primary-green); }
-.btn-edit:hover { background-color: var(--dark-green); }
-
-.btn-remove { background-color: var(--button-remove); }
-.btn-remove:hover { background-color: var(--button-remove-hover); }
-
-.form-buttons { display:flex; gap:1rem; margin-top:1.5rem; }
-
-#fieldset-edit:disabled { opacity: 0.6; }
-
-.search-wrapper { display:flex; gap:0.5rem; }
-.search-wrapper input { flex-grow: 1; }
-.btn-search { background-color: var(--primary-green); padding: 0.75rem 1rem; width: auto; color: #fff; border-radius: 5px; border: none; font-weight:700; cursor:pointer; }
-
-/* === SIDEBAR === */
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: -260px;
-    width: 260px;
-    height: 100%;
-    background-color: #fff;
-    box-shadow: 2px 0 8px rgba(0,0,0,0.12);
-    transition: left 0.28s ease;
-    z-index: 1100;
-    padding: 1rem;
-    overflow-y: auto;
-}
-.sidebar.active { left: 0; }
-.sidebar-header { display:flex; justify-content:space-between; align-items:center; gap:0.5rem; }
-.sidebar-title { margin:0; font-size:1.15rem; font-weight:700; color:#222; }
-.close-btn { background:none; border:none; font-size:1.6rem; cursor:pointer; color:#333; }
-.sidebar-menu { list-style:none; padding:0; margin-top:1rem; }
-.sidebar-link {
-    display:flex; align-items:center; gap:0.75rem;
-    padding:0.6rem; text-decoration:none; color:#333; border-radius:6px; margin-bottom:0.25rem;
-}
-.sidebar-link i { width:20px; text-align:center; }
-.sidebar-link:hover { background:#f5f5f5; }
-.sidebar-separator { border-top:1px solid #e6e6e6; margin:0.75rem 0; }
-
-.overlay {
-    display:none;
-    position: fixed;
-    top:0; left:0;
-    width:100%; height:100%;
-    background: rgba(0,0,0,0.38);
-    z-index:1000;
-}
-.overlay.active { display:block; }
-
-/* Responsividade simples */
-@media (max-width: 720px) {
-    .container { padding: 1rem; gap: 1rem; }
-    .card { padding: 1rem; }
+.btn-submit-modal:hover {
+    background-color: #1565c0; /* primary-blue-dark */
 }
