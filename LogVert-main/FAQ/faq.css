@@ -1,142 +1,97 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+/* 1. Importa o design principal do seu dashboard */
+@import url('../menu.lojista/menuLojista.css');
 
-:root {
-    --primary-green: #3A8E5A;
-    --dark-green: #2E6B45;
-    --button-remove: #6c757d;
-    --button-remove-hover: #5a6268;
-    --background-card: #f8f9fa;
-    --border-color: #dee2e6;
-    --text-color: #495057;
-    --header-height: 70px;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-    font-family: 'Roboto', sans-serif;
-    color: var(--text-color);
-    background: linear-gradient(135deg, #E6F3EC, #FFFFFF);
-    line-height: 1.6;
-    min-height: 100vh;
-}
-
-.main-header {
-    background-color: var(--primary-green);
-    height: var(--header-height);
+/* 2. Estilos do Cabeçalho da Página (reutilizado) */
+.page-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 1rem;
-    color: white;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color-dark);
+}
+.page-header h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0;
+    text-transform: none;
+    letter-spacing: 0;
+    border: none;
+    display: block;
+    padding: 0;
 }
 
-.logo-container img { height: 45px; }
-
-.main-nav {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-}
-
-.main-nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2rem;
-    margin-left: 0.5rem;
-    transition: opacity 0.3s ease;
-}
-.main-nav a:hover { opacity: 0.85; }
-
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 2rem;
-    margin-top: 20px;
-}
-
-.card {
-    background-color: var(--background-card);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+/* 3. Estilo do Card do Formulário */
+.form-card {
     width: 100%;
-    max-width: 600px;
-    border: 1px solid var(--border-color);
+    max-width: 700px; /* Limita a largura */
+    margin: 0 auto; /* Centraliza o card */
+    background-color: var(--card-background);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color-dark);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
 }
 
-.card h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-    color: #333;
+/* 4. Estilos do Formulário (adaptados para o tema dark) */
+.form-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem; /* Espaçamento entre os campos */
 }
 
-.input-group { margin-bottom: 1rem; }
-
-.input-group label {
+.form-group {
+    text-align: left;
+}
+.form-group label {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
-    font-size: 0.9rem;
+    color: var(--text-muted);
 }
 
-/* LINHA CORRIGIDA: Adicionado input[type="email"] */
-input[type="text"], input[type="number"], input[type="email"] {
+/* Estilo unificado para input e textarea */
+.form-group input,
+.form-group textarea {
     width: 100%;
-    padding: 0.75rem;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
+    padding: 12px;
+    border: 1px solid var(--border-color-dark);
+    border-radius: 8px;
+    background-color: var(--background-dark); /* Fundo escuro para input */
+    color: var(--text-light);
     font-size: 1rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Roboto', sans-serif;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-/* A regra :focus também foi atualizada para incluir o campo de email */
-input:focus, textarea:focus {
+.form-group input:focus,
+.form-group textarea:focus {
     outline: none;
-    border-color: var(--primary-green);
-    box-shadow: 0 0 0 2px rgba(58, 142, 90, 0.2);
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.3);
 }
 
-.form-row { display:flex; gap:1rem; }
-.form-row .input-group { flex: 1; }
+textarea {
+    resize: vertical; /* Permite redimensionar altura */
+}
 
-.btn {
-    display: inline-block;
+/* Botão de Envio */
+.btn-submit-form {
     width: 100%;
-    padding: 0.8rem 1.5rem;
+    padding: 14px;
     border: none;
-    border-radius: 5px;
-    color: #fff;
+    border-radius: 8px;
+    background-color: var(--primary-blue);
+    color: var(--text-light);
     font-size: 1rem;
     font-weight: 700;
     cursor: pointer;
-    text-align: center;
-    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
 }
-
-.btn-add { background-color: var(--primary-green); }
-.btn-add:hover { background-color: var(--dark-green); }
-
-.form-buttons { display:flex; gap:1rem; margin-top:1.5rem; }
-
-/* === SIDEBAR, OVERLAY, RESPONSIVIDADE, ETC ... === */
-/* ... (o resto do seu CSS continua igual) ... */
-
-
-/* Estilo para o botão azul de Enviar */
-.btn-submit { background-color: #0d6efd; }
-.btn-submit:hover { background-color: #0b5ed7; }
-
-/* Estilo para a caixa de texto de Descrição */
-textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-    font-size: 1rem;
-    font-family: 'Roboto', sans-serif;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    resize: vertical; /* Permite que o usuário redimensione verticalmente */
+.btn-submit-form:hover {
+    background-color: #1565c0; /* Tom mais escuro do primary-blue */
+    box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
 }
