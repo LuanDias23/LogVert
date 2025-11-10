@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogVert | Meus Dados</title>
+    <link rel="stylesheet" href="../menu.cliente/menuCliente.css">
+    <link rel="stylesheet" href="../solicitação-devolução/form_solicitacao.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="../menu.cliente/menuCliente.js"></script>
+</head>
+<body>
+
+    <div id="dashboard-particles"></div>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="../assets/logosemfundo.png" alt="Logo LogVert" class="sidebar-logo">
+            </div>
+            <ul class="sidebar-menu">
+                <li><a class="sidebar-link" href="../menu.cliente/menuCliente.html"><i class="fa-solid fa-receipt"></i><span>Minhas Solicitações</span></a></li>
+                <li><a class="sidebar-link" href="../solicitação-devolução/nova_solicitacao.html"><i class="fa-solid fa-plus-circle"></i><span>Nova Solicitação</span></a></li>
+                <li class="sidebar-separator"></li>
+                <li><a class="sidebar-link active" href="../dados-pessoais/meus_dados.html"><i class="fa-solid fa-user-cog"></i><span>Meus Dados</span></a></li>
+                <li><a class="sidebar-link" href="../FAQ_cliente/FAQ.html"><i class="fa-solid fa-question-circle"></i><span>Ajuda</span></a></li>
+                <li class="sidebar-separator"></li>
+                <li><a class="sidebar-link" href="../login/login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
+            </ul>
+
+            <div class="sidebar-toggle-wrapper">
+                <button class="sidebar-toggle" id="sidebarToggle" title="Minimizar menu">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+            </div>
+        </aside>
+
+        <div class="main-container">
+            <header class="main-header">
+                <div class="header-content">
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="header-title">Meus Dados Cadastrais</h1>
+                    
+                    <div class="header-user-actions">
+                        <span>Bem-vindo, Cliente</span>
+                        <div class="header-actions">
+                            <div class="header-action-item">
+                                <button class="header-action-btn" id="accountBtn" title="Minha Conta">
+                                    <i class="fa-solid fa-user-circle"></i>
+                                </button>
+                                <div class="dropdown-menu" id="accountDropdown">
+                                    <ul>
+                                        <li><a href="meus_dados.html"><i class="fa-solid fa-user-cog"></i> Meus Dados</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-palette"></i> Mudar Tema</a></li>
+                                    </ul>
+                                    <div class="dropdown-footer">
+                                        <a href="../login/login.html" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="main-content">
+    <div id="successMessage" class="alert-success" style="display: none;">
+        <i class="fa-solid fa-check-circle"></i> 
+        <span>Seus dados foram atualizados com sucesso!</span>
+        <button class="close-alert" onclick="document.getElementById('successMessage').style.display='none';">
+            <i class="fa-solid fa-times"></i>
+        </button>
+    </div>
+
+    <div class="form-card">
+        <h2>Informações Pessoais</h2>
+        <p class="form-description">Mantenha seus dados atualizados para garantir a comunicação correta.</p>
+        
+        <form id="form-meus-dados">
+            
+            <div class="form-group">
+                <label for="nome-cliente"><i class="fa-solid fa-user"></i> Nome Completo:</label>
+                <input type="text" id="nome-cliente" name="nome-cliente" value="Cliente LogVert Exemplo" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email-cliente"><i class="fa-solid fa-envelope"></i> E-mail:</label>
+                <input type="email" id="email-cliente" name="email-cliente" value="cliente@logvert.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="telefone"><i class="fa-solid fa-phone"></i> Telefone:</label>
+                <input type="text" id="telefone" name="telefone" value="(11) 98765-4321" placeholder="(XX) XXXXX-XXXX">
+            </div>
+            
+            <button type="submit" class="btn-submit">Salvar Informações Pessoais</button>
+        </form>
+    </div>
+
+    <div class="card" style="max-width: 600px; margin: 40px auto 0 auto; text-align: center; padding: 25px;">
+        <h3 style="color: var(--text-light); font-weight: 500; margin-bottom: 15px;">Segurança da Conta</h3>
+        <p style="color: var(--text-muted); margin-bottom: 25px; font-size: 0.9rem;">Gerencie suas credenciais de acesso ou mude sua senha a qualquer momento.</p>
+        
+        <a href="alterar_senha.html" class="btn-submit" style="background-color: #26ff00; width: auto; display: inline-block; padding: 5px 20px;">
+            <button type="submit" class="btn-submit">Alterar Senha</button>
+        </a>
+    </div>
+
+</main>
+        </div>
+    </div>
+    <div class="overlay"></div>
+
+    
+</body>
+</html>

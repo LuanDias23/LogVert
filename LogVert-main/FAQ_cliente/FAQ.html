@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogVert | Ajuda & Suporte</title>
+    <link rel="stylesheet" href="../menu.cliente/menuCliente.css">
+    <link rel="stylesheet" href="../solicitação-devolução/nova_solicitacao.html"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="ajuda.css"> 
+</head>
+<body>
+
+    <div id="dashboard-particles"></div>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="../assets/logosemfundo.png" alt="Logo LogVert" class="sidebar-logo">
+            </div>
+            <ul class="sidebar-menu">
+                <li><a class="sidebar-link" href="../menu.cliente/menuCliente.html"><i class="fa-solid fa-receipt"></i><span>Minhas Solicitações</span></a></li>
+                <li><a class="sidebar-link" href="../solicitação-devolução/nova_solicitacao.html"><i class="fa-solid fa-plus-circle"></i><span>Nova Solicitação</span></a></li>
+                <li class="sidebar-separator"></li>
+                <li><a class="sidebar-link" href="../dados-pessoais/meus_dados.html"><i class="fa-solid fa-user-cog"></i><span>Meus Dados</span></a></li>
+                <li><a class="sidebar-link active" href="../FAQ_cliente/FAQ.html"><i class="fa-solid fa-question-circle"></i><span>Ajuda</span></a></li>
+                <li class="sidebar-separator"></li>
+                <li><a class="sidebar-link" href="../login/login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
+            </ul>
+            <div class="sidebar-toggle-wrapper">
+                <button class="sidebar-toggle" id="sidebarToggle" title="Minimizar menu">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+            </div>
+        </aside>
+
+        <div class="main-container">
+            <header class="main-header">
+                <div class="header-content">
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="header-title">Central de Ajuda e Suporte</h1>
+                    
+                    <div class="header-user-actions">
+                        <span>Bem-vindo, Cliente</span>
+                        <div class="header-actions">
+                            <div class="header-action-item">
+                                <button class="header-action-btn" id="accountBtn" title="Minha Conta">
+                                    <i class="fa-solid fa-user-circle"></i>
+                                </button>
+                                <div class="dropdown-menu" id="accountDropdown">
+                                    <ul>
+                                        <li><a href="meus_dados.html"><i class="fa-solid fa-user-cog"></i> Meus Dados</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-palette"></i> Mudar Tema</a></li>
+                                    </ul>
+                                    <div class="dropdown-footer">
+                                        <a href="../login/login.html" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="main-content">
+                
+    <h2 class="section-title">Perguntas Frequentes (FAQ)</h2>
+
+    <div class="faq-list-container">
+
+        <div class="faq-box">
+            <h3 class="faq-question">
+                <i class="fa-solid fa-circle-question"></i> Como iniciar uma nova solicitação de troca ou devolução?
+            </h3>
+            <div class="faq-answer">
+                <p>Basta clicar no item **"Nova Solicitação"** no menu lateral. Você precisará do **número do seu pedido** e do **e-mail** cadastrado para prosseguir.</p>
+            </div>
+        </div>
+
+        <div class="faq-box">
+            <h3 class="faq-question">
+                <i class="fa-solid fa-circle-question"></i> Qual o prazo para a devolução do meu dinheiro (reembolso)?
+            </h3>
+            <div class="faq-answer">
+                <p>Após a aprovação da devolução, o prazo para o reembolso é de **7 a 10 dias úteis**, dependendo da forma de pagamento original (crédito, débito, pix).</p>
+            </div>
+        </div>
+        
+        <div class="faq-box">
+            <h3 class="faq-question">
+                <i class="fa-solid fa-circle-question"></i> Onde posso acompanhar o status da minha solicitação?
+            </h3>
+            <div class="faq-answer">
+                <p>Todas as suas solicitações ativas e concluídas podem ser visualizadas na tela **"Minhas Solicitações"**, a primeira opção do menu. O status é atualizado em tempo real.</p>
+            </div>
+        </div>
+
+    </div> <h2 class="section-title">Precisa de Ajuda Pessoal?</h2>
+    
+    <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+        
+        <a href="mailto:suporte@logvert.com" class="card-link">
+            <div class="card card-contact">
+                <i class="fa-solid fa-envelope fa-2x"></i>
+                <h3>E-mail de Suporte</h3>
+                <p>Envie sua dúvida detalhada. Responderemos em até 24h úteis.</p>
+                <span class="card-details">suporte@logvert.com</span>
+            </div>
+        </a>
+        
+        <a href="https://wa.me/5511999999999" target="_blank" class="card-link">
+            <div class="card card-contact">
+                <i class="fa-brands fa-whatsapp fa-2x"></i>
+                <h3>WhatsApp</h3>
+                <p>Para suporte rápido, fale com nossa equipe de atendimento via chat.</p>
+                <span class="card-details">(11) 99999-9999</span>
+            </div>
+        </a>
+
+    </div>
+</main>
+        </div>
+    </div>
+    <div class="overlay"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    
+    <script src="menuCliente.js"></script> 
+</body>
+
+    
+</body>
+</html>

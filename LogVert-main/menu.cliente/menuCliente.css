@@ -134,7 +134,7 @@ body.sidebar-collapsed .main-container { margin-left: 90px; }
 .dropdown-footer { padding: 0.5rem 0; border-top: 1px solid var(--border-color); }
 .logout-link { color: #ff8a80 !important; }
 
-.main-content { padding: 40px; flex-grow: 1; text-align: left; max-width: 1200px; width: 100%; margin: 0 auto; }
+.main-content { padding: 40px; flex-grow: 0; text-align: left; max-width: 1000px; width: 100%; margin: 0 auto; }
 .section-title {
     color: var(--text-light); font-size: 1.1em; font-weight: 500;
     margin: 40px 0 20px; text-transform: uppercase; letter-spacing: 2px;
@@ -194,3 +194,4 @@ body.sidebar-collapsed .main-container { margin-left: 90px; }
 .sidebar-menu::-webkit-scrollbar { width: 6px; }
 .sidebar-menu::-webkit-scrollbar-track { background: transparent; }
 .sidebar-menu::-webkit-scrollbar-thumb { background-color: var(--card-background); border-radius: 6px; border: 1px solid var(--border-color); }
+

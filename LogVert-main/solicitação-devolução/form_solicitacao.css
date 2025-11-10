@@ -1,0 +1,178 @@
+/*
+ * Arquivo: form_solicitacao.css
+ * Este arquivo utiliza as variáveis definidas no menuCliente.css
+ */
+
+.form-card {
+    /* Estilo de cartão consistente com o painel */
+    background-color: var(--card-background); 
+    backdrop-filter: blur(8px);
+    padding: 2.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+}
+
+.form-card h2 {
+    color: var(--neon-green-accent);
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.form-description {
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-light);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-group label i {
+    color: var(--neon-green-accent);
+}
+
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    /* Usa a cor de fundo mais escura do seu painel */
+    background-color: var(--background-deep); 
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 16px;
+    color: var(--text-light);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    appearance: none; /* Estilização cross-browser */
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--neon-green-accent);
+    outline: none;
+    box-shadow: 0 0 5px rgba(57, 255, 20, 0.5); /* Efeito neon */
+}
+
+::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7; 
+}
+
+/* Garante que o select tenha uma seta visível no tema escuro */
+select {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2339FF14"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 35px;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+    margin-bottom: 30px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    height: 16px;
+    margin-right: 10px;
+    /* Usa o verde neon como cor do checkbox */
+    accent-color: var(--neon-green-accent); 
+    cursor: pointer;
+}
+
+.checkbox-group label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.checkbox-group a {
+    color: var(--neon-green-accent);
+    text-decoration: none;
+}
+
+.checkbox-group a:hover {
+    text-decoration: underline;
+}
+
+/* Botão de Envio */
+.btn-submit {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    /* Usa o verde neon como cor principal do botão de ação */
+    background-color: var(--neon-green-accent);
+    color: var(--background-dark); /* Contraste: Texto escuro no fundo neon */
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-submit:hover {
+    background-color: #55ff33; 
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.7); 
+}
+
+/* --- Estilo para a Mensagem de Sucesso --- */
+.alert-success {
+    background-color: var(--primary-green); /* Verde principal para sucesso */
+    color: var(--text-light);
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 500;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.alert-success i {
+    font-size: 1.4rem;
+    margin-right: 15px;
+}
+
+.alert-success span {
+    flex-grow: 1; /* Permite que o texto ocupe o espaço */
+}
+
+.close-alert {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 1rem;
+    cursor: pointer;
+    margin-left: 15px;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.close-alert:hover {
+    opacity: 1;
+}

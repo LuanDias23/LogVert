@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogVert | Alterar Senha</title>
+    <link rel="stylesheet" href="../menu.cliente/menuCliente.css">
+    <link rel="stylesheet" href="../solicitação-devolução/form_solicitacao.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="../menu.cliente/menuCliente.js"></script>
+</head>
+<body>
+
+    <div id="dashboard-particles"></div>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="../assets/logosemfundo.png" alt="Logo LogVert" class="sidebar-logo">
+            </div>
+            <ul class="sidebar-menu">
+                <li><a class="sidebar-link" href="../menu.cliente/menuCliente.html"><i class="fa-solid fa-receipt"></i><span>Minhas Solicitações</span></a></li>
+                <li><a class="sidebar-link" href="../solicitação-devolução/nova_solicitacao.html"><i class="fa-solid fa-plus-circle"></i><span>Nova Solicitação</span></a></li>
+                <li class="sidebar-separator"></li>
+                <li><a class="sidebar-link active" href="meus_dados.html"><i class="fa-solid fa-user-cog"></i><span>Meus Dados</span></a></li> 
+                <li><a class="sidebar-link" href="#"><i class="fa-solid fa-question-circle"></i><span>Ajuda</span></a></li>
+                <li class="sidebar-separator"></li>
+                <li><a class="sidebar-link" href="../login/login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
+            </ul>
+            <div class="sidebar-toggle-wrapper">
+                <button class="sidebar-toggle" id="sidebarToggle" title="Minimizar menu">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+            </div>
+        </aside>
+
+        <div class="main-container">
+            <header class="main-header">
+                <div class="header-content">
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="header-title">Alterar Senha de Acesso</h1>
+                    
+                    <div class="header-user-actions">
+                        <span>Bem-vindo, Cliente</span>
+                        <div class="header-actions">
+                            <div class="header-action-item">
+                                <button class="header-action-btn" id="accountBtn" title="Minha Conta">
+                                    <i class="fa-solid fa-user-circle"></i>
+                                </button>
+                                <div class="dropdown-menu" id="accountDropdown">
+                                    <ul>
+                                        <li><a href="meus_dados.html"><i class="fa-solid fa-user-cog"></i> Meus Dados</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-palette"></i> Mudar Tema</a></li>
+                                    </ul>
+                                    <div class="dropdown-footer">
+                                        <a href="../login/login.html" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="main-content">
+                <div id="passwordSuccessMessage" class="alert-success" style="display: none;">
+                    <i class="fa-solid fa-check-circle"></i> 
+                    <span>Sua senha foi alterada com sucesso!</span>
+                    <button class="close-alert" onclick="document.getElementById('passwordSuccessMessage').style.display='none';">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                </div>
+
+                <div class="form-card">
+                    <h2>Segurança da Conta</h2>
+                    <p class="form-description">Preencha os campos abaixo para definir uma nova senha. Por favor, use uma senha forte.</p>
+                    
+                    <form id="form-alterar-senha">
+                        
+                        <div class="form-group">
+                            <label for="senha-atual"><i class="fa-solid fa-lock"></i> Senha Atual:</label>
+                            <input type="password" id="senha-atual" name="senha-atual" required placeholder="Digite sua senha atual">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nova-senha"><i class="fa-solid fa-key"></i> Nova Senha:</label>
+                            <input type="password" id="nova-senha" name="nova-senha" required placeholder="Mínimo 8 caracteres">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirma-senha"><i class="fa-solid fa-redo-alt"></i> Confirmar Nova Senha:</label>
+                            <input type="password" id="confirma-senha" name="confirma-senha" required placeholder="Confirme sua nova senha">
+                        </div>
+
+                        <button type="submit" class="btn-submit">Atualizar Senha</button>
+                        
+                        <a href="meus_dados.html" style="display: block; text-align: center; margin-top: 20px; color: var(--text-muted); text-decoration: none;">
+                            <i class="fa-solid fa-arrow-left"></i> Voltar para Meus Dados
+                        </a>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+    <div class="overlay"></div>
+
+    
+</body>
+</html>

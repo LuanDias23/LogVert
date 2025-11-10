@@ -1,0 +1,60 @@
+/* --- Estilos para Caixas de Texto Estáticas (FAQ) na página de Ajuda --- */
+
+.faq-list-container {
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+}
+
+.faq-box {
+    /* Reutilizamos o estilo de card, mas com uma borda mais suave */
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: var(--card-background); /* Fundo escuro do card */
+}
+
+.faq-question {
+    color: var(--text-light); /* Cor de destaque para a pergunta */
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.faq-question i {
+    color: var(--primary-green); /* Cor verde neon para o ícone */
+    margin-right: 15px;
+    font-size: 1.2rem;
+    margin-top: 2px; /* Pequeno ajuste de alinhamento */
+}
+
+.faq-answer p {
+    color: var(--text-muted); /* Cor de texto mais suave para a resposta */
+    padding-left: 35px; /* Alinha o texto da resposta com o texto da pergunta */
+    line-height: 1.5;
+}
+
+/* Estilo para os cards de contato (MANTIDO) */
+.card-contact {
+    text-align: center;
+    border-style: solid;
+    padding: 25px;
+}
+.card-contact i {
+    color: var(--primary-green);
+    margin-bottom: 10px;
+}
+.card-contact h3 {
+    margin-bottom: 5px;
+}
+.card-contact p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+.card-contact .card-details {
+    color: var(--neon-green-accent);
+    font-weight: 500;
+}
