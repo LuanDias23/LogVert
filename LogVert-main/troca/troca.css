@@ -1,0 +1,271 @@
+ /* ================================================= */
+        /* === SEU CSS COMPLETO E ADAPTADO PARA O WIZARD === */
+        /* ================================================= */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+        :root {
+            --primary-green: #388e3c;
+            --primary-blue: #1A73E8;
+            --background-dark: #16223b;
+            --background-blue-deep: #111a2f;
+            --card-background: rgba(30, 41, 65, 0.9);
+            --border-color-dark: rgba(255, 255, 255, 0.1);
+            --text-light: #f0f6fc;
+            --text-muted: #a0aec0;
+            --text-dark: #212529;
+            --neon-green: #39FF14;
+            --neon-shadow: 
+                0 0 2px var(--neon-green),
+                0 0 5px var(--neon-green),
+                0 0 10px rgba(57, 255, 20, 0.3);
+            
+            /* --- NOVIDADE --- */
+            --white-detail: rgba(255, 255, 255, 0.8); /* Branco mais suave para detalhes */
+            --white-border: rgba(255, 255, 255, 0.2); /* Borda um pouco mais visível */
+            --highlight-bg-soft: rgba(255, 255, 255, 0.05); /* Fundo suave para seleção */
+            --danger-color: #f44336; /* Mantido o vermelho para avisos */
+
+            /* VARIAVEIS DE CONVENIÊNCIA DO WIZARD RE-MAPEADAS */
+            --wizard-primary: var(--neon-green);
+            --wizard-bg-active: rgba(57, 255, 20, 0.1);
+            --wizard-border-active: var(--neon-green);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            color: var(--text-light); 
+            background-color: var(--background-dark); 
+        }
+
+        h1, h2, h3 { font-weight: 700; color: var(--text-light); }
+        h2 strong { color: var(--neon-green); text-shadow: var(--neon-shadow); }
+        
+        /* Layout Principal do Formulário (Usando classes do seu CSS) */
+        .catalog-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        .main-header {
+            background-color: var(--background-dark);
+            border-bottom: 1px solid var(--border-color-dark);
+            padding: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .header-content h1 {
+            font-size: 1.8rem;
+            color: var(--neon-green);
+            text-shadow: var(--neon-shadow);
+        }
+        
+        /* Wizard Steps Indicator */
+        .wizard-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            background: var(--background-blue-deep);
+            padding: 15px;
+            border-radius: 8px;
+            /* --- NOVIDADE --- */
+            border: 1px solid var(--white-border); 
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .step {
+            flex: 1;
+            text-align: center;
+            padding: 10px 0;
+            /* --- NOVIDADE --- */
+            border-bottom: 2px solid var(--border-color-dark); /* Borda inferior mais sutil */
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .step.active {
+            border-bottom: 3px solid var(--wizard-primary);
+            color: var(--wizard-primary);
+            text-shadow: 0 0 5px rgba(57, 255, 20, 0.5);
+        }
+        .step.completed {
+            /* --- NOVIDADE --- */
+            border-bottom: 3px solid var(--white-detail); /* Borda de "completed" mais clara */
+            color: var(--white-detail); /* Texto de "completed" mais claro */
+        }
+        .step-number {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        /* Cartões de Formulário */
+        .info-card {
+            background-color: var(--card-background);
+            padding: 25px;
+            border-radius: 12px;
+            /* --- NOVIDADE --- */
+            border: 1px solid var(--white-border); 
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+            margin-bottom: 25px;
+            backdrop-filter: blur(5px);
+        }
+        .info-card h2 {
+            font-size: 1.5rem;
+            color: var(--neon-green);
+            text-shadow: 0 0 3px var(--neon-green);
+            /* --- NOVIDADE --- */
+            border-bottom: 1px solid var(--white-border); 
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        /* Elementos de Seleção (Pedidos e Itens) */
+        .order-list-item {
+            /* --- NOVIDADE --- */
+            border: 1px solid var(--white-border); 
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--white-detail); /* Texto padrão mais claro */
+        }
+        .order-list-item:hover {
+            border-color: var(--neon-green);
+            background-color: rgba(57, 255, 20, 0.05);
+            color: var(--text-light);
+            box-shadow: 0 0 5px rgba(57, 255, 20, 0.3);
+        }
+        .order-list-item.selected {
+            border-color: var(--neon-green);
+            background-color: var(--highlight-bg-soft); /* --- NOVIDADE --- */
+            color: var(--neon-green); /* Destaque o texto do selecionado com neon */
+            box-shadow: 0 0 5px rgba(57, 255, 20, 0.3);
+        }
+        .order-list-item strong {
+            color: var(--text-light);
+        }
+
+        /* Item Fixo (1.2) - Estilo do seu screenshot */
+        .product-item-fixed {
+            /* --- NOVIDADE --- */
+            border: 1px solid var(--white-border); 
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            background-color: var(--highlight-bg-soft); /* Fundo suave */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .product-item-fixed strong {
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+        .product-item-fixed .check-mark {
+            font-size: 24px;
+            color: var(--neon-green); /* Checkmark neon */
+            text-shadow: var(--neon-shadow);
+        }
+
+        /* Botões */
+        .navigation-area {
+            display: flex; justify-content: space-between; margin-top: 30px;
+        }
+        .btn-primary-cliente { 
+            background-color: var(--neon-green); 
+            color: var(--background-dark); 
+            box-shadow: var(--neon-shadow); 
+            border: 1px solid var(--neon-green);
+            padding: 10px 24px; text-decoration: none; border-radius: 6px; font-weight: 500;
+            transition: all 0.3s ease; 
+            cursor: pointer; /* Adicionado para deixar claro que é clicável */
+        }
+        .btn-primary-cliente:hover:not(:disabled) {
+            transform: translateY(-2px); 
+            box-shadow: 0 0 4px var(--neon-green), 0 0 8px var(--neon-green), 0 0 15px rgba(57, 255, 20, 0.5); 
+        }
+        .btn-primary-cliente:disabled {
+            background-color: var(--background-blue-deep); /* --- NOVIDADE --- */
+            box-shadow: none;
+            cursor: not-allowed;
+            color: var(--text-muted); /* Texto mais sutil para desabilitado */
+            border-color: var(--border-color-dark); /* Borda mais sutil */
+        }
+        .btn-secondary { 
+            color: var(--white-detail); /* --- NOVIDADE --- */
+            border-color: var(--white-border); /* --- NOVIDADE --- */
+            background: transparent;
+            padding: 10px 24px; border-radius: 66px; font-weight: 500; transition: all 0.3s ease; border: 1px solid var(--text-light);
+            cursor: pointer;
+        }
+        .btn-secondary:hover { 
+            background-color: var(--white-border); /* --- NOVIDADE --- */
+            color: var(--text-light); /* --- NOVIDADE --- */
+            border-color: var(--white-detail); /* --- NOVIDADE --- */
+        }
+
+
+        /* Estilos de Formulário */
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-weight: 500; margin-bottom: 8px; color: var(--text-light); }
+        .form-group select, .form-group textarea, .form-group input[type="text"], .form-group input[type="file"] {
+            width: 100%; padding: 10px; 
+            /* --- NOVIDADE --- */
+            border: 1px solid var(--white-border); 
+            border-radius: 6px;
+            background-color: var(--background-dark); 
+            color: var(--text-light); font-family: 'Roboto', sans-serif;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-group select:focus, .form-group textarea:focus, .form-group input[type="text"]:focus {
+            outline: none; border-color: var(--neon-green); box-shadow: 0 0 0 1px var(--neon-green), 0 0 8px rgba(57, 255, 20, 0.5);
+        }
+        
+        .rules-box {
+            background-color: rgba(220, 53, 69, 0.1);
+            border: 1px solid var(--danger-color); 
+            padding: 15px; border-radius: 6px; margin-top: 20px;
+            color: var(--text-light);
+        }
+        .rules-box h3 { margin-top: 0; color: var(--danger-color); }
+
+        .action-option { 
+            /* --- NOVIDADE --- */
+            border: 1px solid var(--white-border); 
+            border-radius: 6px; 
+            padding: 15px; cursor: pointer; transition: all 0.3s ease; 
+            color: var(--white-detail); /* Texto padrão mais claro */
+        }
+        .action-option:hover { 
+            border-color: var(--neon-green); 
+            background-color: rgba(57, 255, 20, 0.05); 
+            color: var(--text-light);
+        }
+        .action-option input[type="radio"] { position: absolute; opacity: 0; }
+        .action-option input[type="radio"]:checked + span { 
+            font-weight: 700; 
+            color: var(--neon-green); 
+            text-shadow: 0 0 3px var(--neon-green); /* --- NOVIDADE --- */
+        }
+        .action-option input[type="radio"]:checked + span + small { /* Estilizar o small do selecionado */
+             color: var(--text-light);
+        }
+
+        .option-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        
+        #size-color-area, #upload-area { display: none; }
+        
+        /* Ajuste de Mídia para Responsividade */
+        @media (max-width: 768px) {
+            .option-grid { grid-template-columns: 1fr; }
+            .header-content { padding: 0 10px; }
+        }

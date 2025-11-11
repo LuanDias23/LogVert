@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Express - LogVert (Estilo Diferenciais)</title>
+    <link rel="stylesheet" href="catalogo.css"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <nav class="main-nav">
+            <!-- <a href="#" class="logo-link"><img src="logosemfundo.png" alt="LogVert" class="logo"></a> -->
+            
+            <!-- <div class="nav-buttons">
+                <a href="#" class="btn-icon" aria-label="Home"><i class="fas fa-home"></i></a>
+                <a href="#" class="btn-icon" aria-label="Mensagens"><i class="fas fa-comment-dots"></i></a>
+                <a href="#" class="btn-icon" aria-label="Menu"><i class="fas fa-bars"></i></a>
+            </div> -->
+        </nav>
+    </header>
+
+    <main class="catalog-page">
+        <div class="catalog-container">
+
+           <nav class="catalog-nav">
+                <a href="#" class="active">Catálogo Express</a>
+            </nav> 
+
+            <section class="store-header">
+                <div class="store-avatar">
+                    <img src="https://i.pravatar.cc/80?img=12" alt="Avatar da Loja Parceira">
+                </div>
+                <div class="store-info">
+                    <h2>Loja Parceira</h2>
+                    <div class="store-meta">
+                        <span>Produtos: <strong>XXX</strong></span>
+                        <span>Avaliação: <strong>4.9 (133 Avaliações)</strong></span>
+                        <span>Taxa de Resposta: <strong>67% (Rápida)</strong></span>
+                    </div>
+                </div>
+                <div class="store-actions">
+                    <a href="#" class="btn btn-secondary">Suporte</a>
+                </div>
+            </section>
+
+            
+
+            <div class="catalog-content-layout">
+
+                <aside class="filter-sidebar">
+                    <h3><i class="fas fa-filter"></i> Filtros de Produto</h3>
+
+                    <div class="filter-group">
+                        <h4>Categorias</h4>
+                        <ul>
+                            <li><a href="#" class="active">Todas</a></li>
+                            <li><a href="#">Vestuário (3)</a></li>
+                            <li><a href="#">Acessórios (2)</a></li>
+                            <li><a href="#">Eletrônicos (1)</a></li>
+                            <li><a href="#">Calçados (1)</a></li>
+                            <li><a href="#">Outros (5)</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h4>Disponibilidade de Troca</h4>
+                        <label>
+                            <input type="checkbox" checked> Disponível
+                        </label>
+                        <label>
+                            <input type="checkbox"> Indisponível
+                        </label>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Preço (R$)</h4>
+                        <label for="price-min">Mínimo:</label>
+                        <input type="number" id="price-min" placeholder="0">
+                        <label for="price-max" style="margin-top: 10px;">Máximo:</label>
+                        <input type="number" id="price-max" placeholder="1000">
+                    </div>
+                </aside>
+                <section class="product-grid">
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="mochila.png" alt="Mochila Amarela">
+                        </div>
+                        <div class="product-info">
+                            <h3>Mochila de Couro Sintético Amarela</h3>
+                            <div class="product-availability">
+                                <span class="availability-dot available"></span>
+                                Disponível para troca
+                            </div>
+                            <div class="product-price">R$XX,XX</div>
+                            <div class="product-actions">
+                               <a href="../troca/troca.html" class="btn btn-primary btn-exchange">Trocar</a>
+                            
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="sapato.png" alt="Tênis de Corrida">
+                        </div>
+                        <div class="product-info">
+                            <h3>Tênis de Corrida Esportivo Azul</h3>
+                            <div class="product-availability">
+                                <span class="availability-dot unavailable"></span>
+                                Indisponível para troca
+                            </div>
+                            <div class="product-price">R$XX,XX</div>
+                            <div class="product-actions">
+                                <a href="#" class="btn btn-primary btn-exchange" style="opacity: 0.5; cursor: not-allowed; filter: grayscale(80%);">Trocar</a>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="camisa.png" alt="Camiseta Preta">
+                        </div>
+                        <div class="product-info">
+                            <h3>Camiseta Básica de Algodão Preta</h3>
+                            <div class="product-availability">
+                                <span class="availability-dot available"></span>
+                                Disponível para troca
+                            </div>
+                            <div class="product-price">R$XX,XX</div>
+                            <div class="product-actions">
+                                <a href="troca.html?product_id=I-003" class="btn btn-primary btn-exchange">Trocar</a>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="head.png" alt="Headphone">
+                        </div>
+                        <div class="product-info">
+                            <h3>Headphone Sem Fio com Cancelamento de Ruído</h3>
+                            <div class="product-availability">
+                                <span class="availability-dot available"></span>
+                                Disponível para troca
+                            </div>
+                            <div class="product-price">R$XX,XX</div>
+                            <div class="product-actions">
+                                <a href="troca.html?product_id=I-004" class="btn btn-primary btn-exchange">Trocar</a>
+                            
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">
+                        <img src="chapeu.png" alt="Boné">
+                        </div>
+                        <div class="product-info">
+                            <h3>Boné de Baseball</h3>
+                            <div class="product-availability">
+                                <span class="availability-dot unavailable"></span>
+                                Indisponível para troca
+                            </div>
+                            <div class="product-price">R$XX,XX</div>
+                            <div class="product-actions">
+                                <a href="#" class="btn btn-primary btn-exchange" style="opacity: 0.5; cursor: not-allowed; filter: grayscale(80%);">Trocar</a>
+                              
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="carteira.png" alt="Carteira">
+                        </div>
+                        <div class="product-info">
+                            <h3>Carteira de Couro Masculina Marrom</h3>
+                            <div class="product-availability">
+                                <span class="availability-dot available"></span>
+                                Disponível para troca
+                            </div>
+                            <div class="product-price">R$XX,XX</div>
+                            <div class="product-actions">
+                                <a href="troca.html?product_id=I-005" class="btn btn-primary btn-exchange">Trocar</a>
+                              
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+                </div>
+            </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <img src="logosemfundo.png" alt="LogVert Logo" class="logo-footer">
+                <p>Sua logística reversa inteligente e lucrativa.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Navegação</h4>
+                <ul>
+                    <li><a href="#">Diferenciais</a></li>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Solicitar Demonstração</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Política de Privacidade</a></li>
+                    <li><a href="#">Termos de Uso</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contato</h4>
+                <ul>
+                    <li><a href="mailto:contato@logvert.com">contato@logvert.com</a></li>
+                    <li><a href="tel:+5511999998888">+55 (11) 99999-8888</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 LogVert. Todos os direitos reservados.
+        </div>
+    </footer>
+</body>
+</html>

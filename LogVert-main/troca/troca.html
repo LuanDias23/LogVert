@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitação de Troca - Tema Neon com Detalhes Claros</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="troca.css">
+</head>
+<body>
+    
+    <!-- <header class="main-header">
+        <div class="header-content">
+            <h1>Trocas  OU reembolso  <strong style="color: var(--white-detail); text-shadow: none;"></strong></h1>
+        </div>
+    </header> -->
+
+    <div class="catalog-container">
+        
+        <div class="wizard-steps">
+            <div class="step active" id="step-1">
+                <span class="step-number">1</span> Seleção do Item
+            </div>
+            <div class="step" id="step-2">
+                <span class="step-number">2</span> Motivo e Ação
+            </div>
+            <div class="step" id="step-3">
+                <span class="step-number">3</span> Revisão e Envio
+            </div>
+        </div>
+
+        <form id="form-troca">
+            <div class="step-content" id="content-step-1">
+                <section class="info-card">
+                    <h2>1.1 Escolha o Pedido para Troca</h2>
+                    <p style="color: var(--white-detail); margin-bottom: 15px;">Clique no pedido que contém o(s) item(ns) que você deseja trocar.</p>
+                    <div id="order-list">
+                        </div>
+                </section>
+                
+                <section class="info-card" id="product-confirmation-card" style="display: none;">
+                    <h2>1.2 Item(ns) Selecionado(s) para Troca</h2>
+                    <p style="color: var(--white-detail);">Confirme os produtos que serão devolvidos no pedido <strong id="selected-order-id" style="color: var(--neon-green);"></strong>. (Baseado na sua seleção anterior).</p>
+                    <div id="product-confirmation-list">
+                        </div>
+                    <small style="color: var(--danger-color); font-weight: 500;">Caso os itens estejam incorretos, volte e selecione outro pedido.</small>
+                </section>
+
+                <div class="navigation-area" style="justify-content: flex-end;">
+                    <button type="button" class="btn-primary-cliente" id="next-step-1" onclick="nextStep(2)" disabled>Próxima Etapa (Motivo)</button>
+                </div>
+            </div>
+
+            <div class="step-content" id="content-step-2" style="display: none;">
+                <section class="info-card">
+                    <h2>2.1 Detalhes da Devolução</h2>
+                    
+                    <p style="color: var(--white-detail);">Itens a devolver: <strong id="selected-items-summary" style="color: var(--neon-green);">Nenhum item.</strong></p>
+
+                    <div class="form-group">
+                        <label for="motivo">Motivo Principal da Troca/Devolução:</label>
+                        <select id="motivo" name="motivo" required>
+                            <option value="">Selecione um motivo...</option>
+                            <option value="tamanho">Tamanho Incorreto (Quero um maior/menor)</option>
+                            <option value="defeito">Produto com Defeito/Avaria</option>
+                            <option value="insatisfacao">Insatisfação/Arrependimento (7 dias)</option>
+                            <option value="divergente">Produto Divergente do Pedido/Foto</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="size-color-area">
+                        <label for="novo-tamanho">Qual novo tamanho/cor/modelo você deseja?</label>
+                        <input type="text" id="novo-tamanho" name="novo-tamanho" placeholder="Ex: Tamanho G, Cor Vermelha, ou Modelo X">
+                    </div>
+
+                    <div class="form-group" id="upload-area">
+                        <label for="anexos">Anexar Fotos/Vídeo do Defeito/Avaria (Max. 3 arquivos):</label>
+                        <input type="file" id="anexos" name="anexos" accept="image/*,video/*" multiple>
+                        <small style="color: var(--danger-color); font-weight: 600;">Obrigatório para aprovação de trocas por defeito.</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="detalhes">Detalhes Adicionais:</label>
+                        <textarea id="detalhes" name="detalhes" placeholder="Explique brevemente o problema."></textarea>
+                    </div>
+                </section>
+
+                <section class="info-card">
+                    <h2>2.2 Solução Desejada</h2>
+                    <div class="form-group">
+                        <label for="acao-desejada">Selecione o que você prefere:</label>
+                        <div class="option-grid" id="action-grid">
+                            </div>
+                    </div>
+                </section>
+
+                <div class="navigation-area">
+                    <button type="button" class="btn-secondary" onclick="prevStep(1)">Voltar</button>
+                    <button type="button" class="btn-primary-cliente" onclick="nextStep(3)">Revisar e Concluir</button>
+                </div>
+            </div>
+
+            <div class="step-content" id="content-step-3" style="display: none;">
+                <section class="info-card">
+                    <h2>3.1 Revisão Final da Solicitação</h2>
+                    
+                    <div id="review-summary">
+                        </div>
+                    
+                    <div class="rules-box">
+                        <h3>⚠️ Última Verificação:</h3>
+                        <ul>
+                            <li>Confirmo que o produto será devolvido na **embalagem original** e **sem sinais de uso**.</li>
+                            <li>O prazo de análise da loja, após o recebimento do item, é de até **5 dias úteis**.</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <div class="navigation-area">
+                    <button type="button" class="btn-secondary" onclick="prevStep(2)">Voltar e Editar</button>
+                    <button type="submit" class="btn-primary-cliente">Confirmar e Gerar ID da Troca</button>
+                </div>
+            </div>
+        </form>
+    </div>
+      <script src="troca.js"></script>
+ 
+</body>
+</html>
