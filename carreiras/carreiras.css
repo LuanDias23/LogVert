@@ -40,7 +40,7 @@ h2 strong, h1 strong, h3 strong {
     margin-bottom: 3rem;
 }
 p {
-    text-align: justify;
+    text-align: center;
     -webkit-hyphens: auto;
     -ms-hyphens: auto;
     hyphens: auto;
