@@ -1,7 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    // =========================================================
+    // --- BLOCO DE ROLAGEM SUAVE REMOVIDO ---
+    // O 'welcome.css' (com html { scroll-behavior: smooth; })
+    // agora vai cuidar disso sem conflitos.
+    // =========================================================
+
+
     // --- LÓGICA PARA O MENU MOBILE ---
+    // (Seu código original)
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-    const mainNav = document.getElementById('mainNav');
+    const mainNav = document.getElementById('mainNav'); // Assumindo que o ID do seu nav é 'mainNav'
     if (mobileMenuToggle && mainNav) {
         mobileMenuToggle.addEventListener('click', () => {
             mainNav.classList.toggle('nav-open');
@@ -9,21 +18,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- LÓGICA PARA O FAQ ACORDEÃO ---
+    // (Seu código original, com uma pequena correção para o 'max-height')
     const faqItems = document.querySelectorAll('.faq-item');
     faqItems.forEach(item => {
         const question = item.querySelector('.faq-question');
-        question.addEventListener('click', () => {
-            faqItems.forEach(otherItem => {
-                if (otherItem !== item && otherItem.classList.contains('active')) {
-                    otherItem.classList.remove('active');
+        const answer = item.querySelector('.faq-answer'); // Pega a resposta
+
+        if (question && answer) { // Garante que ambos existam
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+
+                // Fecha todos os outros
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                        // Garante que a resposta do outro item exista antes de aplicar o estilo
+                        const otherAnswer = otherItem.querySelector('.faq-answer');
+                        if (otherAnswer) {
+                            otherAnswer.style.maxHeight = null; // Fecha
+                        }
+                    }
+                });
+                
+                // Abre/Fecha o item atual
+                if (isActive) {
+                    item.classList.remove('active');
+                    answer.style.maxHeight = null; // Fecha
+                } else {
+                    item.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + 'px'; // Abre
                 }
             });
-            item.classList.toggle('active');
-        });
+        }
     });
 
     // --- LÓGICA DA ANIMAÇÃO DE PARTÍCULAS ---
-    if (typeof particlesJS !== 'undefined') {
+    // (Seu código original)
+    // Esta verificação agora funciona, pois 'particles.js' foi carregado ANTES
+    if (typeof particlesJS !== 'undefined' && document.getElementById('hero-particles')) {
         particlesJS("hero-particles", {
             "particles": {
                 "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
@@ -44,34 +76,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- LÓGICA PARA ANIMAÇÃO DOS NÚMEROS DO PAINEL ---
+    // (Seu código original)
     const counters = document.querySelectorAll('.metric-value');
     
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const counter = entry.target;
-                const target = +counter.getAttribute('data-target');
-                let count = 0;
-                const speed = 100; // Aumentei a velocidade da animação
+    if (counters.length > 0) {
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = +counter.getAttribute('data-target');
+                    // Evita re-animar se já foi animado
+                    if (counter.hasAttribute('data-animated')) return;
+                    counter.setAttribute('data-animated', 'true');
 
-                const updateCount = () => {
-                    const inc = Math.max(Math.floor(target / speed), 1);
-                    count += inc;
+                    let count = 0;
+                    const speed = 100; 
 
-                    if (count < target) {
-                        counter.innerText = count;
-                        setTimeout(updateCount, 15);
-                    } else {
-                        counter.innerText = target;
-                    }
-                };
-                updateCount();
-                observer.unobserve(counter);
-            }
+                    const updateCount = () => {
+                        const inc = Math.max(Math.floor(target / speed), 1);
+                        count += inc;
+
+                        if (count < target) {
+                            counter.innerText = count;
+                            setTimeout(updateCount, 15);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    updateCount();
+                    observer.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => {
+            observer.observe(counter);
         });
-    }, { threshold: 0.5 });
-
-    counters.forEach(counter => {
-        observer.observe(counter);
-    });
+    }
 });

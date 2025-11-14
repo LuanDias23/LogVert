@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+:root {
+    --primary-green: #388e3c;
+    --primary-green-dark: #2e7d32;
+    --primary-blue: #1A73E8;
+    --background-dark: #16223b;
+    --background-blue-deep: #111a2f;
+    --card-background: rgba(30, 41, 65, 0.7);
+    --border-color-dark: rgba(255, 255, 255, 0.1);
+    --text-light: #f0f6fc;
+    --text-muted: #a0aec0;
+    --text-dark: #212529;
+    --green-shadow: 
+        0 0 2px rgba(56, 142, 60, 0.8),
+        0 0 5px rgba(56, 142, 60, 0.5),
+        0 0 10px rgba(56, 142, 60, 0.3);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body { 
+    font-family: 'Roboto', sans-serif; 
+    color: var(--text-light); 
+    background-color: var(--background-dark); 
+    margin: 0;
+    padding: 0;
+}
+
+/* Fundo de Partículas */
+#legal-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: var(--background-dark);
+}
+
+/* Cabeçalho */
+.legal-header {
+    width: 100%;
+    z-index: 1000;
+    background: transparent;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-color-dark);
+}
+
+.main-nav { 
+    display: flex; 
+    justify-content: center; /* Centraliza o logo */
+    align-items: center; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    height: 50px; /* Altura menor para o header */
+    padding: 0 20px;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: var(--text-light);
+}
+
+.logo { 
+    height: 40px; 
+    filter: brightness(0) invert(1); 
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-shadow: 0 0 5px rgba(255,255,255,0.3);
+}
+
+
+/* Conteúdo Principal */
+main {
+    padding: 60px 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.legal-content {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color-dark);
+    border-radius: 12px;
+    padding: 2rem 3rem;
+    backdrop-filter: blur(10px);
+}
+
+.legal-content h1 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--text-light);
+    border-bottom: 2px solid var(--primary-green);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.legal-content h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-light); /* Cor do título (branca) */
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.legal-content p, .legal-content li {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    text-align: justify;
+}
+
+.legal-content ul {
+    padding-left: 20px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.legal-content li {
+    margin-bottom: 0.5rem;
+}
+
+.last-updated {
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+}
+
+/* --- SEÇÃO DO RODAPÉ (COM AJUSTES) --- */
+
+.main-footer { 
+    background-color: var(--background-blue-deep); 
+    color: var(--text-light); 
+    padding: 60px 40px; 
+    border-top: 1px solid var(--border-color-dark);
+    position: relative; /* Garante que o rodapé fique sobre as partículas */
+    z-index: 2;
+}
+
+.footer-content { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 2rem; 
+}
+
+.logo-footer { 
+    height: 35px; 
+    filter: brightness(0) invert(1); 
+    margin-bottom: 1rem; 
+}
+
+.footer-column p { color: var(--text-muted); text-align: left; }
+.footer-column h4 { margin-bottom: 1rem; color: var(--text-light); }
+.footer-column ul { list-style: none; padding: 0;}
+.footer-column li { margin-bottom: 0.5rem; }
+
+.footer-column a { 
+    color: var(--text-muted); 
+    text-decoration: none; 
+    transition: color 0.3s ease; 
+    /* AJUSTE: Padronizando o tamanho da fonte */
+    font-size: 0.9rem;
+}
+.footer-column a:hover { color: var(--primary-green); text-shadow: 0 0 3px var(--primary-green); }
+
+/* Contato do Rodapé */
+.footer-contact {
+    list-style: none;
+    padding: 0;
+}
+.footer-contact li {
+    margin-bottom: 0.8rem;
+    color: var(--text-muted);
+    /* AJUSTE: Padronizando o tamanho da fonte */
+    font-size: 0.9rem;
+}
+/* Estilo do ícone (não quebra se o ícone for removido) */
+.footer-contact i {
+    color: var(--primary-green);
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+    margin-right: 0.5rem; /* Adiciona espaço se o ícone existir */
+}
+
+/* Ícones Sociais */
+.social-icons { 
+    display: flex; 
+    gap: 1rem; 
+    margin-top: 1.5rem; 
+}
+.social-icons a { 
+    font-size: 1.2rem; 
+    color: var(--text-muted); 
+    transition: color 0.3s ease, text-shadow 0.3s ease; 
+}
+.social-icons a:hover { color: var(--primary-green); text-shadow: var(--green-shadow); }
+
+/* Rodapé Inferior */
+.footer-bottom { 
+    text-align: center; 
+    margin-top: 40px; 
+    padding-top: 20px; 
+    border-top: 1px solid rgba(255,255,255,0.15); 
+    color: var(--text-muted); 
+    font-size: 0.9rem; 
+}
+
+.footer-payment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+.footer-payment p { margin: 0; font-weight: 500; color: var(--text-light); }
+
+/* Ícones de Pagamento (Bandeiras) */
+.payment-icons {
+    display: flex;
+    gap: 0.8rem;
+    /* --- ESTA É A MUDANÇA FINAL --- */
+    /* AJUSTE: Bandeiras pequenas e sutis, como no Anexo I */
+    font-size: 1.1rem; 
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+.payment-icons i { transition: color 0.3s ease, opacity 0.3s ease; }
+.payment-icons i:hover { color: var(--text-light); opacity: 1; }
+
+.footer-copyright p { margin: 0; }
+
+/* Responsivo */
+@media(max-width: 768px) {
+    .legal-content { padding: 1.5rem; }
+    .legal-content h1 { font-size: 2rem; }
+    .legal-content h2 { font-size: 1.5rem; }
+    
+    .footer-payment {
+        flex-direction: column;
+        gap: 0.8rem;
+        margin-bottom: 1rem;
+    }
+}

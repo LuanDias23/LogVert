@@ -17,7 +17,18 @@
         0 0 10px rgba(56, 142, 60, 0.3);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+/* --- ESTA É A CORREÇÃO --- */
+/* A regra de rolagem suave deve ser aplicada ao HTML */
+html {
+    scroll-behavior: smooth;
+}
+
+/* O 'scroll-behavior' foi removido daqui */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
 
 body { 
     font-family: 'Roboto', sans-serif; 
