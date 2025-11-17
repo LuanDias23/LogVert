@@ -96,12 +96,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const result = await response.json();
 
-                if (response.ok) {
-                    lojistaMessage.textContent = result.message;
-                    lojistaMessage.classList.add('success');
-                    setTimeout(() => {
-                        window.location.href = "/pages/menu.lojista/menuLojista.html"; // Redireciona para o menuLojista.html
-                    }, 1000);
+            if (response.ok) {
+                lojistaMessage.textContent = result.message;
+                lojistaMessage.classList.add('success');
+
+                // --- ADICIONE ESTAS LINHAS ---
+                if (result.token) {
+                    localStorage.setItem('authToken', result.token);
+                    console.log("Token salvo com sucesso!"); // Linha para nos ajudar a testar
+                } else {
+                    console.error("Login OK, MAS o backend não enviou o 'token' no JSON!");
+                }
+                // --- FIM DA ADIÇÃO ---
+
+                setTimeout(() => {
+                    // O seu redirecionamento (já estava aqui)
+                    window.location.href = "/pages/menu.lojista/menuLojista.html"; 
+                }, 1000);
                 } else {
                     lojistaMessage.textContent = result.message; // Ex: "Email ou senha inválidos."
                     lojistaMessage.classList.add('error');

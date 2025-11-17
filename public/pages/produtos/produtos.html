@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>LogVert | Gestão de Produtos</title>
     
+    <!-- Links de CSS (corrigidos pa    ra caminhos absolutos) -->
     <link rel="stylesheet" href="/pages/menu.lojista/menuLojista.css">
-    
     <link rel="stylesheet" href="/pages/produtos/produtos.css">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -16,6 +15,7 @@
     <div id="dashboard-particles"></div>
 
     <div class="dashboard-layout">
+        <!-- Sidebar (já estava correta) -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <img src="/assets/logosemfundo.png" alt="Logo LogVert" class="sidebar-logo">
@@ -36,8 +36,10 @@
             </div>
         </aside>
 
+        <!-- Container Principal -->
         <div class="main-container">
             
+            <!-- Header (já estava correto) -->
             <header class="main-header">
                 <div class="header-content">
                     <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
@@ -47,9 +49,8 @@
                     
                     <div class="header-user-actions">
                         <span>Bem-vindo, Lojista</span>
-                        
                         <div class="header-actions">
-                            <div class="header-action-item">
+                             <div class="header-action-item">
                                 <button class="header-action-btn" id="newsBtn" title="Novidades">
                                     <i class="fa-solid fa-gift"></i>
                                 </button>
@@ -61,8 +62,7 @@
                                     </ul>
                                 </div>
                             </div>
-
-                            <div class="header-action-item">
+                             <div class="header-action-item">
                                 <button class="header-action-btn" id="notificationsBtn" title="Notificações">
                                     <i class="fa-solid fa-bell"></i>
                                     <span class="notification-badge">3</span>
@@ -77,8 +77,7 @@
                                     <div class="dropdown-footer"><a href="#">Ver todas</a></div>
                                 </div>
                             </div>
-
-                            <div class="header-action-item">
+                             <div class="header-action-item">
                                 <button class="header-action-btn" id="accountBtn" title="Minha Conta">
                                     <i class="fa-solid fa-user-circle"></i>
                                 </button>
@@ -98,43 +97,33 @@
                 </div>
             </header>
             
+            <!-- Conteúdo Principal -->
             <main class="main-content">
+                
+                <!-- Cabeçalho da página com novos botões -->
                 <div class="page-header">
                     <h2>Meus Produtos Cadastrados</h2>
-                    <button class="btn-add-new" id="openModalBtn"><i class="fas fa-plus"></i> Adicionar Novo</button>
+                    <div class="page-header-actions">
+                        <button class="btn-secondary" id="exportBtn"><i class="fas fa-file-export"></i> Exportar</button>
+                        <button class="btn-add-new" id="openModalBtn"><i class="fas fa-plus"></i> Adicionar Novo</button>
+                    </div>
                 </div>
 
+                <!-- Tabela de Produtos (NOVAS COLUNAS) -->
                 <div class="table-container">
                     <table>
                         <thead>
                             <tr>
-                                <th>Produto</th>
-                                <th>SKU</th>
-                                <th>Estoque</th>
-                                <th>Status</th>
+                                <th>Produto</th> <!-- Descrição + Imagem -->
+                                <th>Preço</th>
+                                <th>Unidade</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- As linhas serão preenchidas pelo produtos.js -->
                             <tr>
-                                <td>Camiseta Azul P</td>
-                                <td>SKU-001</td>
-                                <td>50</td>
-                                <td><span class="status-active">Ativo</span></td>
-                                <td class="action-buttons">
-                                    <button class="btn-icon btn-edit" title="Editar"><i class="fas fa-pencil-alt"></i></button>
-                                    <button class="btn-icon btn-delete" title="Excluir"><i class="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Calça Jeans 38</td>
-                                <td>SKU-002</td>
-                                <td>0</td>
-                                <td><span class="status-inactive">Inativo</span></td>
-                                <td class="action-buttons">
-                                    <button class="btn-icon btn-edit" title="Editar"><i class="fas fa-pencil-alt"></i></button>
-                                    <button class="btn-icon btn-delete" title="Excluir"><i class="fas fa-trash"></i></button>
-                                </td>
+                                <td colspan="4" style="text-align: center;">Carregando produtos...</td>
                             </tr>
                         </tbody>
                     </table>
@@ -143,6 +132,7 @@
         </div>
     </div>
     
+    <!-- MODAL (Pop-up) para Adicionar/Editar Produto (NOVOS CAMPOS) -->
     <div class="modal-overlay" id="addProdutoModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -150,39 +140,51 @@
                 <button class="close-modal" id="closeModalBtn">&times;</button>
             </div>
             <div class="modal-body">
+                
+                <!-- 
+                  NOTA: Este formulário está pronto para enviar 'multipart/form-data',
+                  conforme a imagem do Postman que você enviou.
+                -->
                 <form id="addProdutoForm" class="form-container">
+                    
                     <div class="form-group">
-                        <label for="nome">Nome do Produto</label>
-                        <input type="text" id="nome" required>
+                        <label for="descricao">Descrição do Produto</label>
+                        <input type="text" id="descricao" required>
                     </div>
-                    <div class="form-group">
-                        <label for="sku">SKU (Código)</label>
-                        <input type="text" id="sku" required>
-                    </div>
+
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="tamanho">Tamanho</label>
-                            <input type="text" id="tamanho">
+                            <label for="preco">Preço (R$)</label>
+                            <input type="number" id="preco" step="0.01" min="0" placeholder="ex: 59.90" required>
                         </div>
                         <div class="form-group">
-                            <label for="cor">Cor</label>
-                            <input type="text" id="cor">
+                            <label for="unidadeMedida">Unidade (UN, CX, PC)</label>
+                            <input type="text" id="unidadeMedida" value="UN" required>
                         </div>
                     </div>
+                    
+                    <!-- CAMPO DE UPLOAD DE IMAGEM -->
                     <div class="form-group">
-                        <label for="quantidade">Quantidade em Estoque</label>
-                        <input type="number" id="quantidade" value="0">
+                        <label for="imagem">Anexar Imagem</label>
+                        <input type="file" id="imagem" accept="image/png, image/jpeg">
+                        <small>Deixe em branco se não quiser alterar a imagem (na edição).</small>
                     </div>
                     
+                    <!-- Campo escondido para idLoja (exemplo) -->
+                    <input type="hidden" id="idLoja" value="1">
+
                     <button type="submit" class="btn-submit-modal">Salvar Produto</button>
                 </form>
             </div>
         </div>
     </div>
 
+    <!-- Overlay (já estava correto) -->
     <div class="overlay"></div>
 
+    <!-- Scripts (Biblioteca de Excel adicionada) -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     
     <script src="/js/api/apiClient.js"></script>
     <script src="/pages/menu.lojista/menuLojista.js"></script>

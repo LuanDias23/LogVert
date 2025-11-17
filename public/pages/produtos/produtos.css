@@ -10,18 +10,27 @@
     margin-bottom: 2rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--border-color-dark);
+    flex-wrap: wrap; /* Adicionado para responsividade */
+    gap: 1rem; /* Adicionado para responsividade */
 }
 .page-header h2 {
     font-size: 1.5rem;
     font-weight: 500;
-    margin: 0; /* Remove a margem padrão de h2 */
-    text-transform: none; /* Remove o uppercase do .section-title */
-    letter-spacing: 0; /* Remove o espaçamento do .section-title */
+    margin: 0; 
+    text-transform: none; 
+    letter-spacing: 0; 
     border: none;
     display: block;
     padding: 0;
 }
 
+/* Container para os botões do cabeçalho */
+.page-header-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Botão Adicionar (Seu código original) */
 .btn-add-new {
     background-color: var(--primary-blue);
     color: var(--text-light);
@@ -35,12 +44,37 @@
     align-items: center;
     gap: 0.5rem;
     transition: all 0.3s ease;
+    text-decoration: none; /* Adicionado */
 }
 .btn-add-new:hover {
     background-color: #1565c0; /* primary-blue-dark */
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
 }
+
+/* NOVO: Botão Exportar (btn-secondary) */
+.btn-secondary {
+    background-color: var(--card-background); /* Cor de fundo do seu tema */
+    color: var(--text-muted);
+    border: 1px solid var(--border-color-dark);
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+.btn-secondary:hover {
+    background-color: var(--border-color-dark);
+    color: var(--text-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
 
 /* 3. Estilos da Tabela */
 .table-container {
@@ -50,7 +84,8 @@
     border: 1px solid var(--border-color-dark);
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    overflow: hidden; /* Para arredondar as bordas da tabela */
+    overflow: hidden; 
+    overflow-x: auto; /* Adicionado para tabelas largas */
 }
 
 table {
@@ -62,6 +97,7 @@ table {
 th, td {
     padding: 1rem 1.5rem;
     border-bottom: 1px solid var(--border-color-dark);
+    white-space: nowrap; /* Impede que o texto quebre linha */
 }
 
 thead th {
@@ -79,6 +115,21 @@ tbody tr:hover {
     background-color: rgba(255, 255, 255, 0.05);
 }
 
+/* NOVO: Célula da imagem do produto */
+.produto-cell {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.produto-img-preview {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 6px;
+    background-color: var(--border-color-dark);
+}
+
+/* Status (Seu código original) */
 .status-active {
     color: var(--primary-green);
     font-weight: 500;
@@ -88,9 +139,11 @@ tbody tr:hover {
     font-weight: 500;
 }
 
+/* Botões de Ação (Seu código original) */
 .action-buttons {
     display: flex;
     gap: 1rem;
+    text-align: right; /* Garante alinhamento */
 }
 .btn-icon {
     background: none;
@@ -181,7 +234,11 @@ tbody tr:hover {
     font-weight: 500;
     color: var(--text-muted);
 }
-.form-group input,
+
+/* ATUALIZADO: Inclui input[type="file"] */
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="file"],
 .form-group textarea {
     width: 100%;
     padding: 12px;
@@ -191,7 +248,9 @@ tbody tr:hover {
     color: var(--text-light);
     font-size: 1rem;
     font-family: 'Roboto', sans-serif;
+    box-sizing: border-box; /* Adicionado para consistência */
 }
+
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
@@ -206,6 +265,32 @@ tbody tr:hover {
     flex: 1;
 }
 
+/* NOVO: Estilos para o botão de upload de arquivo */
+.form-group input[type="file"] {
+    padding: 8px; /* Ajuste no padding */
+}
+.form-group input[type="file"]::file-selector-button {
+    background-color: #4a5568;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin-right: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.form-group input[type="file"]::file-selector-button:hover {
+    background-color: #5a677d;
+}
+
+/* NOVO: Estilo para o texto de ajuda (small) */
+.form-group small {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: -0.5rem; /* Puxa para perto do input */
+}
+
+/* Botão de Salvar (Seu código original) */
 .btn-submit-modal {
     width: 100%;
     padding: 14px;
