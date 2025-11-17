@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LogVert | Chatbot</title>
-    <link rel="stylesheet" href="pages/menu.lojista/menuLojista.css"> 
-    <link rel="stylesheet" href="pages/chatbot/chatbot.css"> 
+    <link rel="stylesheet" href="/pages/menu.lojista/menuLojista.css"> 
+    <link rel="stylesheet" href="/pages/chatbot/chatbot.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -18,15 +18,13 @@
                 <img src="/assets/logosemfundo.png" alt="Logo LogVert" class="sidebar-logo">
             </div>
             <ul class="sidebar-menu">
-                <li><a class="sidebar-link" href="/menu-lojista"><i class="fa-solid fa-house"></i><span>Início</span></a></li>
-                <!-- AJUSTE: Removido 'active' daqui -->
-                <li><a class="sidebar-link" href="/produtos"><i class="fa-solid fa-box"></i><span>Produto</span></a></li>
-                <li><a class="sidebar-link" href="/vendas"><i class="fa-solid fa-truck"></i><span>Venda</span></a></li>
-                <li><a class="sidebar-link" href="/devolucoes"><i class="fa-solid fa-arrow-rotate-left"></i><span>Trocas e Devoluções</span></a></li>
-                <!-- AJUSTE: Adicionado 'active' aqui -->
-                <li><a class="sidebar-link active" href="/chatbot"><i class="fa-solid fa-robot"></i><span>Chatbot</span></a></li>
-                <li><a class="sidebar-link" href="/faq"><i class="fa-solid fa-question"></i><span>FAQ</span></a></li> 
-                <li><a class="sidebar-link" href="/login"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
+                <li><a class="sidebar-link" href="/pages/menu.lojista/menuLojista.html"><i class="fa-solid fa-house"></i><span>Início</span></a></li>
+                <li><a class="sidebar-link active" href="/pages/produtos/produtos.html"><i class="fa-solid fa-box"></i><span>Produto</span></a></li>
+                <li><a class="sidebar-link" href="/pages/vendas/venda.html"><i class="fa-solid fa-truck"></i><span>Venda</span></a></li>
+                <li><a class="sidebar-link" href="/pages/devolucoes/devolucoes.html"><i class="fa-solid fa-arrow-rotate-left"></i><span>Trocas e Devoluções</span></a></li>
+                <li><a class="sidebar-link" href="/pages/chatbot/chatbot.html"><i class="fa-solid fa-robot"></i><span>Chatbot</span></a></li>
+                <li><a class="sidebar-link" href="/pages/faq/faq.html"><i class="fa-solid fa-question"></i><span>FAQ</span></a></li> 
+                <li><a class="sidebar-link" href="/pages/login/login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
             </ul>
             <div class="sidebar-toggle-wrapper">
                 <button class="sidebar-toggle" id="sidebarToggle" title="Minimizar menu">
@@ -90,12 +88,12 @@
                                 </button>
                                 <div class="dropdown-menu" id="accountDropdown">
                                     <ul>
-                                        <li><a href="/configuracao"><i class="fa-solid fa-cog"></i> Configurações da Conta</a></li>
+                                        <li><a href="/pages/configuracao/configuracao.html"><i class="fa-solid fa-cog"></i> Configurações da Conta</a></li>
                                         <li><a href="#"><i class="fa-solid fa-palette"></i> Mudar Tema</a></li>
                                         <li><a href="#"><i class="fa-solid fa-life-ring"></i>   Suporte</a></li>
                                     </ul>
                                     <div class="dropdown-footer">
-                                        <a href="/login" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
+                                        <a href="/pages/login/login.html" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
                                     </div>
                                 </div>
                             </div>
@@ -150,7 +148,9 @@
 
     <!-- Ordem dos scripts correta -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="pages/menu.lojista/menuLojista.js"></script>
-    <script src="pages/chatbot/chatbot.js"></script>
+
+    <script src="/js/api/apiClient.js"></script>
+    <script src="/pages/menu.lojista/menuLojista.js"></script>
+    <script src="/pages/chatbot/chatbot.js"></script>
 </body>
 </html>

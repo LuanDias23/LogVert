@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LogVert | Logística Reversa Inteligente</title>
+    
+    <!-- Este caminho já estava CORRETO -->
     <link rel="stylesheet" href="/pages/index/welcome.css">
+    
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -12,7 +15,11 @@
 
     <div class="hero-video-background">
         <video playsinline autoplay muted loop>
-            <source src="assets/videos/logistics_video.mp4" type="video/mp4">
+            <!-- 
+              AJUSTE 1: Corrigido o caminho do vídeo (adicionado / no início).
+              Assumindo que o vídeo está em /assets/videos/
+            -->
+            <source src="/assets/videos/logistics_video.mp4" type="video/mp4">
             Seu navegador não suporta vídeos.
         </video>
     </div>
@@ -20,8 +27,11 @@
 
     <header class="main-header">
         <nav class="main-nav" id="mainNav">
+            <!-- Este caminho já estava CORRETO -->
             <a href="#" class="logo-link"><img src="/assets/logosemfundo.png" alt="Logo LogVert" class="logo"></a>
+            
             <ul class="main-menu" id="mainMenu">
+                <!-- Estes links de âncora estão CORRETOS -->
                 <li><a href="#features">Diferenciais</a></li>
                 <li><a href="#how-it-works">Como Funciona</a></li>
                 <li><a href="#pricing">Planos</a></li> 
@@ -29,8 +39,8 @@
                 <li><a href="#faq">FAQ</a></li>
             </ul>
             <div class="nav-buttons">
+                <!-- Este caminho já estava CORRETO -->
                 <a href="/pages/login/login.html" class="btn btn-secondary">Entrar</a>
-                <!-- Este link agora funcionará com rolagem suave -->
                 <a href="#demonstracao" class="btn btn-primary">Solicitar Demonstração</a>
             </div>
             <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
@@ -45,7 +55,6 @@
                 <div class="hero-text">
                     <h1>Sua logística reversa nunca foi tão inteligente e lucrativa.</h1>
                     <p>Pare de ver trocas e devoluções como um prejuízo. A LogVert automatiza e otimiza seu pós-venda, transformando cada retorno em uma nova oportunidade de fidelizar e vender mais.</p>
-                    <!-- Este link agora funcionará com rolagem suave -->
                     <a href="#demonstracao" class="btn btn-primary btn-large">Quero uma demonstração</a>
                 </div>
                 <div class="hero-status-panel">
@@ -95,7 +104,6 @@
             </div>
         </section>
 
-        <!-- ID está correto -->
         <section class="features-section" id="features">
             <h2>Nossos <strong>Diferenciais</strong></h2>
             <div class="marquee-wrapper">
@@ -134,7 +142,6 @@
             </div>
         </section>
         
-        <!-- ID está correto -->
         <section class="how-it-works-section" id="how-it-works">
             <h2>Como <strong>Funciona</strong>?</h2>
             <p class="section-subtitle">Tudo em 4 passos simples, do clique do cliente à fidelização.</p>
@@ -166,7 +173,6 @@
             </div>
         </section>
 
-        <!-- ID está correto -->
         <section class="pricing-section" id="pricing">
             <h2>Planos sob medida para <strong>seu negócio</strong></h2>
             <p class="section-subtitle">Comece pequeno e cresça conosco. Sem taxas escondidas, sem surpresas.</p>
@@ -218,7 +224,6 @@
             </div>
         </section>
         
-        <!-- ID está correto -->
         <section class="testimonials-section" id="testimonials">
             <h2>O que nossos <strong>clientes dizem</strong></h2>
             <div class="testimonials-grid">
@@ -255,7 +260,6 @@
             </div>
         </section>
 
-        <!-- ID está correto -->
         <section class="faq-section" id="faq">
             <h2>Tire suas dúvidas</h2>
             <div class="faq-accordion">
@@ -270,7 +274,6 @@
             </div>
         </section>
 
-        <!-- ID está correto -->
         <section class="demo-section" id="demonstracao">
             <h2>Pronto para transformar seu pós-venda? <br> Solicite uma <strong>demonstração</strong>!</h2>
             <form class="demo-form">
@@ -298,20 +301,26 @@
             <div class="footer-column">
                 <h4>Soluções</h4>
                 <ul>
-                    <li><a href="../LogVert-main/index.html#features">Diferenciais</a></li>
-                    <li><a href="../LogVert-main/index.html#how-it-works">Como Funciona</a></li>
-                    <li><a href="../LogVert-main/index.html#pricing">Planos</a></li>
-                    <li><a href="../LogVert-main/index.html#faq">FAQ</a></li>
+                    <!-- 
+                      AJUSTE 2: Corrigidos os links do rodapé (para âncoras locais)
+                    -->
+                    <li><a href="#features">Diferenciais</a></li>
+                    <li><a href="#how-it-works">Como Funciona</a></li>
+                    <li><a href="#pricing">Planos</a></li>
+                    <li><a href="#faq">FAQ</a></li>
                 </ul>
             </div>
             
             <div class="footer-column">
                 <h4>Institucional</h4>
                 <ul>
-                    <li><a href="/sobre-nos">Sobre Nós</a></li>
-                    <li><a href="/carreiras">Carreiras</a></li>
-                    <li><a href="/politica">Política de Privacidade</a></li>
-                    <li><a href="/politica">Termos de Uso</a></li>
+                    <!-- 
+                      AJUSTE 3: Corrigidos os links do rodapé (para os arquivos .html completos)
+                    -->
+                    <li><a href="/pages/sobre-nos/sobre-nos.html">Sobre Nós</a></li>
+                    <li><a href="/pages/carreiras/carreiras.html">Carreiras</a></li>
+                    <li><a href="/pages/politica-termos/politica.html">Política de Privacidade</a></li>
+                    <li><a href="/pages/politica-termos/termos.html">Termos de Uso</a></li>
                 </ul>
             </div>
             
@@ -347,13 +356,10 @@
         </div>
     </footer>
 
-    <!-- 
-      *** CORREÇÃO DA ORDEM DOS SCRIPTS ***
-      A biblioteca (particles.min.js) deve ser carregada ANTES do seu script (welcome.js) que a utiliza.
-    -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    
+    
+    <script src="/js/api/apiClient.js"></script>
     <script src="/pages/index/welcome.js" defer></script>
-    <!-- A lógica das partículas já está no welcome.js, então não é necessário script inline -->
-
 </body>
 </html>

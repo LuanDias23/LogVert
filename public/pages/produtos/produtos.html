@@ -2,33 +2,32 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>LogVert | Gestão de Produtos</title>
-    <!-- 1. Importa o CSS principal do menu -->
-    <link rel="stylesheet" href="pages/menu.lojista/menuLojista.css">
-    <!-- 2. Importa o CSS específico desta página -->
-    <link rel="stylesheet" href="pages/produtos/produtos.css">
+    
+    <link rel="stylesheet" href="/pages/menu.lojista/menuLojista.css">
+    
+    <link rel="stylesheet" href="/pages/produtos/produtos.css">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-    <!-- Fundo de Partículas (herdado do menuLojista.css) -->
     <div id="dashboard-particles"></div>
 
     <div class="dashboard-layout">
-        <!-- Barra Lateral (Sidebar) - Usando a estrutura do seu menu.html -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <img src="/assets/logosemfundo.png" alt="Logo LogVert" class="sidebar-logo">
             </div>
             <ul class="sidebar-menu">
-                <li><a class="sidebar-link" href="/menu-lojista"><i class="fa-solid fa-house"></i><span>Início</span></a></li>
-                <li><a class="sidebar-link active" href="/produtos"><i class="fa-solid fa-box"></i><span>Produto</span></a></li>
-                <li><a class="sidebar-link" href="/vendas"><i class="fa-solid fa-truck"></i><span>Venda</span></a></li>
-                <li><a class="sidebar-link" href="/devolucoes"><i class="fa-solid fa-arrow-rotate-left"></i><span>Trocas e Devoluções</span></a></li>
-                <li><a class="sidebar-link" href="/chatbot"><i class="fa-solid fa-robot"></i><span>Chatbot</span></a></li>
-                <li><a class="sidebar-link" href="/faq"><i class="fa-solid fa-question"></i><span>FAQ</span></a></li> 
-                <li><a class="sidebar-link" href="/login"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
+                <li><a class="sidebar-link" href="/pages/menu.lojista/menuLojista.html"><i class="fa-solid fa-house"></i><span>Início</span></a></li>
+                <li><a class="sidebar-link active" href="/pages/produtos/produtos.html"><i class="fa-solid fa-box"></i><span>Produto</span></a></li>
+                <li><a class="sidebar-link" href="/pages/vendas/venda.html"><i class="fa-solid fa-truck"></i><span>Venda</span></a></li>
+                <li><a class="sidebar-link" href="/pages/devolucoes/devolucoes.html"><i class="fa-solid fa-arrow-rotate-left"></i><span>Trocas e Devoluções</span></a></li>
+                <li><a class="sidebar-link" href="/pages/chatbot/chatbot.html"><i class="fa-solid fa-robot"></i><span>Chatbot</span></a></li>
+                <li><a class="sidebar-link" href="/pages/faq/faq.html"><i class="fa-solid fa-question"></i><span>FAQ</span></a></li> 
+                <li><a class="sidebar-link" href="/pages/login/login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
             </ul>
             <div class="sidebar-toggle-wrapper">
                 <button class="sidebar-toggle" id="sidebarToggle" title="Minimizar menu">
@@ -37,25 +36,19 @@
             </div>
         </aside>
 
-        <!-- Conteúdo Principal -->
         <div class="main-container">
             
-            <!-- ====================================================== -->
-            <!-- AQUI ESTÁ O CABEÇALHO CORRIGIDO (QUE VOCÊ ENVIOU) -->
-            <!-- ====================================================== -->
             <header class="main-header">
                 <div class="header-content">
                     <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
                         <i class="fas fa-bars"></i>
                     </button>
-                    <!-- Título ajustado para a página de Produtos -->
                     <h1 class="header-title">Gestão de Produtos</h1>
                     
                     <div class="header-user-actions">
                         <span>Bem-vindo, Lojista</span>
                         
                         <div class="header-actions">
-                            <!-- Item 1: Novidades (Presente) -->
                             <div class="header-action-item">
                                 <button class="header-action-btn" id="newsBtn" title="Novidades">
                                     <i class="fa-solid fa-gift"></i>
@@ -69,7 +62,6 @@
                                 </div>
                             </div>
 
-                            <!-- Item 2: Notificações (Sino) -->
                             <div class="header-action-item">
                                 <button class="header-action-btn" id="notificationsBtn" title="Notificações">
                                     <i class="fa-solid fa-bell"></i>
@@ -86,19 +78,18 @@
                                 </div>
                             </div>
 
-                            <!-- Item 3: Conta (Usuário) -->
                             <div class="header-action-item">
                                 <button class="header-action-btn" id="accountBtn" title="Minha Conta">
                                     <i class="fa-solid fa-user-circle"></i>
                                 </button>
                                 <div class="dropdown-menu" id="accountDropdown">
                                     <ul>
-                                        <li><a href="/configuracao"><i class="fa-solid fa-cog"></i> Configurações da Conta</a></li>
+                                        <li><a href="/pages/configuracao/configuracao.html"><i class="fa-solid fa-cog"></i> Configurações da Conta</a></li>
                                         <li><a href="#"><i class="fa-solid fa-palette"></i> Mudar Tema</a></li>
                                         <li><a href="#"><i class="fa-solid fa-life-ring"></i>   Suporte</a></li>
                                     </ul>
                                     <div class="dropdown-footer">
-                                        <a href="/login" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
+                                        <a href="/pages/login/login.html" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
                                     </div>
                                 </div>
                             </div>
@@ -106,18 +97,13 @@
                     </div>
                 </div>
             </header>
-            <!-- ====================================================== -->
-            <!-- FIM DA CORREÇÃO -->
-            <!-- ====================================================== -->
-
+            
             <main class="main-content">
-                <!-- Cabeçalho da Página de Conteúdo -->
                 <div class="page-header">
                     <h2>Meus Produtos Cadastrados</h2>
                     <button class="btn-add-new" id="openModalBtn"><i class="fas fa-plus"></i> Adicionar Novo</button>
                 </div>
 
-                <!-- Lista/Tabela de Produtos -->
                 <div class="table-container">
                     <table>
                         <thead>
@@ -130,7 +116,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Exemplo de item 1 -->
                             <tr>
                                 <td>Camiseta Azul P</td>
                                 <td>SKU-001</td>
@@ -141,7 +126,6 @@
                                     <button class="btn-icon btn-delete" title="Excluir"><i class="fas fa-trash"></i></button>
                                 </td>
                             </tr>
-                            <!-- Exemplo de item 2 -->
                             <tr>
                                 <td>Calça Jeans 38</td>
                                 <td>SKU-002</td>
@@ -159,7 +143,6 @@
         </div>
     </div>
     
-    <!-- MODAL (Pop-up) para Adicionar Produto -->
     <div class="modal-overlay" id="addProdutoModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -197,13 +180,12 @@
         </div>
     </div>
 
-    <!-- Overlay para o menu mobile -->
     <div class="overlay"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <!-- Carrega o JS principal do menu (para a sidebar e particles) -->
-    <script src="pages/menu.lojista/menuLojista.js"></script>
-    <!-- Carrega o JS específico desta página (para o modal) -->
-     <script src="pages/produtos/produtos.js"></script>
+    
+    <script src="/js/api/apiClient.js"></script>
+    <script src="/pages/menu.lojista/menuLojista.js"></script>
+    <script src="/pages/produtos/produtos.js"></script>
 </body>
 </html>

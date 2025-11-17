@@ -40,7 +40,7 @@
                         <!-- ATUALIZAÇÃO: Adicionado <span> para mensagens de erro/sucesso -->
                         <span id="lojista-message" class="form-message animate-item"></span>
 
-                        <a href="/esqueci-senha-lojista" class="forgot-password animate-item">Esqueci minha senha</a>
+                        <a href="/pages/esqueci_senha.lojista/esqueci_senha.html" class="forgot-password animate-item">Esqueci minha senha</a>
                         <button type="submit" class="btn btn-login animate-item">Entrar</button>
                         <button type="button" class="btn-toggle animate-item" id="showCliente">Você é cliente?</button>
                     </form>
@@ -68,7 +68,7 @@
                         <!-- ATUALIZAÇÃO: Adicionado <span> para mensagens de erro/sucesso -->
                         <span id="cliente-message" class="form-message animate-item"></span>
 
-                        <a href="/esqueci-senha-cliente" class="forgot-password animate-item">Não sabe seu código?</a>
+                        <a href="/pages/esqueci_senha.cliente/esqueci_senha.html" class="forgot-password animate-item">Não sabe seu código?</a>
                         <button type="submit" class="btn btn-login animate-item">Entrar</button>
                         <button type="button" class="btn-toggle animate-item" id="showLojista">Você é lojista?</button>
                     </form>
@@ -78,6 +78,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="/js/api/apiClient.js"></script>
     <script src="/pages/login/login.js" defer></script>
 </body>
 </html>

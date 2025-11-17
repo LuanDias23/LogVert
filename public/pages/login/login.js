@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =================================================================
-    // --- LÓGICA DE INTEGRAÇÃO NODE.JS (FETCH) ---
+    // --- LÓGICA DE INTEGRAÇÃO (AJUSTADA) ---
     // =================================================================
 
     // --- Formulário 1: Login do Lojista ---
@@ -86,8 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
             lojistaMessage.className = 'form-message animate-item'; // Mantém a classe de animação
 
             try {
-                // *** CORREÇÃO AQUI: Porta 3000 -> 2000 ***
-                const response = await fetch('http://localhost:2000/api/login', {
+                // *** AJUSTE AQUI ***
+                // Agora usa a variável do apiClient.js
+                const response = await fetch(`${API_BASE_URL}/login`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password }), // Envia email e password
@@ -99,14 +100,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     lojistaMessage.textContent = result.message;
                     lojistaMessage.classList.add('success');
                     setTimeout(() => {
-                        window.location.href = result.redirectTo; // Redireciona para o menuLojista.html
+                        window.location.href = "/pages/menu.lojista/menuLojista.html"; // Redireciona para o menuLojista.html
                     }, 1000);
                 } else {
                     lojistaMessage.textContent = result.message; // Ex: "Email ou senha inválidos."
                     lojistaMessage.classList.add('error');
                 }
             } catch (error) {
-                console.error(error);
+                console.error(error); // Isso vai mostrar o erro real no console (F12)
                 lojistaMessage.textContent = 'Erro de conexão com o servidor.';
                 lojistaMessage.classList.add('error');
             }
@@ -128,9 +129,9 @@ document.addEventListener('DOMContentLoaded', () => {
             clienteMessage.className = 'form-message animate-item'; // Mantém a classe de animação
 
             try {
-                // (Note a URL diferente: /api/login-cliente)
-                // *** CORREÇÃO AQUI: Porta 3000 -> 2000 ***
-                const response = await fetch('http://localhost:2000/api/login-cliente', {
+                // *** AJUSTE AQUI ***
+                // Agora usa a variável do apiClient.js
+                const response = await fetch(`${API_BASE_URL}/login-cliente`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ codigo, senha }),
@@ -149,11 +150,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     clienteMessage.classList.add('error');
                 }
             } catch (error) {
-                console.error(error);
+                console.error(error); // Isso vai mostrar o erro real no console (F12)
                 clienteMessage.textContent = 'Erro de conexão com o servidor.';
                 clienteMessage.classList.add('error');
             }
         });
     }
-
 });

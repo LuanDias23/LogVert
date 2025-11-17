@@ -6,7 +6,7 @@
     <title>LogVert | Sobre Nós</title>
     
     <!-- Link SOMENTE para o CSS da própria página -->
-    <link rel="stylesheet" href="pages/sobre-nos/sobre-nos.css">
+    <link rel="stylesheet" href="/pages/sobre-nos/sobre-nos.css">
     
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -23,16 +23,16 @@
             <a href="/index" class="logo-link"><img src="/assets/logosemfundo.png" alt="Logo LogVert" class="logo"></a>
             
             <ul class="main-menu" id="mainMenu">
-                <li><a href="/index.html#features">Diferenciais</a></li>
-                <li><a href="/index.html#how-it-works">Como Funciona</a></li>
-                <li><a href="/index.html#pricing">Planos</a></li> 
-                <li><a href="/index.html#testimonials">Depoimentos</a></li>
-                <li><a href="/index.html#faq">FAQ</a></li>
-                <li><a href="/carreiras">Carreiras</a></li>
+                <li><a href="/pages/index/index.html#features">Diferenciais</a></li>
+                <li><a href="/pages/index/index.html#how-it-works">Como Funciona</a></li>
+                <li><a href="/pages/index/index.html#pricing">Planos</a></li> 
+                <li><a href="/pages/index/index.html#testimonials">Depoimentos</a></li>
+                <li><a href="/pages/index/index.html#faq">FAQ</a></li>
+                <li><a href="/pages/carreiras/carreiras.html">Carreiras</a></li>
             </ul>
             <div class="nav-buttons">
-                <a href="/login" class="btn btn-secondary">Entrar</a>
-                <a href="/index.html#demonstracao" class="btn btn-primary">Solicitar Demonstração</a>
+                <a href="/pages/login/login.html" class="btn btn-secondary">Entrar</a>
+                <a href="/pages/index/index.html#demonstracao" class="btn btn-primary">Solicitar Demonstração</a>
             </div>
             <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
                 <i class="fas fa-bars"></i>
@@ -105,7 +105,7 @@
         <section class="cta-section">
             <h2>Gostou da nossa missão?</h2>
             <p>Estamos construindo o futuro do pós-venda e buscamos os melhores talentos.</p>
-            <a href="../carreiras/carreiras.html" class="btn btn-primary btn-large">Veja nossas vagas</a>
+            <a href="/pages/carreiras/carreiras.html" class="btn btn-primary btn-large">Veja nossas vagas</a>
         </section>
     </main>
 
@@ -122,20 +122,20 @@
             <div class="footer-column">
                 <h4>Soluções</h4>
                 <ul>
-                    <li><a href="/index.html#features">Diferenciais</a></li>
-                    <li><a href="/index.html#how-it-works">Como Funciona</a></li>
-                    <li><a href="/index.html#pricing">Planos</a></li>
-                    <li><a href="/index.html#faq">FAQ</a></li>
+                    <li><a href="/pages/index/index.html#features">Diferenciais</a></li>
+                    <li><a href="/pages/index/index.html#how-it-works">Como Funciona</a></li>
+                    <li><a href="/pages/index/index.html#pricing">Planos</a></li>
+                    <li><a href="/pages/index/index.html#faq">FAQ</a></li>
                 </ul>
             </div>
             
             <div class="footer-column">
                 <h4>Institucional</h4>
                 <ul>
-                    <li><a href="/sobre-nos">Sobre Nós</a></li>
-                    <li><a href="/carreiras">Carreiras</a></li>
-                    <li><a href="/politica">Política de Privacidade</a></li>
-                    <li><a href="/termos">Termos de Uso</a></li>
+                    <li><a href="/pages/sobre-nos/sobre-nos.html">Sobre Nós</a></li>
+                    <li><a href="/pages/carreiras/carreiras.html">Carreiras</a></li>
+                    <li><a href="/pages/politica-termos/politica.html">Política de Privacidade</a></li>
+                    <li><a href="/pages/politica-termos/termo.html">Termos de Uso</a></li>
                 </ul>
             </div>
             
@@ -172,9 +172,11 @@
     </footer>
 
     <!-- JS Principal (para o menu mobile) -->
-    <script src="pages/index/welcome.js"></script>
+    <script src="/pages/index/welcome.js"></script>
     <!-- JS das Partículas (específico da página) -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="pages/sobre-nos/sobre-nos.js"></script>
+
+    <script src="/js/api/apiClient.js"></script>
+    <script src="/pages/sobre-nos/sobre-nos.js"></script>
 </body>
 </html>

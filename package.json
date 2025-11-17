@@ -1,24 +1,23 @@
 {
-  "name": "logvert",
+  "name": "projeto-2v",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/LuanDias23/LogVert.git"
-  },
-  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/LuanDias23/LogVert/issues"
-  },
-  "homepage": "https://github.com/LuanDias23/LogVert#readme",
   "description": "",
   "dependencies": {
+    "axios": "^1.9.0",
+    "body-parser": "^1.20.3",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
-    "express": "^5.1.0"
+    "currency.js": "^2.0.4",
+    "express": "^4.21.2",
+    "form-data": "^4.0.2",
+    "hashids": "^2.3.0",
+    "hbs": "^4.2.0",
+    "multer": "^2.0.0"
   }
 }
