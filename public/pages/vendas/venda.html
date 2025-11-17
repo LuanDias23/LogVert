@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LogVert | Gestão de Vendas</title>
-    <link rel="stylesheet" href="/pages/menu.lojista/menuLojista.css">
-    <link rel="stylesheet" href="/pages/vendas/venda.css"> 
+    <link rel="stylesheet" href="/public/pages/vendas/venda.css">
+    <link rel="stylesheet" href="/public/pages/vendas/venda.js"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -35,22 +35,17 @@
 
         <div class="main-container">
             
-            <!-- ====================================================== -->
-            <!-- AQUI ESTÁ O CABEÇALHO CORRIGIDO -->
-            <!-- ====================================================== -->
             <header class="main-header">
                 <div class="header-content">
                     <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
                         <i class="fas fa-bars"></i>
                     </button>
-                    <!-- Título ajustado para a página de Vendas -->
                     <h1 class="header-title">Gestão de Vendas</h1>
                     
                     <div class="header-user-actions">
                         <span>Bem-vindo, Lojista</span>
                         
                         <div class="header-actions">
-                            <!-- Item 1: Novidades (Presente) -->
                             <div class="header-action-item">
                                 <button class="header-action-btn" id="newsBtn" title="Novidades">
                                     <i class="fa-solid fa-gift"></i>
@@ -64,7 +59,6 @@
                                 </div>
                             </div>
 
-                            <!-- Item 2: Notificações (Sino) -->
                             <div class="header-action-item">
                                 <button class="header-action-btn" id="notificationsBtn" title="Notificações">
                                     <i class="fa-solid fa-bell"></i>
@@ -81,7 +75,6 @@
                                 </div>
                             </div>
 
-                            <!-- Item 3: Conta (Usuário) -->
                             <div class="header-action-item">
                                 <button class="header-action-btn" id="accountBtn" title="Minha Conta">
                                     <i class="fa-solid fa-user-circle"></i>
@@ -90,7 +83,7 @@
                                     <ul>
                                         <li><a href="/pages/configuracao/configuracao.html"><i class="fa-solid fa-cog"></i> Configurações da Conta</a></li>
                                         <li><a href="#"><i class="fa-solid fa-palette"></i> Mudar Tema</a></li>
-                                        <li><a href="#"><i class="fa-solid fa-life-ring"></i>   Suporte</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-life-ring"></i>   Suporte</a></li>
                                     </ul>
                                     <div class="dropdown-footer">
                                         <a href="/pages/login/login.html" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
@@ -101,9 +94,6 @@
                     </div>
                 </div>
             </header>
-            <!-- ====================================================== -->
-            <!-- FIM DA CORREÇÃO -->
-            <!-- ====================================================== -->
 
             <main class="main-content">
                 <div class="stat-cards-grid">
@@ -165,7 +155,7 @@
                                 <td>01/11/2025</td>
                                 <td><span class="status-inactive">Pendente</span></td>
                                 <td class="action-buttons">
-                                     <button class="btn-icon btn-edit" title="Ver Detalhes"><i class="fas fa-eye"></i></button>
+                                    <button class="btn-icon btn-edit" title="Ver Detalhes"><i class="fas fa-eye"></i></button>
                                 </td>
                             </tr>
                         </tbody>
@@ -183,60 +173,77 @@
             </div>
             <div class="modal-body">
                 <form id="addVendaForm" class="form-container">
-                    <div class="form-group">
-                        <label for="nome">Nome do Cliente</label>
-                        <input type="text" id="nome" required>
-                    </div>
+                    
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="data">Data</label>
-                            <input type="text" id="data" placeholder="dd/mm/aaaa">
+                            <label for="idLoja">Número da Loja</label>
+                            <input type="number" id="idLoja" value="1" required>
                         </div>
                         <div class="form-group">
-                            <label for="protocolo">Protocolo</label>
-                            <input type="text" id="protocolo">
+                            <label for="idConsumidor">Número do Consumidor</label>
+                            <input type="number" id="idConsumidor" value="7" required>
                         </div>
                     </div>
-                     <div class="form-row">
-                        <div class="form-group" style="flex: 2;">
-                            <label for="endereco">Endereço</label>
-                            <input type="text" id="endereco">
-                        </div>
-                        <div class="form-group" style="flex: 1;">
-                            <label for="numero">Nº</label>
-                            <input type="text" id="numero">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="cep">CEP</label>
-                        <input type="text" id="cep">
-                    </div>
+
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="produto">Produto(s)</label>
-                            <input type="text" id="produto">
+                            <label for="statusPedido">Status do Pedido</label>
+                            <select id="statusPedido" required>
+                                <option value="ENTREGUE">Entregue</option>
+                                <option value="PENDENTE" selected>Pendente</option>
+                                <option value="CANCELADO">Cancelado</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="formaPagamento">Forma de Pagamento</label>
+                            <input type="text" id="formaPagamento" value="Pix" required>
                         </div>
                         <div class="form-group">
-                            <label for="quantidade">Qntd</label>
-                            <input type="number" id="quantidade">
+                            <label for="valorTotal">Valor Total</label>
+                            <input type="number" id="valorTotal" step="0.01" value="590.00" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="desconto">Desconto (%)</label>
+                            <input type="number" id="desconto" step="1" value="50" min="0" max="100">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="pagamento">Pagamento</label>
-                        <input type="text" id="pagamento">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="prazoTroca">Prazo Troca (dias)</label>
+                            <input type="number" id="prazoTroca" value="15" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="prazoDevolucao">Prazo Devolução (dias)</label>
+                            <input type="number" id="prazoDevolucao" value="8" min="0">
+                        </div>
                     </div>
+                    
+                    <div class="form-group">
+                        <label for="itensVendaJson">Itens da Venda (JSON)</label>
+                        <textarea id="itensVendaJson" rows="6" required>
+[
+    {"idProduto": 24, "quantidade": 21, "detalhe": "Instalação inclusa", "valorVendido": 140.00},
+    {"idProduto": 30, "quantidade": 1, "detalhe": "Garantia estendida", "valorVendido": 450.00}
+]
+                        </textarea>
+                        <small>⚠️ **Formato JSON obrigatório:** Insira os produtos exatamente como a API espera.</small>
+                    </div>
+
                     <button type="submit" class="btn-submit-modal">Salvar Venda</button>
+                    <span id="vendaMessage" class="form-message"></span>
                 </form>
             </div>
         </div>
     </div>
-
     <div class="overlay"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-
     <script src="/js/api/apiClient.js"></script>
-    <script src="/pages/menu.lojista/menuLojista.js"></script>
-    <script src="/pages/vendas/venda.js"></script>
+    <script src="/public/pages/menu.lojista/menuLojista.js"></script>
+    <script src="/public/pages/vendas/venda.js"></script>
 </body>
 </html>
