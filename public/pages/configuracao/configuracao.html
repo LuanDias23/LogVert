@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogVert | Configurações da Conta</title>
+    
+    <!-- CSS Global do Menu -->
+    <link rel="stylesheet" href="pages/menu.lojista/menuLojista.css">
+    <!-- CSS Específico desta Página -->
+    <link rel="stylesheet" href="pages/configuracao/configuracao.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div id="dashboard-particles"></div>
+
+    <div class="dashboard-layout">
+        <!-- Barra Lateral Padrão -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="/assets/logosemfundo.png" alt="Logo LogVert" class="sidebar-logo">
+            </div>
+            <ul class="sidebar-menu">
+                <li><a class="sidebar-link" href="/menu-lojista"><i class="fa-solid fa-house"></i><span>Início</span></a></li>
+                <li><a class="sidebar-link" href="/produtos"><i class="fa-solid fa-box"></i><span>Produto</span></a></li>
+                <li><a class="sidebar-link" href="/vendas"><i class="fa-solid fa-truck"></i><span>Venda</span></a></li>
+                <li><a class="sidebar-link" href="/devolucoes"><i class="fa-solid fa-arrow-rotate-left"></i><span>Trocas e Devoluções</span></a></li>
+                <li><a class="sidebar-link" href="/chatbot"><i class="fa-solid fa-robot"></i><span>Chatbot</span></a></li>
+                <li><a class="sidebar-link" href="/faq"><i class="fa-solid fa-question"></i><span>FAQ</span></a></li> 
+                <li><a class="sidebar-link" href="/login"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
+            </ul>
+            <div class="sidebar-toggle-wrapper">
+                <button class="sidebar-toggle" id="sidebarToggle" title="Minimizar menu">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Conteúdo Principal -->
+        <div class="main-container">
+            <!-- Cabeçalho Padrão Completo -->
+            <header class="main-header">
+                <div class="header-content">
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="header-title">Configurações da Conta</h1>
+                    
+                    <div class="header-user-actions">
+                        <span>Bem-vindo, Lojista</span>
+                        <div class="header-actions">
+                            <div class="header-action-item">
+                                <button class="header-action-btn" id="newsBtn" title="Novidades">
+                                    <i class="fa-solid fa-gift"></i>
+                                </button>
+                                <div class="dropdown-menu" id="newsDropdown">
+                                    <div class="dropdown-header">Novidades da Plataforma</div>
+                                    <ul>
+                                        <li><a href="#">Nova integração com transportadoras!</a></li>
+                                        <li><a href="#">Dashboard de relatórios atualizado.</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="header-action-item">
+                                <button class="header-action-btn" id="notificationsBtn" title="Notificações">
+                                    <i class="fa-solid fa-bell"></i>
+                                    <span class="notification-badge">3</span>
+                                </button>
+                                <div class="dropdown-menu" id="notificationsDropdown">
+                                    <div class="dropdown-header">Notificações</div>
+                                    <ul>
+                                        <li><a href="#">Nova devolução registrada.</a></li>
+                                        <li><a href="#">Produto 'Camiseta Azul' com baixo estoque.</a></li>
+                                        <li><a href="#">Sua fatura mensal foi gerada.</a></li>
+                                    </ul>
+                                    <div class="dropdown-footer"><a href="#">Ver todas</a></div>
+                                </div>
+                            </div>
+                            <div class="header-action-item">
+                                <button class="header-action-btn" id="accountBtn" title="Minha Conta">
+                                    <i class="fa-solid fa-user-circle"></i>
+                                </button>
+                                <div class="dropdown-menu" id="accountDropdown">
+                                    <ul>
+                                        <!-- ATUALIZAR ESTE LINK EM TODAS AS PÁGINAS -->
+                                        <li><a href="/configuracao"><i class="fa-solid fa-cog"></i> Configurações da Conta</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-palette"></i> Mudar Tema</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-life-ring"></i>   Suporte</a></li>
+                                    </ul>
+                                    <div class="dropdown-footer">
+                                        <a href="/login" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="main-content">
+                <!-- Navegação por Abas -->
+                <div class="tab-navigation">
+                    <button class="tab-link active" data-tab="perfil">Perfil</button>
+                    <button class="tab-link" data-tab="loja">Dados da Loja</button>
+                    <button class="tab-link" data-tab="plano">Plano e Faturamento</button>
+                    <button class="tab-link" data-tab="integracoes">Integrações</button>
+                    <button class="tab-link" data-tab="notificacoes">Notificações</button>
+                </div>
+
+                <div class="tab-content-container">
+                    <!-- Aba 1: Perfil -->
+                    <div class="tab-content active" id="perfil">
+                        <div class="form-card">
+                            <h2>Meu Perfil</h2>
+                            <form class="form-container">
+                                <div class="form-group">
+                                    <label for="nome">Nome do Responsável</label>
+                                    <input type="text" id="nome" value="Lojista Exemplo">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">E-mail de Acesso (não pode ser alterado)</label>
+                                    <input type="email" id="email" value="lojista@exemplo.com" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefone">Telefone / WhatsApp</label>
+                                    <input type="tel" id="telefone" value="(11) 98877-6655">
+                                </div>
+                                <button type="submit" class="btn-submit-form">Salvar Alterações</button>
+                            </form>
+                        </div>
+                        <div class="form-card">
+                            <h2>Alterar Senha</h2>
+                            <form class="form-container">
+                                <div class="form-group">
+                                    <label for="senha-atual">Senha Atual</label>
+                                    <input type="password" id="senha-atual">
+                                </div>
+                                <div class="form-group">
+                                    <label for="nova-senha">Nova Senha</label>
+                                    <input type="password" id="nova-senha">
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirma-senha">Confirmar Nova Senha</label>
+                                    <input type="password" id="confirma-senha">
+                                </div>
+                                <button type="submit" class="btn-submit-form">Alterar Senha</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Aba 2: Dados da Loja -->
+                    <div class="tab-content" id="loja">
+                        <div class="form-card">
+                            <h2>Dados da Loja</h2>
+                            <form class="form-container">
+                                <div class="form-group">
+                                    <label for="nome-loja">Nome Fantasia (Nome da Loja)</label>
+                                    <input type="text" id="nome-loja" value="Minha Loja de Roupas">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cnpj">CNPJ</label>
+                                    <input type="text" id="cnpj" value="12.345.678/0001-99">
+                                </div>
+                                <div class="form-group">
+                                    <label for="endereco-loja">Endereço (Para Coleta)</label>
+                                    <input type="text" id="endereco-loja" value="Rua das Flores, 123 - São Paulo/SP">
+                                </div>
+                                <button type="submit" class="btn-submit-form">Salvar Dados da Loja</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Aba 3: Plano e Faturamento -->
+                    <div class="tab-content" id="plano">
+                        <div class="form-card">
+                            <h2>Meu Plano</h2>
+                            <div class="plan-card-container">
+                                <div class="plan-card current-plan">
+                                    <span class="plan-badge">Plano Atual</span>
+                                    <h3>Plano Profissional</h3>
+                                    <span class="plan-price">R$ 49,90<span class="plan-period">/mês</span></span>
+                                    <p>Seu plano renova em <strong>01/12/2025</strong>.</p>
+                                    <div class="plan-usage">
+                                        <span>Uso de Devoluções:</span>
+                                        <div class="usage-bar">
+                                            <div class="usage-progress" style="width: 38%;"></div>
+                                        </div>
+                                        <span>75 / 200</span>
+                                    </div>
+                                    <button class="btn-submit-form" style="background-color: var(--primary-green);">Alterar Plano</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-card">
+                            <h2>Histórico de Faturas</h2>
+                            <table class="billing-table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Valor</th>
+                                        <th>Status</th>
+                                        <th>Download</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>01/11/2025</td>
+                                        <td>R$ 249,00</td>
+                                        <td><span class="status-active">Paga</span></td>
+                                        <td><a href="#" class="btn-icon"><i class="fas fa-download"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>01/10/2025</td>
+                                        <td>R$ 249,00</td>
+                                        <td><span class="status-active">Paga</span></td>
+                                        <td><a href="#" class="btn-icon"><i class="fas fa-download"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>01/09/2025</td>
+                                        <td>R$ 249,00</td>
+                                        <td><span class="status-active">Paga</span></td>
+                                        <td><a href="#" class="btn-icon"><i class="fas fa-download"></i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Aba 4: Integrações -->
+                    <div class="tab-content" id="integracoes">
+                        <div class="form-card">
+                            <h2>Minhas Integrações</h2>
+                            <p>Conecte suas plataformas para que a LogVert possa ler seus produtos e pedidos automaticamente.</p>
+                            <div class="integration-grid">
+                                <div class="integration-card">
+                                    <i class="fab fa-shopify" style="color: #96bf48;"></i>
+                                    <h3>Shopify</h3>
+                                    <button class="btn-connect connected">Conectado</button>
+                                </div>
+                                <div class="integration-card">
+                                    <i class="fas fa-cloud" style="color: #34a853;"></i>
+                                    <h3>Nuvemshop</h3>
+                                    <button class="btn-connect">Conectar</button>
+                                </div>
+                                <div class="integration-card">
+                                    <i class="fas fa-handshake" style="color: #fff000;"></i>
+                                    <h3>Mercado Livre</h3>
+                                    <button class="btn-connect">Conectar</button>
+                                </div>
+                                <div class="integration-card">
+                                    <i class="fas fa-cubes" style="color: #f05023;"></i>
+                                    <h3>Bling</h3>
+                                    <button class="btn-connect">Conectar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Aba 5: Notificações -->
+                    <div class="tab-content" id="notificacoes">
+                        <div class="form-card">
+                            <h2>Preferências de Notificação</h2>
+                            <p>Escolha quais alertas você deseja receber por e-mail.</p>
+                            <form class="form-container">
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="notif1" checked>
+                                    <label for="notif1">Avisar quando uma nova solicitação de troca/devolução for aberta.</label>
+                                </div>
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="notif2" checked>
+                                    <label for="notif2">Avisar quando o cliente postar o produto nos Correios.</label>
+                                </div>
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="notif3">
+                                    <label for="notif3">Enviar um resumo diário de todas as atividades.</label>
+                                </div>
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="notif4" checked>
+                                    <label for="notif4">Avisar sobre novidades e atualizações da plataforma LogVert.</label>
+                                </div>
+                                <button type="submit" class="btn-submit-form">Salvar Preferências</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <!-- Overlay para o menu mobile -->
+    <div class="overlay"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="pages/menu.lojista/menuLojista.js"></script>
+    <script src="pages/configuracao/configuracao.js"></script>
+</body>
+</html>

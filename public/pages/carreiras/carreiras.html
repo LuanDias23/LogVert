@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogVert | Carreiras</title>
+    
+    <link rel="stylesheet" href="carreiras.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div id="page-particles"></div>
+
+    <header class="main-header">
+        <nav class="main-nav" id="mainNav">
+            <!-- Ajuste no caminho para voltar para a raiz -->
+            <a href="../LogVert-main/index.html" class="logo-link"><img src="..//LogVert-main/assets/logosemfundo.png" alt="Logo LogVert" class="logo"></a>
+            <ul class="main-menu" id="mainMenu">
+                <!-- Ajuste no caminho para voltar para a raiz -->
+                <li><a href="../index.html#features">Diferenciais</a></li>
+                <li><a href="../index.html#how-it-works">Como Funciona</a></li>
+                <li><a href="../index.html#pricing">Planos</a></li> 
+                <li><a href="../index.html#testimonials">Depoimentos</a></li>
+                <li><a href="../index.html#faq">FAQ</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <!-- Ajuste no caminho para voltar para a raiz -->
+                <a href="../LogVert-main/login/login.html" class="btn btn-secondary">Entrar</a>
+                <a href="../LogVert-main/index.html#demonstracao" class="btn btn-primary">Solicitar Demonstração</a>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="page-hero-content">
+                <h1>Construa o futuro do e-commerce <strong>conosco</strong>.</h1>
+                <p>Somos movidos por inovação e buscamos pessoas talentosas que amam resolver problemas complexos de forma simples.</p>
+            </div>
+        </section>
+
+        <section class="careers-content-section">
+            <div class="tab-navigation">
+                <button class="tab-link active" data-tab="vagas">Vagas Abertas</button>
+                <button class="tab-link" data-tab="estagio">Programa de Estágio</button>
+            </div>
+
+            <div class="tab-content-container">
+                <!-- ================= TAB 1: VAGAS ================= -->
+                <div class="tab-content active" id="vagas">
+                    <div class="filter-bar">
+                        <div class="filter-group">
+                            <label for="filterSearch">Buscar por Cargo</label>
+                            <input type="text" id="filterSearch" placeholder="Ex: Engenheiro Backend">
+                        </div>
+                        <div class="filter-group">
+                            <label for="filterLocation">Localidade</label>
+                            <select id="filterLocation">
+                                <option value="all">Todas</option>
+                                <option value="remoto">Remoto</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="filterDepartment">Departamento</label>
+                            <select id="filterDepartment">
+                                <option value="all">Todos</option>
+                                <option value="tecnologia">Tecnologia</option>
+                                <option value="produto">Produto</option>
+                                <option value="operacoes">Operações</option>
+                                <option value="vendas">Vendas</option>
+                                <option value="marketing">Marketing</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="job-list">
+                        <div class="job-card" data-tags="engenheiro de software backend pleno sênior tecnologia remoto">
+                            <div class="job-info">
+                                <h4>Engenheiro(a) de Software Backend (Pleno/Sênior)</h4>
+                                <span><i class="fas fa-globe"></i> Remoto</span>
+                                <span><i class="fas fa-laptop-code"></i> Tecnologia</span>
+                                <span><i class="fas fa-clock"></i> Full-Time</span>
+                            </div>
+                            <a href="#" class="btn btn-secondary">Ver Detalhes</a>
+                        </div>
+                        <div class="job-card" data-tags="engenheiro de software frontend pleno tecnologia remoto">
+                            <div class="job-info">
+                                <h4>Engenheiro(a) de Software Frontend (Pleno)</h4>
+                                <span><i class="fas fa-globe"></i> Remoto</span>
+                                <span><i class="fas fa-laptop-code"></i> Tecnologia</span>
+                                <span><i class="fas fa-clock"></i> Full-Time</span>
+                            </div>
+                            <a href="#" class="btn btn-secondary">Ver Detalhes</a>
+                        </div>
+                        <div class="job-card" data-tags="designer de produto ui ux sênior produto remoto">
+                            <div class="job-info">
+                                <h4>Designer de Produto (UI/UX) Sênior</h4>
+                                <span><i class="fas fa-globe"></i> Remoto</span>
+                                <span><i class="fas fa-palette"></i> Produto</span>
+                                <span><i class="fas fa-clock"></i> Full-Time</span>
+                            </div>
+                            <a href="#" class="btn btn-secondary">Ver Detalhes</a>
+                        </div>
+                        <div class="job-card" data-tags="business development representative sdr vendas remoto">
+                            <div class="job-info">
+                                <h4>Business Development Representative (SDR)</h4>
+                                <span><i class="fas fa-globe"></i> Remoto</span>
+                                <span><i class="fas fa-headset"></i> Vendas</span>
+                                <span><i class="fas fa-clock"></i> Full-Time</span>
+                            </div>
+                            <a href="#" class="btn btn-secondary">Ver Detalhes</a>
+                        </div>
+                        <div class="no-results-message" id="noResultsMessage" style="display: none;">
+                            <i class="fas fa-search"></i>
+                            <h4>Nenhuma vaga encontrada</h4>
+                            <p>Tente ajustar seus filtros ou verifique novamente mais tarde.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= TAB 2: ESTÁGIO (NOVO LAYOUT) ================= -->
+                <div class="tab-content" id="estagio">
+                    
+                    <!-- Bloco 1: Intro e CTA (Inspirado em estagio.jpg) -->
+                    <div class="program-intro-cta">
+                        <div class="program-intro-text">
+                            <h3>Programa de Estágio <strong>LogVert 2026</strong></h3>
+                            <h2>O futuro começa aqui.</h2>
+                            <p>Nosso programa de estágio é mais do que um aprendizado: é uma aceleração de carreira. Na LogVert, estagiários não buscam café, eles buscam soluções. Acreditamos em investir em novos talentos, dando autonomia e desafios reais para formar os futuros líderes do e-commerce no Brasil.</p>
+                            
+                            <div class="program-cta-button-wrapper">
+                                <p>Inscrições em <strong>Breve</strong></p>
+                                <a href="#" class="btn btn-primary btn-large">Inscreva-se já</a>
+                            </div>
+                        </div>
+                        <!-- A imagem de fundo será controlada pelo CSS -->
+                    </div>
+
+                    <!-- Bloco 2: Benefícios (Inspirado em estagio 2.jpg) -->
+                    <div class="program-benefits-section">
+                        <h4>Conheça os <strong>Benefícios</strong></h4>
+                        <div class="benefits-grid-estagio">
+                            <div class="benefit-card-estagio style-1">
+                                <i class="fas fa-wallet"></i>
+                                <span>Bolsa-auxílio</span>
+                            </div>
+                            <div class="benefit-card-estagio style-2">
+                                <i class="fas fa-utensils"></i>
+                                <span>Vale-Refeição</span>
+                            </div>
+                            <div class="benefit-card-estagio style-1">
+                                <i class="fas fa-bus"></i>
+                                <span>Vale-Transporte</span>
+                            </div>
+                            <div class="benefit-card-estagio style-2">
+                                <i class="fas fa-laptop-house"></i>
+                                <span>100% Remoto</span>
+                            </div>
+                            <div class="benefit-card-estagio style-2">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>Efetivação</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bloco 3: Trilhas de Desenvolvimento (Seu código anterior) -->
+                    <div class="program-tracks">
+                        <h4>Trilhas de <strong>Desenvolvimento</strong></h4>
+                        <p>Aqui, você terá impacto real em todas as áreas que fazem a empresa funcionar:</p>
+                        
+                        <div class="tracks-grid">
+                            <div class="track-card">
+                                <i class="fas fa-laptop-code"></i>
+                                <h3>Tecnologia & Produto</h3>
+                                <p>Aprenda a construir e escalar produtos de IA, trabalhando com nosso time de engenharia (Backend/Frontend), Dados e Produto (UI/UX) para criar o futuro da logística.</p>
+                            </div>
+                            <div class="track-card">
+                                <i class="fas fa-headset"></i>
+                                <h3>Operações & Sucesso (CS)</h3>
+                                <p>Fique na linha de frente, entendendo as dores reais dos lojistas, implementando soluções e garantindo que nossos clientes tenham a melhor experiência possível.</p>
+                            </div>
+                            <div class="track-card">
+                                <i class="fas fa-rocket"></i>
+                                <h3>Vendas & Marketing (GTM)</h3>
+                                <p>Aprenda como uma máquina de crescimento funciona. Desde gerar demanda (Marketing) até qualificar leads (SDR) e fechar negócios (Vendas).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <!-- Ajuste no caminho para voltar para a raiz -->
+                <img src="..//LogVert-main/assets/logosemfundo.png" alt="Logo LogVert" class="logo-footer">
+                <p>Logística Reversa Inteligente para seu e-commerce.</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/log.vert/?igsh=ejQ1eTluM3hoZWY%3D&utm_source=qr" title="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Soluções</h4>
+                <ul>
+                    <!-- Ajuste no caminho para voltar para a raiz -->
+                    <li><a href="../LogVert-main/index.html#features">Diferenciais</a></li>
+                    <li><a href="../LogVert-main/index.html#how-it-works">Como Funciona</a></li>
+                    <li><a href="../LogVert-main/index.html#pricing">Planos</a></li>
+                    <li><a href="../LogVert-main/index.html#faq">FAQ</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Institucional</h4>
+                <ul>
+                    <!-- Ajuste no caminho para voltar para a raiz -->
+                    <li><a href="../sobre-nos/sobre-nos.html">Sobre Nós</a></li>
+                    <li><a href="../carreiras/carreiras.html">Carreiras</a></li> <!-- Link para a própria página -->
+                    <li><a href="../politica-termos/politica.html">Política de Privacidade</a></li>
+                    <li><a href="../politica-termos/termos.html">Termos de Uso</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Fale Conosco</h4>
+                <ul class="footer-contact">
+                    <li>
+                        <!-- Ícone removido para padronizar -->
+                        <a href="mailto:logvert.logistica@gmail.com">logvert.logistica@gmail.com</a>
+                    </li>
+                    <li>
+                        <!-- Ícone removido para padronizar -->
+                        <a href="https://wa.me/5511999999999">+55 (11) 9999-9999</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-payment">
+                <p>Pagamento Seguro:</p>
+                <div class="payment-icons">
+                    <!-- Bandeiras pequenas e sutis -->
+                    <i class="fab fa-cc-visa" title="Visa"></i>
+                    <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                    <i class="fab fa-cc-paypal" title="PayPal"></i>
+                    <i class="fab fa-pix" title="Pix"></i>
+                </div>
+            </div>
+            
+            <div class="footer-copyright">
+                <p>&copy; 2025 LogVert | Todos os Direitos Reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Ajuste no caminho para voltar para a raiz -->
+    <script src="../welcome.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="carreiras.js"></script>
+</body>
+</html>

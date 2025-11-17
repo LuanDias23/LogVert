@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogVert | Nova Solicitação</title>
+    <link rel="stylesheet" href="pages/menu.cliente/menuCliente.css">
+    <link rel="stylesheet" href="pages/solicitação/form_solicitacao.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="pages/menu.cliente/menuCliente.js"></script>
+</head>
+<body>
+
+    <div id="dashboard-particles"></div>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="/assets/logosemfundo.png" alt="Logo LogVert" class="sidebar-logo">
+            </div>
+            <ul class="sidebar-menu">
+                <li><a class="sidebar-link" href="/menu-cliente"><i class="fa-solid fa-receipt"></i><span>Minhas Solicitações</span></a></li>
+                <li><a class="sidebar-link active" href="/solicitacao"><i class="fa-solid fa-plus-circle"></i><span>Nova Solicitação</span></a></li>
+                <li><a class="sidebar-link" href="/dados"><i class="fa-solid fa-user-cog"></i><span>Meus Dados</span></a></li>
+                <li><a class="sidebar-link" href="/faq-cliente"><i class="fa-solid fa-question-circle"></i><span>Ajuda</span></a></li>
+                <li><a class="sidebar-link" href="/login"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
+            </ul>
+
+            <div class="sidebar-toggle-wrapper">
+                <button class="sidebar-toggle" id="sidebarToggle" title="Minimizar menu">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+            </div>
+        </aside>
+
+        <div class="main-container">
+            <header class="main-header">
+                <div class="header-content">
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="header-title">Nova Solicitação de Troca/Devolução</h1>
+                    
+                    <div class="header-user-actions">
+                        <span>Bem-vindo, Cliente</span>
+                        <div class="header-actions">
+                            <div class="header-action-item">
+                                <button class="header-action-btn" id="accountBtn" title="Minha Conta">
+                                    <i class="fa-solid fa-user-circle"></i>
+                                </button>
+                                <div class="dropdown-menu" id="accountDropdown">
+                                    <ul>
+                                        <li><a href="#"><i class="fa-solid fa-user-cog"></i> Meus Dados</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-palette"></i> Mudar Tema</a></li>
+                                    </ul>
+                                    <div class="dropdown-footer">
+                                        <a href="/login" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="main-content">
+                
+                <div id="successMessage" class="alert-success" style="display: none;">
+                    <i class="fa-solid fa-check-circle"></i> 
+                    <span>Sua solicitação foi cadastrada com êxito! Você receberá um e-mail de confirmação com os próximos passos.</span>
+                    <button class="close-alert" onclick="document.getElementById('successMessage').style.display='none';">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                </div>
+                <div class="form-card">
+                    <h2>Preencha os dados para prosseguir:</h2>
+                    <p class="form-description">Todas as informações são essenciais para agilizar o processo.</p>
+                    
+                    <form id="form-solicitacao">
+                        
+                        <div class="form-group">
+                            <label for="numero-pedido"><i class="fa-solid fa-tag"></i> Número do Pedido:</label>
+                            <input type="text" id="numero-pedido" name="numero-pedido" required placeholder="Ex: BR1023A">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email-cliente"><i class="fa-solid fa-envelope"></i> E-mail Cadastrado:</label>
+                            <input type="email" id="email-cliente" name="email-cliente" required placeholder="seu.email@exemplo.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tipo-solicitacao"><i class="fa-solid fa-handshake-alt"></i> Tipo de Solicitação:</label>
+                            <select id="tipo-solicitacao" name="tipo-solicitacao" required>
+                                <option value="">Selecione...</option>
+                                <option value="troca">Troca</option>
+                                <option value="devolucao">Devolução</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="motivo"><i class="fa-solid fa-comment-dots"></i> Motivo da Solicitação:</label>
+                            <select id="motivo" name="motivo" required>
+                                <option value="">Selecione o motivo...</option>
+                                <option value="tamanho-incorreto">Tamanho Incorreto</option>
+                                <option value="defeito">Produto com Defeito</option>
+                                <option value="arrependimento">Arrependimento/Desistência</option>
+                                <option value="item-errado">Item Enviado Errado</option>
+                                <option value="outro">Outro (detalhar no campo abaixo)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="detalhes"><i class="fa-solid fa-pencil-alt"></i> Detalhes Adicionais (Opcional):</label>
+                            <textarea id="detalhes" name="detalhes" rows="4" placeholder="Detalhe o item, tamanho desejado para troca, ou a descrição do defeito."></textarea>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="termos" name="termos" required>
+                            <label for="termos">Declaro que li e concordo com a <a href="#">Política de Troca e Devolução</a>.</label>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Enviar Solicitação</button>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+    <div class="overlay"></div>
+
+    
+</body>
+</html>

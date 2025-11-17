@@ -1,0 +1,528 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+/* ============================================= */
+/* 1. ESTILOS GLOBAIS (Base do welcome.css) */
+/* ============================================= */
+:root {
+    --primary-green: #388e3c;
+    --primary-green-dark: #2e7d32;
+    --primary-blue: #1A73E8;
+    --background-dark: #16223b;
+    --background-blue-deep: #111a2f;
+    --card-background: rgba(30, 41, 65, 0.7);
+    --border-color-dark: rgba(255, 255, 255, 0.1);
+    --text-light: #f0f6fc;
+    --text-muted: #a0aec0;
+    --text-dark: #212529;
+    --green-shadow: 
+        0 0 2px rgba(56, 142, 60, 0.8),
+        0 0 5px rgba(56, 142, 60, 0.5),
+        0 0 10px rgba(56, 142, 60, 0.3);
+    
+    /* NOVAS CORES (Inspirado em estagio 2.jpg) */
+    --benefit-blue: #e0f7fa;
+    --benefit-green: #e8f5e9;
+    --benefit-blue-text: #00796b;
+    --benefit-green-text: #388e3c;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+body { 
+    font-family: 'Roboto', sans-serif; 
+    color: var(--text-light); 
+    background-color: var(--background-dark); 
+}
+
+h1, h2, h3, h4 { font-weight: 700; color: var(--text-light); }
+h2 strong, h1 strong, h3 strong { 
+    color: var(--primary-green); 
+    text-shadow: var(--green-shadow);
+}
+.section-subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+}
+p {
+    text-align: center;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    line-height: 1.6;
+}
+
+#page-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: var(--background-dark);
+}
+
+/* ============================================= */
+/* 2. ESTILOS DO HEADER (Copiado do welcome.css) */
+/* ============================================= */
+.main-header {
+    position: sticky; /* Alterado de absolute para sticky */
+    top: 0; left: 0;
+    width: 100%; z-index: 1000; 
+    background-color: rgba(22, 34, 59, 0.8); /* Fundo com blur */
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color-dark);
+}
+.main-nav { 
+    display: flex; justify-content: space-between; align-items: center; 
+    max-width: 1200px; margin: 0 auto; height: 90px; padding: 0 20px;
+}
+.logo { height: 40px; filter: brightness(0) invert(1); }
+.nav-buttons { display: flex; gap: 1rem; align-items: center; }
+
+.btn { padding: 10px 24px; text-decoration: none; border-radius: 6px; font-weight: 500; transition: all 0.3s ease; border: 1px solid transparent; }
+.btn-primary { 
+    background-color: var(--primary-green); 
+    color: var(--text-light); 
+    box-shadow: var(--green-shadow); 
+    border: 1px solid var(--primary-green);
+}
+.btn-primary:hover { 
+    background-color: var(--primary-green-dark); 
+    transform: translateY(-2px); 
+    box-shadow: 0 0 4px var(--primary-green), 0 0 8px var(--primary-green), 0 0 15px rgba(56, 142, 60, 0.5); 
+}
+.btn-secondary { color: var(--text-light); border-color: var(--text-light); }
+.btn-secondary:hover { background-color: var(--text-light); color: var(--text-dark); border-color: var(--text-light); }
+.btn-large { padding: 14px 32px; font-size: 1.1rem; }
+
+.main-menu { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 2.5rem; margin: 0 2rem; }
+.main-menu a { text-decoration: none; color: var(--text-muted); font-weight: 500; position: relative; padding-bottom: 8px; transition: color 0.3s ease, text-shadow 0.3s ease; }
+.main-menu a:hover { color: var(--primary-green); text-shadow: 0 0 3px var(--primary-green); }
+.main-menu a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background-color: var(--primary-green); transform: scaleX(0); transform-origin: center; transition: transform 0.4s ease, box-shadow 0.4s ease; }
+.main-menu a:hover::after { transform: scaleX(1); box-shadow: 0 0 2px var(--primary-green); }
+.mobile-menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; color: var(--text-light); cursor: pointer; z-index: 1100; }
+
+/* ============================================= */
+/* 3. ESTILOS DO FOOTER (Copiado do welcome.css) */
+/* ============================================= */
+.main-footer { background-color: var(--background-blue-deep); color: var(--text-light); padding: 60px 40px; border-top: 1px solid var(--border-color-dark); }
+.footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+.logo-footer { height: 35px; filter: brightness(0) invert(1); margin-bottom: 1rem; }
+.footer-column p { color: var(--text-muted); text-align: left; hyphens: none; }
+.footer-column h4 { margin-bottom: 1rem; color: var(--text-light); }
+.footer-column ul { list-style: none; padding: 0;}
+.footer-column li { margin-bottom: 0.5rem; }
+.footer-column a { color: var(--text-muted); text-decoration: none; transition: color 0.3s ease; font-size: 0.9rem; } /* Fonte padronizada */
+.footer-column a:hover { color: var(--primary-green); text-shadow: 0 0 3px var(--primary-green); }
+
+/* Contato (sem ícones) */
+.footer-contact li a {
+    font-size: 0.9rem;
+}
+
+.social-icons { display: flex; gap: 1rem; margin-top: 1rem; }
+.social-icons a { font-size: 1.2rem; color: var(--text-muted); transition: color 0.3s ease, text-shadow 0.3s ease; }
+.social-icons a:hover { color: var(--primary-green); text-shadow: var(--green-shadow); }
+.footer-bottom { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.15); color: var(--text-muted); font-size: 0.9rem; }
+
+/* Pagamento (Bandeiras pequenas) */
+.footer-payment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+.footer-payment p { margin: 0; font-weight: 500; color: var(--text-light); text-align: center; }
+.payment-icons {
+    display: flex;
+    gap: 0.8rem;
+    font-size: 1.1rem; /* Tamanho pequeno/sutil */
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+/* ============================================= */
+/* 4. ESTILOS ESPECÍFICOS - CARREIRAS */
+/* ============================================= */
+
+/* Hero Simples para Páginas Internas */
+.page-hero {
+    background-color: var(--background-blue-deep);
+    text-align: center;
+    padding: 120px 40px 80px 40px;
+    border-bottom: 1px solid var(--border-color-dark);
+}
+.page-hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.page-hero h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+.page-hero p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    text-align: center;
+    hyphens: none;
+}
+
+/* Seção de Conteúdo (Abas) */
+.careers-content-section {
+    padding: 80px 20px;
+    background-color: var(--background-dark);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Navegação das Abas */
+.tab-navigation {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid var(--border-color-dark);
+}
+.tab-link {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 500;
+    position: relative;
+    top: 1px;
+    transition: color 0.3s ease, border-color 0.3s ease;
+    border-bottom: 3px solid transparent;
+}
+.tab-link:hover {
+    color: var(--text-light);
+}
+.tab-link.active {
+    color: var(--primary-green);
+    border-bottom-color: var(--primary-green);
+}
+
+/* Conteúdo das Abas */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+.tab-content.active {
+    display: block;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Barra de Filtros */
+.filter-bar {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 1.5rem;
+    background-color: var(--card-background);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color-dark);
+    margin-bottom: 2.5rem;
+}
+.filter-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+.filter-group input,
+.filter-group select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color-dark);
+    font-size: 1rem;
+    background-color: var(--background-dark);
+    color: var(--text-light);
+}
+.filter-group input:focus,
+.filter-group select:focus {
+    outline: none;
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 2px rgba(56, 142, 60, 0.4);
+}
+
+/* Lista de Vagas */
+.job-card {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color-dark);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+.job-card:hover {
+    border-color: var(--primary-green);
+    box-shadow: var(--green-shadow);
+    transform: translateY(-5px);
+}
+.job-info h4 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+.job-info span {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-right: 1.5rem;
+}
+.job-info span i {
+    color: var(--primary-green);
+    margin-right: 0.3rem;
+}
+.job-card .btn-secondary {
+    flex-shrink: 0;
+    margin-left: 1rem;
+}
+.no-results-message {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-muted);
+}
+.no-results-message i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+.no-results-message h4 {
+    font-size: 1.5rem;
+    color: var(--text-light);
+}
+
+/* ============================================= */
+/* 5. NOVOS ESTILOS - ABA ESTÁGIO (REFEITOS) */
+/* ============================================= */
+
+/* Bloco 1: Intro e CTA (Inspirado em estagio.jpg) */
+.program-intro-cta {
+    background-color: var(--card-background);
+    /* Imagem de fundo (adicione o caminho correto) */
+    background-image: linear-gradient(rgba(17, 26, 47, 0.8), rgba(17, 26, 47, 0.8)), url('../assets/estagio-bg.jpg'); /* << ADICIONE O CAMINHO DA IMAGEM AQUI */
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    padding: 4rem 3rem;
+    text-align: center;
+    border: 1px solid var(--border-color-dark);
+    margin-bottom: 4rem;
+}
+
+.program-intro-text {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.program-intro-text h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+.program-intro-text h2 {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+}
+.program-intro-text p {
+    font-size: 1.1rem;
+    color: var(--text-light); /* Texto mais claro no fundo escuro */
+    line-height: 1.7;
+    text-align: center;
+    hyphens: none;
+    margin-bottom: 2rem;
+}
+
+/* Wrapper do botão de Inscrição */
+.program-cta-button-wrapper {
+    text-align: center;
+}
+.program-cta-button-wrapper p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    text-align: center;
+    hyphens: none;
+}
+
+/* Bloco 2: Benefícios (inspirado em estagio 2.jpg) */
+.program-benefits-section {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border-color-dark);
+}
+.program-benefits-section h4 {
+    font-size: 2.2rem; /* Título maior */
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+.benefits-grid-estagio {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.benefit-card-estagio {
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.benefit-card-estagio:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+.benefit-card-estagio i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+.benefit-card-estagio span {
+    font-size: 1rem;
+    font-weight: 700;
+}
+/* Estilo 1 (Azul) */
+.benefit-card-estagio.style-1 {
+    background-color: var(--benefit-blue);
+    color: var(--benefit-blue-text);
+}
+.benefit-card-estagio.style-1 i {
+    color: var(--benefit-blue-text);
+}
+/* Estilo 2 (Verde) */
+.benefit-card-estagio.style-2 {
+    background-color: var(--benefit-green);
+    color: var(--benefit-green-text);
+}
+.benefit-card-estagio.style-2 i {
+    color: var(--benefit-green-text);
+}
+
+
+/* Bloco 3: Trilhas de Desenvolvimento (Seu código anterior) */
+.program-tracks {
+    margin-top: 4rem; /* Adicionado espaço */
+    padding-top: 3rem; /* Adicionado espaço */
+    border-top: 1px solid var(--border-color-dark); /* Adicionado espaço */
+}
+.program-tracks h4 {
+    font-size: 2.2rem; /* Título maior */
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+.program-tracks p {
+    text-align: center;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    hyphens: none;
+}
+.tracks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+/* Reutilizando o estilo do "benefit-item" da index */
+.track-card {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color-dark);
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.track-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--green-shadow);
+}
+.track-card i {
+    font-size: 2.5rem;
+    color: var(--primary-green);
+    text-shadow: var(--green-shadow);
+    margin-bottom: 1rem;
+}
+.track-card h3 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+.track-card p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+    hyphens: none;
+}
+
+
+/* ============================================= */
+/* 6. MEDIA QUERIES (Globais + Específicas) */
+/* ============================================= */
+@media(max-width: 900px) {
+    .main-menu, .nav-buttons { display: none; }
+    .main-nav { display: flex; justify-content: space-between; align-items: center; }
+    .main-nav.nav-open .main-menu { display: flex; flex-direction: column; position: absolute; top: 90px; left: 0; width: 100%; background-color: rgba(22, 34, 59, 0.98); padding: 1rem 0; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    .main-nav.nav-open .nav-buttons { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; align-items: center; }
+    .main-nav.nav-open .main-menu li { padding: 0.5rem 0; }
+    .mobile-menu-toggle { display: block; }
+    
+    .filter-bar {
+        grid-template-columns: 1fr;
+    }
+}
+@media(max-width: 768px) {
+    .page-hero h1 {
+        font-size: 2.5rem;
+    }
+    .job-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    .job-card .btn-secondary {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Ajuste para a nova grid de benefícios */
+    .benefits-grid-estagio {
+        grid-template-columns: 1fr 1fr; /* 2 colunas no mobile */
+    }
+    .benefit-card-estagio {
+        padding: 1.5rem 1rem;
+    }
+    .benefit-card-estagio i {
+        font-size: 2rem;
+    }
+    .benefit-card-estagio span {
+        font-size: 0.9rem;
+    }
+
+    .program-intro-cta {
+        padding: 3rem 1.5rem;
+    }
+    .program-intro-text h2 {
+        font-size: 2.2rem;
+    }
+}

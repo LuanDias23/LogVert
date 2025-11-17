@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogVert | Chatbot</title>
+    <link rel="stylesheet" href="pages/menu.lojista/menuLojista.css"> 
+    <link rel="stylesheet" href="pages/chatbot/chatbot.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div id="dashboard-particles"></div>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="/assets/logosemfundo.png" alt="Logo LogVert" class="sidebar-logo">
+            </div>
+            <ul class="sidebar-menu">
+                <li><a class="sidebar-link" href="/menu-lojista"><i class="fa-solid fa-house"></i><span>Início</span></a></li>
+                <!-- AJUSTE: Removido 'active' daqui -->
+                <li><a class="sidebar-link" href="/produtos"><i class="fa-solid fa-box"></i><span>Produto</span></a></li>
+                <li><a class="sidebar-link" href="/vendas"><i class="fa-solid fa-truck"></i><span>Venda</span></a></li>
+                <li><a class="sidebar-link" href="/devolucoes"><i class="fa-solid fa-arrow-rotate-left"></i><span>Trocas e Devoluções</span></a></li>
+                <!-- AJUSTE: Adicionado 'active' aqui -->
+                <li><a class="sidebar-link active" href="/chatbot"><i class="fa-solid fa-robot"></i><span>Chatbot</span></a></li>
+                <li><a class="sidebar-link" href="/faq"><i class="fa-solid fa-question"></i><span>FAQ</span></a></li> 
+                <li><a class="sidebar-link" href="/login"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
+            </ul>
+            <div class="sidebar-toggle-wrapper">
+                <button class="sidebar-toggle" id="sidebarToggle" title="Minimizar menu">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+            </div>
+        </aside>
+
+        <div class="main-container">
+            
+            <!-- ====================================================== -->
+            <!-- AQUI ESTÁ O CABEÇALHO CORRIGIDO -->
+            <!-- ====================================================== -->
+            <header class="main-header">
+                <div class="header-content">
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <!-- Título ajustado para a página do Chatbot -->
+                    <h1 class="header-title">Painel de Chatbot</h1>
+                    
+                    <div class="header-user-actions">
+                        <span>Bem-vindo, Lojista</span>
+                        
+                        <div class="header-actions">
+                            <!-- Item 1: Novidades (Presente) -->
+                            <div class="header-action-item">
+                                <button class="header-action-btn" id="newsBtn" title="Novidades">
+                                    <i class="fa-solid fa-gift"></i>
+                                </button>
+                                <div class="dropdown-menu" id="newsDropdown">
+                                    <div class="dropdown-header">Novidades da Plataforma</div>
+                                    <ul>
+                                        <li><a href="#">Nova integração com transportadoras!</a></li>
+                                        <li><a href="#">Dashboard de relatórios atualizado.</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Item 2: Notificações (Sino) -->
+                            <div class="header-action-item">
+                                <button class="header-action-btn" id="notificationsBtn" title="Notificações">
+                                    <i class="fa-solid fa-bell"></i>
+                                    <span class="notification-badge">3</span>
+                                </button>
+                                <div class="dropdown-menu" id="notificationsDropdown">
+                                    <div class="dropdown-header">Notificações</div>
+                                    <ul>
+                                        <li><a href="#">Nova devolução registrada.</a></li>
+                                        <li><a href="#">Produto 'Camiseta Azul' com baixo estoque.</a></li>
+                                        <li><a href="#">Sua fatura mensal foi gerada.</a></li>
+                                    </ul>
+                                    <div class="dropdown-footer"><a href="#">Ver todas</a></div>
+                                </div>
+                            </div>
+
+                            <!-- Item 3: Conta (Usuário) -->
+                            <div class="header-action-item">
+                                <button class="header-action-btn" id="accountBtn" title="Minha Conta">
+                                    <i class="fa-solid fa-user-circle"></i>
+                                </button>
+                                <div class="dropdown-menu" id="accountDropdown">
+                                    <ul>
+                                        <li><a href="/configuracao"><i class="fa-solid fa-cog"></i> Configurações da Conta</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-palette"></i> Mudar Tema</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-life-ring"></i>   Suporte</a></li>
+                                    </ul>
+                                    <div class="dropdown-footer">
+                                        <a href="/login" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- ====================================================== -->
+            <!-- FIM DA CORREÇÃO -->
+            <!-- ====================================================== -->
+
+            <main class="main-content chatbot-page">
+
+                <div class="channels-container">
+                    <h2>Conecte seus Canais</h2>
+                    <div class="channels-grid">
+                        <div class="channel-card">
+                            <i class="fab fa-instagram"></i>
+                            <h3>Instagram</h3>
+                            <p>Directs e comentários automatizados.</p>
+                            <button class="btn-connect">Conectar</button>
+                        </div>
+                        <div class="channel-card">
+                            <i class="fab fa-whatsapp"></i>
+                            <h3>WhatsApp</h3>
+                            <p>Atendimento via API oficial.</p>
+                            <button class="btn-connect">Conectar</button>
+                        </div>
+                        <div class="channel-card">
+                            <i class="fab fa-telegram"></i>
+                            <h3>Telegram</h3>
+                            <p>Conecte seus grupos e canais para atendimento.</p>
+                            <button class="btn-connect">Conectar</button>
+                        </div>
+                        <div class="channel-card">
+                            <i class="fab fa-facebook-messenger"></i>
+                            <h3>Messenger</h3>
+                            <p>Mensagens da sua página do Facebook.</p>
+                            <button class="btn-connect">Conectar</button>
+                        </div>
+                        <div class="channel-card">
+                            <i class="fa-solid fa-globe"></i>
+                            <h3>Seu E-commerce</h3>
+                            <p>Integre o chat do seu próprio site ou plataforma.</p>
+                            <button class="btn-connect coming-soon" disabled>Em Breve</button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Ordem dos scripts correta -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="pages/menu.lojista/menuLojista.js"></script>
+    <script src="pages/chatbot/chatbot.js"></script>
+</body>
+</html>
