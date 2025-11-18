@@ -1,4 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    // --- NOVO: Função para obter o Token de Autenticação ---
+    // (Assume que o token foi salvo no localStorage com a chave 'authToken' após o login)
+    const getAuthHeaders = () => {
+        const token = localStorage.getItem('authToken'); 
+        if (!token) {
+            console.warn('Token de autenticação não encontrado. A API pode retornar 403 Forbidden.');
+            // Você pode adicionar um redirecionamento forçado para a tela de login aqui, se desejar.
+            return {}; 
+        }
+        return {
+            'Authorization': `Bearer ${token}`
+        };
+    };
     
     // --- 1. REFERÊNCIAS DO DOM ---
     const tableBody = document.querySelector('.table-container tbody');
@@ -6,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const openModalBtn = document.getElementById('openModalBtn');
     const closeModalBtn = document.getElementById('closeModalBtn');
     const produtoForm = document.getElementById('addProdutoForm');
-    const exportBtn = document.getElementById('exportBtn'); // Botão de exportar
+    const exportBtn = document.getElementById('exportBtn');
 
     // Campo escondido para sabermos qual ID estamos editando
     const editIdInput = document.createElement('input');
@@ -17,49 +31,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 2. LÓGICA DO MODAL ---
     
-    // Função para fechar o modal
     const fecharModal = () => {
         modal.classList.remove('active');
     };
 
-    // Função para abrir o modal (para Criar um novo produto)
     const abrirModalNovo = () => {
-        produtoForm.reset(); // Limpa o formulário
-        editIdInput.value = ''; // Garante que não estamos editando
+        produtoForm.reset();
+        editIdInput.value = '';
         document.querySelector('.modal-header h2').textContent = 'Adicionar Novo Produto';
-        document.getElementById('imagem').required = true; // Imagem é obrigatória ao criar
+        document.getElementById('imagem').required = true;
+        // Define um valor padrão para idLoja (ex: 1)
+        document.getElementById('idLoja').value = '1'; 
         modal.classList.add('active');
     };
 
-    if (openModalBtn) {
-        openModalBtn.addEventListener('click', abrirModalNovo);
-    }
-    if (closeModalBtn) {
-        closeModalBtn.addEventListener('click', fecharModal);
-    }
+    if (openModalBtn) openModalBtn.addEventListener('click', abrirModalNovo);
+    if (closeModalBtn) closeModalBtn.addEventListener('click', fecharModal);
     if (modal) {
         modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                fecharModal();
-            }
+            if (e.target === modal) fecharModal();
         });
     }
 
-    // --- 3. LÓGICA DE API (CRUD - Create, Read, Update, Delete) ---
+    // --- 3. LÓGICA DE API (CRUD) ---
 
     /**
      * READ: Busca todos os produtos do backend e atualiza a tabela
      */
     const carregarProdutos = async () => {
         try {
-            // Usa a variável global do apiClient.js
-            const response = await fetch(`${API_BASE_URL}/produtos`);
-            if (!response.ok) {
-                throw new Error('Erro ao buscar produtos.');
-            }
-            const produtos = await response.json();
+            const headers = getAuthHeaders();
+
+            const response = await fetch(`${API_BASE_URL}/produtos`, {
+                method: 'GET',
+                headers: headers // ENVIA TOKEN
+            });
             
-            tableBody.innerHTML = ''; // Limpa a tabela
+            if (!response.ok) {
+                throw new Error(`Erro ao buscar produtos. Status: ${response.status}`);
+            }
+            
+            const dados = await response.json();
+            
+            // CORREÇÃO: Garante que 'produtos' é um array para usar .forEach
+            const produtos = Array.isArray(dados) ? dados : [];
+            
+            tableBody.innerHTML = '';
             
             if (produtos.length === 0) {
                 tableBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">Nenhum produto cadastrado.</td></tr>';
@@ -68,8 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
             
             produtos.forEach(produto => {
                 const tr = document.createElement('tr');
-                // O backend retorna a imagem como 'data:image/png;base64,....'
                 const imageUrl = produto.imagem || 'https://placehold.co/40x40/334155/94a3b8?text=?';
+                const idProduto = produto.id; 
                 const precoFormatado = `R$ ${parseFloat(produto.preco || 0).toFixed(2).replace('.', ',')}`;
 
                 tr.innerHTML = `
@@ -80,8 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     <td>${precoFormatado}</td>
                     <td>${produto.unidadeMedida || 'UN'}</td>
                     <td class="action-buttons">
-                        <button class="btn-icon btn-edit" data-id="${produto.id}" title="Editar"><i class="fas fa-pencil-alt"></i></button>
-                        <button class="btn-icon btn-delete" data-id="${produto.id}" title="Excluir"><i class="fas fa-trash"></i></button>
+                        <button class="btn-icon btn-edit" data-id="${idProduto}" title="Editar"><i class="fas fa-pencil-alt"></i></button>
+                        <button class="btn-icon btn-delete" data-id="${idProduto}" title="Excluir"><i class="fas fa-trash"></i></button>
                     </td>
                 `;
                 tableBody.appendChild(tr);
@@ -89,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             console.error('Erro em carregarProdutos:', error);
-            tableBody.innerHTML = '<tr><td colspan="4" style="text-align:center; color: red;">Erro ao carregar produtos. Verifique o backend.</td></tr>';
+            tableBody.innerHTML = `<tr><td colspan="4" style="text-align:center; color: red;">${error.message}. Verifique o token e o backend.</td></tr>`;
         }
     };
 
@@ -99,60 +116,49 @@ document.addEventListener('DOMContentLoaded', () => {
     if (produtoForm) {
         produtoForm.addEventListener('submit', async (e) => {
             e.preventDefault(); 
-
-            // 1. Cria o objeto JSON com os dados do produto
+            
             const produtoJson = {
                 descricao: document.getElementById('descricao').value,
                 unidadeMedida: document.getElementById('unidadeMedida').value,
                 preco: parseFloat(document.getElementById('preco').value),
-                idLoja: parseInt(document.getElementById('idLoja').value, 10)
-                // O backend não espera 'imagem' no JSON
+                idLoja: parseInt(document.getElementById('idLoja').value, 10) 
             };
 
-            // 2. Cria o FormData para enviar os dados e o arquivo
             const formData = new FormData();
-            
-            // Adiciona o JSON como um "Blob" (exigido pelo seu backend)
+            const idParaEditar = editIdInput.value;
+            let url = `${API_BASE_URL}/produtos`;
+            let method = 'POST';
+
+            if (idParaEditar) {
+                // UPDATE (PUT)
+                produtoJson.id = parseInt(idParaEditar, 10);
+                url = `${API_BASE_URL}/produtos/${idParaEditar}`; 
+                method = 'PUT';
+            }
+
+            // Recria o Blob com o JSON atualizado
             formData.append('produto', new Blob([JSON.stringify(produtoJson)], {
                 type: 'application/json'
             }));
 
-            // 3. Adiciona o arquivo de imagem
+            // Adiciona o arquivo de imagem
             const imagemFile = document.getElementById('imagem').files[0];
-            const idParaEditar = editIdInput.value;
-
-            // Só anexa a imagem se ela foi selecionada (ou se for criação)
             if (imagemFile) {
                 formData.append('imagem', imagemFile);
             }
-
+            
             try {
-                let response;
-                let url = `${API_BASE_URL}/produtos`;
-                let method = 'POST';
-
-                if (idParaEditar) {
-                    // --- UPDATE (PUT) ---
-                    // Adiciona o ID ao JSON (necessário para o backend saber quem editar)
-                    produtoJson.id = parseInt(idParaEditar, 10);
-                    // Recria o Blob com o ID
-                    formData.set('produto', new Blob([JSON.stringify(produtoJson)], {
-                        type: 'application/json'
-                    }));
-
-                    url = `${API_BASE_URL}/produtos/${idParaEditar}`;
-                    method = 'PUT';
-                }
-
-                response = await fetch(url, {
+                const authHeaders = getAuthHeaders();
+                // O Content-Type é omitido aqui, pois o navegador o define corretamente com boundary para FormData
+                const response = await fetch(url, {
                     method: method,
-                    body: formData
-                    // NÃO definir 'Content-Type', o navegador faz isso
+                    body: formData,
+                    headers: authHeaders // ENVIA TOKEN
                 });
 
                 if (!response.ok) {
-                    const erroText = await response.text(); // Pega texto, pode não ser JSON
-                    throw new Error(erroText || 'Erro ao salvar produto.');
+                    const erroText = await response.text();
+                    throw new Error(erroText || `Erro ao salvar produto. Status: ${response.status}`);
                 }
 
                 fecharModal(); 
@@ -160,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             } catch (error) {
                 console.error('Erro ao salvar produto:', error);
-                alert(`Erro: ${error.message}`);
+                alert(`Erro ao salvar/atualizar produto: ${error.message}`);
             }
         });
     }
@@ -172,30 +178,29 @@ document.addEventListener('DOMContentLoaded', () => {
         const button = e.target.closest('button.btn-icon');
         if (!button) return;
 
-        const id = button.dataset.id; // Pega o ID do produto
+        const id = button.dataset.id;
+        const authHeaders = getAuthHeaders();
 
         if (button.classList.contains('btn-edit')) {
             // --- AÇÃO DE EDITAR ---
             try {
-                const response = await fetch(`${API_BASE_URL}/produtos/${id}`);
+                const response = await fetch(`${API_BASE_URL}/produtos/${id}`, { headers: authHeaders }); // ENVIA TOKEN
                 if (!response.ok) {
-                    throw new Error('Não foi possível carregar o produto para edição.');
+                    throw new Error(`Não foi possível carregar o produto para edição. Status: ${response.status}`);
                 }
                 const produto = await response.json();
 
-                // Preenche o formulário do modal
+                // Preenche o formulário
                 document.getElementById('descricao').value = produto.descricao;
                 document.getElementById('preco').value = produto.preco;
                 document.getElementById('unidadeMedida').value = produto.unidadeMedida;
+                document.getElementById('idLoja').value = produto.idLoja; 
                 
-                // Limpa o campo de arquivo e o torna opcional
+                // Configura o modal para edição
                 document.getElementById('imagem').value = null;
                 document.getElementById('imagem').required = false; 
-                
-                // Guarda o ID para o envio
                 editIdInput.value = produto.id;
                 
-                // Muda o título e abre o modal
                 document.querySelector('.modal-header h2').textContent = 'Editar Produto';
                 modal.classList.add('active');
 
@@ -205,23 +210,25 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         
         } else if (button.classList.contains('btn-delete')) {
-            // --- AÇÃO DE DELETAR ---
-            if (confirm(`Tem certeza que deseja excluir este produto?`)) {
+            // --- AÇÃO DE DELETAR (Permanente) ---
+            if (confirm(`Tem certeza que deseja excluir PERMANENTEMENTE este produto (ID: ${id})?`)) {
                 try {
-                    const response = await fetch(`${API_BASE_URL}/produtos/${id}`, {
-                        method: 'DELETE'
+                    const response = await fetch(`${API_BASE_URL}/produtos/${id}/permanent`, {
+                        method: 'DELETE',
+                        headers: authHeaders // ENVIA TOKEN
                     });
 
-                    if (!response.ok) {
+                    if (response.status === 204 || response.ok) {
+                        carregarProdutos();
+                        alert(`Produto ID ${id} excluído permanentemente com sucesso.`);
+                    } else {
                         const erro = await response.text();
-                        throw new Error(erro || 'Erro ao excluir produto.');
+                        throw new Error(erro || `Erro ao excluir produto permanentemente. Status: ${response.status}`);
                     }
                     
-                    carregarProdutos(); // Recarrega a tabela
-
                 } catch (error) {
                     console.error('Erro ao deletar:', error);
-                    alert(`Erro: ${error.message}`);
+                    alert(`Erro ao deletar: ${error.message}`);
                 }
             }
         }
@@ -230,9 +237,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 4. LÓGICA DE EXPORTAÇÃO (Excel) ---
     const exportarParaExcel = async () => {
         try {
-            const response = await fetch(`${API_BASE_URL}/produtos`);
-            if (!response.ok) throw new Error('Falha ao buscar dados para exportação.');
-            const produtos = await response.json();
+            const headers = getAuthHeaders();
+            
+            const response = await fetch(`${API_BASE_URL}/produtos`, {
+                method: 'GET',
+                headers: headers // ENVIA TOKEN
+            });
+            
+            if (!response.ok) throw new Error(`Falha ao buscar dados para exportação. Status: ${response.status}`);
+            const dados = await response.json();
+            const produtos = Array.isArray(dados) ? dados : [];
+
 
             if (produtos.length === 0) {
                 alert('Não há produtos para exportar.');
@@ -241,10 +256,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const dadosParaPlanilha = produtos.map(produto => ({
                 'ID': produto.id,
+                'ID Loja': produto.idLoja,
                 'Descrição': produto.descricao,
                 'Preço': produto.preco,
                 'Unidade': produto.unidadeMedida
-                // Não exportamos a imagem base64
             }));
 
             const ws = XLSX.utils.json_to_sheet(dadosParaPlanilha);

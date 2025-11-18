@@ -134,51 +134,46 @@
     
     <!-- MODAL (Pop-up) para Adicionar/Editar Produto (NOVOS CAMPOS) -->
     <div class="modal-overlay" id="addProdutoModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Adicionar Novo Produto</h2>
-                <button class="close-modal" id="closeModalBtn">&times;</button>
-            </div>
-            <div class="modal-body">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Adicionar Novo Produto</h2>
+            <button class="close-modal" id="closeModalBtn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form id="addProdutoForm" class="form-container">
                 
-                <!-- 
-                  NOTA: Este formulário está pronto para enviar 'multipart/form-data',
-                  conforme a imagem do Postman que você enviou.
-                -->
-                <form id="addProdutoForm" class="form-container">
-                    
-                    <div class="form-group">
-                        <label for="descricao">Descrição do Produto</label>
-                        <input type="text" id="descricao" required>
-                    </div>
+                <div class="form-group">
+                    <label for="descricao">Descrição do Produto</label>
+                    <input type="text" id="descricao" required>
+                </div>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="preco">Preço (R$)</label>
-                            <input type="number" id="preco" step="0.01" min="0" placeholder="ex: 59.90" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="unidadeMedida">Unidade (UN, CX, PC)</label>
-                            <input type="text" id="unidadeMedida" value="UN" required>
-                        </div>
-                    </div>
-                    
-                    <!-- CAMPO DE UPLOAD DE IMAGEM -->
+                <div class="form-group">
+                    <label for="idLoja">ID da Loja</label>
+                    <input type="text" id="idLoja" value="1" required>
+                    <small>Este é o identificador único da sua loja.</small>
+                </div>
+                <div class="form-row">
                     <div class="form-group">
-                        <label for="imagem">Anexar Imagem</label>
-                        <input type="file" id="imagem" accept="image/png, image/jpeg">
-                        <small>Deixe em branco se não quiser alterar a imagem (na edição).</small>
+                        <label for="preco">Preço (R$)</label>
+                        <input type="number" id="preco" step="0.01" min="0" placeholder="ex: 59.90" required>
                     </div>
-                    
-                    <!-- Campo escondido para idLoja (exemplo) -->
-                    <input type="hidden" id="idLoja" value="1">
-
-                    <button type="submit" class="btn-submit-modal">Salvar Produto</button>
-                </form>
-            </div>
+                    <div class="form-group">
+                        <label for="unidadeMedida">Unidade (UN, CX, PC)</label>
+                        <input type="text" id="unidadeMedida" value="UN" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="imagem">Anexar Imagem</label>
+                    <input type="file" id="imagem" accept="image/png, image/jpeg">
+                    <small>Deixe em branco se não quiser alterar a imagem (na edição).</small>
+                </div>
+                
+                <button type="submit" class="btn-submit-modal">Salvar Produto</button>
+            </form>
         </div>
     </div>
-
+</div>
     <!-- Overlay (já estava correto) -->
     <div class="overlay"></div>
 
