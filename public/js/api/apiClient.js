@@ -33,3 +33,11 @@ function getAuthHeadersForFormData() {
         'Authorization': `Bearer ${token}`
     };
 }
+
+// Expor helpers no objeto global `window` para uso em scripts cliente
+if (typeof window !== 'undefined') {
+    window.API_BASE_URL = API_BASE_URL;
+    window.getToken = getToken;
+    window.getAuthHeaders = getAuthHeaders;
+    window.getAuthHeadersForFormData = getAuthHeadersForFormData;
+}

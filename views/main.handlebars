@@ -1,0 +1,50 @@
+
+<!doctype html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>{{title}}</title>
+		<link rel="stylesheet" href="/css/reset.css">
+		<link rel="stylesheet" href="/css/global.css">
+		<!-- Página pode injetar CSS adicional usando {{{head}}} -->
+		{{{head}}}
+	</head>
+	<body>
+		<header class="site-header">
+			<div class="container">
+				<a class="brand" href="/">LogVert</a>
+				<nav class="main-nav">
+					<a href="/pages/index/index.html">Início</a>
+					<a href="/pages/produtos/produtos.html">Produtos</a>
+					<a href="/pages/login/login.html">Login</a>
+					<a href="/pages/FAQ/FAQ.html">Ajuda</a>
+				</nav>
+			</div>
+		</header>
+
+		<main id="app-content" class="container">
+			{{{body}}}
+		</main>
+
+		<footer class="site-footer">
+			<div class="container">
+				<small>© {{year}} LogVert • Todos os direitos reservados</small>
+			</div>
+		</footer>
+
+		<!-- Scripts globais -->
+		<script src="/js/api/apiClient.js"></script>
+		<!-- Espaço para scripts específicos de cada página -->
+		{{{pageScripts}}}
+
+		<style>
+			/* Pequeno CSS inline para garantir layout base caso faltem arquivos */
+			.container{max-width:1100px;margin:0 auto;padding:0 16px}
+			header.site-header{background:#0b5; padding:10px 0}
+			header .brand{font-weight:700;color:#fff;text-decoration:none;margin-right:18px}
+			.main-nav a{color:#fff;margin-right:12px;text-decoration:none}
+			footer.site-footer{padding:18px 0;text-align:center;color:#666}
+		</style>
+	</body>
+</html>

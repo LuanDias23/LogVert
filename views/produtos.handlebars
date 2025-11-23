@@ -1,0 +1,121 @@
+{{!--
+  Esta view é utilizada com o layout `main.handlebars`.
+  Não inclua `<!doctype>`, `<html>` ou `<head>` aqui — o layout já fornece isso.
+
+  Para injetar CSS/links no <head> do layout, passe a propriedade `head` na chamada a `res.render()`.
+  Para injetar scripts no final do body, passe `pageScripts` com o HTML dos scripts.
+-->
+
+<div id="dashboard-particles"></div>
+
+<div class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="/assets/logosemfundo.png" alt="Logo LogVert" class="sidebar-logo">
+        </div>
+        <ul class="sidebar-menu">
+            <li><a class="sidebar-link" href="/pages/menu.lojista/menuLojista.html"><i class="fa-solid fa-house"></i><span>Início</span></a></li>
+            <li><a class="sidebar-link active" href="/pages/produtos/produtos.html"><i class="fa-solid fa-box"></i><span>Produto</span></a></li>
+            <li><a class="sidebar-link" href="/pages/vendas/venda.html"><i class="fa-solid fa-truck"></i><span>Venda</span></a></li>
+            <li><a class="sidebar-link" href="/pages/devolucoes/devolucoes.html"><i class="fa-solid fa-arrow-rotate-left"></i><span>Trocas e Devoluções</span></a></li>
+            <li><a class="sidebar-link" href="/pages/chatbot/chatbot.html"><i class="fa-solid fa-robot"></i><span>Chatbot</span></a></li>
+            <li><a class="sidebar-link" href="/pages/FAQ/FAQ.html"><i class="fa-solid fa-question"></i><span>FAQ</span></a></li>
+            <li><a class="sidebar-link" href="/pages/login/login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
+        </ul>
+        <div class="sidebar-toggle-wrapper">
+            <button class="sidebar-toggle" id="sidebarToggle" title="Minimizar menu">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Container Principal -->
+    <div class="main-container">
+        <header class="main-header">
+            <div class="header-content">
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="header-title">Gestão de Produtos</h1>
+                <div class="header-user-actions">
+                    <span>Bem-vindo, Lojista</span>
+                    <div class="header-actions">
+                        <!-- ações do header (notificações, conta, etc.) -->
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="page-header">
+                <h2>Meus Produtos Cadastrados</h2>
+                <div class="page-header-actions">
+                    <button class="btn-secondary" id="exportBtn"><i class="fas fa-file-export"></i> Exportar</button>
+                    <button class="btn-add-new" id="openModalBtn"><i class="fas fa-plus"></i> Adicionar Novo</button>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Preço</th>
+                            <th>Unidade</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productsTableBody">
+                        <tr>
+                            <td colspan="4" style="text-align: center;">Carregando produtos...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</div>
+
+<!-- Modal Adicionar/Editar Produto -->
+<div class="modal-overlay" id="addProdutoModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Adicionar Novo Produto</h2>
+            <button class="close-modal" id="closeModalBtn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form id="addProdutoForm" class="form-container">
+                <div class="form-group">
+                    <label for="descricao">Descrição do Produto</label>
+                    <input type="text" id="descricao" required>
+                </div>
+                <div class="form-group">
+                    <label for="idLoja">ID da Loja</label>
+                    <input type="text" id="idLoja" value="1" required>
+                    <small>Este é o identificador único da sua loja.</small>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="preco">Preço (R$)</label>
+                        <input type="number" id="preco" step="0.01" min="0" placeholder="ex: 59.90" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="unidadeMedida">Unidade (UN, CX, PC)</label>
+                        <input type="text" id="unidadeMedida" value="UN" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="imagem">Anexar Imagem</label>
+                    <input type="file" id="imagem" accept="image/png, image/jpeg">
+                    <small>Deixe em branco se não quiser alterar a imagem (na edição).</small>
+                </div>
+                <button type="submit" class="btn-submit-modal">Salvar Produto</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="overlay"></div>
+
+{{!-- Os scripts e CSS específicos devem ser adicionados via `pageScripts` e `head` ao renderizar a view. --}}
