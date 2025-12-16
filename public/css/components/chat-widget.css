@@ -1,0 +1,360 @@
+/* ========================================
+   CHAT WIDGET (LÍVIA) - CSS
+   ======================================== */
+
+:root {
+    --chat-primary: #1A73E8;
+    --chat-gradient: linear-gradient(135deg, #1A73E8, #00C6FF);
+    --chat-bg: #ffffff;
+    --chat-bg-dark: #1e1e2d;
+    --chat-text-dark: #333;
+    --chat-text-light: #f5f5f5;
+}
+
+/* --- Botão Flutuante (Launcher) --- */
+.livia-launcher {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: var(--chat-gradient);
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(26, 115, 232, 0.4);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.livia-launcher:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 25px rgba(26, 115, 232, 0.6);
+}
+
+.livia-launcher i {
+    color: white;
+    font-size: 28px;
+    transition: opacity 0.3s;
+}
+
+.livia-launcher .fa-times {
+    display: none;
+    font-size: 24px;
+}
+
+.livia-launcher.active .fa-comments {
+    display: none;
+}
+
+.livia-launcher.active .fa-times {
+    display: block;
+}
+
+/* Badge de Notificação */
+.livia-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #FF4757;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+    animation: bounceIn 0.5s;
+}
+
+/* --- Janela do Chat (Modal) --- */
+.livia-window {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 380px;
+    height: 600px;
+    max-height: 80vh;
+    background: var(--chat-bg);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 9998;
+    transform: translateY(20px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    font-family: 'Inter', sans-serif;
+}
+
+/* Dark Mode Support (se o site tiver classe dark) */
+body.theme-dark .livia-window {
+    background: var(--chat-bg-dark);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.livia-window.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Header */
+.livia-header {
+    background: var(--chat-gradient);
+    padding: 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.livia-avatar {
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    position: relative;
+}
+
+.livia-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    /* Se usar imagem */
+}
+
+.livia-avatar i {
+    font-size: 24px;
+}
+
+/* Indicador Online */
+.livia-status-dot {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 12px;
+    height: 12px;
+    background: #4ade80;
+    border-radius: 50%;
+    border: 2px solid var(--chat-primary);
+}
+
+.livia-info h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.livia-info p {
+    margin: 2px 0 0;
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+/* Corpo do Chat */
+.livia-body {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+body.theme-dark .livia-body {
+    background-color: #151521;
+}
+
+/* Mensagens */
+.livia-msg {
+    max-width: 80%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    position: relative;
+    animation: messageIn 0.3s ease forwards;
+}
+
+.livia-msg.bot {
+    align-self: flex-start;
+    background: white;
+    color: var(--chat-text-dark);
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.livia-msg.user {
+    align-self: flex-end;
+    background: var(--chat-primary);
+    color: white;
+    border-bottom-right-radius: 4px;
+    box-shadow: 0 4px 10px rgba(26, 115, 232, 0.3);
+}
+
+body.theme-dark .livia-msg.bot {
+    background: #2a2a3c;
+    color: var(--chat-text-light);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Typing Indicator */
+.livia-typing {
+    align-self: flex-start;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 10px 15px;
+    border-radius: 20px;
+    display: none;
+    /* JS vai dar display flex */
+    gap: 4px;
+}
+
+body.theme-dark .livia-typing {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    background: #999;
+    border-radius: 50%;
+    animation: typing 1.4s infinite ease-in-out both;
+}
+
+.dot:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.dot:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+/* Footer (Input) */
+.livia-footer {
+    padding: 15px;
+    background: white;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+body.theme-dark .livia-footer {
+    background: var(--chat-bg-dark);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.livia-input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    outline: none;
+    font-size: 0.95rem;
+    transition: border-color 0.3s;
+    background: #f8f9fa;
+}
+
+body.theme-dark .livia-input {
+    background: #1a1a27;
+    border-color: #333;
+    color: white;
+}
+
+.livia-input:focus {
+    border-color: var(--chat-primary);
+}
+
+.livia-send {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: var(--chat-primary);
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.livia-send:hover {
+    transform: scale(1.1);
+}
+
+/* Animações */
+@keyframes bounceIn {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes messageIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes typing {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0);
+    }
+
+    40% {
+        transform: scale(1);
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .livia-window {
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        right: 0;
+        border-radius: 0;
+        max-height: 100vh;
+        z-index: 10000;
+    }
+
+    .livia-launcher {
+        bottom: 20px;
+        right: 20px;
+    }
+}

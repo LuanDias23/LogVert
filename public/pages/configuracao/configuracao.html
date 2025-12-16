@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LogVert | Configurações da Conta</title>
-    
+
     <!-- CSS Global do Menu -->
     <link rel="stylesheet" href="/pages/menu.lojista/menuLojista.css">
     <!-- CSS Específico desta Página -->
     <link rel="stylesheet" href="/pages/configuracao/configuracao.css">
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
 
     <div id="dashboard-particles"></div>
@@ -24,13 +26,20 @@
                 <img src="/assets/logosemfundo.png" alt="Logo LogVert" class="sidebar-logo">
             </div>
             <ul class="sidebar-menu">
-                <li><a class="sidebar-link" href="/pages/menu.lojista/menuLojista.html"><i class="fa-solid fa-house"></i><span>Início</span></a></li>
-                <li><a class="sidebar-link active" href="/pages/produtos/produtos.html"><i class="fa-solid fa-box"></i><span>Produto</span></a></li>
-                <li><a class="sidebar-link" href="/pages/vendas/venda.html"><i class="fa-solid fa-truck"></i><span>Venda</span></a></li>
-                <li><a class="sidebar-link" href="/pages/devolucoes/devolucoes.html"><i class="fa-solid fa-arrow-rotate-left"></i><span>Trocas e Devoluções</span></a></li>
-                <li><a class="sidebar-link" href="/pages/chatbot/chatbot.html"><i class="fa-solid fa-robot"></i><span>Chatbot</span></a></li>
-                <li><a class="sidebar-link" href="/pages/faq/faq.html"><i class="fa-solid fa-question"></i><span>FAQ</span></a></li> 
-                <li><a class="sidebar-link" href="/pages/login/login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
+                <li><a class="sidebar-link" href="/pages/menu.lojista/menuLojista.html"><i
+                            class="fa-solid fa-house"></i><span>Início</span></a></li>
+                <li><a class="sidebar-link active" href="/pages/produtos/produtos.html"><i
+                            class="fa-solid fa-box"></i><span>Produto</span></a></li>
+                <li><a class="sidebar-link" href="/pages/vendas/venda.html"><i
+                            class="fa-solid fa-truck"></i><span>Venda</span></a></li>
+                <li><a class="sidebar-link" href="/pages/devolucoes/devolucoes.html"><i
+                            class="fa-solid fa-arrow-rotate-left"></i><span>Trocas e Devoluções</span></a></li>
+                <li><a class="sidebar-link" href="/pages/chatbot/chatbot.html"><i
+                            class="fa-solid fa-robot"></i><span>Chatbot</span></a></li>
+                <li><a class="sidebar-link" href="/pages/faq/faq.html"><i
+                            class="fa-solid fa-question"></i><span>FAQ</span></a></li>
+                <li><a class="sidebar-link" href="/pages/login/login.html"><i
+                            class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
             </ul>
             <div class="sidebar-toggle-wrapper">
                 <button class="sidebar-toggle" id="sidebarToggle" title="Minimizar menu">
@@ -48,7 +57,7 @@
                         <i class="fas fa-bars"></i>
                     </button>
                     <h1 class="header-title">Configurações da Conta</h1>
-                    
+
                     <div class="header-user-actions">
                         <span>Bem-vindo, Lojista</span>
                         <div class="header-actions">
@@ -86,12 +95,14 @@
                                 <div class="dropdown-menu" id="accountDropdown">
                                     <ul>
                                         <!-- ATUALIZAR ESTE LINK EM TODAS AS PÁGINAS -->
-                                        <li><a href="pages/configuracao/configuracao.html"><i class="fa-solid fa-cog"></i> Configurações da Conta</a></li>
+                                        <li><a href="pages/configuracao/configuracao.html"><i
+                                                    class="fa-solid fa-cog"></i> Configurações da Conta</a></li>
                                         <li><a href="#"><i class="fa-solid fa-palette"></i> Mudar Tema</a></li>
-                                        <li><a href="#"><i class="fa-solid fa-life-ring"></i>   Suporte</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-life-ring"></i> Suporte</a></li>
                                     </ul>
                                     <div class="dropdown-footer">
-                                        <a href="/pages/login/login.html" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
+                                        <a href="/pages/login/login.html" class="logout-link"><i
+                                                class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
                                     </div>
                                 </div>
                             </div>
@@ -190,7 +201,8 @@
                                         </div>
                                         <span>75 / 200</span>
                                     </div>
-                                    <button class="btn-submit-form" style="background-color: var(--primary-green);">Alterar Plano</button>
+                                    <button class="btn-submit-form"
+                                        style="background-color: var(--primary-green);">Alterar Plano</button>
                                 </div>
                             </div>
                         </div>
@@ -233,7 +245,8 @@
                     <div class="tab-content" id="integracoes">
                         <div class="form-card">
                             <h2>Minhas Integrações</h2>
-                            <p>Conecte suas plataformas para que a LogVert possa ler seus produtos e pedidos automaticamente.</p>
+                            <p>Conecte suas plataformas para que a LogVert possa ler seus produtos e pedidos
+                                automaticamente.</p>
                             <div class="integration-grid">
                                 <div class="integration-card">
                                     <i class="fab fa-shopify" style="color: #96bf48;"></i>
@@ -267,7 +280,8 @@
                             <form class="form-container">
                                 <div class="checkbox-group">
                                     <input type="checkbox" id="notif1" checked>
-                                    <label for="notif1">Avisar quando uma nova solicitação de troca/devolução for aberta.</label>
+                                    <label for="notif1">Avisar quando uma nova solicitação de troca/devolução for
+                                        aberta.</label>
                                 </div>
                                 <div class="checkbox-group">
                                     <input type="checkbox" id="notif2" checked>
@@ -279,7 +293,8 @@
                                 </div>
                                 <div class="checkbox-group">
                                     <input type="checkbox" id="notif4" checked>
-                                    <label for="notif4">Avisar sobre novidades e atualizações da plataforma LogVert.</label>
+                                    <label for="notif4">Avisar sobre novidades e atualizações da plataforma
+                                        LogVert.</label>
                                 </div>
                                 <button type="submit" class="btn-submit-form">Salvar Preferências</button>
                             </form>
@@ -288,9 +303,14 @@
 
                 </div>
             </main>
+
+            <!-- Rodapé Global -->
+            <footer class="global-footer">
+                <p>© 2025 LogVert - Logística Reversa Inteligente. Todos os direitos reservados.</p>
+            </footer>
         </div>
     </div>
-    
+
     <!-- Overlay para o menu mobile -->
     <div class="overlay"></div>
 
@@ -301,4 +321,5 @@
     <script src="/pages/menu.lojista/menuLojista.js"></script>
     <script src="/pages/configuracao/configuracao.js"></script>
 </body>
+
 </html>

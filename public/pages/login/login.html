@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LogVert | Login</title>
+    <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="/pages/login/login.css">
+    <link rel="stylesheet" href="/pages/login/demo_mode.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
 
     <div id="login-particles"></div>
@@ -20,10 +24,11 @@
         <main class="login-main" id="loginMain">
             <div class="login-card lojista" id="lojistaCard">
                 <div class="card-content">
-                    <div class="logo-container animate-item"><img src="/assets/logosemfundo.png" alt="Logo LogVert" class="logo"></div>
+                    <div class="logo-container animate-item"><img src="/assets/logosemfundo.png" alt="Logo LogVert"
+                            class="logo"></div>
                     <h2 class="animate-item">Acesso Lojista</h2>
                     <h3 class="animate-item">Gerencie seu pós-venda de forma inteligente.</h3>
-                    
+
                     <!-- ATUALIZAÇÃO: Removido 'action' e 'method', adicionado 'id' -->
                     <form id="lojista-form">
                         <div class="input-group animate-item">
@@ -40,15 +45,26 @@
                         <!-- ATUALIZAÇÃO: Adicionado <span> para mensagens de erro/sucesso -->
                         <span id="lojista-message" class="form-message animate-item"></span>
 
-                        <a href="/pages/esqueci_senha.lojista/esqueci_senha.html" class="forgot-password animate-item">Esqueci minha senha</a>
-                        <button type="submit" class="btn btn-login animate-item">Entrar</button>
+                        <a href="/pages/esqueci_senha.lojista/esqueci_senha.html"
+                            class="forgot-password animate-item">Esqueci minha senha</a>
+                        <button type="submit" class="btn btn-login animate-item" id="lojista-submit-btn">
+                            <span class="btn-text">Entrar</span>
+                            <span class="btn-spinner" style="display:none;"></span>
+                        </button>
                         <button type="button" class="btn-toggle animate-item" id="showCliente">Você é cliente?</button>
+                        <div class="demo-mode-container animate-item">
+                            <button type="button" id="demoLoginBtn" class="btn-demo-link"
+                                title="Apenas para testes visuais sem backend">
+                                <i class="fas fa-eye"></i> Modo Demonstração (Frontend Only)
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
             <div class="login-card cliente" id="clienteCard">
                 <div class="card-content">
-                    <div class="logo-container animate-item"><img src="/assets/logosemfundo.png" alt="Logo LogVert" class="logo"></div>
+                    <div class="logo-container animate-item"><img src="/assets/logosemfundo.png" alt="Logo LogVert"
+                            class="logo"></div>
                     <h2 class="animate-item">Acesso Cliente</h2>
                     <h3 class="animate-item">Acompanhe sua troca ou devolução.</h3>
 
@@ -64,12 +80,16 @@
                             <!-- Valor pré-preenchido para teste -->
                             <input type="password" id="cliente-senha" value="123" required>
                         </div>
-                        
+
                         <!-- ATUALIZAÇÃO: Adicionado <span> para mensagens de erro/sucesso -->
                         <span id="cliente-message" class="form-message animate-item"></span>
 
-                        <a href="/pages/esqueci_senha.cliente/esqueci_senha.html" class="forgot-password animate-item">Não sabe seu código?</a>
-                        <button type="submit" class="btn btn-login animate-item">Entrar</button>
+                        <a href="/pages/esqueci_senha.cliente/esqueci_senha.html"
+                            class="forgot-password animate-item">Não sabe seu código?</a>
+                        <button type="submit" class="btn btn-login animate-item" id="cliente-submit-btn">
+                            <span class="btn-text">Entrar</span>
+                            <span class="btn-spinner" style="display:none;"></span>
+                        </button>
                         <button type="button" class="btn-toggle animate-item" id="showLojista">Você é lojista?</button>
                     </form>
                 </div>
@@ -77,8 +97,14 @@
         </main>
     </div>
 
+    <!-- Rodapé Global -->
+    <footer class="global-footer" style="position: fixed; bottom: 0; left: 0; width: 100%; z-index: 10;">
+        <p>© 2025 LogVert - Logística Reversa Inteligente. Todos os direitos reservados.</p>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="/js/api/apiClient.js"></script>
     <script src="/pages/login/login.js" defer></script>
 </body>
+
 </html>

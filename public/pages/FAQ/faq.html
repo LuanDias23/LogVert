@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LogVert | Suporte (FAQ)</title>
+    <meta name="description"
+        content="Central de Ajuda LogVert - Encontre respostas para suas dúvidas sobre a plataforma de logística reversa">
+    <title>LogVert | Central de Ajuda</title>
+    <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="/pages/menu.lojista/menuLojista.css">
     <link rel="stylesheet" href="/pages/FAQ/faq.css">
+    <link rel="stylesheet" href="/css/components/chat-widget.css"> <!-- Livia Chat Widget -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
 
     <div id="dashboard-particles"></div>
@@ -18,13 +24,21 @@
                 <img src="/assets/logosemfundo.png" alt="Logo LogVert" class="sidebar-logo">
             </div>
             <ul class="sidebar-menu">
-                <li><a class="sidebar-link" href="/pages/menu.lojista/menuLojista.html"><i class="fa-solid fa-house"></i><span>Início</span></a></li>
-                <li><a class="sidebar-link active" href="/pages/produtos/produtos.html"><i class="fa-solid fa-box"></i><span>Produto</span></a></li>
-                <li><a class="sidebar-link" href="/pages/vendas/venda.html"><i class="fa-solid fa-truck"></i><span>Venda</span></a></li>
-                <li><a class="sidebar-link" href="/pages/devolucoes/devolucoes.html"><i class="fa-solid fa-arrow-rotate-left"></i><span>Trocas e Devoluções</span></a></li>
-                <li><a class="sidebar-link" href="/pages/chatbot/chatbot.html"><i class="fa-solid fa-robot"></i><span>Chatbot</span></a></li>
-                <li><a class="sidebar-link" href="/pages/faq/faq.html"><i class="fa-solid fa-question"></i><span>FAQ</span></a></li> 
-                <li><a class="sidebar-link" href="/pages/login/login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
+                <li><a class="sidebar-link" href="/pages/menu.lojista/menuLojista.html"><i
+                            class="fa-solid fa-house"></i><span>Início</span></a></li>
+                <li><a class="sidebar-link" href="/produtos"><i class="fa-solid fa-box"></i><span>Produto</span></a>
+                </li>
+                <li><a class="sidebar-link" href="/vendas"><i class="fa-solid fa-truck"></i><span>Venda</span></a></li>
+                <li><a class="sidebar-link" href="/pages/devolucoes/devolucoes.html"><i
+                            class="fa-solid fa-arrow-rotate-left"></i><span>Trocas e Devoluções</span></a></li>
+                <li><a class="sidebar-link" href="/pages/integracoes/integracoes.html"><i
+                            class="fa-solid fa-plug"></i><span>Integrações</span></a></li>
+                <li><a class="sidebar-link" href="/pages/chatbot/chatbot.html"><i
+                            class="fa-solid fa-robot"></i><span>Chatbot</span></a></li>
+                <li><a class="sidebar-link active" href="/pages/FAQ/FAQ.html"><i
+                            class="fa-solid fa-circle-question"></i><span>Central de Ajuda</span></a></li>
+                <li><a class="sidebar-link" href="/pages/login/login.html"><i
+                            class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
             </ul>
 
             <div class="sidebar-toggle-wrapper">
@@ -35,23 +49,17 @@
         </aside>
 
         <div class="main-container">
-            
-            <!-- ====================================================== -->
-            <!-- AQUI ESTÁ O CABEÇALHO CORRIGIDO -->
-            <!-- ====================================================== -->
             <header class="main-header">
                 <div class="header-content">
                     <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
                         <i class="fas fa-bars"></i>
                     </button>
-                    <!-- Título ajustado para a página de FAQ/Suporte -->
-                    <h1 class="header-title">Contate Nosso Suporte</h1>
-                    
+                    <h1 class="header-title">Central de Ajuda</h1>
+
                     <div class="header-user-actions">
                         <span>Bem-vindo, Lojista</span>
-                        
+
                         <div class="header-actions">
-                            <!-- Item 1: Novidades (Presente) -->
                             <div class="header-action-item">
                                 <button class="header-action-btn" id="newsBtn" title="Novidades">
                                     <i class="fa-solid fa-gift"></i>
@@ -65,7 +73,6 @@
                                 </div>
                             </div>
 
-                            <!-- Item 2: Notificações (Sino) -->
                             <div class="header-action-item">
                                 <button class="header-action-btn" id="notificationsBtn" title="Notificações">
                                     <i class="fa-solid fa-bell"></i>
@@ -82,19 +89,21 @@
                                 </div>
                             </div>
 
-                            <!-- Item 3: Conta (Usuário) -->
                             <div class="header-action-item">
                                 <button class="header-action-btn" id="accountBtn" title="Minha Conta">
                                     <i class="fa-solid fa-user-circle"></i>
                                 </button>
                                 <div class="dropdown-menu" id="accountDropdown">
                                     <ul>
-                                        <li><a href="/pages/configuracao/configuracao.html"><i class="fa-solid fa-cog"></i> Configurações da Conta</a></li>
+                                        <li><a href="/pages/configuracao/configuracao.html"><i
+                                                    class="fa-solid fa-cog"></i> Configurações</a></li>
+                                        <li><a href="/pages/assinatura/assinatura.html"><i
+                                                    class="fa-solid fa-credit-card"></i> Minha Assinatura</a></li>
                                         <li><a href="#"><i class="fa-solid fa-palette"></i> Mudar Tema</a></li>
-                                        <li><a href="#"><i class="fa-solid fa-life-ring"></i>   Suporte</a></li>
                                     </ul>
                                     <div class="dropdown-footer">
-                                        <a href="/pages/login/login.html" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
+                                        <a href="/pages/login/login.html" class="logout-link"><i
+                                                class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
                                     </div>
                                 </div>
                             </div>
@@ -102,45 +111,337 @@
                     </div>
                 </div>
             </header>
-            <!-- ====================================================== -->
-            <!-- FIM DA CORREÇÃO -->
-            <!-- ====================================================== -->
 
-            <main class="main-content">
-                <div class="page">
+            <main class="main-content faq-page">
+                <!-- Hero Section -->
+                <div class="faq-hero">
+                    <h2>Como podemos ajudar?</h2>
+                    <p>Encontre respostas para as dúvidas mais comuns sobre a LogVert</p>
+                    <div class="faq-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="faqSearch" placeholder="Buscar pergunta...">
+                    </div>
                 </div>
 
-                <div class="form-card">
-                    <form id="form-suporte" class="form-container">
-                        <div class="form-group">
-                            <label for="email">Seu Email</label>
-                            <input type="email" id="email" name="email" required>
+                <!-- Categorias de FAQ -->
+                <div class="faq-categories">
+                    <button class="faq-category-btn active" data-category="all">
+                        <i class="fas fa-th-large"></i>
+                        Todas
+                    </button>
+                    <button class="faq-category-btn" data-category="inicio">
+                        <i class="fas fa-rocket"></i>
+                        Primeiros Passos
+                    </button>
+                    <button class="faq-category-btn" data-category="vendas">
+                        <i class="fas fa-shopping-cart"></i>
+                        Vendas
+                    </button>
+                    <button class="faq-category-btn" data-category="devolucoes">
+                        <i class="fas fa-undo"></i>
+                        Devoluções
+                    </button>
+                    <button class="faq-category-btn" data-category="pagamentos">
+                        <i class="fas fa-credit-card"></i>
+                        Pagamentos
+                    </button>
+                    <button class="faq-category-btn" data-category="integracoes">
+                        <i class="fas fa-plug"></i>
+                        Integrações
+                    </button>
+                </div>
+
+                <!-- Accordion de Perguntas -->
+                <div class="faq-accordion" id="faqAccordion">
+
+                    <!-- PRIMEIROS PASSOS -->
+                    <div class="faq-item" data-category="inicio">
+                        <button class="faq-question">
+                            <span><i class="fas fa-rocket category-icon"></i> Como começar a usar a LogVert?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Para começar a usar a LogVert, siga estes passos simples:</p>
+                            <ol>
+                                <li><strong>Cadastre seus produtos</strong> - Vá em "Produtos" no menu e adicione os
+                                    itens que você vende.</li>
+                                <li><strong>Registre suas vendas</strong> - Sempre que realizar uma venda, cadastre-a em
+                                    "Vendas".</li>
+                                <li><strong>Configure as integrações</strong> - Conecte suas redes sociais em
+                                    "Integrações" para atendimento automatizado.</li>
+                                <li><strong>Gerencie devoluções</strong> - Acompanhe solicitações de troca e devolução
+                                    no menu correspondente.</li>
+                            </ol>
                         </div>
-        
-                        <div class="form-group">
-                            <label for="assunto">Assunto</label>
-                            <input type="text" id="assunto" name="assunto" required>
+                    </div>
+
+                    <div class="faq-item" data-category="inicio">
+                        <button class="faq-question">
+                            <span><i class="fas fa-rocket category-icon"></i> Preciso de conhecimento técnico para usar
+                                a plataforma?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Não! A LogVert foi desenvolvida pensando em facilidade de uso. Nossa interface é
+                                intuitiva e não requer nenhum conhecimento técnico. Se precisar de ajuda, nosso suporte
+                                está disponível para auxiliá-lo.</p>
                         </div>
-                        
-                         <div class="form-group">
-                            <label for="descricao">Descrição</label>
-                            <textarea id="descricao" name="descricao" rows="6" required></textarea>
+                    </div>
+
+                    <div class="faq-item" data-category="inicio">
+                        <button class="faq-question">
+                            <span><i class="fas fa-rocket category-icon"></i> Posso testar a plataforma antes de
+                                assinar?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Sim! Oferecemos um período de teste gratuito de <strong>7 dias</strong> para que você
+                                possa explorar todas as funcionalidades da plataforma sem compromisso. Após o período de
+                                teste, você pode escolher o plano que melhor se adapta às suas necessidades.</p>
                         </div>
-        
-                        <button type="submit" class="btn-submit-form">Enviar Mensagem</button>
-                    </form>
+                    </div>
+
+                    <!-- VENDAS -->
+                    <div class="faq-item" data-category="vendas">
+                        <button class="faq-question">
+                            <span><i class="fas fa-shopping-cart category-icon"></i> Como cadastrar uma venda na
+                                plataforma?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Para cadastrar uma venda:</p>
+                            <ol>
+                                <li>Acesse o menu <strong>"Vendas"</strong> na barra lateral.</li>
+                                <li>Clique no botão <strong>"Adicionar Venda"</strong>.</li>
+                                <li>Preencha os dados do cliente, produtos vendidos e forma de pagamento.</li>
+                                <li>Defina os prazos de troca e devolução.</li>
+                                <li>Clique em <strong>"Salvar"</strong> para registrar a venda.</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="vendas">
+                        <button class="faq-question">
+                            <span><i class="fas fa-shopping-cart category-icon"></i> É possível editar uma venda após
+                                ser cadastrada?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Sim, você pode editar vendas que ainda não foram finalizadas. Basta clicar no ícone de
+                                edição na tabela de vendas. Vendas com status "Entregue" não podem ser editadas, mas
+                                você pode adicionar observações ou iniciar um processo de devolução.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="vendas">
+                        <button class="faq-question">
+                            <span><i class="fas fa-shopping-cart category-icon"></i> Como funciona o acompanhamento de
+                                pedidos?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Cada venda possui um status que é atualizado automaticamente:</p>
+                            <ul>
+                                <li><strong>Pendente</strong> - Aguardando processamento</li>
+                                <li><strong>Em Separação</strong> - Produto sendo preparado</li>
+                                <li><strong>Enviado</strong> - Em trânsito para o cliente</li>
+                                <li><strong>Entregue</strong> - Entrega confirmada</li>
+                                <li><strong>Cancelado</strong> - Pedido cancelado</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- DEVOLUÇÕES -->
+                    <div class="faq-item" data-category="devolucoes">
+                        <button class="faq-question">
+                            <span><i class="fas fa-undo category-icon"></i> Como funciona o processo de
+                                devolução?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>O processo de devolução na LogVert é simples:</p>
+                            <ol>
+                                <li>O cliente solicita a devolução através do portal ou chatbot.</li>
+                                <li>Você recebe uma notificação na plataforma.</li>
+                                <li>Analise a solicitação e aprove ou rejeite.</li>
+                                <li>Se aprovada, o sistema gera automaticamente a etiqueta de retorno.</li>
+                                <li>Após receber o produto, finalize a devolução processando o reembolso ou crédito.
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="devolucoes">
+                        <button class="faq-question">
+                            <span><i class="fas fa-undo category-icon"></i> Qual a diferença entre troca e
+                                devolução?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p><strong>Troca:</strong> O cliente retorna o produto e recebe outro em seu lugar (mesma
+                                peça em tamanho/cor diferente ou outro produto).</p>
+                            <p><strong>Devolução:</strong> O cliente retorna o produto e recebe o reembolso do valor
+                                pago (total ou parcial).</p>
+                            <p>A LogVert também oferece a opção de <strong>Catálogo Expresso</strong>, onde o cliente
+                                pode transformar o reembolso em crédito para comprar outro produto.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="devolucoes">
+                        <button class="faq-question">
+                            <span><i class="fas fa-undo category-icon"></i> Como configurar os prazos de troca e
+                                devolução?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Você pode configurar os prazos padrão em <strong>Configurações > Políticas de
+                                    Devolução</strong>. Ao cadastrar cada venda, também é possível definir prazos
+                                específicos. Os prazos padrão são:</p>
+                            <ul>
+                                <li><strong>Troca:</strong> 30 dias após a entrega</li>
+                                <li><strong>Devolução:</strong> 7 dias (conforme CDC)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- PAGAMENTOS -->
+                    <div class="faq-item" data-category="pagamentos">
+                        <button class="faq-question">
+                            <span><i class="fas fa-credit-card category-icon"></i> Quais são os planos
+                                disponíveis?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Oferecemos três planos para atender diferentes necessidades:</p>
+                            <ul>
+                                <li><strong>Essencial (R$ 9,90/mês):</strong> Até 50 solicitações, portal personalizado,
+                                    automações básicas.</li>
+                                <li><strong>Profissional (R$ 49,90/mês):</strong> Até 200 solicitações, chatbot IA,
+                                    Catálogo Expresso.</li>
+                                <li><strong>Empresa (Sob consulta):</strong> Ilimitado, BI avançado, gerente dedicado.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="pagamentos">
+                        <button class="faq-question">
+                            <span><i class="fas fa-credit-card category-icon"></i> Como alterar meu plano de
+                                assinatura?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Para alterar seu plano, acesse <strong>Minha Conta > Minha Assinatura</strong> no menu do
+                                usuário. Lá você pode fazer upgrade para um plano maior a qualquer momento. O novo valor
+                                será cobrado de forma proporcional no próximo ciclo de faturamento.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="pagamentos">
+                        <button class="faq-question">
+                            <span><i class="fas fa-credit-card category-icon"></i> Quais formas de pagamento são
+                                aceitas?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Aceitamos as seguintes formas de pagamento:</p>
+                            <ul>
+                                <li><i class="fab fa-cc-visa"></i> Cartão de crédito (Visa, Mastercard, Elo)</li>
+                                <li><i class="fab fa-pix"></i> Pix</li>
+                                <li><i class="fas fa-barcode"></i> Boleto bancário (planos anuais)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- INTEGRAÇÕES -->
+                    <div class="faq-item" data-category="integracoes">
+                        <button class="faq-question">
+                            <span><i class="fas fa-plug category-icon"></i> Quais redes sociais posso integrar?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Atualmente suportamos integração com:</p>
+                            <ul>
+                                <li><i class="fab fa-whatsapp" style="color: #25D366;"></i> <strong>WhatsApp
+                                        Business</strong> - Atendimento automatizado via API oficial</li>
+                                <li><i class="fab fa-instagram" style="color: #E1306C;"></i> <strong>Instagram</strong>
+                                    - Respostas em DMs e comentários</li>
+                                <li><i class="fab fa-facebook-messenger" style="color: #00B2FF;"></i>
+                                    <strong>Messenger</strong> - Chat da página do Facebook
+                                </li>
+                                <li><i class="fab fa-telegram" style="color: #2AABEE;"></i> <strong>Telegram</strong> -
+                                    Grupos e canais</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="integracoes">
+                        <button class="faq-question">
+                            <span><i class="fas fa-plug category-icon"></i> Como funciona o chatbot de IA?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Nosso chatbot com IA trabalha 24/7 para responder seus clientes automaticamente. Ele é
+                                capaz de:</p>
+                            <ul>
+                                <li>Responder dúvidas frequentes sobre produtos e entregas</li>
+                                <li>Iniciar processos de troca e devolução</li>
+                                <li>Fornecer informações sobre status de pedidos</li>
+                                <li>Escalar para atendimento humano quando necessário</li>
+                            </ul>
+                            <p>A IA aprende com suas interações e melhora continuamente.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="integracoes">
+                        <button class="faq-question">
+                            <span><i class="fas fa-plug category-icon"></i> Preciso de conta comercial no
+                                WhatsApp?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Sim, para integrar o WhatsApp é necessário ter uma conta do <strong>WhatsApp Business
+                                    API</strong>. Ajudamos você no processo de configuração e verificação da conta. A
+                                integração utiliza a API oficial do WhatsApp, garantindo segurança e conformidade com os
+                                termos de uso.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção de Contato -->
+                <div class="faq-contact-section">
+                    <div class="contact-card">
+                        <i class="fas fa-headset"></i>
+                        <h3>Ainda precisa de ajuda?</h3>
+                        <p>Nossa equipe de suporte está pronta para ajudar você</p>
+                        <div class="contact-options">
+                            <a href="mailto:suporte@logvert.com.br" class="contact-btn">
+                                <i class="fas fa-envelope"></i>
+                                suporte@logvert.com.br
+                            </a>
+                            <a href="https://wa.me/5511999999999" target="_blank" class="contact-btn whatsapp">
+                                <i class="fab fa-whatsapp"></i>
+                                WhatsApp
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </main>
+
+            <!-- Rodapé Global -->
+            <footer class="global-footer">
+                <p>© 2025 LogVert - Logística Reversa Inteligente. Todos os direitos reservados.</p>
+            </footer>
         </div>
     </div>
-    
+
     <div class="overlay"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-
-
     <script src="/js/api/apiClient.js"></script>
+    <script src="/js/components/chat-widget.js"></script> <!-- Livia Chat Widget -->
     <script src="/pages/menu.lojista/menuLojista.js"></script>
     <script src="/pages/FAQ/faq.js"></script>
 </body>
+
 </html>

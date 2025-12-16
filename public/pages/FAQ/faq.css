@@ -1,97 +1,312 @@
-/* 1. Importa o design principal do seu dashboard */
+/* ========================================
+   FAQ PAGE - Estilos Específicos
+   ======================================== */
+
+/* Importa o design principal do dashboard */
 @import url('../menu.lojista/menuLojista.css');
 
-/* 2. Estilos do Cabeçalho da Página (reutilizado) */
-.page-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* Hero Section */
+.faq-hero {
+    text-align: center;
+    padding: 2rem 0 3rem;
     margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border-color-dark);
-}
-.page-header h2 {
-    font-size: 1.5rem;
-    font-weight: 500;
-    margin: 0;
-    text-transform: none;
-    letter-spacing: 0;
-    border: none;
-    display: block;
-    padding: 0;
 }
 
-/* 3. Estilo do Card do Formulário */
-.form-card {
-    width: 100%;
-    max-width: 700px; /* Limita a largura */
-    margin: 0 auto; /* Centraliza o card */
-    background-color: var(--card-background);
-    backdrop-filter: blur(8px);
-    border: 1px solid var(--border-color-dark);
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    padding: 2rem;
-}
-
-/* 4. Estilos do Formulário (adaptados para o tema dark) */
-.form-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem; /* Espaçamento entre os campos */
-}
-
-.form-group {
-    text-align: left;
-}
-.form-group label {
-    display: block;
+.faq-hero h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text-light);
     margin-bottom: 0.5rem;
-    font-weight: 500;
+}
+
+.faq-hero p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+/* Barra de Busca */
+.faq-search {
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.faq-search i {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+.faq-search input {
+    width: 100%;
+    padding: 14px 20px 14px 48px;
+    border: 1px solid var(--border-color-dark);
+    border-radius: 50px;
+    background: var(--card-background);
+    color: var(--text-light);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.faq-search input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+}
+
+.faq-search input::placeholder {
     color: var(--text-muted);
 }
 
-/* Estilo unificado para input e textarea */
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 12px;
+/* Categorias */
+.faq-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+}
+
+.faq-category-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 10px 18px;
     border: 1px solid var(--border-color-dark);
-    border-radius: 8px;
-    background-color: var(--background-dark); /* Fundo escuro para input */
-    color: var(--text-light);
-    font-size: 1rem;
-    font-family: 'Roboto', sans-serif;
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--primary-blue);
-    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.3);
-}
-
-textarea {
-    resize: vertical; /* Permite redimensionar altura */
-}
-
-/* Botão de Envio */
-.btn-submit-form {
-    width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
-    background-color: var(--primary-blue);
-    color: var(--text-light);
-    font-size: 1rem;
-    font-weight: 700;
+    border-radius: 50px;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.9rem;
     cursor: pointer;
-    margin-top: 1rem;
     transition: all 0.3s ease;
 }
-.btn-submit-form:hover {
-    background-color: #1565c0; /* Tom mais escuro do primary-blue */
-    box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
+
+.faq-category-btn:hover {
+    border-color: var(--primary-blue);
+    color: var(--text-light);
+}
+
+.faq-category-btn.active {
+    background: var(--primary-blue);
+    border-color: var(--primary-blue);
+    color: white;
+}
+
+.faq-category-btn i {
+    font-size: 0.9rem;
+}
+
+/* Accordion */
+.faq-accordion {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: var(--card-background);
+    border: 1px solid var(--border-color-dark);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.faq-item.hidden {
+    display: none;
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.faq-question span {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.faq-question .category-icon {
+    color: var(--primary-blue);
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.faq-question:hover {
+    color: var(--primary-blue);
+}
+
+.faq-question>i {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-question>i {
+    transform: rotate(180deg);
+    color: var(--primary-blue);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px;
+    padding: 0 1.5rem 1.5rem;
+}
+
+.faq-answer p {
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.faq-answer p:last-child {
+    margin-bottom: 0;
+}
+
+.faq-answer ol,
+.faq-answer ul {
+    color: var(--text-muted);
+    padding-left: 1.5rem;
+    line-height: 1.8;
+}
+
+.faq-answer li {
+    margin-bottom: 0.5rem;
+}
+
+.faq-answer strong {
+    color: var(--text-light);
+}
+
+/* Seção de Contato */
+.faq-contact-section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color-dark);
+}
+
+.contact-card {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    background: var(--card-background);
+    border: 1px solid var(--border-color-dark);
+    border-radius: 12px;
+    padding: 2.5rem;
+}
+
+.contact-card>i {
+    font-size: 3rem;
+    color: var(--primary-green);
+    margin-bottom: 1rem;
+}
+
+.contact-card h3 {
+    font-size: 1.4rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+
+.contact-card>p {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.contact-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.contact-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    background: var(--background-dark);
+    border: 1px solid var(--border-color-dark);
+    color: var(--text-light);
+}
+
+.contact-btn:hover {
+    border-color: var(--primary-blue);
+    background: rgba(26, 115, 232, 0.1);
+}
+
+.contact-btn.whatsapp {
+    background: #25D366;
+    border-color: #25D366;
+    color: white;
+}
+
+.contact-btn.whatsapp:hover {
+    background: #1da851;
+}
+
+/* Rodapé do Dashboard */
+.dashboard-footer {
+    padding: 1.5rem 2rem;
+    text-align: center;
+    border-top: 1px solid var(--border-color-dark);
+    margin-top: auto;
+}
+
+.dashboard-footer p {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .faq-hero h2 {
+        font-size: 1.8rem;
+    }
+
+    .faq-categories {
+        gap: 0.5rem;
+    }
+
+    .faq-category-btn {
+        padding: 8px 14px;
+        font-size: 0.85rem;
+    }
+
+    .faq-question {
+        padding: 1rem 1.25rem;
+        font-size: 0.95rem;
+    }
+
+    .contact-options {
+        flex-direction: column;
+    }
 }

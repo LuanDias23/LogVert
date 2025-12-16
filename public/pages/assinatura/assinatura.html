@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gerencie sua assinatura LogVert - Planos, faturas e métodos de pagamento">
+    <title>LogVert | Minha Assinatura</title>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/pages/menu.lojista/menuLojista.css">
+    <link rel="stylesheet" href="/pages/assinatura/assinatura.css">
+    <link rel="stylesheet" href="/css/components/chat-widget.css"> <!-- Livia Chat Widget -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Stripe.js -->
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+
+<body>
+
+    <div id="dashboard-particles"></div>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="/assets/logosemfundo.png" alt="Logo LogVert" class="sidebar-logo">
+            </div>
+            <ul class="sidebar-menu">
+                <li><a class="sidebar-link" href="/pages/menu.lojista/menuLojista.html"><i
+                            class="fa-solid fa-house"></i><span>Início</span></a></li>
+                <li><a class="sidebar-link" href="/produtos"><i class="fa-solid fa-box"></i><span>Produto</span></a>
+                </li>
+                <li><a class="sidebar-link" href="/vendas"><i class="fa-solid fa-truck"></i><span>Venda</span></a></li>
+                <li><a class="sidebar-link" href="/pages/devolucoes/devolucoes.html"><i
+                            class="fa-solid fa-arrow-rotate-left"></i><span>Trocas e Devoluções</span></a></li>
+                <li><a class="sidebar-link" href="/pages/integracoes/integracoes.html"><i
+                            class="fa-solid fa-plug"></i><span>Integrações</span></a></li>
+                <li><a class="sidebar-link" href="/pages/chatbot/chatbot.html"><i
+                            class="fa-solid fa-robot"></i><span>Chatbot</span></a></li>
+                <li><a class="sidebar-link" href="/pages/FAQ/FAQ.html"><i
+                            class="fa-solid fa-circle-question"></i><span>Central de Ajuda</span></a></li>
+                <li><a class="sidebar-link" href="/pages/login/login.html"><i
+                            class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
+            </ul>
+
+            <div class="sidebar-toggle-wrapper">
+                <button class="sidebar-toggle" id="sidebarToggle" title="Minimizar menu">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+            </div>
+        </aside>
+
+        <div class="main-container">
+            <header class="main-header">
+                <div class="header-content">
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="header-title">Minha Assinatura</h1>
+
+                    <div class="header-user-actions">
+                        <span>Bem-vindo, Lojista</span>
+
+                        <div class="header-actions">
+                            <div class="header-action-item">
+                                <button class="header-action-btn" id="newsBtn" title="Novidades">
+                                    <i class="fa-solid fa-gift"></i>
+                                </button>
+                                <div class="dropdown-menu" id="newsDropdown">
+                                    <div class="dropdown-header">Novidades da Plataforma</div>
+                                    <ul>
+                                        <li><a href="#">Nova integração com transportadoras!</a></li>
+                                        <li><a href="#">Dashboard de relatórios atualizado.</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="header-action-item">
+                                <button class="header-action-btn" id="notificationsBtn" title="Notificações">
+                                    <i class="fa-solid fa-bell"></i>
+                                    <span class="notification-badge">3</span>
+                                </button>
+                                <div class="dropdown-menu" id="notificationsDropdown">
+                                    <div class="dropdown-header">Notificações</div>
+                                    <ul>
+                                        <li><a href="#">Nova devolução registrada.</a></li>
+                                        <li><a href="#">Sua fatura mensal foi gerada.</a></li>
+                                        <li><a href="#">Período de teste expira em 3 dias.</a></li>
+                                    </ul>
+                                    <div class="dropdown-footer"><a href="#">Ver todas</a></div>
+                                </div>
+                            </div>
+
+                            <div class="header-action-item">
+                                <button class="header-action-btn" id="accountBtn" title="Minha Conta">
+                                    <i class="fa-solid fa-user-circle"></i>
+                                </button>
+                                <div class="dropdown-menu" id="accountDropdown">
+                                    <ul>
+                                        <li><a href="/pages/configuracao/configuracao.html"><i
+                                                    class="fa-solid fa-cog"></i> Configurações</a></li>
+                                        <li><a href="/pages/assinatura/assinatura.html" class="active"><i
+                                                    class="fa-solid fa-credit-card"></i> Minha Assinatura</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-palette"></i> Mudar Tema</a></li>
+                                    </ul>
+                                    <div class="dropdown-footer">
+                                        <a href="/pages/login/login.html" class="logout-link"><i
+                                                class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="main-content assinatura-page">
+                <!-- Plano Atual -->
+                <section class="current-plan-section">
+                    <div class="current-plan-card">
+                        <div class="plan-badge">Plano Atual</div>
+                        <div class="plan-info">
+                            <div class="plan-header">
+                                <h2 id="currentPlanName">Profissional</h2>
+                                <span class="plan-status active">Ativo</span>
+                            </div>
+                            <p class="plan-price">
+                                <span class="currency">R$</span>
+                                <span class="amount" id="currentPlanPrice">49,90</span>
+                                <span class="period">/mês</span>
+                            </p>
+                            <div class="plan-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>Próxima cobrança: <strong id="nextBillingDate">15/01/2025</strong></span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-credit-card"></i>
+                                    <span>Cartão: <strong id="paymentMethod">**** 4242</strong></span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-chart-bar"></i>
+                                    <span>Uso: <strong id="planUsage">45/200</strong> solicitações</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="plan-actions">
+                            <button class="btn-secondary" id="managePaymentBtn">
+                                <i class="fas fa-credit-card"></i> Gerenciar Pagamento
+                            </button>
+                            <button class="btn-primary" id="upgradePlanBtn">
+                                <i class="fas fa-arrow-up"></i> Fazer Upgrade
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Planos Disponíveis -->
+                <section class="plans-section">
+                    <h3 class="section-title"><i class="fas fa-crown"></i> Planos Disponíveis</h3>
+                    <div class="plans-grid">
+                        <!-- Plano Essencial -->
+                        <div class="plan-card" data-plan="essencial" data-price-id="price_essencial">
+                            <div class="plan-card-header">
+                                <h4>Essencial</h4>
+                                <p>Para quem está começando</p>
+                                <div class="plan-card-price">
+                                    <span class="currency">R$</span>
+                                    <span class="amount">9,90</span>
+                                    <span class="period">/mês</span>
+                                </div>
+                            </div>
+                            <ul class="plan-features">
+                                <li><i class="fas fa-check"></i> Até 50 solicitações/mês</li>
+                                <li><i class="fas fa-check"></i> Portal do Cliente personalizado</li>
+                                <li><i class="fas fa-check"></i> Regras de automação básicas</li>
+                                <li><i class="fas fa-check"></i> Suporte via E-mail</li>
+                                <li class="disabled"><i class="fas fa-times"></i> Chatbot com IA</li>
+                                <li class="disabled"><i class="fas fa-times"></i> Catálogo Expresso</li>
+                            </ul>
+                            <button class="btn-plan downgrade">Fazer Downgrade</button>
+                        </div>
+
+                        <!-- Plano Profissional -->
+                        <div class="plan-card featured current" data-plan="profissional"
+                            data-price-id="price_profissional">
+                            <span class="featured-tag">Seu Plano</span>
+                            <div class="plan-card-header">
+                                <h4>Profissional</h4>
+                                <p>Para quem está crescendo</p>
+                                <div class="plan-card-price">
+                                    <span class="currency">R$</span>
+                                    <span class="amount">49,90</span>
+                                    <span class="period">/mês</span>
+                                </div>
+                            </div>
+                            <ul class="plan-features">
+                                <li><i class="fas fa-check"></i> Até 200 solicitações/mês</li>
+                                <li><i class="fas fa-check"></i> Tudo do Essencial +</li>
+                                <li><i class="fas fa-check"></i> Integração com Chatbot (IA)</li>
+                                <li><i class="fas fa-check"></i> Catálogo Expresso</li>
+                                <li><i class="fas fa-check"></i> Suporte via Chat</li>
+                                <li><i class="fas fa-check"></i> Relatórios avançados</li>
+                            </ul>
+                            <button class="btn-plan current" disabled>Plano Atual</button>
+                        </div>
+
+                        <!-- Plano Empresa -->
+                        <div class="plan-card" data-plan="empresa" data-price-id="price_empresa">
+                            <div class="plan-card-header">
+                                <h4>Empresa</h4>
+                                <p>Para operações robustas</p>
+                                <div class="plan-card-price">
+                                    <span class="amount">Consulte</span>
+                                </div>
+                            </div>
+                            <ul class="plan-features">
+                                <li><i class="fas fa-check"></i> Solicitações ilimitadas</li>
+                                <li><i class="fas fa-check"></i> Tudo do Profissional +</li>
+                                <li><i class="fas fa-check"></i> Dashboard de BI avançado</li>
+                                <li><i class="fas fa-check"></i> Gerente de conta dedicado</li>
+                                <li><i class="fas fa-check"></i> API personalizada</li>
+                                <li><i class="fas fa-check"></i> SLA garantido</li>
+                            </ul>
+                            <button class="btn-plan upgrade">Entrar em Contato</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Histórico de Faturas -->
+                <section class="invoices-section">
+                    <h3 class="section-title"><i class="fas fa-file-invoice-dollar"></i> Histórico de Faturas</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Fatura</th>
+                                    <th>Data</th>
+                                    <th>Plano</th>
+                                    <th>Valor</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="invoicesTableBody">
+                                <tr>
+                                    <td><span class="invoice-id">#INV-2025-001</span></td>
+                                    <td>15/12/2024</td>
+                                    <td>Profissional</td>
+                                    <td>R$ 49,90</td>
+                                    <td><span class="status-badge status-completed">Pago</span></td>
+                                    <td>
+                                        <button class="btn-icon" title="Baixar PDF"><i
+                                                class="fas fa-download"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="invoice-id">#INV-2024-012</span></td>
+                                    <td>15/11/2024</td>
+                                    <td>Profissional</td>
+                                    <td>R$ 49,90</td>
+                                    <td><span class="status-badge status-completed">Pago</span></td>
+                                    <td>
+                                        <button class="btn-icon" title="Baixar PDF"><i
+                                                class="fas fa-download"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="invoice-id">#INV-2024-011</span></td>
+                                    <td>15/10/2024</td>
+                                    <td>Essencial</td>
+                                    <td>R$ 9,90</td>
+                                    <td><span class="status-badge status-completed">Pago</span></td>
+                                    <td>
+                                        <button class="btn-icon" title="Baixar PDF"><i
+                                                class="fas fa-download"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Método de Pagamento -->
+                <section class="payment-section">
+                    <h3 class="section-title"><i class="fas fa-credit-card"></i> Método de Pagamento</h3>
+                    <div class="payment-card">
+                        <div class="card-display">
+                            <div class="card-brand">
+                                <i class="fab fa-cc-visa"></i>
+                            </div>
+                            <div class="card-info">
+                                <span class="card-number">**** **** **** 4242</span>
+                                <span class="card-expiry">Expira: 12/2026</span>
+                            </div>
+                            <span class="card-default">Principal</span>
+                        </div>
+                        <div class="payment-actions">
+                            <button class="btn-secondary" id="addCardBtn">
+                                <i class="fas fa-plus"></i> Adicionar Cartão
+                            </button>
+                            <button class="btn-secondary" id="changeCardBtn">
+                                <i class="fas fa-edit"></i> Alterar
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <!-- Rodapé Global -->
+            <footer class="global-footer">
+                <p>© 2025 LogVert - Logística Reversa Inteligente. Todos os direitos reservados.</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Modal Alterar Cartão -->
+    <div class="modal-overlay" id="cardModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-credit-card"></i> Atualizar Cartão</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="cardForm" class="form-container">
+                    <div class="form-group">
+                        <label>Dados do Cartão</label>
+                        <div id="card-element" class="stripe-element"></div>
+                        <div id="card-errors" class="form-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="cardholderName">Nome no Cartão</label>
+                        <input type="text" id="cardholderName" placeholder="Nome como está no cartão" required>
+                    </div>
+                    <button type="submit" class="btn-submit-modal">
+                        <i class="fas fa-save"></i> Salvar Cartão
+                    </button>
+                </form>
+                <div class="stripe-badge">
+                    <i class="fas fa-lock"></i> Pagamento seguro via <strong>Stripe</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Confirmar Upgrade -->
+    <div class="modal-overlay" id="upgradeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-arrow-up"></i> Confirmar Upgrade</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="upgrade-summary">
+                    <p>Você está atualizando para:</p>
+                    <div class="upgrade-plan">
+                        <h3 id="upgradePlanName">Empresa</h3>
+                        <p id="upgradePlanPrice">Sob consulta</p>
+                    </div>
+                    <p class="upgrade-note">A diferença de valor será cobrada proporcionalmente no próximo ciclo.</p>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-secondary close-modal">Cancelar</button>
+                    <button class="btn-primary" id="confirmUpgradeBtn">Confirmar Upgrade</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="/js/api/apiClient.js"></script>
+    <script src="/js/components/chat-widget.js"></script> <!-- Livia Chat Widget -->
+    <script src="/pages/menu.lojista/menuLojista.js"></script>
+    <script src="/pages/assinatura/assinatura.js"></script>
+</body>
+
+</html>

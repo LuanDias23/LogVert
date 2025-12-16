@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
                 });
-                
+
                 // Abre/Fecha o item atual
                 if (isActive) {
                     item.classList.remove('active');
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- LÓGICA PARA ANIMAÇÃO DOS NÚMEROS DO PAINEL ---
     // (Seu código original)
     const counters = document.querySelectorAll('.metric-value');
-    
+
     if (counters.length > 0) {
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     counter.setAttribute('data-animated', 'true');
 
                     let count = 0;
-                    const speed = 100; 
+                    const speed = 100;
 
                     const updateCount = () => {
                         const inc = Math.max(Math.floor(target / speed), 1);
@@ -111,6 +111,75 @@ document.addEventListener('DOMContentLoaded', () => {
 
         counters.forEach(counter => {
             observer.observe(counter);
+        });
+    }
+
+    // --- HEADER FIXO AO ROLAR ---
+    const mainHeader = document.querySelector('.main-header');
+    const heroSection = document.querySelector('.hero-section');
+
+    if (mainHeader && heroSection) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                mainHeader.classList.add('scrolled');
+            } else {
+                mainHeader.classList.remove('scrolled');
+            }
+        });
+    }
+
+    // --- BOTÃO VOLTAR AO TOPO ---
+    const backToTopBtn = document.getElementById('backToTopBtn');
+
+    if (backToTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // --- FORMULÁRIO DE DEMONSTRAÇÃO ---
+    const demoForm = document.getElementById('demoForm');
+    const demoMessage = document.getElementById('demoMessage');
+    const demoSubmitBtn = document.getElementById('demoSubmitBtn');
+
+    if (demoForm && demoMessage && demoSubmitBtn) {
+        const showSpinner = () => {
+            demoSubmitBtn.classList.add('loading');
+            demoSubmitBtn.disabled = true;
+            const spinner = demoSubmitBtn.querySelector('.btn-spinner');
+            if (spinner) spinner.style.display = 'inline-block';
+        };
+
+        const hideSpinner = () => {
+            demoSubmitBtn.classList.remove('loading');
+            demoSubmitBtn.disabled = false;
+            const spinner = demoSubmitBtn.querySelector('.btn-spinner');
+            if (spinner) spinner.style.display = 'none';
+        };
+
+        demoForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            demoMessage.textContent = '';
+            demoMessage.className = 'form-message';
+            showSpinner();
+
+            // Simula envio (substituir por chamada real de API no futuro)
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            hideSpinner();
+            demoMessage.textContent = '✓ Solicitação enviada com sucesso! Entraremos em contato em breve.';
+            demoMessage.classList.add('success');
+
+            demoForm.reset();
         });
     }
 });

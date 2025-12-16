@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LogVert | Nova Solicitação</title>
     <link rel="stylesheet" href="../menu.cliente/menuCliente.css">
-    <link rel="stylesheet" href="../solicitacao/form_solicitacao.css"> 
+    <link rel="stylesheet" href="../solicitacao/form_solicitacao.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
 </head>
+
 <body>
 
     <div id="dashboard-particles"></div>
@@ -20,11 +22,16 @@
                 <img src="../../assets/logosemfundo.png" alt="Logo LogVert" class="sidebar-logo">
             </div>
             <ul class="sidebar-menu">
-                <li><a class="sidebar-link" href="../menu.cliente/menuCliente.html"><i class="fa-solid fa-receipt"></i><span>Minhas Solicitações</span></a></li>
-                <li><a class="sidebar-link active" href="../solicitacao/solicitacao.html"><i class="fa-solid fa-plus-circle"></i><span>Nova Solicitação</span></a></li>
-                <li><a class="sidebar-link" href="../dados-pessoais/meus_dados.html"><i class="fa-solid fa-user-cog"></i><span>Meus Dados</span></a></li>
-                <li><a class="sidebar-link" href="../FAQ_cliente/FAQ.html"><i class="fa-solid fa-question-circle"></i><span>Ajuda</span></a></li>
-                <li><a class="sidebar-link" href="../login/login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
+                <li><a class="sidebar-link" href="../menu.cliente/menuCliente.html"><i
+                            class="fa-solid fa-receipt"></i><span>Minhas Solicitações</span></a></li>
+                <li><a class="sidebar-link active" href="../solicitacao/solicitacao.html"><i
+                            class="fa-solid fa-plus-circle"></i><span>Nova Solicitação</span></a></li>
+                <li><a class="sidebar-link" href="../dados-pessoais/meus_dados.html"><i
+                            class="fa-solid fa-user-cog"></i><span>Meus Dados</span></a></li>
+                <li><a class="sidebar-link" href="../FAQ_cliente/FAQ.html"><i
+                            class="fa-solid fa-question-circle"></i><span>Ajuda</span></a></li>
+                <li><a class="sidebar-link" href="../login/login.html"><i
+                            class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
             </ul>
 
             <div class="sidebar-toggle-wrapper">
@@ -41,7 +48,7 @@
                         <i class="fas fa-bars"></i>
                     </button>
                     <h1 class="header-title">Nova Solicitação de Troca/Devolução</h1>
-                    
+
                     <div class="header-user-actions">
                         <span>Bem-vindo, Cliente</span>
                         <div class="header-actions">
@@ -55,7 +62,8 @@
                                         <li><a href="#"><i class="fa-solid fa-palette"></i> Mudar Tema</a></li>
                                     </ul>
                                     <div class="dropdown-footer">
-                                        <a href="../login/login.html" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
+                                        <a href="../login/login.html" class="logout-link"><i
+                                                class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
                                     </div>
                                 </div>
                             </div>
@@ -65,32 +73,37 @@
             </header>
 
             <main class="main-content">
-                
+
                 <div id="successMessage" class="alert-success" style="display: none;">
-                    <i class="fa-solid fa-check-circle"></i> 
-                    <span>Sua solicitação foi cadastrada com êxito! Você receberá um e-mail de confirmação com os próximos passos.</span>
-                    <button class="close-alert" onclick="document.getElementById('successMessage').style.display='none';">
+                    <i class="fa-solid fa-check-circle"></i>
+                    <span>Sua solicitação foi cadastrada com êxito! Você receberá um e-mail de confirmação com os
+                        próximos passos.</span>
+                    <button class="close-alert"
+                        onclick="document.getElementById('successMessage').style.display='none';">
                         <i class="fa-solid fa-times"></i>
                     </button>
                 </div>
                 <div class="form-card">
                     <h2>Preencha os dados para prosseguir:</h2>
                     <p class="form-description">Todas as informações são essenciais para agilizar o processo.</p>
-                    
+
                     <form id="form-solicitacao">
-                        
+
                         <div class="form-group">
                             <label for="numero-pedido"><i class="fa-solid fa-tag"></i> Número do Pedido:</label>
-                            <input type="text" id="numero-pedido" name="numero-pedido" required placeholder="Ex: BR1023A">
+                            <input type="text" id="numero-pedido" name="numero-pedido" required
+                                placeholder="Ex: BR1023A">
                         </div>
 
                         <div class="form-group">
                             <label for="email-cliente"><i class="fa-solid fa-envelope"></i> E-mail Cadastrado:</label>
-                            <input type="email" id="email-cliente" name="email-cliente" required placeholder="seu.email@exemplo.com">
+                            <input type="email" id="email-cliente" name="email-cliente" required
+                                placeholder="seu.email@exemplo.com">
                         </div>
 
                         <div class="form-group">
-                            <label for="tipo-solicitacao"><i class="fa-solid fa-handshake-alt"></i> Tipo de Solicitação:</label>
+                            <label for="tipo-solicitacao"><i class="fa-solid fa-handshake-alt"></i> Tipo de
+                                Solicitação:</label>
                             <select id="tipo-solicitacao" name="tipo-solicitacao" required>
                                 <option value="">Selecione...</option>
                                 <option value="troca">Troca</option>
@@ -111,23 +124,32 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="detalhes"><i class="fa-solid fa-pencil-alt"></i> Detalhes Adicionais (Opcional):</label>
-                            <textarea id="detalhes" name="detalhes" rows="4" placeholder="Detalhe o item, tamanho desejado para troca, ou a descrição do defeito."></textarea>
+                            <label for="detalhes"><i class="fa-solid fa-pencil-alt"></i> Detalhes Adicionais
+                                (Opcional):</label>
+                            <textarea id="detalhes" name="detalhes" rows="4"
+                                placeholder="Detalhe o item, tamanho desejado para troca, ou a descrição do defeito."></textarea>
                         </div>
 
                         <div class="form-group checkbox-group">
                             <input type="checkbox" id="termos" name="termos" required>
-                            <label for="termos">Declaro que li e concordo com a <a href="#">Política de Troca e Devolução</a>.</label>
+                            <label for="termos">Declaro que li e concordo com a <a href="#">Política de Troca e
+                                    Devolução</a>.</label>
                         </div>
 
                         <button type="submit" class="btn-submit">Enviar Solicitação</button>
                     </form>
                 </div>
             </main>
+
+            <!-- Rodapé Global -->
+            <footer class="global-footer">
+                <p>© 2025 LogVert - Logística Reversa Inteligente. Todos os direitos reservados.</p>
+            </footer>
         </div>
     </div>
     <div class="overlay"></div>
 
-        <script src="../menu.cliente/menuCliente.js"></script>
+    <script src="../menu.cliente/menuCliente.js"></script>
 </body>
+
 </html>

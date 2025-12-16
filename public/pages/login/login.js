@@ -5,6 +5,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const showLojistaBtn = document.getElementById('showLojista');
     const body = document.body;
 
+    // --- FUNÇÕES DE CONTROLE DO SPINNER ---
+    const showSpinner = (button) => {
+        button.classList.add('loading');
+        button.disabled = true;
+        const spinner = button.querySelector('.btn-spinner');
+        if (spinner) spinner.style.display = 'inline-block';
+    };
+
+    const hideSpinner = (button) => {
+        button.classList.remove('loading');
+        button.disabled = false;
+        const spinner = button.querySelector('.btn-spinner');
+        if (spinner) spinner.style.display = 'none';
+    };
+
     // --- LÓGICA DAS PARTÍCULAS ---
     const baseConfig = {
         "particles": {
@@ -41,10 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         cardToHide.classList.add('is-leaving');
         cardToHide.classList.remove('active');
-        
+
         cardToShow.classList.add('active');
         cardToShow.classList.add('is-entering');
-        
+
         const items = cardToShow.querySelectorAll('.animate-item');
         items.forEach(item => item.style.animation = 'none');
 
@@ -65,6 +80,36 @@ document.addEventListener('DOMContentLoaded', () => {
     // Estado inicial
     setTimeout(() => { lojistaCard.classList.add('active'); }, 100);
 
+    // ===================================
+    // MODO DEMONSTRAÇÃO (FRONTEND ONLY)
+    // ===================================
+    const demoBtn = document.getElementById('demoLoginBtn');
+    if (demoBtn) {
+        demoBtn.addEventListener('click', () => {
+            const submitBtn = document.getElementById('lojista-submit-btn');
+            const messageEl = document.getElementById('lojista-message');
+
+            // UI Feedback
+            if (messageEl) {
+                messageEl.textContent = 'Iniciando modo de demonstração...';
+                messageEl.className = 'form-message animate-item';
+                messageEl.style.color = '#4ade80';
+            }
+            if (submitBtn) showSpinner(submitBtn);
+
+            // Simular delay de rede
+            setTimeout(() => {
+                // Mockar dados de sessão
+                localStorage.setItem('authToken', 'demo-token-frontend-only');
+                localStorage.setItem('userRole', 'lojista');
+                localStorage.setItem('userName', 'Lojista Demo');
+
+                // Redirecionar
+                window.location.href = "/pages/menu.lojista/menuLojista.html";
+            }, 800);
+        });
+    }
+
 
     // =================================================================
     // --- LÓGICA DE INTEGRAÇÃO (AJUSTADA) ---
@@ -78,12 +123,14 @@ document.addEventListener('DOMContentLoaded', () => {
         lojistaForm.addEventListener('submit', async (event) => {
             event.preventDefault(); // Impede o recarregamento da página
 
-            // Usa os IDs corretos do seu HTML
             const email = document.getElementById('lojista-email').value;
             const password = document.getElementById('lojista-senha').value;
+            const submitBtn = document.getElementById('lojista-submit-btn');
 
-            lojistaMessage.textContent = 'Entrando...';
-            lojistaMessage.className = 'form-message animate-item'; // Mantém a classe de animação
+            // Limpa mensagem anterior e mostra spinner
+            lojistaMessage.textContent = '';
+            lojistaMessage.className = 'form-message animate-item';
+            showSpinner(submitBtn);
 
             try {
                 // *** AJUSTE AQUI ***
@@ -96,31 +143,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const result = await response.json();
 
-            if (response.ok) {
-                lojistaMessage.textContent = result.message;
-                lojistaMessage.classList.add('success');
+                if (response.ok) {
+                    lojistaMessage.textContent = result.message;
+                    lojistaMessage.classList.add('success');
 
-                // --- ADICIONE ESTAS LINHAS ---
-                if (result.token) {
-                    localStorage.setItem('authToken', result.token);
-                    console.log("Token salvo com sucesso!"); // Linha para nos ajudar a testar
-                } else {
-                    console.error("Login OK, MAS o backend não enviou o 'token' no JSON!");
-                }
-                // --- FIM DA ADIÇÃO ---
+                    // --- ADICIONE ESTAS LINHAS ---
+                    if (result.token) {
+                        localStorage.setItem('authToken', result.token);
+                        console.log("Token salvo com sucesso!"); // Linha para nos ajudar a testar
+                    } else {
+                        console.error("Login OK, MAS o backend não enviou o 'token' no JSON!");
+                    }
+                    // --- FIM DA ADIÇÃO ---
 
-                setTimeout(() => {
-                    // O seu redirecionamento (já estava aqui)
-                    window.location.href = "/pages/menu.lojista/menuLojista.html"; 
-                }, 1000);
+                    setTimeout(() => {
+                        // O seu redirecionamento (já estava aqui)
+                        window.location.href = "/pages/menu.lojista/menuLojista.html";
+                    }, 1000);
                 } else {
                     lojistaMessage.textContent = result.message; // Ex: "Email ou senha inválidos."
                     lojistaMessage.classList.add('error');
                 }
             } catch (error) {
-                console.error(error); // Isso vai mostrar o erro real no console (F12)
-                lojistaMessage.textContent = 'Erro de conexão com o servidor.';
+                console.error(error);
+                lojistaMessage.textContent = 'Email ou senha inválidos. Tente novamente.';
                 lojistaMessage.classList.add('error');
+            } finally {
+                hideSpinner(submitBtn);
             }
         });
     }
@@ -135,9 +184,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const codigo = document.getElementById('cliente-codigo').value;
             const senha = document.getElementById('cliente-senha').value;
+            const submitBtn = document.getElementById('cliente-submit-btn');
 
-            clienteMessage.textContent = 'Entrando...';
-            clienteMessage.className = 'form-message animate-item'; // Mantém a classe de animação
+            // Limpa mensagem anterior e mostra spinner
+            clienteMessage.textContent = '';
+            clienteMessage.className = 'form-message animate-item';
+            showSpinner(submitBtn);
 
             try {
                 // *** AJUSTE AQUI ***
@@ -161,9 +213,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     clienteMessage.classList.add('error');
                 }
             } catch (error) {
-                console.error(error); // Isso vai mostrar o erro real no console (F12)
-                clienteMessage.textContent = 'Erro de conexão com o servidor.';
+                console.error(error);
+                clienteMessage.textContent = 'Código ou senha inválidos. Tente novamente.';
                 clienteMessage.classList.add('error');
+            } finally {
+                hideSpinner(submitBtn);
             }
         });
     }

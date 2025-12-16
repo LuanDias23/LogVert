@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Integre suas redes sociais com a LogVert e automatize o atendimento ao cliente 24/7">
+    <title>LogVert | Integrações</title>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/pages/menu.lojista/menuLojista.css">
+    <link rel="stylesheet" href="/pages/integracoes/integracoes.css">
+    <link rel="stylesheet" href="/css/components/chat-widget.css"> <!-- Livia Chat Widget -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+
+    <div id="dashboard-particles"></div>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="/assets/logosemfundo.png" alt="Logo LogVert" class="sidebar-logo">
+            </div>
+            <ul class="sidebar-menu">
+                <li><a class="sidebar-link" href="/pages/menu.lojista/menuLojista.html"><i
+                            class="fa-solid fa-house"></i><span>Início</span></a></li>
+                <li><a class="sidebar-link" href="/produtos"><i class="fa-solid fa-box"></i><span>Produto</span></a>
+                </li>
+                <li><a class="sidebar-link" href="/vendas"><i class="fa-solid fa-truck"></i><span>Venda</span></a></li>
+                <li><a class="sidebar-link" href="/pages/devolucoes/devolucoes.html"><i
+                            class="fa-solid fa-arrow-rotate-left"></i><span>Trocas e Devoluções</span></a></li>
+                <li><a class="sidebar-link active" href="/pages/integracoes/integracoes.html"><i
+                            class="fa-solid fa-plug"></i><span>Integrações</span></a></li>
+                <li><a class="sidebar-link" href="/pages/chatbot/chatbot.html"><i
+                            class="fa-solid fa-robot"></i><span>Chatbot</span></a></li>
+                <li><a class="sidebar-link" href="/pages/FAQ/FAQ.html"><i
+                            class="fa-solid fa-circle-question"></i><span>Central de Ajuda</span></a></li>
+                <li><a class="sidebar-link" href="/pages/login/login.html"><i
+                            class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
+            </ul>
+
+            <div class="sidebar-toggle-wrapper">
+                <button class="sidebar-toggle" id="sidebarToggle" title="Minimizar menu">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+            </div>
+        </aside>
+
+        <div class="main-container">
+            <header class="main-header">
+                <div class="header-content">
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="header-title">Central de Integrações</h1>
+
+                    <div class="header-user-actions">
+                        <span>Bem-vindo, Lojista</span>
+
+                        <div class="header-actions">
+                            <div class="header-action-item">
+                                <button class="header-action-btn" id="newsBtn" title="Novidades">
+                                    <i class="fa-solid fa-gift"></i>
+                                </button>
+                                <div class="dropdown-menu" id="newsDropdown">
+                                    <div class="dropdown-header">Novidades da Plataforma</div>
+                                    <ul>
+                                        <li><a href="#">Nova integração com transportadoras!</a></li>
+                                        <li><a href="#">IA de atendimento atualizada.</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="header-action-item">
+                                <button class="header-action-btn" id="notificationsBtn" title="Notificações">
+                                    <i class="fa-solid fa-bell"></i>
+                                    <span class="notification-badge">3</span>
+                                </button>
+                                <div class="dropdown-menu" id="notificationsDropdown">
+                                    <div class="dropdown-header">Notificações</div>
+                                    <ul>
+                                        <li><a href="#">Nova devolução registrada.</a></li>
+                                        <li><a href="#">WhatsApp conectado com sucesso.</a></li>
+                                        <li><a href="#">Sua fatura mensal foi gerada.</a></li>
+                                    </ul>
+                                    <div class="dropdown-footer"><a href="#">Ver todas</a></div>
+                                </div>
+                            </div>
+
+                            <div class="header-action-item">
+                                <button class="header-action-btn" id="accountBtn" title="Minha Conta">
+                                    <i class="fa-solid fa-user-circle"></i>
+                                </button>
+                                <div class="dropdown-menu" id="accountDropdown">
+                                    <ul>
+                                        <li><a href="/pages/configuracao/configuracao.html"><i
+                                                    class="fa-solid fa-cog"></i> Configurações</a></li>
+                                        <li><a href="/pages/assinatura/assinatura.html"><i
+                                                    class="fa-solid fa-credit-card"></i> Minha Assinatura</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-palette"></i> Mudar Tema</a></li>
+                                    </ul>
+                                    <div class="dropdown-footer">
+                                        <a href="/pages/login/login.html" class="logout-link"><i
+                                                class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="main-content integracoes-page">
+                <!-- Hero Section -->
+                <div class="integracoes-hero">
+                    <div class="hero-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h2>Conecte suas Redes Sociais</h2>
+                    <p>Centralize o atendimento de todas as suas redes em um só lugar. Nossa IA responde seus clientes
+                        24/7, automatizando trocas e devoluções.</p>
+                </div>
+
+                <!-- Status das Integrações -->
+                <div class="integracoes-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="color: #25D366;"><i class="fas fa-link"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-title">Canais Conectados</span>
+                            <span class="stat-value">0 / 5</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="color: var(--primary-blue);"><i class="fas fa-comments"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-title">Mensagens Automatizadas</span>
+                            <span class="stat-value">0</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="color: var(--primary-green);"><i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-title">Atendimentos Resolvidos</span>
+                            <span class="stat-value">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cards de Integração -->
+                <h3 class="section-label"><i class="fas fa-plug"></i> Redes Sociais Disponíveis</h3>
+                <div class="integracoes-grid">
+                    <!-- WhatsApp -->
+                    <div class="integracao-card" data-platform="whatsapp">
+                        <div class="card-header">
+                            <i class="fab fa-whatsapp"></i>
+                            <span class="integration-status disconnected">Desconectado</span>
+                        </div>
+                        <h4>WhatsApp Business</h4>
+                        <p>Atendimento automatizado via API oficial do WhatsApp. Responda seus clientes
+                            instantaneamente, 24 horas por dia.</p>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> Respostas automáticas</li>
+                            <li><i class="fas fa-check"></i> Abertura de chamados de devolução</li>
+                            <li><i class="fas fa-check"></i> Envio de status de pedidos</li>
+                        </ul>
+                        <button class="btn-connect" data-modal="whatsappModal">
+                            <i class="fas fa-plug"></i> Conectar WhatsApp
+                        </button>
+                    </div>
+
+                    <!-- Instagram -->
+                    <div class="integracao-card" data-platform="instagram">
+                        <div class="card-header">
+                            <i class="fab fa-instagram"></i>
+                            <span class="integration-status disconnected">Desconectado</span>
+                        </div>
+                        <h4>Instagram</h4>
+                        <p>Automatize respostas em DMs e comentários do seu perfil comercial. Nunca perca uma
+                            oportunidade de venda.</p>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> Resposta automática em DMs</li>
+                            <li><i class="fas fa-check"></i> Monitoramento de comentários</li>
+                            <li><i class="fas fa-check"></i> Stories interativos</li>
+                        </ul>
+                        <button class="btn-connect" data-modal="instagramModal">
+                            <i class="fas fa-plug"></i> Conectar Instagram
+                        </button>
+                    </div>
+
+                    <!-- Messenger -->
+                    <div class="integracao-card" data-platform="messenger">
+                        <div class="card-header">
+                            <i class="fab fa-facebook-messenger"></i>
+                            <span class="integration-status disconnected">Desconectado</span>
+                        </div>
+                        <h4>Messenger</h4>
+                        <p>Integre o chat da sua página do Facebook e centralize todas as conversas na LogVert.</p>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> Chat em tempo real</li>
+                            <li><i class="fas fa-check"></i> Bot de atendimento</li>
+                            <li><i class="fas fa-check"></i> Histórico unificado</li>
+                        </ul>
+                        <button class="btn-connect" data-modal="messengerModal">
+                            <i class="fas fa-plug"></i> Conectar Messenger
+                        </button>
+                    </div>
+
+                    <!-- Telegram -->
+                    <div class="integracao-card" data-platform="telegram">
+                        <div class="card-header">
+                            <i class="fab fa-telegram"></i>
+                            <span class="integration-status disconnected">Desconectado</span>
+                        </div>
+                        <h4>Telegram</h4>
+                        <p>Crie um bot para seu canal ou grupo do Telegram e automatize o atendimento aos seus
+                            seguidores.</p>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> Bot personalizado</li>
+                            <li><i class="fas fa-check"></i> Grupos e canais</li>
+                            <li><i class="fas fa-check"></i> Comandos personalizados</li>
+                        </ul>
+                        <button class="btn-connect" data-modal="telegramModal">
+                            <i class="fas fa-plug"></i> Conectar Telegram
+                        </button>
+                    </div>
+
+                    <!-- E-commerce -->
+                    <div class="integracao-card" data-platform="ecommerce">
+                        <div class="card-header">
+                            <i class="fas fa-globe"></i>
+                            <span class="integration-status coming-soon">Em Breve</span>
+                        </div>
+                        <h4>Seu E-commerce</h4>
+                        <p>Integre o widget de chat diretamente no seu site e ofereça atendimento instantâneo aos
+                            visitantes.</p>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> Widget personalizável</li>
+                            <li><i class="fas fa-check"></i> Captura de leads</li>
+                            <li><i class="fas fa-check"></i> Integração com carrinho</li>
+                        </ul>
+                        <button class="btn-connect coming-soon" disabled>
+                            <i class="fas fa-clock"></i> Em Breve
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Seção de IA -->
+                <div class="ia-section">
+                    <div class="ia-card">
+                        <div class="ia-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="ia-content">
+                            <h3>IA de Atendimento 24/7</h3>
+                            <p>Nossa inteligência artificial será treinada com dados do seu negócio para responder
+                                perguntas sobre produtos, prazos de entrega, políticas de troca e muito mais. Seus
+                                clientes terão atendimento instantâneo a qualquer hora.</p>
+                            <div class="ia-features">
+                                <span><i class="fas fa-check-circle"></i> Aprende com seu catálogo</span>
+                                <span><i class="fas fa-check-circle"></i> Responde em segundos</span>
+                                <span><i class="fas fa-check-circle"></i> Escala para humano quando necessário</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Rodapé Global -->
+            <footer class="global-footer">
+                <p>© 2025 LogVert - Logística Reversa Inteligente. Todos os direitos reservados.</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Modal WhatsApp -->
+    <div class="modal-overlay" id="whatsappModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fab fa-whatsapp" style="color: #25D366;"></i> Conectar WhatsApp</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="integration-steps">
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <div class="step-content">
+                            <h4>Conta Business</h4>
+                            <p>Você precisa ter uma conta do WhatsApp Business API. Se ainda não tem, <a
+                                    href="https://business.whatsapp.com/" target="_blank">crie aqui</a>.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <div class="step-content">
+                            <h4>Token de Acesso</h4>
+                            <p>Insira o token de acesso da sua conta WhatsApp Business API.</p>
+                        </div>
+                    </div>
+                </div>
+                <form id="whatsappForm" class="integration-form">
+                    <div class="form-group">
+                        <label for="whatsappToken">Token de Acesso</label>
+                        <input type="text" id="whatsappToken" placeholder="EAAxxxxxxxxxxxxxxx" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="whatsappPhone">Número do Telefone (com DDI)</label>
+                        <input type="text" id="whatsappPhone" placeholder="+5511999999999" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="whatsappPhoneId">Phone Number ID</label>
+                        <input type="text" id="whatsappPhoneId" placeholder="1234567890" required>
+                    </div>
+                    <button type="submit" class="btn-submit-modal">
+                        <i class="fas fa-plug"></i> Conectar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Instagram -->
+    <div class="modal-overlay" id="instagramModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fab fa-instagram" style="color: #E1306C;"></i> Conectar Instagram</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="integration-steps">
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <div class="step-content">
+                            <h4>Conta Comercial</h4>
+                            <p>Sua conta do Instagram precisa ser comercial e estar vinculada a uma página do Facebook.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <div class="step-content">
+                            <h4>Autorização</h4>
+                            <p>Clique no botão abaixo para autorizar a LogVert a acessar suas mensagens.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-oauth instagram">
+                    <i class="fab fa-instagram"></i> Conectar com Instagram
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Messenger -->
+    <div class="modal-overlay" id="messengerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fab fa-facebook-messenger" style="color: #00B2FF;"></i> Conectar Messenger</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="integration-steps">
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <div class="step-content">
+                            <h4>Página do Facebook</h4>
+                            <p>Você precisa ser administrador de uma página do Facebook.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <div class="step-content">
+                            <h4>Autorização</h4>
+                            <p>Clique no botão abaixo para autorizar a LogVert.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-oauth messenger">
+                    <i class="fab fa-facebook"></i> Conectar com Facebook
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Telegram -->
+    <div class="modal-overlay" id="telegramModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fab fa-telegram" style="color: #2AABEE;"></i> Conectar Telegram</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="integration-steps">
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <div class="step-content">
+                            <h4>Criar Bot</h4>
+                            <p>Abra o Telegram e converse com o <a href="https://t.me/BotFather"
+                                    target="_blank">@BotFather</a> para criar seu bot.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <div class="step-content">
+                            <h4>Token do Bot</h4>
+                            <p>Copie o token fornecido pelo BotFather e cole abaixo.</p>
+                        </div>
+                    </div>
+                </div>
+                <form id="telegramForm" class="integration-form">
+                    <div class="form-group">
+                        <label for="telegramToken">Token do Bot</label>
+                        <input type="text" id="telegramToken" placeholder="1234567890:ABCdefGHIjklMNOpqrsTUVwxyz"
+                            required>
+                    </div>
+                    <button type="submit" class="btn-submit-modal">
+                        <i class="fas fa-plug"></i> Conectar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="/js/api/apiClient.js"></script>
+    <script src="/js/components/chat-widget.js"></script> <!-- Livia Chat Widget -->
+    <script src="/pages/menu.lojista/menuLojista.js"></script>
+    <script src="/pages/integracoes/integracoes.js"></script>
+</body>
+
+</html>

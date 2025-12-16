@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LogVert | Trocas e Devoluções</title>
-    
+
     <!-- Carrega o CSS principal do menu -->
+    <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="/pages/menu.lojista/menuLojista.css">
     <link rel="stylesheet" href="/pages/devolucoes/devolucoes.css">
-    
+    <link rel="stylesheet" href="/css/components/chat-widget.css"> <!-- Livia Chat Widget -->
+
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
 
     <div id="dashboard-particles"></div>
@@ -22,13 +26,21 @@
                 <img src="/assets/logosemfundo.png" alt="Logo LogVert" class="sidebar-logo">
             </div>
             <ul class="sidebar-menu">
-                <li><a class="sidebar-link" href="/pages/menu.lojista/menuLojista.html"><i class="fa-solid fa-house"></i><span>Início</span></a></li>
-                <li><a class="sidebar-link active" href="/pages/produtos/produtos.html"><i class="fa-solid fa-box"></i><span>Produto</span></a></li>
-                <li><a class="sidebar-link" href="/pages/vendas/venda.html"><i class="fa-solid fa-truck"></i><span>Venda</span></a></li>
-                <li><a class="sidebar-link" href="/pages/devolucoes/devolucoes.html"><i class="fa-solid fa-arrow-rotate-left"></i><span>Trocas e Devoluções</span></a></li>
-                <li><a class="sidebar-link" href="/pages/chatbot/chatbot.html"><i class="fa-solid fa-robot"></i><span>Chatbot</span></a></li>
-                <li><a class="sidebar-link" href="/pages/faq/faq.html"><i class="fa-solid fa-question"></i><span>FAQ</span></a></li> 
-                <li><a class="sidebar-link" href="/pages/login/login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
+                <li><a class="sidebar-link" href="/pages/menu.lojista/menuLojista.html"><i
+                            class="fa-solid fa-house"></i><span>Início</span></a></li>
+                <li><a class="sidebar-link" href="/produtos"><i class="fa-solid fa-box"></i><span>Produto</span></a>
+                </li>
+                <li><a class="sidebar-link" href="/vendas"><i class="fa-solid fa-truck"></i><span>Venda</span></a></li>
+                <li><a class="sidebar-link active" href="/pages/devolucoes/devolucoes.html"><i
+                            class="fa-solid fa-arrow-rotate-left"></i><span>Trocas e Devoluções</span></a></li>
+                <li><a class="sidebar-link" href="/pages/integracoes/integracoes.html"><i
+                            class="fa-solid fa-plug"></i><span>Integrações</span></a></li>
+                <li><a class="sidebar-link" href="/pages/chatbot/chatbot.html"><i
+                            class="fa-solid fa-robot"></i><span>Chatbot</span></a></li>
+                <li><a class="sidebar-link" href="/pages/FAQ/FAQ.html"><i
+                            class="fa-solid fa-circle-question"></i><span>Central de Ajuda</span></a></li>
+                <li><a class="sidebar-link" href="/pages/login/login.html"><i
+                            class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
             </ul>
             <div class="sidebar-toggle-wrapper">
                 <button class="sidebar-toggle" id="sidebarToggle" title="Minimizar menu">
@@ -45,7 +57,7 @@
                         <i class="fas fa-bars"></i>
                     </button>
                     <h1 class="header-title">Central de Trocas e Devoluções</h1>
-                    
+
                     <div class="header-user-actions">
                         <span>Bem-vindo, Lojista</span>
                         <div class="header-actions">
@@ -82,12 +94,14 @@
                                 </button>
                                 <div class="dropdown-menu" id="accountDropdown">
                                     <ul>
-                                        <li><a href="/pages/configuracao/configuracao.html"><i class="fa-solid fa-cog"></i> Configurações da Conta</a></li>
+                                        <li><a href="/pages/configuracao/configuracao.html"><i
+                                                    class="fa-solid fa-cog"></i> Configurações da Conta</a></li>
                                         <li><a href="#"><i class="fa-solid fa-palette"></i> Mudar Tema</a></li>
-                                        <li><a href="#"><i class="fa-solid fa-life-ring"></i>   Suporte</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-life-ring"></i> Suporte</a></li>
                                     </ul>
                                     <div class="dropdown-footer">
-                                        <a href="pages/login/login.html" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
+                                        <a href="pages/login/login.html" class="logout-link"><i
+                                                class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
                                     </div>
                                 </div>
                             </div>
@@ -113,7 +127,8 @@
                         </div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-icon" style="color: var(--primary-green);"><i class="fas fa-check-circle"></i></div>
+                        <div class="stat-icon" style="color: var(--primary-green);"><i class="fas fa-check-circle"></i>
+                        </div>
                         <div class="stat-info">
                             <span class="stat-title">Resolvidas (Últ. 30d)</span>
                             <span class="stat-value">87</span>
@@ -147,7 +162,8 @@
                                 <td><span class="badge type-devolucao">Devolução</span></td>
                                 <td><span class="status-badge status-pending">Pendente</span></td>
                                 <td class="action-buttons">
-                                    <button class="btn-icon btn-view-details" title="Ver Detalhes"><i class="fas fa-eye"></i></button>
+                                    <button class="btn-icon btn-view-details" title="Ver Detalhes"><i
+                                            class="fas fa-eye"></i></button>
                                 </td>
                             </tr>
                             <tr class="row-clickable" data-modal-id="detailsModal">
@@ -158,7 +174,8 @@
                                 <td><span class="badge type-troca">Troca</span></td>
                                 <td><span class="status-badge status-approved">Aprovada</span></td>
                                 <td class="action-buttons">
-                                    <button class="btn-icon btn-view-details" title="Ver Detalhes"><i class="fas fa-eye"></i></button>
+                                    <button class="btn-icon btn-view-details" title="Ver Detalhes"><i
+                                            class="fas fa-eye"></i></button>
                                 </td>
                             </tr>
                             <tr class="row-clickable" data-modal-id="detailsModal">
@@ -169,7 +186,8 @@
                                 <td><span class="badge type-devolucao">Devolução</span></td>
                                 <td><span class="status-badge status-completed">Concluída</span></td>
                                 <td class="action-buttons">
-                                    <button class="btn-icon btn-view-details" title="Ver Detalhes"><i class="fas fa-eye"></i></button>
+                                    <button class="btn-icon btn-view-details" title="Ver Detalhes"><i
+                                            class="fas fa-eye"></i></button>
                                 </td>
                             </tr>
                         </tbody>
@@ -178,9 +196,10 @@
             </main>
         </div>
     </div>
-    
+
     <div class="modal-overlay" id="detailsModal">
-        <div class="modal-content large"> <div class="modal-header">
+        <div class="modal-content large">
+            <div class="modal-header">
                 <h2>Detalhes da Solicitação <span class="text-highlight">#D-1025</span></h2>
                 <button class="close-modal" id="closeModalBtn">&times;</button>
             </div>
@@ -229,19 +248,26 @@
                             <span>Anexos do Cliente:</span>
                             <p><a href="#" class="text-link">ver_foto_produto.jpg</a></p>
                         </div>
-                        
+
                         <h3 class="mt-2"><i class="fas fa-cogs"></i> Ações do Lojista</h3>
                         <div class="data-group">
                             <span>Resolução Solicitada:</span>
                             <p>Estorno no Cartão de Crédito</p>
                         </div>
                         <div class="modal-actions">
-                            <button class="btn btn-danger"><i class="fas fa-times-circle"></i> Rejeitar Solicitação</button>
-                            <button class="btn btn-primary"><i class="fas fa-check-circle"></i> Aprovar Devolução</button>
+                            <button class="btn btn-danger"><i class="fas fa-times-circle"></i> Rejeitar
+                                Solicitação</button>
+                            <button class="btn btn-primary"><i class="fas fa-check-circle"></i> Aprovar
+                                Devolução</button>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Rodapé Global -->
+            <footer class="global-footer">
+                <p>© 2025 LogVert - Logística Reversa Inteligente. Todos os direitos reservados.</p>
+            </footer>
         </div>
     </div>
 
@@ -255,7 +281,9 @@
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
     <script src="/js/api/apiClient.js"></script>
+    <script src="/js/components/chat-widget.js"></script> <!-- Livia Chat Widget -->
     <script src="/pages/menu.lojista/menuLojista.js"></script>
     <script src="/pages/devolucoes/devolucoes.js"></script>
 </body>
+
 </html>

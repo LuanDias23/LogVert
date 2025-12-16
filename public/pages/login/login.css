@@ -101,3 +101,78 @@ input:focus { outline: none; }
 body.theme-cliente .back-to-home {
     background-color: var(--card-background-cliente);
 }
+
+/* =====================================================
+   MENSAGENS DE FEEDBACK (ERRO/SUCESSO)
+   ===================================================== */
+.form-message {
+    display: block;
+    min-height: 20px;
+    margin-bottom: 1rem;
+    padding: 0;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.form-message:empty {
+    display: none;
+}
+
+.form-message.error {
+    display: block;
+    background: rgba(220, 53, 69, 0.15);
+    border: 1px solid rgba(220, 53, 69, 0.5);
+    color: #ff6b6b;
+    padding: 12px 16px;
+    animation: shake 0.5s ease, fadeInUp 0.3s ease;
+}
+
+.form-message.success {
+    display: block;
+    background: rgba(40, 167, 69, 0.15);
+    border: 1px solid rgba(40, 167, 69, 0.5);
+    color: #4ade80;
+    padding: 12px 16px;
+    animation: fadeInUp 0.3s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* =====================================================
+   SPINNER DE CARREGAMENTO NO BOTÃO
+   ===================================================== */
+.btn-login {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-login .btn-spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+.btn-login.loading {
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.btn-login.loading .btn-text {
+    opacity: 0.7;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}

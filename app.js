@@ -34,15 +34,29 @@ app.get('/produtos', (req, res) => {
     title: 'Gestão de Produtos',
     year: new Date().getFullYear(),
     head: `
-      <link rel="stylesheet" href="/pages/menu.lojista/menuLojista.css">
       <link rel="stylesheet" href="/pages/produtos/produtos.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     `,
     pageScripts: `
       <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
       <script src="/pages/menu.lojista/menuLojista.js"></script>
       <script src="/pages/produtos/produtos.js"></script>
+    `
+  });
+});
+
+// Rota que renderiza a view de vendas usando Handlebars
+app.get('/vendas', (req, res) => {
+  res.render('vendas', {
+    title: 'Gestão de Vendas',
+    year: new Date().getFullYear(),
+    head: `
+      <link rel="stylesheet" href="/pages/vendas/venda.css">
+    `,
+    pageScripts: `
+      <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+      <script src="/pages/menu.lojista/menuLojista.js"></script>
+      <script src="/pages/vendas/venda.js"></script>
     `
   });
 });

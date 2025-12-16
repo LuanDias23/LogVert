@@ -1,0 +1,21 @@
+/* Estilo para botão de modo demo */
+.demo-mode-container {
+    text-align: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-demo-link {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.3s;
+}
+
+.btn-demo-link:hover {
+    color: rgba(255, 255, 255, 0.9);
+}
