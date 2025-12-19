@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    {{{head}}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div id="dashboard-particles"></div>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="/assets/logosemfundo.png" alt="Logo LogVert" class="sidebar-logo">
+            </div>
+            <ul class="sidebar-menu">
+                <li><a class="sidebar-link" href="/pages/menu.lojista/menuLojista.html"><i class="fa-solid fa-house"></i><span>Início</span></a></li>
+                <li><a class="sidebar-link" href="/produtos"><i class="fa-solid fa-box"></i><span>Produto</span></a></li>
+                <li><a class="sidebar-link" href="/vendas"><i class="fa-solid fa-truck"></i><span>Venda</span></a></li>
+                <li><a class="sidebar-link" href="/pages/devolucoes/devolucoes.html"><i class="fa-solid fa-arrow-rotate-left"></i><span>Trocas e Devoluções</span></a></li>
+                <li><a class="sidebar-link" href="/integracoes"><i class="fa-solid fa-plug"></i><span>Integrações</span></a></li>
+                <li><a class="sidebar-link active" href="/chatbot"><i class="fa-solid fa-robot"></i><span>Chatbot</span></a></li>
+                <li><a class="sidebar-link" href="/pages/FAQ/FAQ.html"><i class="fa-solid fa-circle-question"></i><span>Central de Ajuda</span></a></li>
+                <li><a class="sidebar-link" href="/login"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
+            </ul>
+
+            <div class="sidebar-toggle-wrapper">
+                <button class="sidebar-toggle" id="sidebarToggle" title="Minimizar menu">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+            </div>
+        </aside>
+
+        <div class="main-container">
+            <header class="main-header">
+                <div class="header-content">
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="header-title">Centro de Controle - Livia AI</h1>
+
+                    <div class="header-user-actions">
+                        <span>Bem-vindo, Lojista</span>
+                        <div class="header-actions">
+                            <div class="header-action-item">
+                                <button class="header-action-btn" id="newsBtn" title="Novidades">
+                                    <i class="fa-solid fa-gift"></i>
+                                </button>
+                                <div class="dropdown-menu" id="newsDropdown">
+                                    <div class="dropdown-header">Novidades da Plataforma</div>
+                                    <ul>
+                                        <li><a href="#">Nova integração com transportadoras!</a></li>
+                                        <li><a href="#">Dashboard de relatórios atualizado.</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="header-action-item">
+                                <button class="header-action-btn" id="notificationsBtn" title="Notificações">
+                                    <i class="fa-solid fa-bell"></i>
+                                    <span class="notification-badge">3</span>
+                                </button>
+                                <div class="dropdown-menu" id="notificationsDropdown">
+                                    <div class="dropdown-header">Notificações</div>
+                                    <ul>
+                                        <li><a href="#">Nova devolução registrada.</a></li>
+                                        <li><a href="#">Produto 'Camiseta Azul' com baixo estoque.</a></li>
+                                        <li><a href="#">Sua fatura mensal foi gerada.</a></li>
+                                    </ul>
+                                    <div class="dropdown-footer"><a href="#">Ver todas</a></div>
+                                </div>
+                            </div>
+
+                            <!-- Botão Mudar Tema (Lua/Sol) -->
+                            <button class="header-action-btn" id="themeToggleBtn" title="Mudar Tema">
+                                <i class="fa-solid fa-moon" id="themeIcon"></i>
+                            </button>
+
+                            <div class="header-action-item">
+                                <button class="header-action-btn" id="accountBtn" title="Minha Conta">
+                                    <i class="fa-solid fa-user-circle"></i>
+                                </button>
+                                <div class="dropdown-menu" id="accountDropdown">
+                                    <ul>
+                                        <li><a href="/pages/configuracao/configuracao.html"><i class="fa-solid fa-cog"></i> Configurações da Conta</a></li>
+                                        <li><a href="/assinatura"><i class="fa-solid fa-file-invoice-dollar"></i> Minha Assinatura</a></li>
+                                        <li><a href="/login"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="main-content chatbot-dashboard">
+                <!-- Seção de Status da IA -->
+                <section class="ai-status-section">
+                    <div class="ai-profile-card">
+                        <div class="ai-avatar-wrapper">
+                            <div class="ai-avatar-bg">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="status-indicator online" id="liviaStatus"></div>
+                        </div>
+                        <div class="ai-info">
+                            <h2>Livia</h2>
+                            <p>Assistente Virtual LogVert</p>
+                            <div class="ai-badges">
+                                <span class="badge badge-success"><i class="fas fa-check-circle"></i> Online 24/7</span>
+                                <span class="badge badge-info"><i class="fas fa-brain"></i> IA Treinada</span>
+                            </div>
+                        </div>
+                        <div class="ai-actions">
+                            <button class="btn-secondary" id="testChatBtn"><i class="fas fa-comment-dots"></i> Testar Chat</button>
+                            <button class="btn-primary" id="saveConfigBtn"><i class="fas fa-save"></i> Salvar Configurações</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Grid Principal: Conversas Sociais + Estatísticas -->
+                <div class="chatbot-main-grid">
+
+                    <!-- PAINEL ESQUERDO: Conversas das Redes Sociais -->
+                    <section class="social-conversations-panel">
+                        <div class="panel-header">
+                            <h3><i class="fas fa-comments"></i> Conversas das Redes Sociais</h3>
+                            <div class="filter-tabs">
+                                <button class="filter-tab active" data-filter="all">Todas</button>
+                                <button class="filter-tab" data-filter="whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                                <button class="filter-tab" data-filter="instagram"><i class="fab fa-instagram"></i> Instagram</button>
+                                <button class="filter-tab" data-filter="messenger"><i class="fab fa-facebook-messenger"></i> Messenger</button>
+                            </div>
+                        </div>
+
+                        <!-- Lista de Conversas -->
+                        <div class="conversations-list" id="conversationsList">
+                            <!-- Conversas serão carregadas aqui via JS -->
+                            <div class="empty-state">
+                                <i class="fas fa-inbox"></i>
+                                <p>Conecte suas redes sociais para ver conversas aqui</p>
+                                <a href="/integracoes" class="btn btn-primary btn-sm">Ir para Integrações</a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- PAINEL DIREITO: Visualizador de Mensagens -->
+                    <section class="message-viewer-panel">
+                        <div class="panel-header">
+                            <div class="conversation-header" id="conversationHeader">
+                                <div class="conversation-placeholder">
+                                    <i class="fas fa-arrow-left"></i>
+                                    <span>Selecione uma conversa</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Área de Mensagens -->
+                        <div class="messages-area" id="messagesArea">
+                            <div class="messages-placeholder">
+                                <i class="fas fa-comment-dots"></i>
+                                <p>Selecione uma conversa para visualizar as mensagens</p>
+                            </div>
+                        </div>
+
+                        <!-- Área de Input (quando conversa selecionada) -->
+                        <div class="message-input-area" id="messageInputArea" style="display: none;">
+                            <div class="input-wrapper">
+                                <button class="btn-icon" title="Anexar"><i class="fas fa-paperclip"></i></button>
+                                <input type="text" id="messageInput" placeholder="Digite sua mensagem..." />
+                                <button class="btn-icon" title="Emoji"><i class="fas fa-smile"></i></button>
+                                <button class="btn-send" id="sendMessageBtn"><i class="fas fa-paper-plane"></i></button>
+                            </div>
+                            <div class="ai-suggestion">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Livia sugere: "Olá! Como posso ajudar com sua devolução?"</span>
+                                <button class="btn-use-suggestion">Usar</button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Estatísticas do Chatbot -->
+                <section class="chatbot-stats-section">
+                    <h3><i class="fas fa-chart-line"></i> Desempenho da IA</h3>
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-icon" style="color: var(--primary-blue);"><i class="fas fa-comments"></i></div>
+                            <div class="stat-data">
+                                <h3 id="totalConversations">0</h3>
+                                <p>Conversas Hoje</p>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-icon" style="color: var(--primary-green);"><i class="fas fa-robot"></i></div>
+                            <div class="stat-data">
+                                <h3 id="aiResolved">0%</h3>
+                                <p>Resolvido pela IA</p>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-icon" style="color: #f39c12;"><i class="fas fa-clock"></i></div>
+                            <div class="stat-data">
+                                <h3 id="avgResponseTime">0s</h3>
+                                <p>Tempo Médio Resposta</p>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-icon" style="color: #e74c3c;"><i class="fas fa-user-tie"></i></div>
+                            <div class="stat-data">
+                                <h3 id="humanHandoff">0</h3>
+                                <p>Transferidas p/ Humano</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Configurações da IA -->
+                <section class="ai-config-section">
+                    <h3><i class="fas fa-sliders-h"></i> Configurações de Comportamento</h3>
+                    <div class="config-grid">
+                        <div class="config-card">
+                            <h4>Personalidade</h4>
+                            <div class="form-group">
+                                <label>Tom de Voz</label>
+                                <select class="form-select" id="aiTone">
+                                    <option value="formal">Formal e Profissional</option>
+                                    <option value="casual" selected>Casual e Amigável</option>
+                                    <option value="enthusiastic">Entusiasta</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Nível de Proatividade</label>
+                                <div class="range-slider">
+                                    <input type="range" id="aiProactivity" min="1" max="5" value="3">
+                                    <div class="range-labels">
+                                        <span>Reativa</span>
+                                        <span>Proativa</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="config-card">
+                            <h4>Integrações Automáticas</h4>
+                            <div class="form-check">
+                                <input type="checkbox" id="autoProducts" checked>
+                                <label for="autoProducts">Consultar produtos automaticamente</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" id="autoSales" checked>
+                                <label for="autoSales">Buscar informações de vendas</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" id="autoReturns" checked>
+                                <label for="autoReturns">Processar solicitações de troca/devolução</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" id="autoInstagramReply">
+                                <label for="autoInstagramReply">Responder comentários no Instagram</label>
+                            </div>
+                        </div>
+
+                        <div class="config-card">
+                            <h4>Gatilhos de Transferência</h4>
+                            <p class="config-description">Livia transfere para atendimento humano quando:</p>
+                            <div class="form-check">
+                                <input type="checkbox" id="handoffComplaint" checked>
+                                <label for="handoffComplaint">Cliente demonstra insatisfação</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" id="handoffComplex" checked>
+                                <label for="handoffComplex">Pergunta muito complexa</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" id="handoffRequest">
+                                <label for="handoffRequest">Cliente pede para falar com humano</label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Histórico de Atendimentos -->
+                <section class="history-section">
+                    <h3><i class="fas fa-history"></i> Histórico de Atendimentos</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Cliente</th>
+                                    <th>Canal</th>
+                                    <th>Tipo de Solicitação</th>
+                                    <th>Status</th>
+                                    <th>Atendido por</th>
+                                    <th>Data/Hora</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="historyTableBody">
+                                <tr>
+                                    <td colspan="7" style="text-align: center;">Carregando histórico...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </main>
+
+            <footer class="global-footer">
+                <p>© {{year}} LogVert - Logística Reversa Inteligente. Todos os direitos reservados.</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Modal de Visualização de Conversa Completa -->
+    <div class="modal-overlay" id="conversationModal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2><i class="fas fa-comments"></i> Detalhes da Conversa</h2>
+                <button class="close-modal" id="closeConversationModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="conversationDetails">
+                    <!-- Detalhes da conversa serão carregados aqui -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    {{{pageScripts}}}
+</body>
+</html>

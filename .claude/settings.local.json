@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node app.js:*)",
+      "Bash(ls -la \"c:\\\\Users\\\\Ericson\\\\Documents\\\\LogVert\\\\views\"\" | grep -E \"chatbot)",
+      "Bash(integracoes \")",
+      "Bash(node --version:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -1,0 +1,458 @@
+/**
+ * EFEITOS EXTRAS PARA CHATBOT - LOGVERT
+ * Design ainda mais moderno e impressionante
+ */
+
+/* Animação de carregamento suave nas conversas */
+.conversation-item {
+    animation: slideInConversation 0.4s ease-out;
+}
+
+@keyframes slideInConversation {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Efeito de brilho no hover das conversas */
+.conversation-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transition: left 0.5s ease;
+}
+
+.conversation-item:hover::before {
+    left: 100%;
+}
+
+/* Badge pulsante para mensagens não lidas */
+.conversation-unread-badge {
+    animation: pulseBadge 2s ease-in-out infinite;
+}
+
+@keyframes pulseBadge {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 8px rgba(239, 68, 68, 0);
+    }
+}
+
+/* Animação suave para mensagens */
+.message {
+    animation: fadeInMessage 0.3s ease-out;
+}
+
+@keyframes fadeInMessage {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Efeito de digitação para mensagens da IA */
+.message-ai .message-content::after {
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 1em;
+    background: currentColor;
+    margin-left: 2px;
+    animation: blink 1s infinite;
+    opacity: 0;
+}
+
+.message-ai.typing .message-content::after {
+    opacity: 1;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+/* Efeito de hover nos botões */
+.btn-action {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-action::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn-action:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Efeito de gradiente animado no fundo do painel */
+.social-conversations-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg,
+        rgba(26, 115, 232, 0.03) 0%,
+        rgba(76, 175, 80, 0.03) 100%
+    );
+    animation: gradientShift 10s ease infinite;
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        transform: translateX(0) translateY(0);
+    }
+    25% {
+        transform: translateX(5px) translateY(-5px);
+    }
+    50% {
+        transform: translateX(0) translateY(-10px);
+    }
+    75% {
+        transform: translateX(-5px) translateY(-5px);
+    }
+}
+
+/* Efeito de sombra dinâmica no perfil da IA */
+.ai-profile-card {
+    position: relative;
+}
+
+.ai-profile-card::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 10%;
+    right: 10%;
+    height: 20px;
+    background: radial-gradient(ellipse at center,
+        rgba(26, 115, 232, 0.3) 0%,
+        transparent 70%
+    );
+    filter: blur(10px);
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.ai-profile-card:hover::after {
+    opacity: 0.8;
+}
+
+/* Indicador de status online com animação */
+.status-online-indicator {
+    position: relative;
+}
+
+.status-online-indicator::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: inherit;
+    animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes ping {
+    75%, 100% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
+    }
+}
+
+/* Efeito de partículas flutuantes no fundo */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    33% {
+        transform: translateY(-10px) rotate(5deg);
+    }
+    66% {
+        transform: translateY(-5px) rotate(-5deg);
+    }
+}
+
+.floating-particle {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Efeito de hover nos cards de estatísticas */
+.stat-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px) scale(1.02);
+}
+
+.stat-card:hover .stat-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.stat-icon {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efeito de brilho nos badges de integração */
+.ai-integration-badge {
+    position: relative;
+    overflow: hidden;
+}
+
+.ai-integration-badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    animation: badgeShine 3s ease-in-out infinite;
+}
+
+@keyframes badgeShine {
+    0%, 100% {
+        left: -100%;
+    }
+    50% {
+        left: 150%;
+    }
+}
+
+/* Efeito de loading skeleton */
+.skeleton-loading {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0.05) 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Efeito de ripple nos botões */
+.btn-ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-ripple::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1) translate(-50%, -50%);
+    transform-origin: 50% 50%;
+}
+
+.btn-ripple:active::after {
+    animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        opacity: 1;
+        transform: scale(0) translate(-50%, -50%);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(40) translate(-50%, -50%);
+    }
+}
+
+/* Smooth scroll para listas */
+.conversations-list,
+.messages-area {
+    scroll-behavior: smooth;
+}
+
+/* Efeito de hover nos filtros */
+.filter-tab {
+    position: relative;
+}
+
+.filter-tab::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+        var(--primary-blue),
+        var(--primary-green)
+    );
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.filter-tab.active::after,
+.filter-tab:hover::after {
+    width: 80%;
+}
+
+/* Efeito de confete ao resolver ticket */
+@keyframes confetti {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.confetti-particle {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: var(--primary-blue);
+    animation: confetti 3s ease-out;
+}
+
+/* Efeito de glass morphism intensificado */
+.glass-effect {
+    background: rgba(17, 26, 47, 0.4);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Efeito de neon nos textos importantes */
+.text-neon {
+    text-shadow:
+        0 0 5px currentColor,
+        0 0 10px currentColor,
+        0 0 20px currentColor,
+        0 0 40px currentColor;
+    animation: neonPulse 2s ease-in-out infinite;
+}
+
+@keyframes neonPulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+/* Melhoria no scrollbar com efeito neon */
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg,
+        rgba(26, 115, 232, 0.6),
+        rgba(76, 175, 80, 0.6)
+    );
+    box-shadow:
+        inset 0 0 6px rgba(0, 0, 0, 0.5),
+        0 0 6px rgba(26, 115, 232, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    box-shadow:
+        inset 0 0 6px rgba(0, 0, 0, 0.5),
+        0 0 10px rgba(26, 115, 232, 0.8);
+}
+
+/* Efeito de onda nos cards */
+@keyframes wave {
+    0% {
+        transform: translateX(0) translateY(0);
+    }
+    25% {
+        transform: translateX(5px) translateY(-2px);
+    }
+    50% {
+        transform: translateX(0) translateY(-4px);
+    }
+    75% {
+        transform: translateX(-5px) translateY(-2px);
+    }
+    100% {
+        transform: translateX(0) translateY(0);
+    }
+}
+
+.wave-effect:hover {
+    animation: wave 0.6s ease;
+}
+
+/* Tema claro */
+body.theme-light .glass-effect {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+body.theme-light ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg,
+        rgba(26, 115, 232, 0.4),
+        rgba(76, 175, 80, 0.4)
+    );
+}

@@ -133,40 +133,48 @@ document.addEventListener('DOMContentLoaded', () => {
             showSpinner(submitBtn);
 
             try {
-                // *** AJUSTE AQUI ***
-                // Agora usa a variável do apiClient.js
+                // Tenta fazer login no backend
                 const response = await fetch(`${API_BASE_URL}/login`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password }), // Envia email e password
+                    body: JSON.stringify({ email, password }),
                 });
 
                 const result = await response.json();
 
                 if (response.ok) {
-                    lojistaMessage.textContent = result.message;
-                    lojistaMessage.classList.add('success');
-
-                    // --- ADICIONE ESTAS LINHAS ---
+                    // Login bem-sucedido
                     if (result.token) {
                         localStorage.setItem('authToken', result.token);
-                        console.log("Token salvo com sucesso!"); // Linha para nos ajudar a testar
-                    } else {
-                        console.error("Login OK, MAS o backend não enviou o 'token' no JSON!");
+                        localStorage.setItem('userRole', 'lojista');
+                        localStorage.setItem('userName', result.userName || email);
                     }
-                    // --- FIM DA ADIÇÃO ---
 
+                    // Mensagem de sucesso SEM aparecer nada visível (só redireciona)
                     setTimeout(() => {
-                        // O seu redirecionamento (já estava aqui)
                         window.location.href = "/pages/menu.lojista/menuLojista.html";
-                    }, 1000);
+                    }, 300);
+
                 } else {
-                    lojistaMessage.textContent = result.message; // Ex: "Email ou senha inválidos."
+                    // Erro de credenciais - Mensagem clara
+                    if (response.status === 401 || response.status === 404) {
+                        lojistaMessage.textContent = '✗ Email ou senha inválidos';
+                    } else if (response.status === 403) {
+                        lojistaMessage.textContent = '✗ Usuário não autorizado';
+                    } else {
+                        lojistaMessage.textContent = result.message || '✗ Erro ao fazer login';
+                    }
                     lojistaMessage.classList.add('error');
                 }
             } catch (error) {
-                console.error(error);
-                lojistaMessage.textContent = 'Email ou senha inválidos. Tente novamente.';
+                console.error('Erro no login:', error);
+
+                // Mensagem clara de erro
+                if (error.name === 'TypeError' && error.message.includes('fetch')) {
+                    lojistaMessage.textContent = '✗ Erro de conexão. Verifique sua internet.';
+                } else {
+                    lojistaMessage.textContent = '✗ Email ou senha inválidos';
+                }
                 lojistaMessage.classList.add('error');
             } finally {
                 hideSpinner(submitBtn);
@@ -192,8 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showSpinner(submitBtn);
 
             try {
-                // *** AJUSTE AQUI ***
-                // Agora usa a variável do apiClient.js
+                // Tenta fazer login do cliente no backend
                 const response = await fetch(`${API_BASE_URL}/login-cliente`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -203,18 +210,38 @@ document.addEventListener('DOMContentLoaded', () => {
                 const result = await response.json();
 
                 if (response.ok) {
-                    clienteMessage.textContent = result.message;
-                    clienteMessage.classList.add('success');
+                    // Login bem-sucedido - salva dados e redireciona
+                    if (result.token) {
+                        localStorage.setItem('authToken', result.token);
+                        localStorage.setItem('userRole', 'cliente');
+                        localStorage.setItem('clientCode', codigo);
+                    }
+
+                    // Redireciona SEM mostrar mensagem verde
                     setTimeout(() => {
-                        window.location.href = result.redirectTo; // Redireciona para o menuCliente.html
-                    }, 1000);
+                        window.location.href = result.redirectTo || '/cliente/dashboard';
+                    }, 300);
+
                 } else {
-                    clienteMessage.textContent = result.message; // Ex: "Código ou senha inválidos."
+                    // Erro de credenciais - Mensagem clara
+                    if (response.status === 401 || response.status === 404) {
+                        clienteMessage.textContent = '✗ Código ou senha inválidos';
+                    } else if (response.status === 403) {
+                        clienteMessage.textContent = '✗ Código não encontrado ou inativo';
+                    } else {
+                        clienteMessage.textContent = result.message || '✗ Erro ao fazer login';
+                    }
                     clienteMessage.classList.add('error');
                 }
             } catch (error) {
-                console.error(error);
-                clienteMessage.textContent = 'Código ou senha inválidos. Tente novamente.';
+                console.error('Erro no login do cliente:', error);
+
+                // Mensagem clara de erro
+                if (error.name === 'TypeError' && error.message.includes('fetch')) {
+                    clienteMessage.textContent = '✗ Erro de conexão. Verifique sua internet.';
+                } else {
+                    clienteMessage.textContent = '✗ Código ou senha inválidos';
+                }
                 clienteMessage.classList.add('error');
             } finally {
                 hideSpinner(submitBtn);

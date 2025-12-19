@@ -28,13 +28,13 @@ Não inclua `
                     </li>
                     <li><a class="sidebar-link" href="/pages/devolucoes/devolucoes.html"><i
                                 class="fa-solid fa-arrow-rotate-left"></i><span>Trocas e Devoluções</span></a></li>
-                    <li><a class="sidebar-link" href="/pages/integracoes/integracoes.html"><i
+                    <li><a class="sidebar-link" href="/integracoes"><i
                                 class="fa-solid fa-plug"></i><span>Integrações</span></a></li>
-                    <li><a class="sidebar-link" href="/pages/chatbot/chatbot.html"><i
+                    <li><a class="sidebar-link" href="/chatbot"><i
                                 class="fa-solid fa-robot"></i><span>Chatbot</span></a></li>
                     <li><a class="sidebar-link" href="/pages/FAQ/FAQ.html"><i
                                 class="fa-solid fa-circle-question"></i><span>Central de Ajuda</span></a></li>
-                    <li><a class="sidebar-link" href="/pages/login/login.html"><i
+                    <li><a class="sidebar-link" href="/login"><i
                                 class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
                 </ul>
                 <div class="sidebar-toggle-wrapper">
@@ -52,12 +52,58 @@ Não inclua `
                             <i class="fas fa-bars"></i>
                         </button>
                         <h1 class="header-title">Gestão de Produtos</h1>
-                        <div class="header-user-actions">
-                            <span>Bem-vindo, Lojista</span>
-                            <div class="header-actions">
-                                <!-- ações do header (notificações, conta, etc.) -->
+
+                <div class="header-user-actions">
+                    <span>Bem-vindo, Lojista</span>
+                    <div class="header-actions">
+                        <div class="header-action-item">
+                            <button class="header-action-btn" id="newsBtn" title="Novidades">
+                                <i class="fa-solid fa-gift"></i>
+                            </button>
+                            <div class="dropdown-menu" id="newsDropdown">
+                                <div class="dropdown-header">Novidades da Plataforma</div>
+                                <ul>
+                                    <li><a href="#">Nova integração com transportadoras!</a></li>
+                                    <li><a href="#">Dashboard de relatórios atualizado.</a></li>
+                                </ul>
                             </div>
                         </div>
+
+                        <div class="header-action-item">
+                            <button class="header-action-btn" id="notificationsBtn" title="Notificações">
+                                <i class="fa-solid fa-bell"></i>
+                                <span class="notification-badge">3</span>
+                            </button>
+                            <div class="dropdown-menu" id="notificationsDropdown">
+                                <div class="dropdown-header">Notificações</div>
+                                <ul>
+                                    <li><a href="#">Nova devolução registrada.</a></li>
+                                    <li><a href="#">Produto 'Camiseta Azul' com baixo estoque.</a></li>
+                                    <li><a href="#">Sua fatura mensal foi gerada.</a></li>
+                                </ul>
+                                <div class="dropdown-footer"><a href="#">Ver todas</a></div>
+                            </div>
+                        </div>
+
+                        <!-- Botão Mudar Tema (Lua/Sol) -->
+                        <button class="header-action-btn" id="themeToggleBtn" title="Mudar Tema">
+                            <i class="fa-solid fa-moon" id="themeIcon"></i>
+                        </button>
+
+                        <div class="header-action-item">
+                            <button class="header-action-btn" id="accountBtn" title="Minha Conta">
+                                <i class="fa-solid fa-user-circle"></i>
+                            </button>
+                            <div class="dropdown-menu" id="accountDropdown">
+                                <ul>
+                                    <li><a href="/pages/configuracao/configuracao.html"><i class="fa-solid fa-cog"></i> Configurações da Conta</a></li>
+                                    <li><a href="/assinatura"><i class="fa-solid fa-file-invoice-dollar"></i> Minha Assinatura</a></li>
+                                    <li><a href="/login"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                     </div>
                 </header>
 

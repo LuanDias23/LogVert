@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =================================================================
-    // 💾 CREATE: SALVAR VENDA (POST)
+    // 💾 SALVAR VENDA (POST)
     // =================================================================
 
     if (addVendaForm) {

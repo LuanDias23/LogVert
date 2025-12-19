@@ -1,15 +1,46 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Lógica para minimizar a sidebar
+    // Lógica para minimizar a sidebar com travamento
     const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebar = document.getElementById('sidebar');
+    let isLocked = false; // Estado de travamento do menu
+
     if (sidebarToggle) {
         sidebarToggle.addEventListener('click', () => {
-            document.body.classList.toggle('sidebar-collapsed');
+            const isCollapsed = document.body.classList.toggle('sidebar-collapsed');
+
+            // Se está recolhendo o menu, ativa o travamento
+            if (isCollapsed) {
+                isLocked = true;
+                sidebar?.setAttribute('data-locked', 'true');
+            } else {
+                // Se está abrindo o menu, desativa o travamento
+                isLocked = false;
+                sidebar?.removeAttribute('data-locked');
+            }
         });
     }
 
+    // Impede que cliques nos links da sidebar abram o menu quando está travado
+    const sidebarLinks = document.querySelectorAll('#sidebar .sidebar-link');
+    sidebarLinks.forEach(link => {
+        link.addEventListener('mouseenter', (e) => {
+            // Se o menu está travado (recolhido), não faz nada no hover
+            if (isLocked) {
+                e.stopPropagation();
+            }
+        });
+
+        link.addEventListener('click', (e) => {
+            // Permite a navegação normal, mas não expande o menu
+            if (isLocked) {
+                // O link funciona normalmente, mas não expande a sidebar
+                e.stopPropagation();
+            }
+        });
+    });
+
     // Lógica para o menu responsivo em telas menores
     const header = document.querySelector('.main-header');
-    const sidebar = document.getElementById('sidebar');
     const overlay = document.createElement('div');
     overlay.classList.add('overlay');
     document.body.appendChild(overlay);

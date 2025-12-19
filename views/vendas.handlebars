@@ -19,13 +19,13 @@ CSS e scripts são injetados via head e pageScripts
             </li>
             <li><a class="sidebar-link" href="/pages/devolucoes/devolucoes.html"><i
                         class="fa-solid fa-arrow-rotate-left"></i><span>Trocas e Devoluções</span></a></li>
-            <li><a class="sidebar-link" href="/pages/integracoes/integracoes.html"><i
+            <li><a class="sidebar-link" href="/integracoes"><i
                         class="fa-solid fa-plug"></i><span>Integrações</span></a></li>
-            <li><a class="sidebar-link" href="/pages/chatbot/chatbot.html"><i
+            <li><a class="sidebar-link" href="/chatbot"><i
                         class="fa-solid fa-robot"></i><span>Chatbot</span></a></li>
             <li><a class="sidebar-link" href="/pages/FAQ/FAQ.html"><i
                         class="fa-solid fa-circle-question"></i><span>Central de Ajuda</span></a></li>
-            <li><a class="sidebar-link" href="/pages/login/login.html"><i
+            <li><a class="sidebar-link" href="/login"><i
                         class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
         </ul>
         <div class="sidebar-toggle-wrapper">
@@ -76,21 +76,21 @@ CSS e scripts são injetados via head e pageScripts
                             </div>
                         </div>
 
+                        <!-- Botão Mudar Tema (Lua/Sol) -->
+                        <button class="header-action-btn" id="themeToggleBtn" title="Mudar Tema">
+                            <i class="fa-solid fa-moon" id="themeIcon"></i>
+                        </button>
+
                         <div class="header-action-item">
                             <button class="header-action-btn" id="accountBtn" title="Minha Conta">
                                 <i class="fa-solid fa-user-circle"></i>
                             </button>
                             <div class="dropdown-menu" id="accountDropdown">
                                 <ul>
-                                    <li><a href="/pages/configuracao/configuracao.html"><i class="fa-solid fa-cog"></i>
-                                            Configurações da Conta</a></li>
-                                    <li><a href="#"><i class="fa-solid fa-palette"></i> Mudar Tema</a></li>
-                                    <li><a href="#"><i class="fa-solid fa-life-ring"></i> Suporte</a></li>
+                                    <li><a href="/pages/configuracao/configuracao.html"><i class="fa-solid fa-cog"></i> Configurações da Conta</a></li>
+                                    <li><a href="/assinatura"><i class="fa-solid fa-file-invoice-dollar"></i> Minha Assinatura</a></li>
+                                    <li><a href="/login"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a></li>
                                 </ul>
-                                <div class="dropdown-footer">
-                                    <a href="/pages/login/login.html" class="logout-link"><i
-                                            class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -229,36 +229,4 @@ CSS e scripts são injetados via head e pageScripts
 </div>
 <div class="overlay"></div>
 
-<!-- Footer corrigido (fora do modal) -->
-<style>
-    /* Ajuste para garantir que o footer fique dentro do main-container visualmente */
-    .dashboard-layout .main-container {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-    }
-
-    .main-content {
-        flex: 1;
-        /* Empurra o footer para baixo */
-    }
-</style>
-<script>
-    // Script para mover o footer para o local correto no DOM se necessário, 
-    // mas vamos tentar corrigir a estrutura HTML primeiro.
-    // O footer deve ser irmão do main-content, dentro de main-container.
-
-    document.addEventListener("DOMContentLoaded", function () {
-        // Correção via JS para garantir estrutura se o Handlebars não for re-renderizado
-        const footer = document.querySelector('.dashboard-footer');
-        const mainContainer = document.querySelector('.main-container');
-        if (footer && mainContainer && footer.parentElement !== mainContainer) {
-            mainContainer.appendChild(footer);
-        }
-    });
-</script>
-
-<!-- Footer inserido dinamicamente via JS ou reposicionado -->
-<footer class="dashboard-footer">
-    <p>© 2025 LogVert - Logística Reversa Inteligente. Todos os direitos reservados.</p>
-</footer>
+{{!-- Footer é fornecido pelo layout main.handlebars --}}

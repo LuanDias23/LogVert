@@ -1,0 +1,134 @@
+<!-- HEADER GLOBAL LOGVERT -->
+<header class="global-header {{#if noSidebar}}no-sidebar{{/if}}">
+    <!-- Logo/Assinatura LogVert -->
+    <div class="header-left">
+        <a href="/" class="header-logo">
+            <img src="/assets/logosemfundo.png" alt="LogVert Logo">
+            <span class="header-logo-text">LogVert</span>
+        </a>
+    </div>
+
+    <!-- Ações do Header -->
+    <div class="header-right">
+        <!-- Novidades da Plataforma -->
+        <div style="position: relative;">
+            <button class="header-icon-btn" data-dropdown="newsDropdown" id="newsBtn" title="Novidades">
+                <i class="fas fa-newspaper"></i>
+            </button>
+
+            <div class="header-dropdown" id="newsDropdown">
+                <div class="dropdown-header">
+                    <h3><i class="fas fa-newspaper"></i> Novidades</h3>
+                    <button class="dropdown-close"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="dropdown-content" id="newsContent">
+                    <!-- Carregado via JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Notificações -->
+        <div style="position: relative;">
+            <button class="header-icon-btn" data-dropdown="notificationsDropdown" id="notificationsBtn" title="Notificações">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge" style="display: none;">0</span>
+            </button>
+
+            <div class="header-dropdown" id="notificationsDropdown">
+                <div class="dropdown-header">
+                    <h3><i class="fas fa-bell"></i> Notificações</h3>
+                    <button class="dropdown-close"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="dropdown-content" id="notificationsContent">
+                    <!-- Carregado via JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Configurações -->
+        <div style="position: relative;">
+            <button class="header-icon-btn" data-dropdown="settingsDropdown" id="settingsBtn" title="Configurações">
+                <i class="fas fa-cog"></i>
+            </button>
+
+            <div class="header-dropdown" id="settingsDropdown">
+                <div class="dropdown-header">
+                    <h3><i class="fas fa-cog"></i> Configurações</h3>
+                    <button class="dropdown-close"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="dropdown-content">
+                    <a href="/perfil" class="settings-item">
+                        <div class="settings-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="settings-text">
+                            <div class="settings-title">Meu Perfil</div>
+                            <div class="settings-description">Editar informações pessoais</div>
+                        </div>
+                        <i class="fas fa-chevron-right settings-arrow"></i>
+                    </a>
+
+                    <a href="/assinatura" class="settings-item">
+                        <div class="settings-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="settings-text">
+                            <div class="settings-title">Assinatura</div>
+                            <div class="settings-description">Gerenciar plano e pagamentos</div>
+                        </div>
+                        <i class="fas fa-chevron-right settings-arrow"></i>
+                    </a>
+
+                    <a href="/integracoes" class="settings-item">
+                        <div class="settings-icon">
+                            <i class="fas fa-plug"></i>
+                        </div>
+                        <div class="settings-text">
+                            <div class="settings-title">Integrações</div>
+                            <div class="settings-description">Conectar redes sociais</div>
+                        </div>
+                        <i class="fas fa-chevron-right settings-arrow"></i>
+                    </a>
+
+                    <a href="/seguranca" class="settings-item">
+                        <div class="settings-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="settings-text">
+                            <div class="settings-title">Segurança</div>
+                            <div class="settings-description">Alterar senha e 2FA</div>
+                        </div>
+                        <i class="fas fa-chevron-right settings-arrow"></i>
+                    </a>
+
+                    <a href="/ajuda" class="settings-item">
+                        <div class="settings-icon">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <div class="settings-text">
+                            <div class="settings-title">Ajuda & Suporte</div>
+                            <div class="settings-description">Central de ajuda e contato</div>
+                        </div>
+                        <i class="fas fa-chevron-right settings-arrow"></i>
+                    </a>
+
+                    <a href="/login" class="settings-item" onclick="localStorage.clear()">
+                        <div class="settings-icon" style="background: rgba(239, 68, 68, 0.15); color: #ef4444;">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </div>
+                        <div class="settings-text">
+                            <div class="settings-title" style="color: #ef4444;">Sair</div>
+                            <div class="settings-description">Fazer logout da conta</div>
+                        </div>
+                        <i class="fas fa-chevron-right settings-arrow"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toggle de Tema Claro/Escuro -->
+        <button class="header-icon-btn theme-toggle-btn" id="themeToggle" title="Alternar Tema">
+            <i class="fas fa-sun"></i>
+        </button>
+    </div>
+</header>

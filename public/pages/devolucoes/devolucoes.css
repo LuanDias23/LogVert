@@ -93,6 +93,11 @@ body.sidebar-collapsed .sidebar-link span { opacity: 0; width: 0; pointer-events
 body.sidebar-collapsed .sidebar-toggle i { transform: rotate(180deg); }
 body.sidebar-collapsed .main-container { margin-left: 90px; }
 
+/* Prevent sidebar expansion when locked */
+.sidebar[data-locked="true"]:hover { width: 90px !important; }
+body.sidebar-collapsed .sidebar[data-locked="true"]:hover { width: 90px !important; }
+body.sidebar-collapsed .sidebar[data-locked="true"]:hover .sidebar-link span { opacity: 0 !important; width: 0 !important; }
+
 /* ============================================= */
 /* 3. ESTILOS DO CONTEÚDO (Copiado) */
 /* ============================================= */

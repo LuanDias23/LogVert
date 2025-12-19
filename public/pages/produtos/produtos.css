@@ -1,6 +1,8 @@
 /* 1. Importa o design principal do seu dashboard */
 @import url('../menu.lojista/menuLojista.css');
 
+/* 1.5. Estilos dos ícones do header e dropdowns são fornecidos pelo menuLojista.css */
+
 /* 2. Estilos específicos da página de Produtos */
 
 .page-header {

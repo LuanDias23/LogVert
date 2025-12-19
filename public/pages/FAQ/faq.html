@@ -24,20 +24,20 @@
                 <img src="/assets/logosemfundo.png" alt="Logo LogVert" class="sidebar-logo">
             </div>
             <ul class="sidebar-menu">
-                <li><a class="sidebar-link" href="/pages/menu.lojista/menuLojista.html"><i
+                <li><a class="sidebar-link" href="/menu-lojista"><i
                             class="fa-solid fa-house"></i><span>Início</span></a></li>
                 <li><a class="sidebar-link" href="/produtos"><i class="fa-solid fa-box"></i><span>Produto</span></a>
                 </li>
                 <li><a class="sidebar-link" href="/vendas"><i class="fa-solid fa-truck"></i><span>Venda</span></a></li>
-                <li><a class="sidebar-link" href="/pages/devolucoes/devolucoes.html"><i
+                <li><a class="sidebar-link" href="/devolucoes"><i
                             class="fa-solid fa-arrow-rotate-left"></i><span>Trocas e Devoluções</span></a></li>
-                <li><a class="sidebar-link" href="/pages/integracoes/integracoes.html"><i
+                <li><a class="sidebar-link" href="/integracoes"><i
                             class="fa-solid fa-plug"></i><span>Integrações</span></a></li>
-                <li><a class="sidebar-link" href="/pages/chatbot/chatbot.html"><i
+                <li><a class="sidebar-link" href="/chatbot"><i
                             class="fa-solid fa-robot"></i><span>Chatbot</span></a></li>
                 <li><a class="sidebar-link active" href="/pages/FAQ/FAQ.html"><i
                             class="fa-solid fa-circle-question"></i><span>Central de Ajuda</span></a></li>
-                <li><a class="sidebar-link" href="/pages/login/login.html"><i
+                <li><a class="sidebar-link" href="/login"><i
                             class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
             </ul>
 
@@ -89,22 +89,21 @@
                                 </div>
                             </div>
 
+                            <!-- Botão Mudar Tema (Lua/Sol) -->
+                            <button class="header-action-btn" id="themeToggleBtn" title="Mudar Tema">
+                                <i class="fa-solid fa-moon" id="themeIcon"></i>
+                            </button>
+
                             <div class="header-action-item">
                                 <button class="header-action-btn" id="accountBtn" title="Minha Conta">
                                     <i class="fa-solid fa-user-circle"></i>
                                 </button>
                                 <div class="dropdown-menu" id="accountDropdown">
                                     <ul>
-                                        <li><a href="/pages/configuracao/configuracao.html"><i
-                                                    class="fa-solid fa-cog"></i> Configurações</a></li>
-                                        <li><a href="/pages/assinatura/assinatura.html"><i
-                                                    class="fa-solid fa-credit-card"></i> Minha Assinatura</a></li>
-                                        <li><a href="#"><i class="fa-solid fa-palette"></i> Mudar Tema</a></li>
+                                        <li><a href="/pages/configuracao/configuracao.html"><i class="fa-solid fa-cog"></i> Configurações da Conta</a></li>
+                                        <li><a href="/assinatura"><i class="fa-solid fa-file-invoice-dollar"></i> Minha Assinatura</a></li>
+                                        <li><a href="/login"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a></li>
                                     </ul>
-                                    <div class="dropdown-footer">
-                                        <a href="/pages/login/login.html" class="logout-link"><i
-                                                class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -430,7 +429,7 @@
 
             <!-- Rodapé Global -->
             <footer class="global-footer">
-                <p>© 2025 LogVert - Logística Reversa Inteligente. Todos os direitos reservados.</p>
+                <p>© 2025 LogVert. Todos os direitos reservados.</p>
             </footer>
         </div>
     </div>

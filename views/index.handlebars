@@ -1,26 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LogVert | Logística Reversa</title>
+    <title>{{title}}</title>
+    <meta name="description" content="LogVert - Transforme sua logística reversa em vantagem competitiva. Automatize trocas e devoluções com IA.">
 
-    <!-- Este caminho já estava CORRETO -->
-    <link rel="stylesheet" href="/pages/index/welcome.css">
+    {{{head}}}
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-
 <body>
 
     <div class="hero-video-background">
         <video playsinline autoplay muted loop>
-            <!-- 
-              AJUSTE 1: Corrigido o caminho do vídeo (adicionado / no início).
-              Assumindo que o vídeo está em /assets/videos/
-            -->
             <source src="/assets/videos/logistics_video.mp4" type="video/mp4">
             Seu navegador não suporta vídeos.
         </video>
@@ -29,11 +23,9 @@
 
     <header class="main-header">
         <nav class="main-nav" id="mainNav">
-            <!-- Este caminho já estava CORRETO -->
-            <a href="#" class="logo-link"><img src="/assets/logosemfundo.png" alt="Logo LogVert" class="logo"></a>
+            <a href="/" class="logo-link"><img src="/assets/logosemfundo.png" alt="Logo LogVert" class="logo"></a>
 
             <ul class="main-menu" id="mainMenu">
-                <!-- Estes links de âncora estão CORRETOS -->
                 <li><a href="#features">Diferenciais</a></li>
                 <li><a href="#how-it-works">Como Funciona</a></li>
                 <li><a href="#pricing">Planos</a></li>
@@ -41,8 +33,7 @@
                 <li><a href="#faq">FAQ</a></li>
             </ul>
             <div class="nav-buttons">
-                <!-- Este caminho já estava CORRETO -->
-                <a href="/pages/login/login.html" class="btn btn-secondary">Entrar</a>
+                <a href="/login" class="btn btn-secondary">Entrar</a>
                 <a href="#demonstracao" class="btn btn-primary">Solicitar Demonstração</a>
             </div>
             <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
@@ -340,9 +331,6 @@
             <div class="footer-column">
                 <h4>Soluções</h4>
                 <ul>
-                    <!-- 
-                      AJUSTE 2: Corrigidos os links do rodapé (para âncoras locais)
-                    -->
                     <li><a href="#features">Diferenciais</a></li>
                     <li><a href="#how-it-works">Como Funciona</a></li>
                     <li><a href="#pricing">Planos</a></li>
@@ -353,13 +341,10 @@
             <div class="footer-column">
                 <h4>Institucional</h4>
                 <ul>
-                    <!-- 
-                      AJUSTE 3: Corrigidos os links do rodapé (para os arquivos .html completos)
-                    -->
-                    <li><a href="/pages/sobre-nos/sobre-nos.html">Sobre Nós</a></li>
-                    <li><a href="/pages/carreiras/carreiras.html">Carreiras</a></li>
-                    <li><a href="/pages/politica-termos/politica.html">Política de Privacidade</a></li>
-                    <li><a href="/pages/politica-termos/termos.html">Termos de Uso</a></li>
+                    <li><a href="/sobre-nos">Sobre Nós</a></li>
+                    <li><a href="/carreiras">Carreiras</a></li>
+                    <li><a href="/politica-privacidade">Política de Privacidade</a></li>
+                    <li><a href="/termos-uso">Termos de Uso</a></li>
                 </ul>
             </div>
 
@@ -390,21 +375,16 @@
             </div>
 
             <div class="footer-copyright">
-                <p>&copy; 2025 LogVert | Todos os Direitos Reservados.</p>
+                <p>&copy; {{year}} LogVert | Todos os Direitos Reservados.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Botão Voltar ao Topo -->
     <button class="back-to-top" id="backToTopBtn" title="Voltar ao topo">
         <i class="fas fa-chevron-up"></i>
     </button>
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-
-
-    <script src="/js/api/apiClient.js"></script>
-    <script src="/pages/index/welcome.js" defer></script>
+    {{{pageScripts}}}
 </body>
-
 </html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    {{{head}}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div id="dashboard-particles"></div>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="/assets/logosemfundo.png" alt="Logo LogVert" class="sidebar-logo">
+            </div>
+            <ul class="sidebar-menu">
+                <li><a class="sidebar-link" href="/pages/menu.lojista/menuLojista.html"><i class="fa-solid fa-house"></i><span>Início</span></a></li>
+                <li><a class="sidebar-link" href="/produtos"><i class="fa-solid fa-box"></i><span>Produto</span></a></li>
+                <li><a class="sidebar-link" href="/vendas"><i class="fa-solid fa-truck"></i><span>Venda</span></a></li>
+                <li><a class="sidebar-link" href="/pages/devolucoes/devolucoes.html"><i class="fa-solid fa-arrow-rotate-left"></i><span>Trocas e Devoluções</span></a></li>
+                <li><a class="sidebar-link" href="/integracoes"><i class="fa-solid fa-plug"></i><span>Integrações</span></a></li>
+                <li><a class="sidebar-link" href="/chatbot"><i class="fa-solid fa-robot"></i><span>Chatbot</span></a></li>
+                <li><a class="sidebar-link" href="/pages/FAQ/FAQ.html"><i class="fa-solid fa-circle-question"></i><span>Central de Ajuda</span></a></li>
+                <li><a class="sidebar-link" href="/login"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
+            </ul>
+
+            <div class="sidebar-toggle-wrapper">
+                <button class="sidebar-toggle" id="sidebarToggle" title="Minimizar menu">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+            </div>
+        </aside>
+
+        <div class="main-container">
+            <header class="main-header">
+                <div class="header-content">
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="header-title">Minha Assinatura</h1>
+
+                    <div class="header-user-actions">
+                        <span>Bem-vindo, Lojista</span>
+                        <div class="header-actions">
+                            <div class="header-action-item">
+                                <button class="header-action-btn" id="newsBtn" title="Novidades">
+                                    <i class="fa-solid fa-gift"></i>
+                                </button>
+                                <div class="dropdown-menu" id="newsDropdown">
+                                    <div class="dropdown-header">Novidades da Plataforma</div>
+                                    <ul>
+                                        <li><a href="#">Nova integração com transportadoras!</a></li>
+                                        <li><a href="#">Dashboard de relatórios atualizado.</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="header-action-item">
+                                <button class="header-action-btn" id="notificationsBtn" title="Notificações">
+                                    <i class="fa-solid fa-bell"></i>
+                                    <span class="notification-badge">3</span>
+                                </button>
+                                <div class="dropdown-menu" id="notificationsDropdown">
+                                    <div class="dropdown-header">Notificações</div>
+                                    <ul>
+                                        <li><a href="#">Nova devolução registrada.</a></li>
+                                        <li><a href="#">Produto 'Camiseta Azul' com baixo estoque.</a></li>
+                                        <li><a href="#">Sua fatura mensal foi gerada.</a></li>
+                                    </ul>
+                                    <div class="dropdown-footer"><a href="#">Ver todas</a></div>
+                                </div>
+                            </div>
+
+                            <!-- Botão Mudar Tema (Lua/Sol) -->
+                            <button class="header-action-btn" id="themeToggleBtn" title="Mudar Tema">
+                                <i class="fa-solid fa-moon" id="themeIcon"></i>
+                            </button>
+
+                            <div class="header-action-item">
+                                <button class="header-action-btn" id="accountBtn" title="Minha Conta">
+                                    <i class="fa-solid fa-user-circle"></i>
+                                </button>
+                                <div class="dropdown-menu" id="accountDropdown">
+                                    <ul>
+                                        <li><a href="/pages/configuracao/configuracao.html"><i class="fa-solid fa-cog"></i> Configurações da Conta</a></li>
+                                        <li><a href="/assinatura"><i class="fa-solid fa-file-invoice-dollar"></i> Minha Assinatura</a></li>
+                                        <li><a href="/login"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="main-content">
+                <div class="assinatura-container">
+            <!-- Plano Atual -->
+            <div class="current-plan-section">
+                <div class="current-plan-card" id="currentPlanCard">
+                    <div class="plan-badge">
+                        <i class="fas fa-star"></i>
+                        <span>Plano Atual</span>
+                    </div>
+                    <div class="plan-header">
+                        <div class="plan-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="plan-info">
+                            <h2 class="plan-name">Professional</h2>
+                            <p class="plan-description">Ideal para médias empresas</p>
+                        </div>
+                        <div class="plan-price">
+                            <span class="price-currency">R$</span>
+                            <span class="price-value">197</span>
+                            <span class="price-period">/mês</span>
+                        </div>
+                    </div>
+
+                    <div class="plan-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Até 1.000 devoluções/mês</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Integrações ilimitadas</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Chatbot IA avançado</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Suporte prioritário 24/7</span>
+                        </div>
+                    </div>
+
+                    <div class="plan-status">
+                        <div class="status-item">
+                            <span class="status-label">Status:</span>
+                            <span class="status-badge active"><i class="fas fa-circle"></i> Ativo</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Próxima cobrança:</span>
+                            <span class="status-value">15 de Janeiro de 2025</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Método de pagamento:</span>
+                            <span class="status-value"><i class="fab fa-cc-visa"></i> Visa •••• 4242</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Planos Disponíveis (Upgrade) -->
+            <div class="upgrade-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-arrow-up"></i> Fazer Upgrade de Plano</h2>
+                    <p class="section-description">Desbloqueie mais recursos e potencialize seu negócio</p>
+                </div>
+
+                <div class="plans-grid" id="plansGrid">
+                    <!-- Plano Starter -->
+                    <div class="plan-card starter">
+                        <div class="plan-header-card">
+                            <div class="plan-icon-small">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <h3>Starter</h3>
+                            <div class="plan-price-card">
+                                <span class="currency">R$</span>
+                                <span class="value">97</span>
+                                <span class="period">/mês</span>
+                            </div>
+                        </div>
+                        <ul class="plan-features-list">
+                            <li><i class="fas fa-check"></i> Até 200 devoluções/mês</li>
+                            <li><i class="fas fa-check"></i> 2 integrações</li>
+                            <li><i class="fas fa-check"></i> Chatbot IA básico</li>
+                            <li><i class="fas fa-check"></i> Suporte por email</li>
+                        </ul>
+                        <button class="btn-plan disabled">
+                            <i class="fas fa-check"></i> Plano Inferior
+                        </button>
+                    </div>
+
+                    <!-- Plano Professional (ATUAL - MAIS POPULAR) -->
+                    <div class="plan-card professional popular current">
+                        <div class="popular-badge">
+                            <i class="fas fa-fire"></i> Mais Popular
+                        </div>
+                        <div class="current-badge">
+                            <i class="fas fa-check-circle"></i> Seu Plano
+                        </div>
+                        <div class="plan-header-card">
+                            <div class="plan-icon-small">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <h3>Professional</h3>
+                            <div class="plan-price-card">
+                                <span class="currency">R$</span>
+                                <span class="value">197</span>
+                                <span class="period">/mês</span>
+                            </div>
+                        </div>
+                        <ul class="plan-features-list">
+                            <li><i class="fas fa-check"></i> Até 1.000 devoluções/mês</li>
+                            <li><i class="fas fa-check"></i> Integrações ilimitadas</li>
+                            <li><i class="fas fa-check"></i> Chatbot IA avançado</li>
+                            <li><i class="fas fa-check"></i> Suporte prioritário 24/7</li>
+                        </ul>
+                        <button class="btn-plan current-plan">
+                            <i class="fas fa-crown"></i> Plano Atual
+                        </button>
+                    </div>
+
+                    <!-- Plano Enterprise -->
+                    <div class="plan-card enterprise">
+                        <div class="plan-header-card">
+                            <div class="plan-icon-small">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <h3>Enterprise</h3>
+                            <div class="plan-price-card">
+                                <span class="currency">R$</span>
+                                <span class="value">397</span>
+                                <span class="period">/mês</span>
+                            </div>
+                        </div>
+                        <ul class="plan-features-list">
+                            <li><i class="fas fa-check"></i> Devoluções ilimitadas</li>
+                            <li><i class="fas fa-check"></i> Integrações ilimitadas</li>
+                            <li><i class="fas fa-check"></i> IA personalizada</li>
+                            <li><i class="fas fa-check"></i> Gerente de conta dedicado</li>
+                        </ul>
+                        <button class="btn-plan upgrade" data-plan="enterprise">
+                            <i class="fas fa-arrow-up"></i> Fazer Upgrade
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Histórico de Pagamentos -->
+            <div class="payment-history-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-history"></i> Histórico de Pagamentos</h2>
+                    <button class="btn-download" id="downloadInvoices">
+                        <i class="fas fa-download"></i> Baixar Todas
+                    </button>
+                </div>
+
+                <div class="payments-table-wrapper">
+                    <table class="payments-table" id="paymentsTable">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Descrição</th>
+                                <th>Método</th>
+                                <th>Valor</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="paymentsTableBody">
+                            <!-- Carregado via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Gerenciar Formas de Pagamento -->
+            <div class="payment-methods-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-credit-card"></i> Gerenciar Formas de Pagamento</h2>
+                    <button class="btn-add-card" id="addCardBtn">
+                        <i class="fas fa-plus"></i> Adicionar Cartão
+                    </button>
+                </div>
+
+                <div class="cards-grid" id="cardsGrid">
+                    <!-- Carregado via JS -->
+                </div>
+            </div>
+
+            <!-- Modal: Adicionar Cartão -->
+            <div class="modal-overlay" id="addCardModal">
+                <div class="modal-card">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-credit-card"></i> Adicionar Novo Cartão</h3>
+                        <button class="modal-close" id="closeAddCardModal">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="addCardForm">
+                            <div class="form-group">
+                                <label for="cardNumber">Número do Cartão</label>
+                                <input type="text" id="cardNumber" placeholder="0000 0000 0000 0000" maxlength="19" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cardName">Nome no Cartão</label>
+                                <input type="text" id="cardName" placeholder="Como está impresso no cartão" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="cardExpiry">Validade</label>
+                                    <input type="text" id="cardExpiry" placeholder="MM/AA" maxlength="5" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cardCVV">CVV</label>
+                                    <input type="text" id="cardCVV" placeholder="123" maxlength="4" required>
+                                </div>
+                            </div>
+                            <div class="form-message" id="cardFormMessage"></div>
+                            <div class="modal-actions">
+                                <button type="button" class="btn-secondary" id="cancelAddCard">Cancelar</button>
+                                <button type="submit" class="btn-primary">
+                                    <i class="fas fa-save"></i> Salvar Cartão
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal: Confirmar Upgrade -->
+            <div class="modal-overlay" id="upgradeModal">
+                <div class="modal-card">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-arrow-up"></i> Confirmar Upgrade de Plano</h3>
+                        <button class="modal-close" id="closeUpgradeModal">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="upgrade-summary" id="upgradeSummary">
+                            <!-- Preenchido via JS -->
+                        </div>
+                        <div class="form-message" id="upgradeFormMessage"></div>
+                        <div class="modal-actions">
+                            <button type="button" class="btn-secondary" id="cancelUpgrade">Cancelar</button>
+                            <button type="button" class="btn-primary" id="confirmUpgrade">
+                                <i class="fas fa-check"></i> Confirmar Upgrade
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                </div>
+            </main>
+
+            <footer class="global-footer">
+                <p>© {{year}} LogVert - Logística Reversa Inteligente. Todos os direitos reservados.</p>
+            </footer>
+        </div>
+    </div>
+
+    <div class="overlay"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    {{{pageScripts}}}
+</body>
+</html>
