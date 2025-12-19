@@ -13,7 +13,7 @@ Sistema completo de gestão de vendas com geração automática de número seria
 
 1. Clone o repositório:
 ```bash
-cd https://github.com/LuanDias23/LogVert.git)
+cd https://github.com/LuanDias23/LogVert.git
 ```
 
 2. Instale as dependências:
