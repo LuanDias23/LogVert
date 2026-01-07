@@ -55,35 +55,120 @@
                     <h1 class="header-title">Dashboard</h1>
 
                     <div class="header-user-actions">
-                        <span>Bem-vindo, Lojista</span>
+                        <span class="welcome-text">Bem-vindo, <strong>Lojista</strong></span>
 
                         <div class="header-actions">
+                            <!-- Botão de Novidades -->
                             <div class="header-action-item">
                                 <button class="header-action-btn" id="newsBtn" title="Novidades">
                                     <i class="fa-solid fa-gift"></i>
+                                    <span class="notification-badge news-badge">2</span>
                                 </button>
-                                <div class="dropdown-menu" id="newsDropdown">
-                                    <div class="dropdown-header">Novidades da Plataforma</div>
-                                    <ul>
-                                        <li><a href="#">Nova integração com transportadoras!</a></li>
-                                        <li><a href="#">Dashboard de relatórios atualizado.</a></li>
+                                <div class="dropdown-menu dropdown-news" id="newsDropdown">
+                                    <div class="dropdown-header">
+                                        <i class="fa-solid fa-sparkles"></i>
+                                        <span>Novidades da Plataforma</span>
+                                    </div>
+                                    <ul class="news-list">
+                                        <li class="news-item unread">
+                                            <a href="#">
+                                                <div class="news-icon">
+                                                    <i class="fa-solid fa-truck-fast"></i>
+                                                </div>
+                                                <div class="news-content">
+                                                    <span class="news-badge-new">NOVO</span>
+                                                    <p class="news-title">Nova integração com transportadoras!</p>
+                                                    <span class="news-date"><i class="fa-regular fa-clock"></i> há 2 dias</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="news-item unread">
+                                            <a href="#">
+                                                <div class="news-icon">
+                                                    <i class="fa-solid fa-chart-line"></i>
+                                                </div>
+                                                <div class="news-content">
+                                                    <span class="news-badge-new">NOVO</span>
+                                                    <p class="news-title">Dashboard de relatórios atualizado</p>
+                                                    <span class="news-date"><i class="fa-regular fa-clock"></i> há 5 dias</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="news-item">
+                                            <a href="#">
+                                                <div class="news-icon">
+                                                    <i class="fa-solid fa-robot"></i>
+                                                </div>
+                                                <div class="news-content">
+                                                    <p class="news-title">Chatbot com IA melhorada</p>
+                                                    <span class="news-date"><i class="fa-regular fa-clock"></i> há 2 semanas</span>
+                                                </div>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
 
+                            <!-- Botão de Notificações -->
                             <div class="header-action-item">
                                 <button class="header-action-btn" id="notificationsBtn" title="Notificações">
                                     <i class="fa-solid fa-bell"></i>
                                     <span class="notification-badge">3</span>
                                 </button>
-                                <div class="dropdown-menu" id="notificationsDropdown">
-                                    <div class="dropdown-header">Notificações</div>
-                                    <ul>
-                                        <li><a href="#">Nova devolução registrada.</a></li>
-                                        <li><a href="#">Produto 'Camiseta Azul' com baixo estoque.</a></li>
-                                        <li><a href="#">Sua fatura mensal foi gerada.</a></li>
+                                <div class="dropdown-menu dropdown-notifications" id="notificationsDropdown">
+                                    <div class="dropdown-header">
+                                        <i class="fa-solid fa-bell"></i>
+                                        <span>Notificações</span>
+                                        <button class="mark-all-read" title="Marcar todas como lidas">
+                                            <i class="fa-solid fa-check-double"></i>
+                                        </button>
+                                    </div>
+                                    <ul class="notifications-list">
+                                        <li class="notification-item unread">
+                                            <a href="#">
+                                                <div class="notification-icon type-return">
+                                                    <i class="fa-solid fa-arrow-rotate-left"></i>
+                                                </div>
+                                                <div class="notification-content">
+                                                    <p class="notification-title">Nova devolução registrada</p>
+                                                    <span class="notification-desc">Pedido #4523 - Cliente solicitou devolução</span>
+                                                    <span class="notification-time"><i class="fa-regular fa-clock"></i> há 5 minutos</span>
+                                                </div>
+                                                <span class="unread-dot"></span>
+                                            </a>
+                                        </li>
+                                        <li class="notification-item unread">
+                                            <a href="#">
+                                                <div class="notification-icon type-stock">
+                                                    <i class="fa-solid fa-box-open"></i>
+                                                </div>
+                                                <div class="notification-content">
+                                                    <p class="notification-title">Estoque baixo</p>
+                                                    <span class="notification-desc">Produto 'Camiseta Azul' com apenas 3 unidades</span>
+                                                    <span class="notification-time"><i class="fa-regular fa-clock"></i> há 1 hora</span>
+                                                </div>
+                                                <span class="unread-dot"></span>
+                                            </a>
+                                        </li>
+                                        <li class="notification-item unread">
+                                            <a href="#">
+                                                <div class="notification-icon type-billing">
+                                                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                                                </div>
+                                                <div class="notification-content">
+                                                    <p class="notification-title">Fatura disponível</p>
+                                                    <span class="notification-desc">Sua fatura mensal de Janeiro foi gerada</span>
+                                                    <span class="notification-time"><i class="fa-regular fa-clock"></i> há 3 horas</span>
+                                                </div>
+                                                <span class="unread-dot"></span>
+                                            </a>
+                                        </li>
                                     </ul>
-                                    <div class="dropdown-footer"><a href="#">Ver todas</a></div>
+                                    <div class="dropdown-footer">
+                                        <a href="/pages/notificacoes/notificacoes.html">
+                                            <i class="fa-solid fa-list"></i> Ver todas as notificações
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
 
@@ -110,45 +195,136 @@
             </header>
 
             <main class="main-content">
+                <!-- Seção de Estatísticas Rápidas -->
+                <section class="stats-section">
+                    <div class="stats-grid">
+                        <div class="stat-card stat-sales">
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-value">47</span>
+                                <span class="stat-label">Vendas Hoje</span>
+                            </div>
+                            <div class="stat-trend positive">
+                                <i class="fa-solid fa-arrow-up"></i> 12%
+                            </div>
+                        </div>
+                        <div class="stat-card stat-returns">
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-arrow-rotate-left"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-value">5</span>
+                                <span class="stat-label">Devoluções Pendentes</span>
+                            </div>
+                            <div class="stat-trend negative">
+                                <i class="fa-solid fa-arrow-up"></i> 2
+                            </div>
+                        </div>
+                        <div class="stat-card stat-products">
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-box"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-value">124</span>
+                                <span class="stat-label">Produtos Ativos</span>
+                            </div>
+                            <div class="stat-trend neutral">
+                                <i class="fa-solid fa-minus"></i> 0
+                            </div>
+                        </div>
+                        <div class="stat-card stat-revenue">
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-brazilian-real-sign"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-value">R$ 8.450</span>
+                                <span class="stat-label">Receita do Mês</span>
+                            </div>
+                            <div class="stat-trend positive">
+                                <i class="fa-solid fa-arrow-up"></i> 18%
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 <h2 class="section-title">ADICIONAR OU EDITAR</h2>
                 <div class="cards-grid">
                     <a href="/pages/produtos/produtos.html" class="card-link" title="Adicionar ou editar produtos">
-                        <div class="card">
-                            <i class="fa-solid fa-box fa-2x"></i>
-                            <span class="card-text">PRODUTO</span>
+                        <div class="card card-gradient-blue">
+                            <div class="card-icon-wrapper">
+                                <i class="fa-solid fa-box fa-2x"></i>
+                            </div>
+                            <div class="card-info">
+                                <span class="card-text">PRODUTO</span>
+                                <span class="card-description">Gerencie seu catálogo de produtos</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right card-arrow"></i>
                         </div>
                     </a>
                     <a href="/pages/vendas/venda.html" class="card-link" title="Adicionar ou editar vendas">
-                        <div class="card">
-                            <i class="fa-solid fa-truck fa-2x"></i>
-                            <span class="card-text">VENDA</span>
+                        <div class="card card-gradient-green">
+                            <div class="card-icon-wrapper">
+                                <i class="fa-solid fa-truck fa-2x"></i>
+                            </div>
+                            <div class="card-info">
+                                <span class="card-text">VENDA</span>
+                                <span class="card-description">Registre novas vendas</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right card-arrow"></i>
                         </div>
                     </a>
                 </div>
+                
                 <h2 class="section-title">VISUALIZAR INFORMAÇÕES</h2>
-                <div class="cards-grid">
+                <div class="cards-grid cards-grid-4">
                     <a href="/pages/devolucoes/devolucoes.html" class="card-link" title="Gerenciar trocas e devoluções">
-                        <div class="card">
-                            <i class="fa-solid fa-arrow-rotate-left fa-2x"></i>
-                            <span class="card-text">TROCAS E DEVOLUÇÃO</span>
+                        <div class="card card-gradient-orange">
+                            <div class="card-icon-wrapper">
+                                <i class="fa-solid fa-arrow-rotate-left fa-2x"></i>
+                            </div>
+                            <div class="card-info">
+                                <span class="card-text">TROCAS E DEVOLUÇÃO</span>
+                                <span class="card-description">Gerencie solicitações de clientes</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right card-arrow"></i>
                         </div>
                     </a>
                     <a href="/pages/integracoes/integracoes.html" class="card-link" title="Conectar redes sociais">
-                        <div class="card">
-                            <i class="fa-solid fa-plug fa-2x"></i>
-                            <span class="card-text">INTEGRAÇÕES</span>
+                        <div class="card card-gradient-purple">
+                            <div class="card-icon-wrapper">
+                                <i class="fa-solid fa-plug fa-2x"></i>
+                            </div>
+                            <div class="card-info">
+                                <span class="card-text">INTEGRAÇÕES</span>
+                                <span class="card-description">Conecte suas redes e sistemas</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right card-arrow"></i>
                         </div>
                     </a>
                     <a href="/pages/chatbot/chatbot.html" class="card-link" title="Automatizar com ChatBot">
-                        <div class="card">
-                            <i class="fa-solid fa-robot fa-2x"></i>
-                            <span class="card-text">CHATBOT</span>
+                        <div class="card card-gradient-cyan">
+                            <div class="card-icon-wrapper">
+                                <i class="fa-solid fa-robot fa-2x"></i>
+                            </div>
+                            <div class="card-info">
+                                <span class="card-text">CHATBOT</span>
+                                <span class="card-description">Automatize o atendimento com IA</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right card-arrow"></i>
                         </div>
                     </a>
                     <a href="/pages/FAQ/FAQ.html" class="card-link" title="Central de Ajuda">
-                        <div class="card">
-                            <i class="fa-solid fa-circle-question fa-2x"></i>
-                            <span class="card-text">CENTRAL DE AJUDA</span>
+                        <div class="card card-gradient-pink">
+                            <div class="card-icon-wrapper">
+                                <i class="fa-solid fa-circle-question fa-2x"></i>
+                            </div>
+                            <div class="card-info">
+                                <span class="card-text">CENTRAL DE AJUDA</span>
+                                <span class="card-description">Tire suas dúvidas</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right card-arrow"></i>
                         </div>
                     </a>
                 </div>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogVert | Notificações</title>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/pages/menu.lojista/menuLojista.css">
+    <link rel="stylesheet" href="/pages/notificacoes/notificacoes.css">
+    <link rel="stylesheet" href="/css/components/chat-widget.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+
+    <div id="dashboard-particles"></div>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="/assets/logosemfundo.png" alt="Logo LogVert" class="sidebar-logo">
+            </div>
+            <ul class="sidebar-menu">
+                <li><a class="sidebar-link" href="/pages/menu.lojista/menuLojista.html"><i
+                            class="fa-solid fa-house"></i><span>Início</span></a></li>
+                <li><a class="sidebar-link" href="/produtos"><i class="fa-solid fa-box"></i><span>Produto</span></a>
+                </li>
+                <li><a class="sidebar-link" href="/vendas"><i class="fa-solid fa-truck"></i><span>Venda</span></a></li>
+                <li><a class="sidebar-link" href="/pages/devolucoes/devolucoes.html"><i
+                            class="fa-solid fa-arrow-rotate-left"></i><span>Trocas e Devoluções</span></a></li>
+                <li><a class="sidebar-link" href="/pages/integracoes/integracoes.html"><i
+                            class="fa-solid fa-plug"></i><span>Integrações</span></a></li>
+                <li><a class="sidebar-link" href="/pages/chatbot/chatbot.html"><i
+                            class="fa-solid fa-robot"></i><span>Chatbot</span></a></li>
+                <li><a class="sidebar-link" href="/pages/FAQ/FAQ.html"><i
+                            class="fa-solid fa-circle-question"></i><span>Central de Ajuda</span></a></li>
+                <li><a class="sidebar-link" href="/pages/login/login.html"><i
+                            class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
+            </ul>
+
+            <div class="sidebar-toggle-wrapper">
+                <button class="sidebar-toggle" id="sidebarToggle" title="Minimizar menu">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+            </div>
+        </aside>
+
+        <div class="main-container">
+            <header class="main-header">
+                <div class="header-content">
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="header-title">Notificações</h1>
+
+                    <div class="header-user-actions">
+                        <span class="welcome-text">Bem-vindo, <strong>Lojista</strong></span>
+
+                        <div class="header-actions">
+                            <!-- Botão Mudar Tema -->
+                            <button class="header-action-btn" id="themeToggleBtn" title="Mudar Tema">
+                                <i class="fa-solid fa-moon" id="themeIcon"></i>
+                            </button>
+
+                            <div class="header-action-item">
+                                <button class="header-action-btn" id="accountBtn" title="Minha Conta">
+                                    <i class="fa-solid fa-user-circle"></i>
+                                </button>
+                                <div class="dropdown-menu" id="accountDropdown">
+                                    <ul>
+                                        <li><a href="/pages/configuracao/configuracao.html"><i
+                                                    class="fa-solid fa-cog"></i> Configurações</a></li>
+                                        <li><a href="/assinatura"><i class="fa-solid fa-file-invoice-dollar"></i> Minha
+                                                Assinatura</a></li>
+                                        <li><a href="/login"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                                Sair</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="main-content notifications-page">
+                <!-- Header da Página -->
+                <div class="page-header">
+                    <div class="page-header-info">
+                        <h2 class="page-title">
+                            <i class="fa-solid fa-bell"></i>
+                            Todas as Notificações
+                        </h2>
+                        <p class="page-subtitle">Gerencie e acompanhe todas as suas notificações</p>
+                    </div>
+                    <div class="page-header-actions">
+                        <button class="btn-action btn-mark-all" id="markAllReadBtn">
+                            <i class="fa-solid fa-check-double"></i>
+                            Marcar todas como lidas
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filtros -->
+                <div class="notifications-filters">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fa-solid fa-layer-group"></i>
+                        Todas
+                        <span class="filter-count">8</span>
+                    </button>
+                    <button class="filter-btn" data-filter="return">
+                        <i class="fa-solid fa-arrow-rotate-left"></i>
+                        Devoluções
+                        <span class="filter-count">3</span>
+                    </button>
+                    <button class="filter-btn" data-filter="stock">
+                        <i class="fa-solid fa-box-open"></i>
+                        Estoque
+                        <span class="filter-count">2</span>
+                    </button>
+                    <button class="filter-btn" data-filter="billing">
+                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                        Faturas
+                        <span class="filter-count">1</span>
+                    </button>
+                    <button class="filter-btn" data-filter="system">
+                        <i class="fa-solid fa-gear"></i>
+                        Sistema
+                        <span class="filter-count">2</span>
+                    </button>
+                </div>
+
+                <!-- Lista de Notificações -->
+                <div class="notifications-container">
+                    <div class="notifications-list-full">
+                        <!-- Notificação 1 - Devolução -->
+                        <div class="notification-card unread" data-type="return">
+                            <div class="notification-card-icon type-return">
+                                <i class="fa-solid fa-arrow-rotate-left"></i>
+                            </div>
+                            <div class="notification-card-content">
+                                <div class="notification-card-header">
+                                    <h4 class="notification-card-title">Nova devolução registrada</h4>
+                                    <span class="notification-card-time">
+                                        <i class="fa-regular fa-clock"></i> há 5 minutos
+                                    </span>
+                                </div>
+                                <p class="notification-card-desc">
+                                    O cliente Maria Silva solicitou a devolução do pedido <strong>#4523</strong>.
+                                    Motivo: Produto com defeito.
+                                </p>
+                                <div class="notification-card-actions">
+                                    <a href="#" class="btn-notification-action primary">
+                                        <i class="fa-solid fa-eye"></i> Ver detalhes
+                                    </a>
+                                    <button class="btn-notification-action" data-action="mark-read">
+                                        <i class="fa-solid fa-check"></i> Marcar como lida
+                                    </button>
+                                </div>
+                            </div>
+                            <span class="unread-indicator"></span>
+                        </div>
+
+                        <!-- Notificação 2 - Estoque -->
+                        <div class="notification-card unread" data-type="stock">
+                            <div class="notification-card-icon type-stock">
+                                <i class="fa-solid fa-box-open"></i>
+                            </div>
+                            <div class="notification-card-content">
+                                <div class="notification-card-header">
+                                    <h4 class="notification-card-title">Alerta de estoque baixo</h4>
+                                    <span class="notification-card-time">
+                                        <i class="fa-regular fa-clock"></i> há 1 hora
+                                    </span>
+                                </div>
+                                <p class="notification-card-desc">
+                                    O produto <strong>"Camiseta Azul - Tamanho M"</strong> está com apenas
+                                    <strong>3 unidades</strong> em estoque. Considere reabastecer.
+                                </p>
+                                <div class="notification-card-actions">
+                                    <a href="/produtos" class="btn-notification-action primary">
+                                        <i class="fa-solid fa-box"></i> Ir para Produtos
+                                    </a>
+                                    <button class="btn-notification-action" data-action="mark-read">
+                                        <i class="fa-solid fa-check"></i> Marcar como lida
+                                    </button>
+                                </div>
+                            </div>
+                            <span class="unread-indicator"></span>
+                        </div>
+
+                        <!-- Notificação 3 - Fatura -->
+                        <div class="notification-card unread" data-type="billing">
+                            <div class="notification-card-icon type-billing">
+                                <i class="fa-solid fa-file-invoice-dollar"></i>
+                            </div>
+                            <div class="notification-card-content">
+                                <div class="notification-card-header">
+                                    <h4 class="notification-card-title">Fatura mensal disponível</h4>
+                                    <span class="notification-card-time">
+                                        <i class="fa-regular fa-clock"></i> há 3 horas
+                                    </span>
+                                </div>
+                                <p class="notification-card-desc">
+                                    Sua fatura do mês de <strong>Janeiro/2026</strong> foi gerada.
+                                    Valor: <strong>R$ 49,90</strong>. Vencimento: 15/01/2026.
+                                </p>
+                                <div class="notification-card-actions">
+                                    <a href="/assinatura" class="btn-notification-action primary">
+                                        <i class="fa-solid fa-receipt"></i> Ver fatura
+                                    </a>
+                                    <button class="btn-notification-action" data-action="mark-read">
+                                        <i class="fa-solid fa-check"></i> Marcar como lida
+                                    </button>
+                                </div>
+                            </div>
+                            <span class="unread-indicator"></span>
+                        </div>
+
+                        <!-- Notificação 4 - Devolução -->
+                        <div class="notification-card" data-type="return">
+                            <div class="notification-card-icon type-return">
+                                <i class="fa-solid fa-arrow-rotate-left"></i>
+                            </div>
+                            <div class="notification-card-content">
+                                <div class="notification-card-header">
+                                    <h4 class="notification-card-title">Devolução aprovada automaticamente</h4>
+                                    <span class="notification-card-time">
+                                        <i class="fa-regular fa-clock"></i> há 1 dia
+                                    </span>
+                                </div>
+                                <p class="notification-card-desc">
+                                    A devolução do pedido <strong>#4501</strong> foi aprovada automaticamente
+                                    pela IA. Etiqueta de envio gerada.
+                                </p>
+                                <div class="notification-card-actions">
+                                    <a href="#" class="btn-notification-action primary">
+                                        <i class="fa-solid fa-eye"></i> Ver detalhes
+                                    </a>
+                                    <button class="btn-notification-action" data-action="delete">
+                                        <i class="fa-solid fa-trash"></i> Excluir
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Notificação 5 - Sistema -->
+                        <div class="notification-card" data-type="system">
+                            <div class="notification-card-icon type-system">
+                                <i class="fa-solid fa-gear"></i>
+                            </div>
+                            <div class="notification-card-content">
+                                <div class="notification-card-header">
+                                    <h4 class="notification-card-title">Atualização do sistema</h4>
+                                    <span class="notification-card-time">
+                                        <i class="fa-regular fa-clock"></i> há 2 dias
+                                    </span>
+                                </div>
+                                <p class="notification-card-desc">
+                                    O sistema foi atualizado para a versão <strong>2.5.0</strong>.
+                                    Novas funcionalidades de relatórios disponíveis.
+                                </p>
+                                <div class="notification-card-actions">
+                                    <a href="#" class="btn-notification-action primary">
+                                        <i class="fa-solid fa-sparkles"></i> Ver novidades
+                                    </a>
+                                    <button class="btn-notification-action" data-action="delete">
+                                        <i class="fa-solid fa-trash"></i> Excluir
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Notificação 6 - Estoque -->
+                        <div class="notification-card" data-type="stock">
+                            <div class="notification-card-icon type-stock">
+                                <i class="fa-solid fa-box-open"></i>
+                            </div>
+                            <div class="notification-card-content">
+                                <div class="notification-card-header">
+                                    <h4 class="notification-card-title">Produto reabastecido</h4>
+                                    <span class="notification-card-time">
+                                        <i class="fa-regular fa-clock"></i> há 3 dias
+                                    </span>
+                                </div>
+                                <p class="notification-card-desc">
+                                    O estoque do produto <strong>"Tênis Esportivo Branco"</strong> foi
+                                    atualizado para <strong>50 unidades</strong>.
+                                </p>
+                                <div class="notification-card-actions">
+                                    <a href="/produtos" class="btn-notification-action primary">
+                                        <i class="fa-solid fa-box"></i> Ver produto
+                                    </a>
+                                    <button class="btn-notification-action" data-action="delete">
+                                        <i class="fa-solid fa-trash"></i> Excluir
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Notificação 7 - Devolução -->
+                        <div class="notification-card" data-type="return">
+                            <div class="notification-card-icon type-return">
+                                <i class="fa-solid fa-arrow-rotate-left"></i>
+                            </div>
+                            <div class="notification-card-content">
+                                <div class="notification-card-header">
+                                    <h4 class="notification-card-title">Devolução concluída</h4>
+                                    <span class="notification-card-time">
+                                        <i class="fa-regular fa-clock"></i> há 5 dias
+                                    </span>
+                                </div>
+                                <p class="notification-card-desc">
+                                    A devolução do pedido <strong>#4489</strong> foi concluída com sucesso.
+                                    Reembolso processado via PIX.
+                                </p>
+                                <div class="notification-card-actions">
+                                    <a href="#" class="btn-notification-action primary">
+                                        <i class="fa-solid fa-eye"></i> Ver detalhes
+                                    </a>
+                                    <button class="btn-notification-action" data-action="delete">
+                                        <i class="fa-solid fa-trash"></i> Excluir
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Notificação 8 - Sistema -->
+                        <div class="notification-card" data-type="system">
+                            <div class="notification-card-icon type-system">
+                                <i class="fa-solid fa-gear"></i>
+                            </div>
+                            <div class="notification-card-content">
+                                <div class="notification-card-header">
+                                    <h4 class="notification-card-title">Integração ativada</h4>
+                                    <span class="notification-card-time">
+                                        <i class="fa-regular fa-clock"></i> há 1 semana
+                                    </span>
+                                </div>
+                                <p class="notification-card-desc">
+                                    A integração com o <strong>Mercado Livre</strong> foi ativada com sucesso.
+                                    Seus produtos serão sincronizados automaticamente.
+                                </p>
+                                <div class="notification-card-actions">
+                                    <a href="/pages/integracoes/integracoes.html"
+                                        class="btn-notification-action primary">
+                                        <i class="fa-solid fa-plug"></i> Ver integrações
+                                    </a>
+                                    <button class="btn-notification-action" data-action="delete">
+                                        <i class="fa-solid fa-trash"></i> Excluir
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Estado vazio (quando não há notificações) -->
+                    <div class="empty-state" id="emptyState" style="display: none;">
+                        <div class="empty-state-icon">
+                            <i class="fa-solid fa-bell-slash"></i>
+                        </div>
+                        <h3>Nenhuma notificação encontrada</h3>
+                        <p>Você não possui notificações nesta categoria.</p>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Rodapé Global -->
+            <footer class="global-footer">
+                <p>© 2025 LogVert. Todos os direitos reservados.</p>
+            </footer>
+        </div>
+    </div>
+    <div class="overlay"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="/js/api/apiClient.js"></script>
+    <script src="/js/components/chat-widget.js"></script>
+    <script src="/pages/menu.lojista/menuLojista.js"></script>
+    <script src="/pages/notificacoes/notificacoes.js"></script>
+</body>
+
+</html>
