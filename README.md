@@ -13,7 +13,7 @@ Sistema completo de gestão de vendas com geração automática de número seria
 
 1. Clone o repositório:
 ```bash
-cd C:\Users\Ericson\Documents\LogVert
+cd https://github.com/LuanDias23/LogVert.git
 ```
 
 2. Instale as dependências:
@@ -206,12 +206,6 @@ localStorage.setItem('authToken', 'seu-token-aqui');
 
 2. Veja requisitos em: BACKEND-REQUIREMENTS.md
 ```
-
-## 📚 Documentação Adicional
-
-- **[BACKEND-REQUIREMENTS.md](BACKEND-REQUIREMENTS.md)** - Requisitos do backend
-- **[CHANGELOG.md](CHANGELOG.md)** - Histórico de alterações
-
 ## 🧪 Testando o Sistema
 
 ### Teste Rápido - Produtos
@@ -324,7 +318,3 @@ Em caso de problemas:
 Este projeto é proprietário da LogVert.
 
 ---
-
-**Desenvolvido com ❤️ por Claude Code**
-
-**Última atualização**: 2025-01-15
