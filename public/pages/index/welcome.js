@@ -53,25 +53,63 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- LÓGICA DA ANIMAÇÃO DE PARTÍCULAS ---
-    // (Seu código original)
-    // Esta verificação agora funciona, pois 'particles.js' foi carregado ANTES
-    if (typeof particlesJS !== 'undefined' && document.getElementById('hero-particles')) {
+    // Configuração atualizada para cobrir toda a tela com mais partículas
+    const particlesElement = document.getElementById('hero-particles');
+    console.log('Particles element:', particlesElement);
+    console.log('particlesJS available:', typeof particlesJS !== 'undefined');
+
+    if (typeof particlesJS !== 'undefined' && particlesElement) {
+        console.log('Initializing particles...');
         particlesJS("hero-particles", {
             "particles": {
-                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#ffffff" },
+                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#1A73E8" },
                 "shape": { "type": "circle" },
-                "opacity": { "value": 0.3, "random": true },
-                "size": { "value": 3, "random": true },
-                "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.2, "width": 1 },
-                "move": { "enable": true, "speed": 1.5, "direction": "none", "random": true, "out_mode": "out" }
+                "opacity": { "value": 0.4, "random": true },
+                "size": { "value": 4, "random": true },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#1A73E8",
+                    "opacity": 0.3,
+                    "width": 1.5
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": true,
+                    "out_mode": "out"
+                }
             },
             "interactivity": {
                 "detect_on": "canvas",
-                "events": { "onhover": { "enable": true, "mode": "grab" }, "resize": true },
-                "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } } }
+                "events": {
+                    "onhover": { "enable": true, "mode": "grab" },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 200,
+                        "line_linked": { "opacity": 0.6 }
+                    }
+                }
             },
             "retina_detect": true
+        }, function() {
+            console.log('Particles initialized successfully!');
+            const canvas = particlesElement.querySelector('canvas');
+            if (canvas) {
+                console.log('Canvas found:', canvas);
+                console.log('Canvas dimensions:', canvas.width, 'x', canvas.height);
+            } else {
+                console.error('Canvas not found inside #hero-particles');
+            }
+        });
+    } else {
+        console.error('Particles not initialized:', {
+            particlesJSAvailable: typeof particlesJS !== 'undefined',
+            elementFound: !!particlesElement
         });
     }
 

@@ -4,7 +4,16 @@
       "Bash(node app.js:*)",
       "Bash(ls -la \"c:\\\\Users\\\\Ericson\\\\Documents\\\\LogVert\\\\views\"\" | grep -E \"chatbot)",
       "Bash(integracoes \")",
-      "Bash(node --version:*)"
+      "Bash(node --version:*)",
+      "Bash(for file in chatbot/chatbot.html integracoes/integracoes.html produtos/produtos.html vendas/venda.html)",
+      "Bash(do if [ -f \"$file\" ])",
+      "Bash(then sed -i '/<title>.*<\\\\/title>/a\\\\    <link rel=\"\"icon\"\" type=\"\"image/png\"\" href=\"\"/assets/logosemfundo.png\"\">' \"$file\")",
+      "Bash(echo:*)",
+      "Bash(fi)",
+      "Bash(done)",
+      "Bash(for file in menu.cliente/menuCliente.html notificacoes/notificacoes.html catalogo/catalogo.html solicitacao/solicitacao.html troca/troca.html sobre-nos/sobre-nos.html)",
+      "Bash(for:*)",
+      "Bash(grep:*)"
     ],
     "deny": [],
     "ask": []
