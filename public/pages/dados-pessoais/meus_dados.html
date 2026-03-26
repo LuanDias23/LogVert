@@ -9,6 +9,41 @@
     <link rel="stylesheet" href="../solicitacao/form_solicitacao.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+document.getElementById("form-meus-dados").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const body = {
+        nome: document.getElementById("nome").value,
+        cpf_cnpj: document.getElementById("cpf_cnpj").value,
+        email: document.getElementById("email").value,
+        celular: document.getElementById("celular").value,
+        telefone: document.getElementById("telefone").value
+    };
+
+    console.log("Enviando:", body);
+
+    try {
+        const response = await fetch("http://localhost:3000/cliente", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        });
+
+        if (response.ok) {
+            alert("Dados salvos com sucesso!");
+        } else {
+            alert("Erro ao salvar dados");
+        }
+
+    } catch (error) {
+        console.error(error);
+        alert("Erro de conexão com servidor");
+    }
+});
+</script>
 
 </head>
 <body>
@@ -79,24 +114,35 @@
         <p class="form-description">Mantenha seus dados atualizados para garantir a comunicação correta.</p>
         
         <form id="form-meus-dados">
-            
-            <div class="form-group">
-                <label for="nome-cliente"><i class="fa-solid fa-user"></i> Nome Completo:</label>
-                <input type="text" id="nome-cliente" name="nome-cliente" value="Cliente LogVert Exemplo" required>
-            </div>
 
-            <div class="form-group">
-                <label for="email-cliente"><i class="fa-solid fa-envelope"></i> E-mail:</label>
-                <input type="email" id="email-cliente" name="email-cliente" value="cliente@logvert.com" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="telefone"><i class="fa-solid fa-phone"></i> Telefone:</label>
-                <input type="text" id="telefone" name="telefone" value="(11) 98765-4321" placeholder="(XX) XXXXX-XXXX">
-            </div>
-            
-            <button type="submit" class="btn-submit">Salvar Informações Pessoais</button>
-        </form>
+    <div class="form-group">
+        <label for="nome"><i class="fa-solid fa-user"></i> Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+    </div>
+
+    <div class="form-group">
+        <label for="cpf_cnpj"><i class="fa-solid fa-id-card"></i> CPF / CNPJ:</label>
+        <input type="text" id="cpf_cnpj" name="cpf_cnpj" required placeholder="000.000.000-00">
+    </div>
+
+    <div class="form-group">
+        <label for="email"><i class="fa-solid fa-envelope"></i> E-mail:</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+
+    <div class="form-group">
+        <label for="celular"><i class="fa-solid fa-mobile-screen"></i> Celular:</label>
+        <input type="text" id="celular" name="celular" required placeholder="11999999999">
+    </div>
+
+    <div class="form-group">
+        <label for="telefone"><i class="fa-solid fa-phone"></i> Telefone:</label>
+        <input type="text" id="telefone" name="telefone" placeholder="1155558888">
+    </div>
+
+    <button type="submit" class="btn-submit">Salvar Informações Pessoais</button>
+
+</form>
     </div>
 
     <div class="card" style="max-width: 600px; margin: 40px auto 0 auto; text-align: center; padding: 25px;">

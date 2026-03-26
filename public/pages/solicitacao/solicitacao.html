@@ -10,6 +10,45 @@
     <link rel="stylesheet" href="../solicitacao/form_solicitacao.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+document.getElementById("form-solicitacao").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const quantidade = parseFloat(document.getElementById("quantidade").value);
+    const tipo = document.getElementById("tipo-solicitacao").value;
+    const motivoSelect = document.getElementById("motivo").value;
+    const detalhes = document.getElementById("detalhes").value;
+
+    const body = {
+        quantidade: quantidade,
+        tipo: tipo,
+        motivo: motivoSelect === "Outro" ? detalhes : motivoSelect
+    };
+
+    console.log("JSON enviado:", body);
+
+    try {
+        const response = await fetch("http://localhost:3000/solicitacoes", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        });
+
+        if (response.ok) {
+            document.getElementById("successMessage").style.display = "flex";
+            document.getElementById("form-solicitacao").reset();
+        } else {
+            alert("Erro ao enviar solicitação");
+        }
+
+    } catch (error) {
+        console.error(error);
+        alert("Erro de conexão com servidor");
+    }
+});
+</script>
 
 </head>
 
@@ -90,55 +129,56 @@
 
                     <form id="form-solicitacao">
 
-                        <div class="form-group">
-                            <label for="numero-pedido"><i class="fa-solid fa-tag"></i> Número do Pedido:</label>
-                            <input type="text" id="numero-pedido" name="numero-pedido" required
-                                placeholder="Ex: BR1023A">
-                        </div>
+    <div class="form-group">
+        <label for="quantidade">
+            <i class="fa-solid fa-hashtag"></i> Quantidade:
+        </label>
+        <input type="number" id="quantidade" name="quantidade" required min="1" step="1" placeholder="Ex: 1">
+    </div>
 
-                        <div class="form-group">
-                            <label for="email-cliente"><i class="fa-solid fa-envelope"></i> E-mail Cadastrado:</label>
-                            <input type="email" id="email-cliente" name="email-cliente" required
-                                placeholder="seu.email@exemplo.com">
-                        </div>
+    <div class="form-group">
+        <label for="tipo-solicitacao">
+            <i class="fa-solid fa-handshake-alt"></i> Tipo de Solicitação:
+        </label>
+        <select id="tipo-solicitacao" name="tipo-solicitacao" required>
+            <option value="">Selecione...</option>
+            <option value="troca">Troca</option>
+            <option value="devolucao">Devolução</option>
+        </select>
+    </div>
 
-                        <div class="form-group">
-                            <label for="tipo-solicitacao"><i class="fa-solid fa-handshake-alt"></i> Tipo de
-                                Solicitação:</label>
-                            <select id="tipo-solicitacao" name="tipo-solicitacao" required>
-                                <option value="">Selecione...</option>
-                                <option value="troca">Troca</option>
-                                <option value="devolucao">Devolução</option>
-                            </select>
-                        </div>
+    <div class="form-group">
+        <label for="motivo">
+            <i class="fa-solid fa-comment-dots"></i> Motivo da Solicitação:
+        </label>
+        <select id="motivo" name="motivo" required>
+            <option value="">Selecione o motivo...</option>
+            <option value="Tamanho incorreto">Tamanho Incorreto</option>
+            <option value="Produto com defeito na costura">Produto com Defeito</option>
+            <option value="Arrependimento">Arrependimento/Desistência</option>
+            <option value="Item enviado errado">Item Enviado Errado</option>
+            <option value="Outro">Outro (detalhar abaixo)</option>
+        </select>
+    </div>
 
-                        <div class="form-group">
-                            <label for="motivo"><i class="fa-solid fa-comment-dots"></i> Motivo da Solicitação:</label>
-                            <select id="motivo" name="motivo" required>
-                                <option value="">Selecione o motivo...</option>
-                                <option value="tamanho-incorreto">Tamanho Incorreto</option>
-                                <option value="defeito">Produto com Defeito</option>
-                                <option value="arrependimento">Arrependimento/Desistência</option>
-                                <option value="item-errado">Item Enviado Errado</option>
-                                <option value="outro">Outro (detalhar no campo abaixo)</option>
-                            </select>
-                        </div>
+    <div class="form-group">
+        <label for="detalhes">
+            <i class="fa-solid fa-pencil-alt"></i> Detalhes adicionais:
+        </label>
+        <textarea id="detalhes" rows="4"
+            placeholder="Se necessário, detalhe aqui..."></textarea>
+    </div>
 
-                        <div class="form-group">
-                            <label for="detalhes"><i class="fa-solid fa-pencil-alt"></i> Detalhes Adicionais
-                                (Opcional):</label>
-                            <textarea id="detalhes" name="detalhes" rows="4"
-                                placeholder="Detalhe o item, tamanho desejado para troca, ou a descrição do defeito."></textarea>
-                        </div>
+    <div class="form-group checkbox-group">
+        <input type="checkbox" id="termos" required>
+        <label for="termos">
+            Declaro que li e concordo com a Política de Troca e Devolução.
+        </label>
+    </div>
 
-                        <div class="form-group checkbox-group">
-                            <input type="checkbox" id="termos" name="termos" required>
-                            <label for="termos">Declaro que li e concordo com a <a href="#">Política de Troca e
-                                    Devolução</a>.</label>
-                        </div>
+    <button type="submit" class="btn-submit">Enviar Solicitação</button>
 
-                        <button type="submit" class="btn-submit">Enviar Solicitação</button>
-                    </form>
+</form>
                 </div>
             </main>
 

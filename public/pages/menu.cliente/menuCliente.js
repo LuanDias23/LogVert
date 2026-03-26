@@ -192,3 +192,74 @@ if (dadosForm) {
             }
         });
     });
+
+// ==========================
+// MODAL DETALHES - CORRIGIDO
+// ==========================
+document.addEventListener('click', (e) => {
+
+    const btn = e.target.closest('.card-details');
+
+    if (btn) {
+        e.preventDefault();
+
+        const card = btn.closest('.card');
+
+        if (!card) return;
+
+        const pedido = card.querySelector('h3')?.innerText;
+        const produto = card.querySelector('.card-product')?.innerText;
+        const statusElemento = card.querySelector('.status-badge');
+
+        if (!statusElemento) return;
+
+        const statusTexto = statusElemento.innerText;
+        const statusClasse = statusElemento.classList;
+
+        // elementos do modal
+        const modal = document.getElementById('modalDetalhes');
+        const modalPedido = document.getElementById('modalPedido');
+        const modalProduto = document.getElementById('modalProduto');
+        const modalStatus = document.getElementById('modalStatus');
+
+        if (!modal) {
+            console.log("MODAL NÃO ENCONTRADO ❌");
+            return;
+        }
+
+        // preenchendo
+        modalPedido.innerText = pedido;
+        modalProduto.innerText = produto;
+
+        modalStatus.innerText = statusTexto;
+
+        modalStatus.className = 'status-badge';
+        statusClasse.forEach(cls => {
+            if (cls !== 'status-badge') {
+                modalStatus.classList.add(cls);
+            }
+        });
+
+        // abre modal
+        modal.classList.add('active');
+
+        console.log("MODAL ABERTO ✅");
+    }
+});
+// FECHAR MODAL (FUNCIONA SEMPRE)
+document.addEventListener('click', (e) => {
+
+    // botão X
+    if (e.target.closest('.modal-close-btn')) {
+        const modal = document.getElementById('modalDetalhes');
+        modal.classList.remove('active');
+    }
+
+    // clicar fora do conteúdo
+    if (e.target.id === 'modalDetalhes') {
+        const modal = document.getElementById('modalDetalhes');
+        modal.classList.remove('active');
+    }
+});
+
+

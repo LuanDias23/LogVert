@@ -177,3 +177,23 @@ select {
 .close-alert:hover {
     opacity: 1;
 }
+
+/* Mantém o padrão original do seu sistema */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+
+    .form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    background-color: inherit !important;
+    color: inherit;
+}
+}

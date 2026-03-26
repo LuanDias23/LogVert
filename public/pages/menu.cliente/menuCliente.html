@@ -111,6 +111,34 @@
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="../menu.cliente/menuCliente.js"></script>
+
+    <!-- MODAL DETALHES -->
+<div id="modalDetalhes" class="modal-detalhes">
+    <div class="modal-detalhes-content">
+        
+        <button class="modal-close-btn">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="modal-header">
+            <h2 id="modalPedido"></h2>
+            <span id="modalStatus" class="status-badge"></span>
+        </div>
+
+        <div class="modal-body">
+            <p id="modalProduto"></p>
+
+            <div class="modal-info">
+                <p><strong>Data da Solicitação:</strong> 26/03/2026</p>
+                <p><strong>Tipo:</strong> Troca / Devolução</p>
+                <p><strong>Descrição:</strong> Solicitação registrada pelo cliente.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
 </body>
 
 </html>
