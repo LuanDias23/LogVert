@@ -96,7 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
             
             produtos.forEach(produto => {
                 const tr = document.createElement('tr');
-                const imageUrl = produto.imagem || 'https://placehold.co/40x40/334155/94a3b8?text=?';
+                const imageUrl = 'https://lh3.googleusercontent.com/d/' + produto.imagem || 'https://placehold.co/40x40/334155/94a3b8?text=?';
+                console.log(imageUrl);
                 // Usa o campo correto do backend
                 const idProduto = produto.idProduto;
                 const precoFormatado = `R$ ${parseFloat(produto.preco || 0).toFixed(2).replace('.', ',')}`;
@@ -368,7 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (confirm(`Tem certeza que deseja excluir PERMANENTEMENTE este produto (ID: ${id})?`)) {
                 try {
                     console.log('Tentando deletar produto com ID:', id);
-                    const response = await fetch(`${API_BASE_URL}/produtos/${id}/permanent`, {
+                    const response = await fetch(`${API_BASE_URL}/produtos/${id}`, {
                         method: 'DELETE',
                         headers: authHeaders // ENVIA TOKEN
                     });
