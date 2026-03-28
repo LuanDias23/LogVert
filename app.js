@@ -73,43 +73,19 @@ app.get('/vendas', (req, res) => {
   });
 });
 
-// Rota para Chatbot com Handlebars (sem layout)
-app.get('/chatbot', (req, res) => {
-  res.render('chatbot', {
-    layout: false,  // Chatbot tem estrutura HTML própria
-    title: 'LogVert | Livia AI - Chatbot',
+// Rota que renderiza a view de consumidores usando Handlebars
+app.get('/consumidores', (req, res) => {
+  res.render('consumidores', {
+    title: 'Gestão de Consumidores',
     year: new Date().getFullYear(),
     head: `
-      <link rel="stylesheet" href="/css/global.css">
-      <link rel="stylesheet" href="/pages/menu.lojista/menuLojista.css">
-      <link rel="stylesheet" href="/css/chatbot-advanced.css">
-      <link rel="stylesheet" href="/css/chatbot-extra-effects.css">
+      <link rel="stylesheet" href="/pages/consumidores/consumidores.css">
     `,
     pageScripts: `
       <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
       <script src="/js/api/apiClient.js"></script>
       <script src="/pages/menu.lojista/menuLojista.js"></script>
-      <script src="/js/chatbot-advanced.js"></script>
-    `
-  });
-});
-
-// Rota para Integrações com Handlebars (sem layout)
-app.get('/integracoes', (req, res) => {
-  res.render('integracoes', {
-    layout: false,  // Integrações tem estrutura HTML própria
-    title: 'LogVert | Integrações',
-    year: new Date().getFullYear(),
-    head: `
-      <link rel="stylesheet" href="/css/global.css">
-      <link rel="stylesheet" href="/pages/menu.lojista/menuLojista.css">
-      <link rel="stylesheet" href="/pages/integracoes/integracoes.css">
-    `,
-    pageScripts: `
-      <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-      <script src="/js/api/apiClient.js"></script>
-      <script src="/pages/menu.lojista/menuLojista.js"></script>
-      <script src="/js/integracoes-advanced.js"></script>
+      <script src="/pages/consumidores/consumidores.js"></script>
     `
   });
 });

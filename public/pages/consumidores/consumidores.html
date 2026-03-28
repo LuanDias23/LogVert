@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogVert | Consumidores</title>
+    <link rel="icon" type="image/png" href="/assets/logosemfundo.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/pages/menu.lojista/menuLojista.css">
+    <link rel="stylesheet" href="/pages/consumidores/consumidores.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div id="dashboard-particles"></div>
+
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="/assets/logosemfundo.png" alt="Logo LogVert" class="sidebar-logo">
+            </div>
+            <ul class="sidebar-menu">
+                <li><a class="sidebar-link" href="/pages/menu.lojista/menuLojista.html"><i class="fa-solid fa-house"></i><span>Início</span></a></li>
+                <li><a class="sidebar-link" href="/pages/produtos/produtos.html"><i class="fa-solid fa-box"></i><span>Produto</span></a></li>
+                <li><a class="sidebar-link" href="/pages/vendas/venda.html"><i class="fa-solid fa-truck"></i><span>Venda</span></a></li>
+                <li><a class="sidebar-link active" href="/pages/consumidores/consumidores.html"><i class="fa-solid fa-users"></i><span>Consumidores</span></a></li>
+                <li><a class="sidebar-link" href="/pages/devolucoes/devolucoes.html"><i class="fa-solid fa-arrow-rotate-left"></i><span>Trocas e Devoluções</span></a></li>
+                <li><a class="sidebar-link" href="/pages/FAQ/FAQ.html"><i class="fa-solid fa-circle-question"></i><span>Central de Ajuda</span></a></li>
+                <li><a class="sidebar-link" href="/pages/login/login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
+            </ul>
+            <div class="sidebar-toggle-wrapper">
+                <button class="sidebar-toggle" id="sidebarToggle" title="Minimizar menu">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Container Principal -->
+        <div class="main-container">
+            <header class="main-header">
+                <div class="header-content">
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="header-title">Gestão de Consumidores</h1>
+
+                    <div class="header-user-actions">
+                        <span>Bem-vindo, Lojista</span>
+                        <div class="header-actions">
+                            <div class="header-action-item">
+                                <button class="header-action-btn" id="newsBtn" title="Novidades">
+                                    <i class="fa-solid fa-gift"></i>
+                                </button>
+                                <div class="dropdown-menu" id="newsDropdown">
+                                    <div class="dropdown-header">Novidades da Plataforma</div>
+                                    <ul>
+                                        <li><a href="#">Nova integração com transportadoras!</a></li>
+                                        <li><a href="#">Dashboard de relatórios atualizado.</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="header-action-item">
+                                <button class="header-action-btn" id="notificationsBtn" title="Notificações">
+                                    <i class="fa-solid fa-bell"></i>
+                                    <span class="notification-badge">3</span>
+                                </button>
+                                <div class="dropdown-menu" id="notificationsDropdown">
+                                    <div class="dropdown-header">Notificações</div>
+                                    <ul>
+                                        <li><a href="#">Nova devolução registrada.</a></li>
+                                        <li><a href="#">Produto 'Camiseta Azul' com baixo estoque.</a></li>
+                                        <li><a href="#">Sua fatura mensal foi gerada.</a></li>
+                                    </ul>
+                                    <div class="dropdown-footer"><a href="#">Ver todas</a></div>
+                                </div>
+                            </div>
+
+                            <div class="header-action-item">
+                                <button class="header-action-btn" id="accountBtn" title="Minha Conta">
+                                    <i class="fa-solid fa-user-circle"></i>
+                                </button>
+                                <div class="dropdown-menu" id="accountDropdown">
+                                    <ul>
+                                        <li><a href="/pages/configuracao/configuracao.html"><i class="fa-solid fa-cog"></i> Configurações da Conta</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-palette"></i> Mudar Tema</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-life-ring"></i> Suporte</a></li>
+                                    </ul>
+                                    <div class="dropdown-footer">
+                                        <a href="/pages/login/login.html" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Conteúdo Principal -->
+            <main class="main-content">
+                <div class="page-header">
+                    <h2>Consumidores Cadastrados</h2>
+                    <div class="page-header-actions">
+                        <span class="selected-count" id="selectedCount">
+                            <i class="fas fa-check-circle"></i>
+                            <span id="selectedCountText">0 selecionados</span>
+                        </span>
+                        <button class="btn-batch-deactivate" id="batchDeactivateBtn" title="Desativar selecionados">
+                            <i class="fas fa-ban"></i> Desativar Selecionados
+                        </button>
+                        <button class="btn-add-new" id="openModalBtn">
+                            <i class="fas fa-plus"></i> Novo Consumidor
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tabela de Consumidores -->
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 40px;"><input type="checkbox" class="row-checkbox" id="selectAllCheckbox" title="Selecionar todos"></th>
+                                <th>Nome</th>
+                                <th>CPF/CNPJ</th>
+                                <th>E-mail</th>
+                                <th>Celular</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="consumidoresTableBody">
+                            <!-- Skeleton loading -->
+                            <tr class="skeleton-row"><td><div class="skeleton-bar short"></div></td><td><div class="skeleton-bar"></div></td><td><div class="skeleton-bar medium"></div></td><td><div class="skeleton-bar"></div></td><td><div class="skeleton-bar short"></div></td><td><div class="skeleton-bar short"></div></td><td><div class="skeleton-bar short"></div></td></tr>
+                            <tr class="skeleton-row"><td><div class="skeleton-bar short"></div></td><td><div class="skeleton-bar"></div></td><td><div class="skeleton-bar medium"></div></td><td><div class="skeleton-bar"></div></td><td><div class="skeleton-bar short"></div></td><td><div class="skeleton-bar short"></div></td><td><div class="skeleton-bar short"></div></td></tr>
+                            <tr class="skeleton-row"><td><div class="skeleton-bar short"></div></td><td><div class="skeleton-bar"></div></td><td><div class="skeleton-bar medium"></div></td><td><div class="skeleton-bar"></div></td><td><div class="skeleton-bar short"></div></td><td><div class="skeleton-bar short"></div></td><td><div class="skeleton-bar short"></div></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal Adicionar/Editar Consumidor -->
+    <div class="modal-overlay" id="consumidorModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle"><i class="fas fa-user-plus"></i> Novo Consumidor</h2>
+                <button class="close-modal" id="closeModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="consumidorForm" class="form-container" novalidate>
+                    <div class="form-group">
+                        <label for="nome">Nome Completo <span class="required">*</span></label>
+                        <input type="text" id="nome" placeholder="Ex: João da Silva" required>
+                        <span class="field-error-msg" id="nome-error"></span>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cpf_cnpj">CPF/CNPJ <span class="required">*</span></label>
+                            <input type="text" id="cpf_cnpj" placeholder="000.000.000-00" required>
+                            <span class="field-error-msg" id="cpf_cnpj-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail <span class="required">*</span></label>
+                            <input type="email" id="email" placeholder="joao@email.com" required>
+                            <span class="field-error-msg" id="email-error"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="celular">Celular <span class="required">*</span></label>
+                            <input type="tel" id="celular" placeholder="(11) 99999-9999" required>
+                            <span class="field-error-msg" id="celular-error"></span>
+                        </div>
+                        <!-- Telefone: visível somente no modo Edição (PUT) -->
+                        <div class="form-group" id="telefoneGroup" style="display: none;">
+                            <label for="telefone">Telefone Fixo</label>
+                            <input type="tel" id="telefone" placeholder="(11) 3333-4444">
+                            <span class="field-error-msg" id="telefone-error"></span>
+                        </div>
+                    </div>
+                    <!-- Endereço: visível somente no modo Criação (POST) -->
+                    <div class="form-group" id="enderecoGroup">
+                        <label for="endereco">Endereço</label>
+                        <input type="text" id="endereco" placeholder="Rua, nº, bairro, cidade - UF">
+                        <span class="field-error-msg" id="endereco-error"></span>
+                    </div>
+
+                    <button type="submit" class="btn-submit-modal" id="submitBtn">
+                        <i class="fas fa-save"></i> Salvar Consumidor
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <span class="loading-text" id="loadingText">Carregando...</span>
+    </div>
+
+    <!-- Confirm Dialog -->
+    <div class="confirm-overlay" id="confirmOverlay">
+        <div class="confirm-dialog">
+            <div class="confirm-icon" id="confirmIcon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h3 class="confirm-title" id="confirmTitle">Tem certeza?</h3>
+            <p class="confirm-message" id="confirmMessage">Esta ação não poderá ser desfeita.</p>
+            <div class="confirm-actions">
+                <button class="btn-cancel" id="confirmCancelBtn">Cancelar</button>
+                <button class="btn-confirm-danger" id="confirmOkBtn">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="/js/api/apiClient.js"></script>
+    <script src="/pages/menu.lojista/menuLojista.js"></script>
+    <script src="/pages/consumidores/consumidores.js"></script>
+</body>
+</html>

@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LogVert | Vendas</title>
     <link rel="icon" type="image/png" href="/assets/logosemfundo.png">
-
     <link rel="stylesheet" href="/pages/menu.lojista/menuLojista.css">
     <link rel="stylesheet" href="/pages/vendas/venda.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -15,18 +14,27 @@
     <div id="dashboard-particles"></div>
 
     <div class="dashboard-layout">
+
+        <!-- Sidebar -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <img src="/assets/logosemfundo.png" alt="Logo LogVert" class="sidebar-logo">
             </div>
             <ul class="sidebar-menu">
-                <li><a class="sidebar-link" href="/pages/menu.lojista/menuLojista.html"><i class="fa-solid fa-house"></i><span>Início</span></a></li>
-                <li><a class="sidebar-link active" href="/pages/produtos/produtos.html"><i class="fa-solid fa-box"></i><span>Produto</span></a></li>
-                <li><a class="sidebar-link" href="/pages/vendas/venda.html"><i class="fa-solid fa-truck"></i><span>Venda</span></a></li>
-                <li><a class="sidebar-link" href="/pages/devolucoes/devolucoes.html"><i class="fa-solid fa-arrow-rotate-left"></i><span>Trocas e Devoluções</span></a></li>
-                <li><a class="sidebar-link" href="/pages/chatbot/chatbot.html"><i class="fa-solid fa-robot"></i><span>Chatbot</span></a></li>
-                <li><a class="sidebar-link" href="/pages/faq/faq.html"><i class="fa-solid fa-question"></i><span>FAQ</span></a></li> 
-                <li><a class="sidebar-link" href="/pages/login/login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
+                <li><a class="sidebar-link" href="/pages/menu.lojista/menuLojista.html">
+                    <i class="fa-solid fa-house"></i><span>Início</span></a></li>
+                <li><a class="sidebar-link" href="/produtos">
+                    <i class="fa-solid fa-box"></i><span>Produto</span></a></li>
+                <li><a class="sidebar-link active" href="/vendas">
+                    <i class="fa-solid fa-truck"></i><span>Venda</span></a></li>
+                <li><a class="sidebar-link" href="/consumidores">
+                    <i class="fa-solid fa-users"></i><span>Consumidores</span></a></li>
+                <li><a class="sidebar-link" href="/pages/devolucoes/devolucoes.html">
+                    <i class="fa-solid fa-arrow-rotate-left"></i><span>Trocas e Devoluções</span></a></li>
+                <li><a class="sidebar-link" href="/pages/FAQ/FAQ.html">
+                    <i class="fa-solid fa-circle-question"></i><span>Central de Ajuda</span></a></li>
+                <li><a class="sidebar-link" href="/pages/login/login.html">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
             </ul>
             <div class="sidebar-toggle-wrapper">
                 <button class="sidebar-toggle" id="sidebarToggle" title="Minimizar menu">
@@ -35,19 +43,21 @@
             </div>
         </aside>
 
+        <!-- Container Principal -->
         <div class="main-container">
-            
+
+            <!-- Header -->
             <header class="main-header">
                 <div class="header-content">
                     <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
                         <i class="fas fa-bars"></i>
                     </button>
                     <h1 class="header-title">Gestão de Vendas</h1>
-                    
+
                     <div class="header-user-actions">
                         <span>Bem-vindo, Lojista</span>
-                        
                         <div class="header-actions">
+
                             <div class="header-action-item">
                                 <button class="header-action-btn" id="newsBtn" title="Novidades">
                                     <i class="fa-solid fa-gift"></i>
@@ -77,170 +87,387 @@
                                 </div>
                             </div>
 
+                            <button class="header-action-btn" id="themeToggleBtn" title="Mudar Tema">
+                                <i class="fa-solid fa-moon" id="themeIcon"></i>
+                            </button>
+
                             <div class="header-action-item">
                                 <button class="header-action-btn" id="accountBtn" title="Minha Conta">
                                     <i class="fa-solid fa-user-circle"></i>
                                 </button>
                                 <div class="dropdown-menu" id="accountDropdown">
                                     <ul>
-                                        <li><a href="/pages/configuracao/configuracao.html"><i class="fa-solid fa-cog"></i> Configurações da Conta</a></li>
-                                        <li><a href="#"><i class="fa-solid fa-palette"></i> Mudar Tema</a></li>
-                                        <li><a href="#"><i class="fa-solid fa-life-ring"></i>   Suporte</a></li>
+                                        <li><a href="/pages/configuracao/configuracao.html">
+                                            <i class="fa-solid fa-cog"></i> Configurações da Conta</a></li>
+                                        <li><a href="/assinatura">
+                                            <i class="fa-solid fa-file-invoice-dollar"></i> Minha Assinatura</a></li>
+                                        <li><a href="/login">
+                                            <i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a></li>
                                     </ul>
-                                    <div class="dropdown-footer">
-                                        <a href="/pages/login/login.html" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
-                                    </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </header>
 
+            <!-- Conteúdo Principal -->
             <main class="main-content">
+
+                <!-- KPIs — calculados dinamicamente pelo JS -->
                 <div class="stat-cards-grid">
                     <div class="stat-card">
-                        <div class="stat-icon" style="color: var(--primary-blue);"><i class="fas fa-dollar-sign"></i></div>
+                        <div class="stat-icon" style="color: var(--primary-blue);">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
                         <div class="stat-info">
-                            <span class="stat-title">Vendas Totais</span>
-                            <span class="stat-value">R$ 12.450,00</span>
+                            <span class="stat-title">Receita Total</span>
+                            <span class="stat-value" id="statReceitaTotal">R$ --</span>
                         </div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-icon" style="color: #f39c12;"><i class="fas fa-shipping-fast"></i></div>
+                        <div class="stat-icon" style="color: #f39c12;">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
                         <div class="stat-info">
-                            <span class="stat-title">Pedidos Pendentes</span>
-                            <span class="stat-value">8</span>
+                            <span class="stat-title">Em Andamento</span>
+                            <span class="stat-value" id="statEmAndamento">--</span>
                         </div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-icon" style="color: var(--primary-green);"><i class="fas fa-chart-line"></i></div>
+                        <div class="stat-icon" style="color: var(--primary-green);">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
                         <div class="stat-info">
                             <span class="stat-title">Ticket Médio</span>
-                            <span class="stat-value">R$ 180,50</span>
+                            <span class="stat-value" id="statTicketMedio">R$ --</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="color: #4ade80;">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-title">Entregues</span>
+                            <span class="stat-value" id="statEntregues">--</span>
                         </div>
                     </div>
                 </div>
 
+                <!-- Cabeçalho da tabela -->
                 <div class="page-header">
                     <h2>Histórico de Vendas</h2>
-                    <button class="btn-add-new" id="openModalBtn"><i class="fas fa-plus"></i> Adicionar Venda</button>
+                    <button class="btn-add-new" id="openModalBtn">
+                        <i class="fas fa-plus"></i> Nova Venda
+                    </button>
                 </div>
 
+                <!-- Tabela de Vendas -->
+                <!-- Colunas espelham exatamente o response do GET /vendas -->
                 <div class="table-container">
                     <table>
                         <thead>
                             <tr>
-                                <th>Protocolo</th>
+                                <th>#ID</th>
                                 <th>Cliente</th>
-                                <th>Valor</th>
+                                <th>Valor Total</th>
+                                <th>Forma de Pagamento</th>
                                 <th>Data</th>
                                 <th>Status</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>#12054</td>
-                                <td>João da Silva</td>
-                                <td>R$ 89,90</td>
-                                <td>01/11/2025</td>
-                                <td><span class="status-active">Entregue</span></td>
-                                <td class="action-buttons">
-                                    <button class="btn-icon btn-edit" title="Ver Detalhes"><i class="fas fa-eye"></i></button>
-                                </td>
+                        <tbody id="vendasTableBody">
+                            <!-- Skeleton loading -->
+                            <tr class="skeleton-row">
+                                <td><div class="skeleton-bar short"></div></td>
+                                <td><div class="skeleton-bar"></div></td>
+                                <td><div class="skeleton-bar medium"></div></td>
+                                <td><div class="skeleton-bar medium"></div></td>
+                                <td><div class="skeleton-bar short"></div></td>
+                                <td><div class="skeleton-bar short"></div></td>
+                                <td><div class="skeleton-bar short"></div></td>
                             </tr>
-                            <tr>
-                                <td>#12053</td>
-                                <td>Maria Oliveira</td>
-                                <td>R$ 120,00</td>
-                                <td>01/11/2025</td>
-                                <td><span class="status-inactive">Pendente</span></td>
-                                <td class="action-buttons">
-                                    <button class="btn-icon btn-edit" title="Ver Detalhes"><i class="fas fa-eye"></i></button>
-                                </td>
+                            <tr class="skeleton-row">
+                                <td><div class="skeleton-bar short"></div></td>
+                                <td><div class="skeleton-bar"></div></td>
+                                <td><div class="skeleton-bar medium"></div></td>
+                                <td><div class="skeleton-bar medium"></div></td>
+                                <td><div class="skeleton-bar short"></div></td>
+                                <td><div class="skeleton-bar short"></div></td>
+                                <td><div class="skeleton-bar short"></div></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+
             </main>
         </div>
     </div>
-    
-    <div class="modal-overlay" id="addVendaModal">
+
+    <!-- =============================================
+         MODAL: CRIAR / EDITAR VENDA
+         Campos baseados no POST /vendas e PUT /vendas/{id}
+         ============================================= -->
+    <div class="modal-overlay" id="vendaFormModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Adicionar Nova Venda</h2>
-                <button class="close-modal" id="closeModalBtn">&times;</button>
+                <h2 id="vendaFormModalTitle">
+                    <i class="fas fa-plus-circle"></i> Nova Venda
+                </h2>
+                <button class="close-modal" id="closeVendaFormModalBtn">&times;</button>
             </div>
             <div class="modal-body">
-                <form id="addVendaForm" class="form-container">
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="idLoja">Número da Loja</label>
-                            <input type="number" id="idLoja" value="1" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="idConsumidor">Número do Consumidor</label>
-                            <input type="number" id="idConsumidor" value="7" required>
-                        </div>
+                <form id="vendaForm" class="form-container" novalidate>
+
+                    <!-- idConsumidor — obrigatório no POST -->
+                    <div class="form-group">
+                        <label for="idConsumidor">
+                            ID do Consumidor <span class="required">*</span>
+                        </label>
+                        <input type="number" id="idConsumidor" min="1"
+                               placeholder="Ex: 1" required>
+                        <small>Informe o ID do consumidor cadastrado na plataforma.</small>
                     </div>
 
                     <div class="form-row">
+                        <!-- formaPagamento -->
                         <div class="form-group">
-                            <label for="statusPedido">Status do Pedido</label>
+                            <label for="formaPagamento">
+                                Forma de Pagamento <span class="required">*</span>
+                            </label>
+                            <select id="formaPagamento" required>
+                                <option value="">Selecione...</option>
+                                <option value="Cartão de Crédito">Cartão de Crédito</option>
+                                <option value="Cartão de Débito">Cartão de Débito</option>
+                                <option value="Pix">Pix</option>
+                                <option value="Boleto">Boleto</option>
+                                <option value="Dinheiro">Dinheiro</option>
+                            </select>
+                        </div>
+                        <!-- statusPedido -->
+                        <div class="form-group">
+                            <label for="statusPedido">
+                                Status do Pedido <span class="required">*</span>
+                            </label>
                             <select id="statusPedido" required>
-                                <option value="ENTREGUE">Entregue</option>
-                                <option value="PENDENTE" selected>Pendente</option>
-                                <option value="CANCELADO">Cancelado</option>
+                                <option value="Em Andamento" selected>Em Andamento</option>
+                                <option value="Pendente">Pendente</option>
+                                <option value="Entregue">Entregue</option>
+                                <option value="Cancelado">Cancelado</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="form-row">
+                        <!-- desconto -->
                         <div class="form-group">
-                            <label for="formaPagamento">Forma de Pagamento</label>
-                            <input type="text" id="formaPagamento" value="Pix" required>
+                            <label for="desconto">Desconto (R$)</label>
+                            <input type="number" id="desconto"
+                                   step="0.01" min="0" value="0"
+                                   placeholder="Ex: 10.00">
                         </div>
+                        <!-- prazoTroca -->
                         <div class="form-group">
-                            <label for="valorTotal">Valor Total</label>
-                            <input type="number" id="valorTotal" step="0.01" value="590.00" required>
+                            <label for="prazoTroca">Prazo de Troca (dias)</label>
+                            <input type="number" id="prazoTroca"
+                                   min="0" value="30"
+                                   placeholder="Ex: 30">
                         </div>
+                        <!-- prazoDevolucao -->
                         <div class="form-group">
-                            <label for="desconto">Desconto (%)</label>
-                            <input type="number" id="desconto" step="1" value="50" min="0" max="100">
+                            <label for="prazoDevolucao">Prazo de Devolução (dias)</label>
+                            <input type="number" id="prazoDevolucao"
+                                   min="0" value="7"
+                                   placeholder="Ex: 7">
                         </div>
                     </div>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="prazoTroca">Prazo Troca (dias)</label>
-                            <input type="number" id="prazoTroca" value="15" min="0">
-                        </div>
-                        <div class="form-group">
-                            <label for="prazoDevolucao">Prazo Devolução (dias)</label>
-                            <input type="number" id="prazoDevolucao" value="8" min="0">
-                        </div>
-                    </div>
-                    
+                    <!-- itensVenda — array conforme documentação -->
                     <div class="form-group">
-                        <label for="itensVendaJson">Itens da Venda (JSON)</label>
-                        <textarea id="itensVendaJson" rows="6" required>
-[
-    {"idProduto": 24, "quantidade": 21, "detalhe": "Instalação inclusa", "valorVendido": 140.00},
-    {"idProduto": 30, "quantidade": 1, "detalhe": "Garantia estendida", "valorVendido": 450.00}
-]
-                        </textarea>
-                        <small>⚠️ **Formato JSON obrigatório:** Insira os produtos exatamente como a API espera.</small>
+                        <label for="itensVendaJson">
+                            Itens da Venda (JSON) <span class="required">*</span>
+                        </label>
+                        <textarea id="itensVendaJson" rows="7" required
+                                  placeholder='[{"idProduto": 101, "quantidade": 2.0, "detalhe": "Tamanho G", "valorVendido": 89.90}]'>[
+    {
+        "idProduto": 101,
+        "quantidade": 1,
+        "detalhe": "",
+        "valorVendido": 89.90
+    }
+]</textarea>
+                        <small>
+                            Campos obrigatórios por item:
+                            <strong>idProduto</strong>,
+                            <strong>quantidade</strong>,
+                            <strong>valorVendido</strong>.
+                            O campo <strong>detalhe</strong> é opcional.
+                        </small>
                     </div>
 
-                    <button type="submit" class="btn-submit-modal">Salvar Venda</button>
+                    <button type="submit" class="btn-submit-modal" id="submitVendaBtn">
+                        <i class="fas fa-save"></i> Salvar Venda
+                    </button>
                     <span id="vendaMessage" class="form-message"></span>
+
                 </form>
             </div>
         </div>
     </div>
+
+    <!-- =============================================
+         MODAL: DETALHES DA VENDA
+         Campos baseados no response do GET /vendas/{id}
+         ============================================= -->
+    <div class="modal-overlay" id="detalhesVendaModal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2>
+                    <i class="fas fa-receipt"></i>
+                    Venda <span id="detalheIdVenda" class="text-highlight"></span>
+                    <span id="detalheSerial" class="detalhe-serial"></span>
+                </h2>
+                <button class="close-modal" id="closeDetalhesModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+
+                <div class="detalhes-grid">
+
+                    <!-- Coluna Esquerda: Venda + Consumidor -->
+                    <div>
+                        <div class="detalhes-section">
+                            <h3><i class="fas fa-receipt"></i> Dados da Venda</h3>
+                            <div class="detalhe-item">
+                                <span>Valor Total</span>
+                                <p id="detalhePrecoTotal">--</p>
+                            </div>
+                            <div class="detalhe-item">
+                                <span>Desconto</span>
+                                <p id="detalheDesconto">--</p>
+                            </div>
+                            <div class="detalhe-item">
+                                <span>Forma de Pagamento</span>
+                                <p id="detalheFormaPagamento">--</p>
+                            </div>
+                            <div class="detalhe-item">
+                                <span>Status</span>
+                                <p id="detalheStatusPedido">--</p>
+                            </div>
+                            <div class="detalhe-item">
+                                <span>Prazo de Troca</span>
+                                <p id="detalhePrazoTroca">--</p>
+                            </div>
+                            <div class="detalhe-item">
+                                <span>Prazo de Devolução</span>
+                                <p id="detalhePrazoDevolucao">--</p>
+                            </div>
+                            <div class="detalhe-item">
+                                <span>Data de Criação</span>
+                                <p id="detalheDataCriacao">--</p>
+                            </div>
+                            <div class="detalhe-item">
+                                <span>Data de Entrega</span>
+                                <p id="detalheDataEntrega">--</p>
+                            </div>
+                        </div>
+
+                        <div class="detalhes-section" style="margin-top: 1.5rem;">
+                            <h3><i class="fas fa-user"></i> Consumidor</h3>
+                            <div class="detalhe-item">
+                                <span>Nome</span>
+                                <p id="detalheConsumidorNome">--</p>
+                            </div>
+                            <div class="detalhe-item">
+                                <span>E-mail</span>
+                                <p id="detalheConsumidorEmail">--</p>
+                            </div>
+                            <div class="detalhe-item">
+                                <span>Celular</span>
+                                <p id="detalheConsumidorCelular">--</p>
+                            </div>
+                            <div class="detalhe-item">
+                                <span>Endereço</span>
+                                <p id="detalheConsumidorEndereco">--</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Coluna Direita: Loja + Itens -->
+                    <div>
+                        <div class="detalhes-section">
+                            <h3><i class="fas fa-store"></i> Loja</h3>
+                            <div class="detalhe-item">
+                                <span>Nome</span>
+                                <p id="detalheLojaNome">--</p>
+                            </div>
+                            <div class="detalhe-item">
+                                <span>E-mail</span>
+                                <p id="detalheLojaEmail">--</p>
+                            </div>
+                        </div>
+
+                        <div class="detalhes-section" style="margin-top: 1.5rem;">
+                            <h3><i class="fas fa-box-open"></i> Itens da Venda</h3>
+                            <div class="itens-wrapper">
+                                <table class="itens-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Produto</th>
+                                            <th>Qtd</th>
+                                            <th>Preço Original</th>
+                                            <th>Preço Vendido</th>
+                                            <th>Variação</th>
+                                            <th>Detalhes</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="detalhesItensBody">
+                                        <tr>
+                                            <td colspan="6" style="text-align:center;">
+                                                Carregando itens...
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Ações do modal de detalhes -->
+                <div class="detalhes-actions">
+                    <button class="btn-detalhe-edit" id="btnEditarVendaDetalhes">
+                        <i class="fas fa-pencil-alt"></i> Editar esta Venda
+                    </button>
+                    <button class="btn-detalhe-deactivate" id="btnDesativarVendaDetalhes">
+                        <i class="fas fa-ban"></i> Desativar esta Venda
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Confirm Dialog -->
+    <div class="confirm-overlay" id="confirmOverlay">
+        <div class="confirm-dialog">
+            <div class="confirm-icon" id="confirmIcon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h3 class="confirm-title" id="confirmTitle">Tem certeza?</h3>
+            <p class="confirm-message" id="confirmMessage">Esta ação não poderá ser desfeita.</p>
+            <div class="confirm-actions">
+                <button class="btn-cancel" id="confirmCancelBtn">Cancelar</button>
+                <button class="btn-confirm-action" id="confirmOkBtn">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
     <div class="overlay"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
