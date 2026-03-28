@@ -1,8 +1,6 @@
 /* 1. Importa o design principal do seu dashboard */
 @import url('../menu.lojista/menuLojista.css');
 
-/* 1.5. Estilos dos ícones do header e dropdowns são fornecidos pelo menuLojista.css */
-
 /* 2. Estilos específicos da página de Produtos */
 
 .page-header {
@@ -12,27 +10,25 @@
     margin-bottom: 2rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--border-color-dark);
-    flex-wrap: wrap; /* Adicionado para responsividade */
-    gap: 1rem; /* Adicionado para responsividade */
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 .page-header h2 {
     font-size: 1.5rem;
     font-weight: 500;
-    margin: 0; 
-    text-transform: none; 
-    letter-spacing: 0; 
+    margin: 0;
+    text-transform: none;
+    letter-spacing: 0;
     border: none;
     display: block;
     padding: 0;
 }
 
-/* Container para os botões do cabeçalho */
 .page-header-actions {
     display: flex;
     gap: 1rem;
 }
 
-/* Botão Adicionar (Seu código original) */
 .btn-add-new {
     background-color: var(--primary-blue);
     color: var(--text-light);
@@ -46,17 +42,16 @@
     align-items: center;
     gap: 0.5rem;
     transition: all 0.3s ease;
-    text-decoration: none; /* Adicionado */
+    text-decoration: none;
 }
 .btn-add-new:hover {
-    background-color: #1565c0; /* primary-blue-dark */
+    background-color: #1565c0;
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
 }
 
-/* NOVO: Botão Exportar (btn-secondary) */
 .btn-secondary {
-    background-color: var(--card-background); /* Cor de fundo do seu tema */
+    background-color: var(--card-background);
     color: var(--text-muted);
     border: 1px solid var(--border-color-dark);
     border-radius: 8px;
@@ -78,7 +73,7 @@
 }
 
 
-/* 3. Estilos da Tabela */
+/* 3. Tabela */
 .table-container {
     width: 100%;
     background-color: var(--card-background);
@@ -86,8 +81,8 @@
     border: 1px solid var(--border-color-dark);
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    overflow: hidden; 
-    overflow-x: auto; /* Adicionado para tabelas largas */
+    overflow: hidden;
+    overflow-x: auto;
 }
 
 table {
@@ -99,7 +94,7 @@ table {
 th, td {
     padding: 1rem 1.5rem;
     border-bottom: 1px solid var(--border-color-dark);
-    white-space: nowrap; /* Impede que o texto quebre linha */
+    white-space: nowrap;
 }
 
 thead th {
@@ -117,7 +112,6 @@ tbody tr:hover {
     background-color: rgba(255, 255, 255, 0.05);
 }
 
-/* NOVO: Célula da imagem do produto */
 .produto-cell {
     display: flex;
     align-items: center;
@@ -131,21 +125,19 @@ tbody tr:hover {
     background-color: var(--border-color-dark);
 }
 
-/* Status (Seu código original) */
 .status-active {
     color: var(--primary-green);
     font-weight: 500;
 }
 .status-inactive {
-    color: #e53935; /* Vermelho para inativo */
+    color: #e53935;
     font-weight: 500;
 }
 
-/* Botões de Ação (Seu código original) */
 .action-buttons {
     display: flex;
     gap: 1rem;
-    text-align: right; /* Garante alinhamento */
+    text-align: right;
 }
 .btn-icon {
     background: none;
@@ -155,12 +147,12 @@ tbody tr:hover {
     cursor: pointer;
     transition: color 0.2s;
 }
-.btn-icon:hover { color: var(--text-light); }
-.btn-edit:hover { color: var(--primary-blue); }
+.btn-icon:hover   { color: var(--text-light); }
+.btn-edit:hover   { color: var(--primary-blue); }
 .btn-delete:hover { color: #e53935; }
 
 
-/* 4. Estilos do Modal (Pop-up) */
+/* 4. Modal de Produto */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -214,13 +206,18 @@ tbody tr:hover {
     font-size: 1.8rem;
     cursor: pointer;
     line-height: 1;
+    transition: color 0.2s;
+}
+.close-modal:hover {
+    color: var(--text-light);
 }
 
 .modal-body {
     padding: 1.5rem;
 }
 
-/* 5. Estilos do Formulário (Reutilizando seu padrão) */
+
+/* 5. Formulário */
 .form-container {
     width: 100%;
     display: flex;
@@ -237,7 +234,6 @@ tbody tr:hover {
     color: var(--text-muted);
 }
 
-/* ATUALIZADO: Inclui input[type="file"] */
 .form-group input[type="text"],
 .form-group input[type="number"],
 .form-group input[type="file"],
@@ -250,7 +246,7 @@ tbody tr:hover {
     color: var(--text-light);
     font-size: 1rem;
     font-family: 'Roboto', sans-serif;
-    box-sizing: border-box; /* Adicionado para consistência */
+    box-sizing: border-box;
 }
 
 .form-group input:focus,
@@ -267,9 +263,8 @@ tbody tr:hover {
     flex: 1;
 }
 
-/* NOVO: Estilos para o botão de upload de arquivo */
 .form-group input[type="file"] {
-    padding: 8px; /* Ajuste no padding */
+    padding: 8px;
 }
 .form-group input[type="file"]::file-selector-button {
     background-color: #4a5568;
@@ -285,14 +280,13 @@ tbody tr:hover {
     background-color: #5a677d;
 }
 
-/* NOVO: Estilo para o texto de ajuda (small) */
 .form-group small {
+    display: block;
     font-size: 0.8rem;
     color: var(--text-muted);
-    margin-top: -0.5rem; /* Puxa para perto do input */
+    margin-top: 0.4rem;
 }
 
-/* Botão de Salvar (Seu código original) */
 .btn-submit-modal {
     width: 100%;
     padding: 14px;
@@ -307,5 +301,223 @@ tbody tr:hover {
     transition: all 0.3s ease;
 }
 .btn-submit-modal:hover {
-    background-color: #1565c0; /* primary-blue-dark */
+    background-color: #1565c0;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
+}
+
+
+/* ═══════════════════════════════════════════════
+   6. Modal de Confirmação de Exclusão
+   ═══════════════════════════════════════════════ */
+.confirm-overlay {
+    z-index: 3000;
+}
+
+.confirm-content {
+    max-width: 400px;
+    padding: 2rem 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+}
+
+.confirm-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background-color: rgba(229, 57, 53, 0.1);
+    border: 1px solid rgba(229, 57, 53, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+.confirm-icon i {
+    font-size: 1.5rem;
+    color: #e53935;
+}
+
+.confirm-content h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-light);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.confirm-sub {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 0 0 0.5rem;
+}
+
+.confirm-actions {
+    display: flex;
+    gap: 0.75rem;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.btn-confirm-nao {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color-dark);
+    background-color: transparent;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.btn-confirm-nao:hover {
+    background-color: var(--border-color-dark);
+    color: var(--text-light);
+}
+
+.btn-confirm-sim {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: #e53935;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.btn-confirm-sim:hover {
+    background-color: #c62828;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(229, 57, 53, 0.35);
+}
+
+
+/* ═══════════════════════════════════════════════
+   7. Sistema de Toast
+   ═══════════════════════════════════════════════ */
+#toast-container {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    pointer-events: none;
+}
+
+.toast {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    border-radius: 10px;
+    border: 1px solid;
+    font-size: 0.9rem;
+    min-width: 280px;
+    max-width: 380px;
+    pointer-events: auto;
+    animation: toastIn 0.35s cubic-bezier(.21, 1.02, .73, 1) forwards;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.toast.hide {
+    animation: toastOut 0.3s ease forwards;
+}
+
+.toast-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.toast-msg {
+    flex: 1;
+    line-height: 1.4;
+}
+
+.toast-close {
+    font-size: 18px;
+    cursor: pointer;
+    opacity: 0.55;
+    line-height: 1;
+    background: none;
+    border: none;
+    color: inherit;
+    padding: 0;
+    transition: opacity 0.2s;
+}
+.toast-close:hover { opacity: 1; }
+
+.toast.success {
+    background-color: #1a2e1a;
+    border-color: #3a6b3a;
+    color: #a3d9a5;
+}
+.toast.success .toast-icon {
+    background-color: #639922;
+    color: #EAF3DE;
+}
+
+.toast.error {
+    background-color: #2e1a1a;
+    border-color: #6b3a3a;
+    color: #f09595;
+}
+.toast.error .toast-icon {
+    background-color: #A32D2D;
+    color: #FCEBEB;
+}
+
+.toast.info {
+    background-color: #1a2233;
+    border-color: #2a4a7a;
+    color: #85B7EB;
+}
+.toast.info .toast-icon {
+    background-color: #185FA5;
+    color: #E6F1FB;
+}
+
+@keyframes toastIn {
+    from { opacity: 0; transform: translateX(60px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes toastOut {
+    from { opacity: 1; transform: translateX(0); }
+    to   { opacity: 0; transform: translateX(60px); }
+}
+
+
+/* ═══════════════════════════════════════════════
+   8. Responsividade
+   ═══════════════════════════════════════════════ */
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column;
+    }
+    .page-header-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+    #toast-container {
+        bottom: 1rem;
+        right: 1rem;
+        left: 1rem;
+    }
+    .toast {
+        min-width: unset;
+        max-width: 100%;
+    }
 }

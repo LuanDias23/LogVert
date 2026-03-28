@@ -6,7 +6,6 @@
     <title>LogVert | Produtos</title>
     <link rel="icon" type="image/png" href="/assets/logosemfundo.png">
     
-    <!-- Links de CSS (corrigidos pa    ra caminhos absolutos) -->
     <link rel="stylesheet" href="/pages/menu.lojista/menuLojista.css">
     <link rel="stylesheet" href="/pages/produtos/produtos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -16,7 +15,7 @@
     <div id="dashboard-particles"></div>
 
     <div class="dashboard-layout">
-        <!-- Sidebar (já estava correta) -->
+        <!-- Sidebar -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <img src="/assets/logosemfundo.png" alt="Logo LogVert" class="sidebar-logo">
@@ -40,7 +39,7 @@
         <!-- Container Principal -->
         <div class="main-container">
             
-            <!-- Header (já estava correto) -->
+            <!-- Header -->
             <header class="main-header">
                 <div class="header-content">
                     <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
@@ -86,7 +85,7 @@
                                     <ul>
                                         <li><a href="/pages/configuracao/configuracao.html"><i class="fa-solid fa-cog"></i> Configurações da Conta</a></li>
                                         <li><a href="#"><i class="fa-solid fa-palette"></i> Mudar Tema</a></li>
-                                        <li><a href="#"><i class="fa-solid fa-life-ring"></i>   Suporte</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-life-ring"></i> Suporte</a></li>
                                     </ul>
                                     <div class="dropdown-footer">
                                         <a href="/pages/login/login.html" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
@@ -101,7 +100,6 @@
             <!-- Conteúdo Principal -->
             <main class="main-content">
                 
-                <!-- Cabeçalho da página com novos botões -->
                 <div class="page-header">
                     <h2>Meus Produtos Cadastrados</h2>
                     <div class="page-header-actions">
@@ -110,19 +108,17 @@
                     </div>
                 </div>
 
-                <!-- Tabela de Produtos (NOVAS COLUNAS) -->
                 <div class="table-container">
                     <table>
                         <thead>
                             <tr>
-                                <th>Produto</th> <!-- Descrição + Imagem -->
+                                <th>Produto</th>
                                 <th>Preço</th>
                                 <th>Unidade</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <!-- As linhas serão preenchidas pelo produtos.js -->
+                        <tbody id="productsTableBody">
                             <tr>
                                 <td colspan="4" style="text-align: center;">Carregando produtos...</td>
                             </tr>
@@ -133,49 +129,67 @@
         </div>
     </div>
     
-    <!-- MODAL (Pop-up) para Adicionar/Editar Produto (NOVOS CAMPOS) -->
+    <!-- MODAL: Adicionar / Editar Produto -->
     <div class="modal-overlay" id="addProdutoModal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2>Adicionar Novo Produto</h2>
-            <button class="close-modal" id="closeModalBtn">&times;</button>
-        </div>
-        <div class="modal-body">
-            <form id="addProdutoForm" class="form-container">
-                
-                <div class="form-group">
-                    <label for="descricao">Descrição do Produto</label>
-                    <input type="text" id="descricao" required>
-                </div>
-                <div class="form-row">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Adicionar Novo Produto</h2>
+                <button class="close-modal" id="closeModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addProdutoForm" class="form-container">
+                    
                     <div class="form-group">
-                        <label for="preco">Preço (R$)</label>
-                        <input type="number" id="preco" step="0.01" min="0" placeholder="ex: 59.90" required>
+                        <label for="descricao">Descrição do Produto</label>
+                        <input type="text" id="descricao" required>
                     </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="preco">Preço (R$)</label>
+                            <input type="number" id="preco" step="0.01" min="0" placeholder="ex: 59.90" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="unidadeMedida">Unidade (UN, CX, PC)</label>
+                            <input type="text" id="unidadeMedida" value="UN" required>
+                        </div>
+                    </div>
+                    
                     <div class="form-group">
-                        <label for="unidadeMedida">Unidade (UN, CX, PC)</label>
-                        <input type="text" id="unidadeMedida" value="UN" required>
+                        <label for="imagem">Anexar Imagem</label>
+                        <input type="file" id="imagem" accept="image/png, image/jpeg">
+                        <small>Deixe em branco se não quiser alterar a imagem (na edição).</small>
                     </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="imagem">Anexar Imagem</label>
-                    <input type="file" id="imagem" accept="image/png, image/jpeg">
-                    <small>Deixe em branco se não quiser alterar a imagem (na edição).</small>
-                </div>
-                
-                <button type="submit" class="btn-submit-modal">Salvar Produto</button>
-            </form>
+                    
+                    <button type="submit" class="btn-submit-modal">Salvar Produto</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-    <!-- Overlay (já estava correto) -->
+
+    <!-- MODAL: Confirmação de Exclusão -->
+    <div class="modal-overlay confirm-overlay" id="confirmModal">
+        <div class="modal-content confirm-content">
+            <div class="confirm-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h3 id="confirmMsg">Tem certeza que deseja excluir?</h3>
+            <p class="confirm-sub">Esta ação não pode ser desfeita.</p>
+            <div class="confirm-actions">
+                <button class="btn-confirm-nao" id="confirmNao">Cancelar</button>
+                <button class="btn-confirm-sim" id="confirmSim">Sim, excluir</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Container dos Toasts -->
+    <div id="toast-container"></div>
+
+    <!-- Overlay -->
     <div class="overlay"></div>
 
-    <!-- Scripts (Biblioteca de Excel adicionada) -->
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    
     <script src="/js/api/apiClient.js"></script>
     <script src="/pages/menu.lojista/menuLojista.js"></script>
     <script src="/pages/produtos/produtos.js"></script>

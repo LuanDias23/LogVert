@@ -1,22 +1,92 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. REFERÊNCIAS DO DOM ---
-    const tableBody = document.querySelector('#productsTableBody') 
-                   || document.querySelector('.table-container tbody');
-    const modal = document.getElementById('addProdutoModal');
-    const openModalBtn = document.getElementById('openModalBtn');
+    const tableBody     = document.getElementById('productsTableBody');
+    const modal         = document.getElementById('addProdutoModal');
+    const openModalBtn  = document.getElementById('openModalBtn');
     const closeModalBtn = document.getElementById('closeModalBtn');
-    const produtoForm = document.getElementById('addProdutoForm');
-    const exportBtn = document.getElementById('exportBtn');
+    const produtoForm   = document.getElementById('addProdutoForm');
+    const exportBtn     = document.getElementById('exportBtn');
 
     // Campo oculto para controlar modo edição
-    const editIdInput = document.createElement('input');
-    editIdInput.type = 'hidden';
-    editIdInput.id = 'editId';
+    const editIdInput   = document.createElement('input');
+    editIdInput.type    = 'hidden';
+    editIdInput.id      = 'editId';
     produtoForm.appendChild(editIdInput);
 
-    // Rota base dos produtos conforme documentação
-    const PRODUTOS_URL = `${API_BASE_URL}/produtos`;
+    // ── URL base ─────────────────────────────────────────────────────────────
+    // API_BASE_URL já é 'http://localhost:8080/logvert' (definido no apiClient.js)
+    // Garante que não haja barra dupla caso a URL termine com '/'
+    const PRODUTOS_URL = `${API_BASE_URL.replace(/\/$/, '')}/produtos`;
+
+
+    // ── Sistema de Toast ──────────────────────────────────────────────────────
+    const showToast = (mensagem, tipo = 'info', duracao = 4000) => {
+        let container = document.getElementById('toast-container');
+        if (!container) {
+            container = document.createElement('div');
+            container.id = 'toast-container';
+            document.body.appendChild(container);
+        }
+
+        const toast = document.createElement('div');
+        toast.className = `toast ${tipo}`;
+
+        const icones = { success: '✓', error: '✕', info: 'i' };
+
+        toast.innerHTML = `
+            <div class="toast-icon">${icones[tipo] || 'i'}</div>
+            <span class="toast-msg">${mensagem}</span>
+            <button class="toast-close" title="Fechar">×</button>
+        `;
+
+        container.appendChild(toast);
+
+        const remover = () => {
+            toast.classList.add('hide');
+            toast.addEventListener('animationend', () => toast.remove(), { once: true });
+        };
+
+        toast.querySelector('.toast-close').addEventListener('click', remover);
+        setTimeout(remover, duracao);
+    };
+
+
+    // ── Modal de Confirmação (substitui o confirm() nativo) ───────────────────
+    const showConfirm = (mensagem) => {
+        return new Promise((resolve) => {
+            const overlay = document.getElementById('confirmModal');
+
+            if (!overlay) {
+                resolve(window.confirm(mensagem));
+                return;
+            }
+
+            const msgEl  = document.getElementById('confirmMsg');
+            const btnSim = document.getElementById('confirmSim');
+            const btnNao = document.getElementById('confirmNao');
+
+            msgEl.textContent = mensagem;
+            overlay.classList.add('active');
+
+            const fechar = (resultado) => {
+                overlay.classList.remove('active');
+                btnSim.removeEventListener('click', onSim);
+                btnNao.removeEventListener('click', onNao);
+                overlay.removeEventListener('click', onOverlay);
+                resolve(resultado);
+            };
+
+            const onSim     = () => fechar(true);
+            const onNao     = () => fechar(false);
+            const onOverlay = (e) => { if (e.target === overlay) fechar(false); };
+
+            btnSim.addEventListener('click', onSim);
+            btnNao.addEventListener('click', onNao);
+            overlay.addEventListener('click', onOverlay);
+        });
+    };
+
 
     // --- 2. LÓGICA DO MODAL ---
 
@@ -27,12 +97,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const abrirModalNovo = () => {
         produtoForm.reset();
         editIdInput.value = '';
-        document.querySelector('.modal-header h2').textContent = 'Adicionar Novo Produto';
+        document.querySelector('#addProdutoModal .modal-header h2').textContent = 'Adicionar Novo Produto';
+        // Imagem obrigatória (backend exige tanto no POST quanto no PUT)
         document.getElementById('imagem').required = true;
+        const smallImagem = document.querySelector('#addProdutoForm .form-group small');
+        if (smallImagem) smallImagem.textContent = 'Selecione a imagem do produto.';
         modal.classList.add('active');
     };
 
-    if (openModalBtn) openModalBtn.addEventListener('click', abrirModalNovo);
+    if (openModalBtn)  openModalBtn.addEventListener('click', abrirModalNovo);
     if (closeModalBtn) closeModalBtn.addEventListener('click', fecharModal);
     if (modal) {
         modal.addEventListener('click', (e) => {
@@ -43,10 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 3. LÓGICA DE API (CRUD) ---
 
-    /**
-     * READ: Busca todos os produtos — GET /logvert/produtos?page=0&size=50
-     * O backend retorna um objeto Page { content: [...], totalElements, ... }
-     */
     const carregarProdutos = async () => {
         tableBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">Carregando produtos...</td></tr>';
         try {
@@ -56,17 +125,12 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (response.status === 401) throw new Error('Token inválido ou não fornecido. Faça login novamente.');
-            if (!response.ok) throw new Error(`Erro ao buscar produtos. Status: ${response.status}`);
+            if (!response.ok)            throw new Error(`Erro ao buscar produtos. Status: ${response.status}`);
 
-            const dados = await response.json();
-
-            // Backend retorna Page<Produto> com campo "content"
-            let produtos = [];
-            if (Array.isArray(dados)) {
-                produtos = dados;
-            } else if (dados && Array.isArray(dados.content)) {
-                produtos = dados.content;
-            }
+            const dados    = await response.json();
+            const produtos = Array.isArray(dados)
+                           ? dados
+                           : Array.isArray(dados.content) ? dados.content : [];
 
             tableBody.innerHTML = '';
 
@@ -78,7 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
             produtos.forEach(produto => {
                 const tr = document.createElement('tr');
 
-                // Monta URL da imagem do Google Drive usando o fileId retornado pelo backend
                 const imageUrl = produto.imagem
                     ? `https://lh3.googleusercontent.com/d/${produto.imagem}`
                     : 'https://placehold.co/40x40/334155/94a3b8?text=?';
@@ -106,64 +169,70 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             console.error('Erro em carregarProdutos:', error);
             tableBody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#e53935;">${error.message}</td></tr>`;
+            showToast(error.message, 'error');
         }
     };
 
 
     /**
      * CREATE / UPDATE: Submit do formulário
-     * POST /logvert/produtos          → multipart/form-data (produto JSON + imagem)
-     * PUT  /logvert/produtos/{id}     → multipart/form-data (produto JSON + imagem opcional)
-     *
-     * O JSON do produto contém apenas: descricao, unidadeMedida, preco
-     * A loja é identificada pelo token JWT — NÃO enviamos idLoja no body.
+     * POST /logvert/produtos      → multipart/form-data (produto JSON + imagem)
+     * PUT  /logvert/produtos/{id} → multipart/form-data (produto JSON + imagem opcional)
      */
     if (produtoForm) {
         produtoForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const idParaEditar = editIdInput.value;
+            const idParaEditar = editIdInput.value.trim();
+            const isEdicao     = !!idParaEditar;
 
-            // Monta apenas os campos que a API espera no body
-            const produtoJson = {
-                descricao:      document.getElementById('descricao').value.trim(),
-                unidadeMedida:  document.getElementById('unidadeMedida').value.trim(),
-                preco:          parseFloat(document.getElementById('preco').value)
-            };
+            // Coleta e valida campos
+            const descricao     = document.getElementById('descricao').value.trim();
+            const unidadeMedida = document.getElementById('unidadeMedida').value.trim();
+            const precoRaw      = document.getElementById('preco').value;
+            const preco         = parseFloat(precoRaw);
+            const imagemFile    = document.getElementById('imagem').files[0];
 
-            // Validações básicas antes de enviar
-            if (!produtoJson.descricao) {
-                alert('Informe a descrição do produto.');
+            if (!descricao) {
+                showToast('Informe a descrição do produto.', 'error');
                 return;
             }
-            if (isNaN(produtoJson.preco) || produtoJson.preco < 0) {
-                alert('Informe um preço válido e não negativo.');
+            if (isNaN(preco) || preco < 0) {
+                showToast('Informe um preço válido e não negativo.', 'error');
+                return;
+            }
+            // O backend exige imagem tanto no POST quanto no PUT
+            if (!imagemFile) {
+                showToast('Selecione uma imagem para o produto.', 'error');
                 return;
             }
 
-            const imagemFile = document.getElementById('imagem').files[0];
+            // Monta o multipart/form-data conforme a documentação:
+            // Parte 1: "produto" → application/json
+            // Parte 2: "imagem"  → image/*
+            const produtoJson = { descricao, unidadeMedida, preco };
 
-            // Na criação (POST), a imagem não é obrigatória pela API,
-            // mas o backend aceita multipart mesmo sem ela — enviamos o FormData normalmente.
             const formData = new FormData();
-            formData.append('produto', new Blob([JSON.stringify(produtoJson)], {
-                type: 'application/json'
-            }));
+            formData.append(
+                'produto',
+                new Blob([JSON.stringify(produtoJson)], { type: 'application/json' })
+            );
             if (imagemFile) {
                 formData.append('imagem', imagemFile);
             }
 
-            const url    = idParaEditar ? `${PRODUTOS_URL}/${idParaEditar}` : PRODUTOS_URL;
-            const method = idParaEditar ? 'PUT' : 'POST';
+            const url    = isEdicao ? `${PRODUTOS_URL}/${idParaEditar}` : PRODUTOS_URL;
+            const method = isEdicao ? 'PUT' : 'POST';
 
+            // IMPORTANTE: não passar Content-Type manualmente.
+            // O browser define o boundary correto do multipart automaticamente.
             try {
                 const response = await fetch(url, {
                     method,
-                    body: formData,
-                    headers: getAuthHeadersForFormData() // apenas Authorization; sem Content-Type (boundary automático)
+                    body:    formData,
+                    headers: getAuthHeadersForFormData()
                 });
 
-                // Trata erros de status específicos da documentação
                 if (!response.ok) {
                     let mensagem = `Erro ${response.status}`;
                     try {
@@ -178,19 +247,22 @@ document.addEventListener('DOMContentLoaded', () => {
                         case 401: throw new Error('Token inválido. Faça login novamente.');
                         case 403: throw new Error(`Acesso negado ou erro no Google Drive. ${mensagem}`);
                         case 404: throw new Error('Produto não encontrado.');
-                        case 409: throw new Error(`Conflito: já existe um produto com essa descrição nesta loja.`);
+                        case 409: throw new Error('Já existe um produto com essa descrição nesta loja.');
                         case 422: throw new Error(`Erro de validação nos campos: ${mensagem}`);
                         default:  throw new Error(mensagem);
                     }
                 }
 
-                alert(idParaEditar ? 'Produto atualizado com sucesso!' : 'Produto criado com sucesso!');
+                showToast(
+                    isEdicao ? 'Produto atualizado com sucesso!' : 'Produto criado com sucesso!',
+                    'success'
+                );
                 fecharModal();
                 await carregarProdutos();
 
             } catch (error) {
                 console.error('Erro ao salvar produto:', error);
-                alert(error.message);
+                showToast(error.message, 'error');
             }
         });
     }
@@ -198,7 +270,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * EDIT (GET /logvert/produtos/{id}) e DELETE (DELETE /logvert/produtos/{id})
-     * Delegação de evento na tabela
      */
     tableBody.addEventListener('click', async (e) => {
         const button = e.target.closest('button.btn-icon');
@@ -207,12 +278,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const id = button.dataset.id;
 
         if (!id || id === 'undefined' || id === 'null') {
-            alert('Produto sem ID válido. Atualize a página e tente novamente.');
+            showToast('Produto sem ID válido. Atualize a página e tente novamente.', 'error');
             return;
         }
 
+        // ── Editar ────────────────────────────────────────────────────────────
         if (button.classList.contains('btn-edit')) {
-            // --- EDITAR: busca o produto pelo ID — GET /logvert/produtos/{id} ---
             try {
                 const response = await fetch(`${PRODUTOS_URL}/${id}`, {
                     headers: getAuthHeaders()
@@ -225,51 +296,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const produto = await response.json();
 
-                // Preenche o formulário com os dados retornados
-                // A API retorna: idProduto, descricao, unidadeMedida, preco, imagem, status
-                document.getElementById('descricao').value     = produto.descricao    || '';
-                document.getElementById('preco').value         = produto.preco        || '';
+                document.getElementById('descricao').value     = produto.descricao     || '';
+                document.getElementById('preco').value         = produto.preco         || '';
                 document.getElementById('unidadeMedida').value = produto.unidadeMedida || 'UN';
-                document.getElementById('imagem').value        = null; // limpa o file input
-                document.getElementById('imagem').required     = false; // imagem opcional na edição
+                // Limpa o file input (não dá para preencher por segurança do browser)
+                document.getElementById('imagem').value        = '';
+                document.getElementById('imagem').required     = true;
+                // Avisa o usuário que a imagem é obrigatória mesmo na edição
+                const smallImagem = document.querySelector('#addProdutoForm .form-group small');
+                if (smallImagem) smallImagem.textContent = 'Obrigatório: selecione a imagem do produto para salvar.'
 
                 editIdInput.value = String(produto.idProduto);
-                document.querySelector('.modal-header h2').textContent = 'Editar Produto';
+                document.querySelector('#addProdutoModal .modal-header h2').textContent = 'Editar Produto';
                 modal.classList.add('active');
 
             } catch (error) {
                 console.error('Erro ao preparar edição:', error);
-                alert(error.message);
+                showToast(error.message, 'error');
             }
 
+        // ── Deletar ───────────────────────────────────────────────────────────
         } else if (button.classList.contains('btn-delete')) {
-            // --- DELETAR PERMANENTEMENTE: DELETE /logvert/produtos/{id} ---
-            if (!confirm(`Excluir PERMANENTEMENTE o produto ID ${id}? Esta ação não pode ser desfeita.`)) return;
+            const confirmado = await showConfirm(`Excluir permanentemente o produto ID ${id}?`);
+            if (!confirmado) return;
 
             try {
                 const response = await fetch(`${PRODUTOS_URL}/${id}`, {
-                    method: 'DELETE',
+                    method:  'DELETE',
                     headers: getAuthHeaders()
                 });
 
                 if (response.status === 204 || response.ok) {
-                    alert(`Produto ID ${id} excluído com sucesso.`);
+                    showToast('Produto excluído com sucesso.', 'success');
                     await carregarProdutos();
-                } else {
-                    let mensagem = `Erro ${response.status}`;
-                    try { mensagem = await response.text(); } catch { /* sem body */ }
-
-                    switch (response.status) {
-                        case 401: throw new Error('Token inválido. Faça login novamente.');
-                        case 403: throw new Error('Acesso negado para excluir este produto.');
-                        case 404: throw new Error('Produto não encontrado.');
-                        case 409: throw new Error('Não é possível excluir: produto vinculado a vendas.');
-                        default:  throw new Error(mensagem);
-                    }
+                    return;
                 }
+
+                switch (response.status) {
+                    case 401: throw new Error('Token inválido. Faça login novamente.');
+                    case 403: throw new Error('Acesso negado para excluir este produto.');
+                    case 404: throw new Error('Produto não encontrado.');
+                    case 409: throw new Error('Não é possível excluir: produto vinculado a vendas.');
+                    default:  throw new Error(`Erro ao excluir produto. Status: ${response.status}`);
+                }
+
             } catch (error) {
                 console.error('Erro ao deletar produto:', error);
-                alert(error.message);
+                showToast(error.message, 'error');
             }
         }
     });
@@ -279,23 +352,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const exportarParaExcel = async () => {
         try {
             const response = await fetch(`${PRODUTOS_URL}?page=0&size=1000`, {
-                method: 'GET',
+                method:  'GET',
                 headers: getAuthHeaders()
             });
 
             if (!response.ok) throw new Error(`Falha ao buscar produtos para exportação. Status: ${response.status}`);
 
-            const dados = await response.json();
-            const produtos = Array.isArray(dados) ? dados
-                           : Array.isArray(dados.content) ? dados.content
-                           : [];
+            const dados    = await response.json();
+            const produtos = Array.isArray(dados)
+                           ? dados
+                           : Array.isArray(dados.content) ? dados.content : [];
 
             if (produtos.length === 0) {
-                alert('Não há produtos para exportar.');
+                showToast('Não há produtos para exportar.', 'info');
                 return;
             }
 
-            // Mapeia usando os campos exatos retornados pela API
             const dadosParaPlanilha = produtos.map(p => ({
                 'ID':        p.idProduto,
                 'Descrição': p.descricao,
@@ -308,10 +380,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const wb = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(wb, ws, 'Produtos');
             XLSX.writeFile(wb, 'produtos_logvert.xlsx');
+            showToast('Exportação realizada com sucesso!', 'success');
 
         } catch (error) {
             console.error('Erro ao exportar:', error);
-            alert(error.message);
+            showToast(error.message, 'error');
         }
     };
 
