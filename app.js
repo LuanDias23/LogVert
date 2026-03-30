@@ -90,6 +90,11 @@ app.get('/consumidores', (req, res) => {
   });
 });
 
+// Rota para Minha Venda (Consumidor) - exibe detalhes da venda do consumidor autenticado
+app.get('/minha-venda', (req, res) => {
+  res.redirect('/pages/minha-venda/minhaVenda.html');
+});
+
 // Rota para Cliente Login com Handlebars
 app.get('/cliente/login', (req, res) => {
   res.render('cliente-login', {

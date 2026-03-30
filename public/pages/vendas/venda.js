@@ -37,6 +37,108 @@ document.addEventListener('DOMContentLoaded', () => {
     // ✅ Rota correta — API_BASE_URL já contém /logvert
     const VENDAS_URL = `${API_BASE_URL}/vendas`;
 
+    // Container de itens da venda
+    const itensContainer = document.getElementById('itensVendaContainer');
+    const btnAddItem     = document.getElementById('btnAddItem');
+
+    // =============================================
+    // 2a. GERENCIAMENTO DE ITENS DA VENDA (campos estruturados)
+    // =============================================
+    let itemCounter = 1; // Contador para labels dos itens
+
+    const criarItemRow = (dados = {}) => {
+        const idx = itemCounter++;
+        const row = document.createElement('div');
+        row.className = 'item-venda-row';
+        row.setAttribute('data-index', idx);
+        row.innerHTML = `
+            <div class="item-row-header">
+                <span class="item-row-label">Item ${idx}</span>
+                <button type="button" class="btn-remove-item" title="Remover item">&times;</button>
+            </div>
+            <div class="item-row-fields">
+                <div class="item-field">
+                    <label>ID Produto <span class="required">*</span></label>
+                    <input type="number" data-field="idProduto" min="1" placeholder="Ex: 101" value="${dados.idProduto || ''}" required>
+                </div>
+                <div class="item-field">
+                    <label>Quantidade <span class="required">*</span></label>
+                    <input type="number" data-field="quantidade" min="1" step="1" value="${dados.quantidade || 1}" placeholder="Ex: 2" required>
+                </div>
+                <div class="item-field">
+                    <label>Valor Vendido (R$) <span class="required">*</span></label>
+                    <input type="number" data-field="valorVendido" min="0" step="0.01" value="${dados.valorVendido || ''}" placeholder="Ex: 89.90" required>
+                </div>
+                <div class="item-field">
+                    <label>Detalhe</label>
+                    <input type="text" data-field="detalhe" value="${dados.detalhe || ''}" placeholder="Ex: Tamanho G">
+                </div>
+            </div>
+        `;
+        return row;
+    };
+
+    const limparItensContainer = () => {
+        if (itensContainer) itensContainer.innerHTML = '';
+        itemCounter = 1;
+    };
+
+    const adicionarItemVazio = () => {
+        if (itensContainer) {
+            itensContainer.appendChild(criarItemRow());
+        }
+    };
+
+    const coletarItensDoFormulario = () => {
+        const rows = itensContainer.querySelectorAll('.item-venda-row');
+        const itens = [];
+        rows.forEach(row => {
+            const idProduto    = row.querySelector('[data-field="idProduto"]')?.value;
+            const quantidade   = row.querySelector('[data-field="quantidade"]')?.value;
+            const valorVendido = row.querySelector('[data-field="valorVendido"]')?.value;
+            const detalhe      = row.querySelector('[data-field="detalhe"]')?.value || '';
+
+            if (idProduto && quantidade && valorVendido) {
+                itens.push({
+                    idProduto:    parseInt(idProduto),
+                    quantidade:   parseFloat(quantidade),
+                    detalhe:      detalhe.trim(),
+                    valorVendido: parseFloat(valorVendido)
+                });
+            }
+        });
+        return itens;
+    };
+
+    const renumerarItens = () => {
+        const rows = itensContainer.querySelectorAll('.item-venda-row');
+        rows.forEach((row, i) => {
+            const label = row.querySelector('.item-row-label');
+            if (label) label.textContent = `Item ${i + 1}`;
+        });
+    };
+
+    // Event: botão adicionar item
+    if (btnAddItem) {
+        btnAddItem.addEventListener('click', adicionarItemVazio);
+    }
+
+    // Event delegation: remover item
+    if (itensContainer) {
+        itensContainer.addEventListener('click', (e) => {
+            const btn = e.target.closest('.btn-remove-item');
+            if (!btn) return;
+            const row = btn.closest('.item-venda-row');
+            const totalRows = itensContainer.querySelectorAll('.item-venda-row').length;
+            if (totalRows <= 1) {
+                showToast('A venda precisa ter pelo menos 1 item.', 'warning');
+                return;
+            }
+            row.remove();
+            renumerarItens();
+        });
+    }
+
     // =============================================
     // 2. UTILIDADES
     // =============================================
@@ -114,6 +216,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('vendaFormModalTitle').innerHTML =
             '<i class="fas fa-plus-circle"></i> Nova Venda';
         submitVendaBtn.innerHTML = '<i class="fas fa-save"></i> Salvar Venda';
+        // Reseta itens para 1 vazio
+        limparItensContainer();
+        adicionarItemVazio();
     };
 
     const abrirVendaFormModalNovo = () => {
@@ -126,6 +231,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('vendaFormModalTitle').innerHTML =
             '<i class="fas fa-plus-circle"></i> Nova Venda';
         submitVendaBtn.innerHTML = '<i class="fas fa-save"></i> Salvar Venda';
+        // Reseta itens para 1 vazio
+        limparItensContainer();
+        adicionarItemVazio();
         vendaFormModal.classList.add('active');
     };
 
@@ -145,16 +253,23 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('prazoTroca').value     = venda.prazoTroca       || 30;
         document.getElementById('prazoDevolucao').value = venda.prazoDevolucao   || 7;
 
-        // Reconstrói itens para o textarea a partir dos itens retornados pela API
+        // Reconstrói itens nos campos estruturados a partir dos itens retornados pela API
         // GET /{id} retorna: itens[].produto.id, itens[].quantidade, itens[].detalhes, itens[].precoVendido
-        const itensRebuilded = (venda.itens || []).map(item => ({
-            idProduto:    item.produto?.id  || item.produto?.idProduto || '',
-            quantidade:   item.quantidade   || 1,
-            detalhe:      item.detalhes     || '',
-            valorVendido: item.precoVendido || 0
-        }));
-        document.getElementById('itensVendaJson').value =
-            JSON.stringify(itensRebuilded, null, 4);
+        limparItensContainer();
+        const itensData = (venda.itens || []);
+        if (itensData.length === 0) {
+            adicionarItemVazio();
+        } else {
+            itensData.forEach(item => {
+                const row = criarItemRow({
+                    idProduto:    item.produto?.id  || item.produto?.idProduto || '',
+                    quantidade:   item.quantidade   || 1,
+                    detalhe:      item.detalhes     || '',
+                    valorVendido: item.precoVendido || 0
+                });
+                itensContainer.appendChild(row);
+            });
+        }
 
         if (vendaMessage) {
             vendaMessage.textContent = '';
@@ -288,7 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5. READ: BUSCAR TODAS AS VENDAS
     // GET /logvert/vendas?page=0&size=50&sort=dataCriacao,desc
     // Response: Page { content: [ { idVenda, nomeConsumidor, dataCriacao,
-    //                               precoTotal, formaPagamento, statusPedido, status } ] }
+    //                                precoTotal, formaPagamento, statusPedido, status } ] }
     // =============================================
     const carregarVendas = async () => {
         tableBody.innerHTML = `
@@ -359,7 +474,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <td>${venda.nomeConsumidor || '-'}</td>
                     <td>${formatMoeda(venda.precoTotal)}</td>
                     <td>${venda.formaPagamento || '-'}</td>
-                    <td>${venda.dataCriacao    || '-'}</td>
+                    <td>${venda.dataCriacao     || '-'}</td>
                     <td>
                         <span class="status-badge ${statusClass}">
                             ${venda.statusPedido || '-'}
@@ -438,17 +553,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const originalBtnText   = submitVendaBtn.innerHTML;
             submitVendaBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Salvando...';
 
-            // Valida e parseia JSON dos itens
-            const itensRaw = document.getElementById('itensVendaJson').value.trim();
-            let itensVenda;
-            try {
-                itensVenda = JSON.parse(itensRaw);
-                if (!Array.isArray(itensVenda) || itensVenda.length === 0) {
-                    throw new Error('Lista de itens está vazia.');
-                }
-            } catch (jsonError) {
+            // ✅ Coleta itens dos campos estruturados (JSON gerado automaticamente)
+            const itensVenda = coletarItensDoFormulario();
+            if (itensVenda.length === 0) {
                 if (vendaMessage) {
-                    vendaMessage.textContent = 'ERRO: JSON dos itens inválido. Verifique o formato.';
+                    vendaMessage.textContent = 'ERRO: Preencha pelo menos 1 item com todos os campos obrigatórios.';
                     vendaMessage.className   = 'form-message error';
                 }
                 submitVendaBtn.disabled  = false;
@@ -458,13 +567,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // ✅ Payload exato conforme documentação do POST/PUT
             const payload = {
-                desconto:       parseFloat(document.getElementById('desconto').value)       || 0,
-                idConsumidor:   parseInt(document.getElementById('idConsumidor').value),
-                prazoTroca:     parseInt(document.getElementById('prazoTroca').value)        || 30,
-                prazoDevolucao: parseInt(document.getElementById('prazoDevolucao').value)    || 7,
+                desconto:        parseFloat(document.getElementById('desconto').value)        || 0,
+                idConsumidor:    parseInt(document.getElementById('idConsumidor').value),
+                prazoTroca:      parseInt(document.getElementById('prazoTroca').value)         || 30,
+                prazoDevolucao: parseInt(document.getElementById('prazoDevolucao').value)     || 7,
                 formaPagamento: document.getElementById('formaPagamento').value.trim(),
-                statusPedido:   document.getElementById('statusPedido').value,
-                itensVenda:     itensVenda
+                statusPedido:    document.getElementById('statusPedido').value,
+                itensVenda:      itensVenda
             };
 
             const url    = editingVendaId ? `${VENDAS_URL}/${editingVendaId}` : VENDAS_URL;
@@ -552,9 +661,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =============================================
-    // 8. SOFT DELETE EM LOTE: DESATIVAR VENDA
-    // PATCH /logvert/vendas — body: [id]
-    // ✅ A API não tem DELETE individual, apenas PATCH em lote (doc endpoint 6)
+    // 8. DEATUALIZAR / DESATIVAR VENDA (SOFT DELETE EM LOTE)
+    // PATCH /logvert/vendas
+    // ✅ Alterado para usar PATCH com payload [id]
     // =============================================
     const desativarVenda = async (id) => {
         const confirmed = await showConfirm(
@@ -564,11 +673,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!confirmed) return;
 
         try {
-            // ✅ PATCH /vendas com array de IDs conforme documentação
-            const response = await fetch(VENDAS_URL, {
+            // ✅ Payload esperado pela API para desativação em lote (um array de IDs)
+            const payload = [parseInt(id)];
+
+            const response = await fetch(`${VENDAS_URL}`, {
                 method: 'PATCH',
                 headers: getAuthHeaders(),
-                body: JSON.stringify([parseInt(id)])
+                body: JSON.stringify(payload)
             });
 
             if (response.status === 204 || response.ok) {
@@ -577,7 +688,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 await carregarVendas();
             } else {
                 let erroText = '';
-                try { erroText = (await response.json()).message; } catch (_) {}
+                try { 
+                    const json = await response.json();
+                    erroText = json.mensagem || json.message; 
+                } catch (_) {
+                    try { erroText = await response.text(); } catch (__) {}
+                }
+
                 switch (response.status) {
                     case 401: throw new Error('Token inválido. Faça login novamente.');
                     case 403: throw new Error('Acesso negado para desativar esta venda.');

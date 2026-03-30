@@ -284,27 +284,42 @@
                         </div>
                     </div>
 
-                    <!-- itensVenda — array conforme documentação -->
+                    <!-- itensVenda — campos estruturados (JSON gerado pelo JS) -->
                     <div class="form-group">
-                        <label for="itensVendaJson">
-                            Itens da Venda (JSON) <span class="required">*</span>
+                        <label>
+                            Itens da Venda <span class="required">*</span>
                         </label>
-                        <textarea id="itensVendaJson" rows="7" required
-                                  placeholder='[{"idProduto": 101, "quantidade": 2.0, "detalhe": "Tamanho G", "valorVendido": 89.90}]'>[
-    {
-        "idProduto": 101,
-        "quantidade": 1,
-        "detalhe": "",
-        "valorVendido": 89.90
-    }
-]</textarea>
-                        <small>
-                            Campos obrigatórios por item:
-                            <strong>idProduto</strong>,
-                            <strong>quantidade</strong>,
-                            <strong>valorVendido</strong>.
-                            O campo <strong>detalhe</strong> é opcional.
-                        </small>
+                        <div id="itensVendaContainer">
+                            <!-- Item 1 (padrão) -->
+                            <div class="item-venda-row" data-index="0">
+                                <div class="item-row-header">
+                                    <span class="item-row-label">Item 1</span>
+                                    <button type="button" class="btn-remove-item" title="Remover item">&times;</button>
+                                </div>
+                                <div class="item-row-fields">
+                                    <div class="item-field">
+                                        <label>ID Produto <span class="required">*</span></label>
+                                        <input type="number" data-field="idProduto" min="1" placeholder="Ex: 101" required>
+                                    </div>
+                                    <div class="item-field">
+                                        <label>Quantidade <span class="required">*</span></label>
+                                        <input type="number" data-field="quantidade" min="1" step="1" value="1" placeholder="Ex: 2" required>
+                                    </div>
+                                    <div class="item-field">
+                                        <label>Valor Vendido (R$) <span class="required">*</span></label>
+                                        <input type="number" data-field="valorVendido" min="0" step="0.01" placeholder="Ex: 89.90" required>
+                                    </div>
+                                    <div class="item-field">
+                                        <label>Detalhe</label>
+                                        <input type="text" data-field="detalhe" placeholder="Ex: Tamanho G">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-add-item" id="btnAddItem">
+                            <i class="fas fa-plus"></i> Adicionar Item
+                        </button>
+                        <small>Preencha os campos de cada item. O JSON será gerado automaticamente.</small>
                     </div>
 
                     <button type="submit" class="btn-submit-modal" id="submitVendaBtn">
