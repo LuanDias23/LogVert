@@ -95,10 +95,11 @@ app.get('/minha-venda', (req, res) => {
   res.redirect('/pages/minha-venda/minhaVenda.html');
 });
 
-// Rota para Cliente Login com Handlebars
-app.get('/cliente/login', (req, res) => {
-  res.render('cliente-login', {
-    title: 'LogVert | Área do Cliente',
+// Rota para Painel do Cliente (Minhas Solicitações) com Handlebars
+app.get('/cliente/dashboard', (req, res) => {
+  res.render('menu-cliente', {
+    layout: false,
+    title: 'LogVert | Painel do Cliente',
     year: new Date().getFullYear()
   });
 });
