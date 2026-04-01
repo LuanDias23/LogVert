@@ -80,35 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Estado inicial
     setTimeout(() => { lojistaCard.classList.add('active'); }, 100);
 
-    // ===================================
-    // MODO DEMONSTRAÇÃO (FRONTEND ONLY)
-    // ===================================
-    const demoBtn = document.getElementById('demoLoginBtn');
-    if (demoBtn) {
-        demoBtn.addEventListener('click', () => {
-            const submitBtn = document.getElementById('lojista-submit-btn');
-            const messageEl = document.getElementById('lojista-message');
-
-            // UI Feedback
-            if (messageEl) {
-                messageEl.textContent = 'Iniciando modo de demonstração...';
-                messageEl.className = 'form-message animate-item';
-                messageEl.style.color = '#4ade80';
-            }
-            if (submitBtn) showSpinner(submitBtn);
-
-            // Simular delay de rede
-            setTimeout(() => {
-                // Mockar dados de sessão
-                localStorage.setItem('authToken', 'demo-token-frontend-only');
-                localStorage.setItem('userRole', 'lojista');
-                localStorage.setItem('userName', 'Lojista Demo');
-
-                // Redirecionar
-                window.location.href = "/pages/menu.lojista/menuLojista.html";
-            }, 800);
-        });
-    }
+    // Modo demonstração removido
 
 
     // =================================================================
@@ -225,9 +197,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     // Erro de credenciais - Mensagem clara
                     if (response.status === 401 || response.status === 404) {
-                        clienteMessage.textContent = '✗ Código ou senha inválidos';
+                        clienteMessage.textContent = '✗ Serial ou senha inválidos';
                     } else if (response.status === 403) {
-                        clienteMessage.textContent = '✗ Código não encontrado ou inativo';
+                        clienteMessage.textContent = '✗ Serial não encontrado ou inativo';
                     } else {
                         clienteMessage.textContent = result.message || '✗ Erro ao fazer login';
                     }
@@ -240,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (error.name === 'TypeError' && error.message.includes('fetch')) {
                     clienteMessage.textContent = '✗ Erro de conexão. Verifique sua internet.';
                 } else {
-                    clienteMessage.textContent = '✗ Código ou senha inválidos';
+                    clienteMessage.textContent = '✗ Serial ou senha inválidos';
                 }
                 clienteMessage.classList.add('error');
             } finally {
