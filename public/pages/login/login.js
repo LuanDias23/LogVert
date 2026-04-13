@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clienteForm.addEventListener('submit', async (event) => {
             event.preventDefault(); // Impede o recarregamento da página
 
-            const codigo = document.getElementById('cliente-codigo').value;
+            const serial = document.getElementById('cliente-codigo').value;
             const senha = document.getElementById('cliente-senha').value;
             const submitBtn = document.getElementById('cliente-submit-btn');
 
@@ -201,10 +201,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 // Tenta fazer login do cliente no backend
-                const response = await fetch(`${API_BASE_URL}/login-cliente`, {
+                const response = await fetch(`${API_BASE_URL}/login/consumidores`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ codigo, senha }),
+                    body: JSON.stringify({ serial, senha }),
                 });
 
                 const result = await response.json();
@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Redireciona SEM mostrar mensagem verde
                     setTimeout(() => {
-                        window.location.href = result.redirectTo || '/cliente/dashboard';
+                        window.location.href = result.redirectTo || '/menu/cliente';
                     }, 300);
 
                 } else {
