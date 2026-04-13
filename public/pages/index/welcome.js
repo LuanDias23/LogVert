@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Initializing particles...');
         particlesJS("hero-particles", {
             "particles": {
-                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "number": { "value": 150, "density": { "enable": true, "value_area": 800 } },
                 "color": { "value": "#1A73E8" },
                 "shape": { "type": "circle" },
                 "opacity": { "value": 0.4, "random": true },
@@ -183,41 +183,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- FORMULÁRIO DE DEMONSTRAÇÃO ---
-    const demoForm = document.getElementById('demoForm');
-    const demoMessage = document.getElementById('demoMessage');
-    const demoSubmitBtn = document.getElementById('demoSubmitBtn');
-
-    if (demoForm && demoMessage && demoSubmitBtn) {
-        const showSpinner = () => {
-            demoSubmitBtn.classList.add('loading');
-            demoSubmitBtn.disabled = true;
-            const spinner = demoSubmitBtn.querySelector('.btn-spinner');
-            if (spinner) spinner.style.display = 'inline-block';
-        };
-
-        const hideSpinner = () => {
-            demoSubmitBtn.classList.remove('loading');
-            demoSubmitBtn.disabled = false;
-            const spinner = demoSubmitBtn.querySelector('.btn-spinner');
-            if (spinner) spinner.style.display = 'none';
-        };
-
-        demoForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            demoMessage.textContent = '';
-            demoMessage.className = 'form-message';
-            showSpinner();
-
-            // Simula envio (substituir por chamada real de API no futuro)
-            await new Promise(resolve => setTimeout(resolve, 1500));
-
-            hideSpinner();
-            demoMessage.textContent = '✓ Solicitação enviada com sucesso! Entraremos em contato em breve.';
-            demoMessage.classList.add('success');
-
-            demoForm.reset();
-        });
-    }
+    // --- FORMULÁRIO DE DEMONSTRAÇÃO REMOVIDO ---
 });

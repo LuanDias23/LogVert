@@ -50,12 +50,7 @@
                             <span class="btn-spinner" style="display:none;"></span>
                         </button>
                         <button type="button" class="btn-toggle animate-item" id="showCliente">Você é cliente?</button>
-                        <div class="demo-mode-container animate-item">
-                            <button type="button" id="demoLoginBtn" class="btn-demo-link"
-                                title="Apenas para testes visuais sem backend">
-                                <i class="fas fa-eye"></i> Modo Demonstração (Frontend Only)
-                            </button>
-                        </div>
+
                     </form>
                 </div>
             </div>
@@ -69,9 +64,9 @@
                     <!-- ATUALIZAÇÃO: Removido 'action' e 'method', adicionado 'id' -->
                     <form id="cliente-form">
                         <div class="input-group animate-item">
-                            <label for="cliente-codigo">Código</label>
+                            <label for="cliente-codigo">Serial</label>
                             <!-- Valor pré-preenchido para teste -->
-                            <input type="text" id="cliente-codigo" value="CODIGO123" required>
+                            <input type="text" id="cliente-codigo" value="SERIAL123" required>
                         </div>
                         <div class="input-group animate-item">
                             <label for="cliente-senha">Senha</label>
@@ -83,7 +78,7 @@
                         <span id="cliente-message" class="form-message animate-item"></span>
 
                         <a href="/pages/esqueci_senha.cliente/esqueci_senha.html"
-                            class="forgot-password animate-item">Não sabe seu código?</a>
+                            class="forgot-password animate-item">Não sabe seu serial?</a>
                         <button type="submit" class="btn btn-login animate-item" id="cliente-submit-btn">
                             <span class="btn-text">Entrar</span>
                             <span class="btn-spinner" style="display:none;"></span>
@@ -95,10 +90,7 @@
         </main>
     </div>
 
-    <!-- Rodapé Global -->
-    <footer class="global-footer" style="position: fixed; bottom: 0; left: 0; width: 100%; z-index: 10;">
-        <p>© 2025 LogVert. Todos os direitos reservados.</p>
-    </footer>
+
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="/js/api/apiClient.js"></script>
