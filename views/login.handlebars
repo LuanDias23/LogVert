@@ -43,8 +43,11 @@ Por isso inclui doctype, html, head e body próprios.
 
                         <span id="lojista-message" class="form-message animate-item"></span>
 
-                        <a href="/esqueci-senha-lojista"
-                            class="forgot-password animate-item">Esqueci minha senha</a>
+                       <a href="/esqueci-senha-lojista" 
+                        onclick="event.stopPropagation();" 
+                      class="forgot-password animate-
+                        item">Esqueci minha senha</a> 
+                        
                         <button type="submit" class="btn btn-login animate-item" id="lojista-submit-btn">
                             <span class="btn-text">Entrar</span>
                             <span class="btn-spinner" style="display:none;"></span>
@@ -73,8 +76,8 @@ Por isso inclui doctype, html, head e body próprios.
 
                         <span id="cliente-message" class="form-message animate-item"></span>
 
-                        <a href="/esqueci-senha-cliente"
-                            class="forgot-password animate-item">Não sabe seu serial?</a>
+                       
+
                         <button type="submit" class="btn btn-login animate-item" id="cliente-submit-btn">
                             <span class="btn-text">Entrar</span>
                             <span class="btn-spinner" style="display:none;"></span>

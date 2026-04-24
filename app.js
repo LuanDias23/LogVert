@@ -146,6 +146,15 @@ app.get('/login', (req, res) => {
     `
   });
 });
+// ... código anterior
+
+// 1. Você cola as rotas aqui (Linha 144):
+app.get('/esqueci-senha-lojista', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/pages/esqueci_senha.lojista/esqueci_senha.html'));
+});
+
+
+
 
 // Fallback para servir arquivos estáticos por caminho (mantém comportamento anterior)
 app.get('*', (req, res) => {
