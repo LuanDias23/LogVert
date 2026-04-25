@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const showLojistaBtn = document.getElementById('showLojista');
     const body = document.body;
 
+    // URL base da API de autenticação (separada da API_BASE_URL dos outros módulos)
+    const AUTH_API_URL = 'http://localhost:8080/logvert';
+
     // --- FUNÇÕES DE CONTROLE DO SPINNER ---
     const showSpinner = (button) => {
         button.classList.add('loading');
@@ -39,19 +42,18 @@ document.addEventListener('DOMContentLoaded', () => {
             particlesJS("login-particles", config);
         }
     };
-    loadParticles(particlesConfigLojista); // Carrega a versão azul inicial
+    loadParticles(particlesConfigLojista);
 
     // --- LÓGICA DA ANIMAÇÃO DOS CARDS ---
     const switchCards = (cardToShow, cardToHide) => {
         if (cardToShow.classList.contains('active')) return;
 
-        // Adiciona/Remove a classe do tema no body
         if (cardToShow === clienteCard) {
             body.classList.add('theme-cliente');
-            loadParticles(particlesConfigCliente); // Carrega partículas verdes
+            loadParticles(particlesConfigCliente);
         } else {
             body.classList.remove('theme-cliente');
-            loadParticles(particlesConfigLojista); // Carrega partículas azuis
+            loadParticles(particlesConfigLojista);
         }
 
         cardToHide.classList.add('is-leaving');
@@ -80,23 +82,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // Estado inicial
     setTimeout(() => { lojistaCard.classList.add('active'); }, 100);
 
-    // Modo demonstração removido
-
 
     // =================================================================
-    // --- LÓGICA DE INTEGRAÇÃO (AJUSTADA) ---
+    // --- LÓGICA DE INTEGRAÇÃO COM A API ---
     // =================================================================
 
     // --- Formulário 1: Login do Lojista ---
+    // Endpoint: POST /logvert/login
+    // Payload: { email, password }
+    // Resposta: { token }
     const lojistaForm = document.getElementById('lojista-form');
     const lojistaMessage = document.getElementById('lojista-message');
 
     if (lojistaForm) {
         lojistaForm.addEventListener('submit', async (event) => {
-            event.preventDefault(); // Impede o recarregamento da página
+            event.preventDefault();
 
             const email = document.getElementById('lojista-email').value;
-            const password = document.getElementById('lojista-senha').value;
+            const senha = document.getElementById('lojista-senha').value;
             const submitBtn = document.getElementById('lojista-submit-btn');
 
             // Limpa mensagem anterior e mostra spinner
@@ -105,47 +108,46 @@ document.addEventListener('DOMContentLoaded', () => {
             showSpinner(submitBtn);
 
             try {
-                // Tenta fazer login no backend
-                const response = await fetch(`${API_BASE_URL}/login`, {
+                const response = await fetch(`${AUTH_API_URL}/login`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password }),
+                    body: JSON.stringify({ email, password: senha }),
                 });
 
-                const result = await response.json();
-
                 if (response.ok) {
-                    // Login bem-sucedido
+                    // 200 OK - Login bem-sucedido
+                    const result = await response.json();
+
                     if (result.token) {
                         localStorage.setItem('authToken', result.token);
                         localStorage.setItem('userRole', 'lojista');
                         localStorage.setItem('userName', result.userName || email);
                     }
 
-                    // Mensagem de sucesso SEM aparecer nada visível (só redireciona)
                     setTimeout(() => {
                         window.location.href = "/pages/menu.lojista/menuLojista.html";
                     }, 300);
 
+                } else if (response.status === 401) {
+                    // 401 Unauthorized - Credenciais inválidas
+                    lojistaMessage.textContent = '✗ Email ou senha inválidos.';
+                    lojistaMessage.classList.add('error');
+                } else if (response.status === 422) {
+                    // 422 Unprocessable Entity - Erro de validação ou usuário inativo
+                    lojistaMessage.textContent = '✗ Erro de validação. Verifique seus dados.';
+                    lojistaMessage.classList.add('error');
                 } else {
-                    // Erro de credenciais - Mensagem clara
-                    if (response.status === 401 || response.status === 404) {
-                        lojistaMessage.textContent = '✗ Email ou senha inválidos';
-                    } else if (response.status === 403) {
-                        lojistaMessage.textContent = '✗ Usuário não autorizado';
-                    } else {
-                        lojistaMessage.textContent = result.message || '✗ Erro ao fazer login';
-                    }
+                    // Outros erros
+                    lojistaMessage.textContent = '✗ Erro ao fazer login. Tente novamente.';
                     lojistaMessage.classList.add('error');
                 }
             } catch (error) {
                 console.error('Erro no login:', error);
 
-                // Mensagem clara de erro
                 if (error.name === 'TypeError' && error.message.includes('fetch')) {
                     lojistaMessage.textContent = '✗ Erro de conexão. Verifique sua internet.';
                 } else {
-                    lojistaMessage.textContent = '✗ Email ou senha inválidos';
+                    lojistaMessage.textContent = '✗ Erro ao fazer login. Tente novamente.';
                 }
                 lojistaMessage.classList.add('error');
             } finally {
@@ -154,13 +156,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Formulário 2: Login do Cliente ---
+    // --- Formulário 2: Login do Consumidor ---
+    // Endpoint: POST /logvert/login/consumidores
+    // Payload: { serial, password }
+    // Resposta: { token }
     const clienteForm = document.getElementById('cliente-form');
     const clienteMessage = document.getElementById('cliente-message');
 
     if (clienteForm) {
         clienteForm.addEventListener('submit', async (event) => {
-            event.preventDefault(); // Impede o recarregamento da página
+            event.preventDefault();
 
             const serial = document.getElementById('cliente-codigo').value;
             const senha = document.getElementById('cliente-senha').value;
@@ -172,47 +177,46 @@ document.addEventListener('DOMContentLoaded', () => {
             showSpinner(submitBtn);
 
             try {
-                // Tenta fazer login do cliente no backend
-                const response = await fetch(`${API_BASE_URL}/login/consumidores`, {
+                const response = await fetch(`${AUTH_API_URL}/login/consumidores`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ serial, senha }),
+                    body: JSON.stringify({ serial, password: senha }),
                 });
 
-                const result = await response.json();
-
                 if (response.ok) {
-                    // Login bem-sucedido - salva dados e redireciona
+                    // 200 OK - Login bem-sucedido
+                    const result = await response.json();
+
                     if (result.token) {
                         localStorage.setItem('authToken', result.token);
                         localStorage.setItem('userRole', 'cliente');
-                        localStorage.setItem('clientCode', codigo);
+                        localStorage.setItem('clientSerial', serial);
                     }
 
-                    // Redireciona SEM mostrar mensagem verde
                     setTimeout(() => {
-                        window.location.href = result.redirectTo || '/menu/cliente';
+                        window.location.href = '/pages/menu.cliente/menuCliente.html';
                     }, 300);
 
+                } else if (response.status === 401) {
+                    // 401 Unauthorized - Serial ou senha inválidos
+                    clienteMessage.textContent = '✗ Serial ou senha inválidos.';
+                    clienteMessage.classList.add('error');
+                } else if (response.status === 422) {
+                    // 422 Unprocessable Entity - Erro de validação
+                    clienteMessage.textContent = '✗ Erro de validação. Verifique seus dados.';
+                    clienteMessage.classList.add('error');
                 } else {
-                    // Erro de credenciais - Mensagem clara
-                    if (response.status === 401 || response.status === 404) {
-                        clienteMessage.textContent = '✗ Serial ou senha inválidos';
-                    } else if (response.status === 403) {
-                        clienteMessage.textContent = '✗ Serial não encontrado ou inativo';
-                    } else {
-                        clienteMessage.textContent = result.message || '✗ Erro ao fazer login';
-                    }
+                    // Outros erros
+                    clienteMessage.textContent = '✗ Erro ao fazer login. Tente novamente.';
                     clienteMessage.classList.add('error');
                 }
             } catch (error) {
                 console.error('Erro no login do cliente:', error);
 
-                // Mensagem clara de erro
                 if (error.name === 'TypeError' && error.message.includes('fetch')) {
                     clienteMessage.textContent = '✗ Erro de conexão. Verifique sua internet.';
                 } else {
-                    clienteMessage.textContent = '✗ Serial ou senha inválidos';
+                    clienteMessage.textContent = '✗ Erro ao fazer login. Tente novamente.';
                 }
                 clienteMessage.classList.add('error');
             } finally {

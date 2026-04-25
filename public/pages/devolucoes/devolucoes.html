@@ -7,11 +7,9 @@
     <title>LogVert | Trocas e Devoluções</title>
     <link rel="icon" type="image/png" href="/assets/logosemfundo.png">
 
-    <!-- Carrega o CSS principal do menu -->
     <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="/pages/menu.lojista/menuLojista.css">
     <link rel="stylesheet" href="/pages/devolucoes/devolucoes.css">
-    <link rel="stylesheet" href="/css/components/chat-widget.css"> <!-- Livia Chat Widget -->
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -43,7 +41,6 @@
         </aside>
 
         <div class="main-container">
-            <!-- CABEÇALHO COMPLETO INSERIDO -->
             <header class="main-header">
                 <div class="header-content">
                     <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
@@ -54,40 +51,6 @@
                     <div class="header-user-actions">
                         <span>Bem-vindo, Lojista</span>
                         <div class="header-actions">
-                            <div class="header-action-item">
-                                <button class="header-action-btn" id="newsBtn" title="Novidades">
-                                    <i class="fa-solid fa-gift"></i>
-                                </button>
-                                <div class="dropdown-menu" id="newsDropdown">
-                                    <div class="dropdown-header">Novidades da Plataforma</div>
-                                    <ul>
-                                        <li><a href="#">Nova integração com transportadoras!</a></li>
-                                        <li><a href="#">Dashboard de relatórios atualizado.</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="header-action-item">
-                                <button class="header-action-btn" id="notificationsBtn" title="Notificações">
-                                    <i class="fa-solid fa-bell"></i>
-                                    <span class="notification-badge">3</span>
-                                </button>
-                                <div class="dropdown-menu" id="notificationsDropdown">
-                                    <div class="dropdown-header">Notificações</div>
-                                    <ul>
-                                        <li><a href="#">Nova devolução registrada.</a></li>
-                                        <li><a href="#">Produto 'Camiseta Azul' com baixo estoque.</a></li>
-                                        <li><a href="#">Sua fatura mensal foi gerada.</a></li>
-                                    </ul>
-                                    <div class="dropdown-footer"><a href="#">Ver todas</a></div>
-                                </div>
-                            </div>
-
-                            <!-- Botão Mudar Tema (Lua/Sol) -->
-                            <button class="header-action-btn" id="themeToggleBtn" title="Mudar Tema">
-                                <i class="fa-solid fa-moon" id="themeIcon"></i>
-                            </button>
-
                             <div class="header-action-item">
                                 <button class="header-action-btn" id="accountBtn" title="Minha Conta">
                                     <i class="fa-solid fa-user-circle"></i>
@@ -106,27 +69,27 @@
             </header>
 
             <main class="main-content">
+                <!-- Cards de Estatísticas (preenchidos dinamicamente) -->
                 <div class="stat-cards-grid">
                     <div class="stat-card">
                         <div class="stat-icon" style="color: #f39c12;"><i class="fas fa-inbox"></i></div>
                         <div class="stat-info">
-                            <span class="stat-title">Novas Solicitações</span>
-                            <span class="stat-value">12</span>
+                            <span class="stat-title">Pendentes</span>
+                            <span class="stat-value" id="stat-pendentes">--</span>
                         </div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-icon" style="color: var(--primary-blue);"><i class="fas fa-tasks"></i></div>
                         <div class="stat-info">
                             <span class="stat-title">Em Andamento</span>
-                            <span class="stat-value">5</span>
+                            <span class="stat-value" id="stat-andamento">--</span>
                         </div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-icon" style="color: var(--primary-green);"><i class="fas fa-check-circle"></i>
-                        </div>
+                        <div class="stat-icon" style="color: var(--primary-green);"><i class="fas fa-check-circle"></i></div>
                         <div class="stat-info">
-                            <span class="stat-title">Resolvidas (Últ. 30d)</span>
-                            <span class="stat-value">87</span>
+                            <span class="stat-title">Total</span>
+                            <span class="stat-value" id="stat-total">--</span>
                         </div>
                     </div>
                 </div>
@@ -135,148 +98,172 @@
                     <h2>Todas as Solicitações</h2>
                 </div>
 
+                <!-- Mensagem de feedback -->
+                <div id="feedback-message" class="feedback-message" style="display:none;"></div>
+
                 <div class="table-container">
                     <table>
                         <thead>
                             <tr>
-                                <th>Protocolo</th>
+                                <th>ID</th>
                                 <th>Data</th>
-                                <th>Cliente</th>
-                                <th>Pedido de Origem</th>
+                                <th>Consumidor</th>
+                                <th>Venda</th>
                                 <th>Tipo</th>
                                 <th>Status</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr class="row-clickable" data-modal-id="detailsModal">
-                                <td><span class="text-highlight">#D-1025</span></td>
-                                <td>02/11/2025</td>
-                                <td>Maria Oliveira</td>
-                                <td>#8842</td>
-                                <td><span class="badge type-devolucao">Devolução</span></td>
-                                <td><span class="status-badge status-pending">Pendente</span></td>
-                                <td class="action-buttons">
-                                    <button class="btn-icon btn-view-details" title="Ver Detalhes"><i
-                                            class="fas fa-eye"></i></button>
-                                </td>
-                            </tr>
-                            <tr class="row-clickable" data-modal-id="detailsModal">
-                                <td><span class="text-highlight">#T-1024</span></td>
-                                <td>01/11/2025</td>
-                                <td>João da Silva</td>
-                                <td>#8801</td>
-                                <td><span class="badge type-troca">Troca</span></td>
-                                <td><span class="status-badge status-approved">Aprovada</span></td>
-                                <td class="action-buttons">
-                                    <button class="btn-icon btn-view-details" title="Ver Detalhes"><i
-                                            class="fas fa-eye"></i></button>
-                                </td>
-                            </tr>
-                            <tr class="row-clickable" data-modal-id="detailsModal">
-                                <td><span class="text-highlight">#D-1023</span></td>
-                                <td>30/10/2025</td>
-                                <td>Ana Costa</td>
-                                <td>#8790</td>
-                                <td><span class="badge type-devolucao">Devolução</span></td>
-                                <td><span class="status-badge status-completed">Concluída</span></td>
-                                <td class="action-buttons">
-                                    <button class="btn-icon btn-view-details" title="Ver Detalhes"><i
-                                            class="fas fa-eye"></i></button>
+                        <tbody id="solicitacoes-tbody">
+                            <!-- Preenchido dinamicamente pelo JS -->
+                            <tr id="loading-row">
+                                <td colspan="7" style="text-align: center; padding: 2rem; color: var(--text-muted);">
+                                    <i class="fas fa-spinner fa-spin"></i> Carregando solicitações...
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+
+                <!-- Controles de Paginação -->
+                <div id="pagination-controls" class="pagination-controls" style="display:none;">
+                    <button id="btn-prev-page" class="btn btn-secondary" disabled>
+                        <i class="fas fa-chevron-left"></i> Anterior
+                    </button>
+                    <span id="pagination-info" class="pagination-info">Página 1 de 1</span>
+                    <button id="btn-next-page" class="btn btn-secondary" disabled>
+                        Próxima <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
             </main>
         </div>
     </div>
 
+    <!-- ============================================================ -->
+    <!-- MODAL DE DETALHES DA SOLICITAÇÃO -->
+    <!-- ============================================================ -->
     <div class="modal-overlay" id="detailsModal">
         <div class="modal-content large">
             <div class="modal-header">
-                <h2>Detalhes da Solicitação <span class="text-highlight">#D-1025</span></h2>
+                <h2>Detalhes da Solicitação <span class="text-highlight" id="modal-sol-id"></span></h2>
                 <button class="close-modal" id="closeModalBtn">&times;</button>
             </div>
             <div class="modal-body">
-                <div class="modal-details-layout">
-                    <div class="modal-details-col">
-                        <h3><i class="fas fa-user"></i> Dados do Cliente</h3>
-                        <div class="data-group">
-                            <span>Nome:</span>
-                            <p>Maria Oliveira</p>
-                        </div>
-                        <div class="data-group">
-                            <span>E-mail:</span>
-                            <p>maria.oliveira@email.com</p>
-                        </div>
-                        <div class="data-group">
-                            <span>Telefone:</span>
-                            <p>(11) 98877-6655</p>
+                <div id="modal-loading" style="text-align:center; padding:2rem; color: var(--text-muted);">
+                    <i class="fas fa-spinner fa-spin fa-2x"></i>
+                    <p>Carregando detalhes...</p>
+                </div>
+
+                <div id="modal-details-content" style="display:none;">
+                    <div class="modal-details-layout">
+                        <div class="modal-details-col">
+                            <!-- Dados do Consumidor -->
+                            <h3><i class="fas fa-user"></i> Dados do Consumidor</h3>
+                            <div class="data-group"><span>Nome:</span><p id="modal-consumidor-nome"></p></div>
+                            <div class="data-group"><span>CPF/CNPJ:</span><p id="modal-consumidor-cpf"></p></div>
+                            <div class="data-group"><span>E-mail:</span><p id="modal-consumidor-email"></p></div>
+                            <div class="data-group"><span>Celular:</span><p id="modal-consumidor-celular"></p></div>
+                            <div class="data-group"><span>Endereço:</span><p id="modal-consumidor-endereco"></p></div>
+
+                            <!-- Dados da Venda -->
+                            <h3 class="mt-2"><i class="fas fa-box-open"></i> Dados da Venda</h3>
+                            <div class="data-group"><span>ID Venda:</span><p id="modal-venda-id"></p></div>
+                            <div class="data-group"><span>Serial:</span><p id="modal-venda-serial"></p></div>
+                            <div class="data-group"><span>Data Criação:</span><p id="modal-venda-criacao"></p></div>
+                            <div class="data-group"><span>Data Entrega:</span><p id="modal-venda-entrega"></p></div>
+
+                            <!-- Dados do Produto -->
+                            <h3 class="mt-2"><i class="fas fa-tag"></i> Produto</h3>
+                            <div class="data-group"><span>Descrição:</span><p id="modal-produto-descricao"></p></div>
+                            <div class="data-group"><span>Preço Original:</span><p id="modal-produto-preco-original"></p></div>
+                            <div class="data-group"><span>Preço Vendido:</span><p id="modal-produto-preco-vendido"></p></div>
+                            <div class="data-group"><span>Quantidade:</span><p id="modal-produto-quantidade"></p></div>
                         </div>
 
-                        <h3 class="mt-2"><i class="fas fa-box-open"></i> Dados do Pedido</h3>
-                        <div class="data-group">
-                            <span>Pedido Original:</span>
-                            <p>#8842 (Data: 25/10/2025)</p>
-                        </div>
-                        <div class="data-group">
-                            <span>Produto:</span>
-                            <p>Calça Jeans Reta Azul - Tam. 38</p>
-                        </div>
-                        <div class="data-group">
-                            <span>Tipo de Solicitação:</span>
-                            <p><span class="badge type-devolucao">Devolução</span></p>
-                        </div>
-                    </div>
-                    <div class="modal-details-col">
-                        <h3><i class="fas fa-comment-dots"></i> Motivo da Solicitação</h3>
-                        <div class="data-group">
-                            <span>Motivo:</span>
-                            <p>Tamanho não serviu (Ficou pequena)</p>
-                        </div>
-                        <div class="data-group">
-                            <span>Comentário do Cliente:</span>
-                            <p>"A calça é linda, mas o tamanho 38 ficou apertado. Quero devolver e pedir o estorno."</p>
-                        </div>
-                        <div class="data-group">
-                            <span>Anexos do Cliente:</span>
-                            <p><a href="#" class="text-link">ver_foto_produto.jpg</a></p>
-                        </div>
+                        <div class="modal-details-col">
+                            <!-- Dados da Solicitação -->
+                            <h3><i class="fas fa-comment-dots"></i> Detalhes da Solicitação</h3>
+                            <div class="data-group"><span>Tipo:</span><p id="modal-sol-tipo"></p></div>
+                            <div class="data-group"><span>Motivo:</span><p id="modal-sol-motivo"></p></div>
+                            <div class="data-group"><span>Quantidade Solicitada:</span><p id="modal-sol-quantidade"></p></div>
+                            <div class="data-group"><span>Data Solicitação:</span><p id="modal-sol-data"></p></div>
+                            <div class="data-group"><span>Status:</span><p id="modal-sol-status"></p></div>
 
-                        <h3 class="mt-2"><i class="fas fa-cogs"></i> Ações do Lojista</h3>
-                        <div class="data-group">
-                            <span>Resolução Solicitada:</span>
-                            <p>Estorno no Cartão de Crédito</p>
-                        </div>
-                        <div class="modal-actions">
-                            <button class="btn btn-danger"><i class="fas fa-times-circle"></i> Rejeitar
-                                Solicitação</button>
-                            <button class="btn btn-primary"><i class="fas fa-check-circle"></i> Aprovar
-                                Devolução</button>
+                            <!-- Anexos -->
+                            <h3 class="mt-2"><i class="fas fa-paperclip"></i> Anexos</h3>
+                            <div id="modal-anexos-list" class="data-group">
+                                <p>Nenhum anexo.</p>
+                            </div>
+
+                            <!-- Histórico -->
+                            <h3 class="mt-2"><i class="fas fa-history"></i> Histórico</h3>
+                            <div id="modal-historico-list">
+                                <p style="color: var(--text-muted);">Nenhum histórico registrado.</p>
+                            </div>
+
+                            <!-- Feedbacks -->
+                            <h3 class="mt-2"><i class="fas fa-star"></i> Feedbacks</h3>
+                            <div id="modal-feedbacks-list">
+                                <p style="color: var(--text-muted);">Nenhum feedback registrado.</p>
+                            </div>
+
+                            <!-- Ações do Lojista (condicional) -->
+                            <div id="modal-actions-pendente" style="display:none;">
+                                <h3 class="mt-2"><i class="fas fa-cogs"></i> Ações</h3>
+                                <div class="modal-actions">
+                                    <button class="btn btn-danger" id="btn-reprovar">
+                                        <i class="fas fa-times-circle"></i> Reprovar
+                                    </button>
+                                    <button class="btn btn-primary" id="btn-aprovar">
+                                        <i class="fas fa-check-circle"></i> Aprovar
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Atualizar Status (condicional - só para Aprovada) -->
+                            <div id="modal-actions-atualizar" style="display:none;">
+                                <h3 class="mt-2"><i class="fas fa-sync-alt"></i> Atualizar Status</h3>
+                                <form id="form-atualizar-status">
+                                    <div class="data-group" style="margin-bottom: 10px;">
+                                        <label for="status-novo" style="display:block; margin-bottom:5px;"><span>Novo Status:</span></label>
+                                        <select id="status-novo" required style="width:100%; padding:8px; border-radius:6px; border:1px solid var(--border-color); background: var(--card-background); color: var(--text-light);">
+                                            <option value="">Selecione...</option>
+                                            <option value="Em Trânsito">Em Trânsito</option>
+                                            <option value="Concluída">Concluída</option>
+                                        </select>
+                                    </div>
+                                    <div class="data-group" style="margin-bottom: 10px;">
+                                        <label for="observacao-status" style="display:block; margin-bottom:5px;"><span>Observação:</span></label>
+                                        <textarea id="observacao-status" rows="3" required
+                                            style="width:100%; padding:8px; border-radius:6px; border:1px solid var(--border-color); background: var(--card-background); color: var(--text-light);"
+                                            placeholder="Descreva a atualização..."></textarea>
+                                    </div>
+
+                                    <!-- Novos Produtos (opcional, para trocas concluídas) -->
+                                    <div id="novos-produtos-section" style="display:none;">
+                                        <label style="display:block; margin-bottom:5px;"><span>Novos Produtos (Troca):</span></label>
+                                        <div id="novos-produtos-list"></div>
+                                        <button type="button" class="btn btn-secondary" id="btn-add-produto" style="margin-top:5px;">
+                                            <i class="fas fa-plus"></i> Adicionar Produto
+                                        </button>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary" style="margin-top: 15px; width: 100%;">
+                                        <i class="fas fa-save"></i> Salvar Atualização
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Rodapé Global -->
-            <footer class="global-footer">
-                <p>© 2025 LogVert. Todos os direitos reservados.</p>
-            </footer>
         </div>
     </div>
 
     <div class="overlay"></div>
 
-    <!-- 
-      CORREÇÃO: 
-      1. Ordem correta (particles.js primeiro)
-      2. Caminho correto (menuLojista.js, sem o ponto)
-    -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-
     <script src="/js/api/apiClient.js"></script>
-    <script src="/js/components/chat-widget.js"></script> <!-- Livia Chat Widget -->
     <script src="/pages/menu.lojista/menuLojista.js"></script>
     <script src="/pages/devolucoes/devolucoes.js"></script>
 </body>

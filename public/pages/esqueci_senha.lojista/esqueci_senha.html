@@ -25,21 +25,69 @@
             <div class="card-content">
                 <img src="/assets/logosemfundo.png" alt="Logo LogVert" class="logo">
                 <h2>Recuperar Senha</h2>
-                <p>Digite seu CPF/CNPJ ou E-mail cadastrado para enviarmos um link de recuperação.</p>
-                <form action="#" method="POST">
-                    <div class="input-group">
-                        <label for="identificador_lojista">CPF/CNPJ ou E-mail</label>
-                        <input type="text" id="identificador_lojista" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Enviar Link</button>
-                </form>
+
+                <!-- Mensagem de feedback global -->
+                <span id="recovery-message" class="form-message"></span>
+
+                <!-- Etapa 1: Solicitar código de recuperação -->
+                <div id="step-email">
+                    <p>Digite seu e-mail cadastrado para receber o código de recuperação.</p>
+                    <form id="form-email">
+                        <div class="input-group">
+                            <label for="recovery-email">E-mail</label>
+                            <input type="email" id="recovery-email" required placeholder="seu@email.com">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <span class="btn-text">Enviar Código</span>
+                            <span class="btn-spinner" style="display:none;"></span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Etapa 2: Validar código de recuperação -->
+                <div id="step-code" style="display: none;">
+                    <p>Digite o código de 6 dígitos enviado para o seu e-mail.</p>
+                    <form id="form-code">
+                        <div class="input-group">
+                            <label for="recovery-code">Código de Recuperação</label>
+                            <input type="text" id="recovery-code" required placeholder="123456" maxlength="6">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <span class="btn-text">Validar Código</span>
+                            <span class="btn-spinner" style="display:none;"></span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Etapa 3: Definir nova senha -->
+                <div id="step-password" style="display: none;">
+                    <p>Defina sua nova senha. A senha deve ter no mínimo 8 caracteres.</p>
+                    <form id="form-password">
+                        <div class="input-group">
+                            <label for="new-password">Nova Senha</label>
+                            <input type="password" id="new-password" required minlength="8"
+                                placeholder="Mínimo 8 caracteres">
+                        </div>
+                        <div class="input-group">
+                            <label for="confirm-password">Confirmar Senha</label>
+                            <input type="password" id="confirm-password" required minlength="8"
+                                placeholder="Repita a senha">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <span class="btn-text">Atualizar Senha</span>
+                            <span class="btn-spinner" style="display:none;"></span>
+                        </button>
+                    </form>
+                </div>
+
             </div>
         </div>
     </div>
     <footer class="global-footer" style="position: fixed; bottom: 0; left: 0; width: 100%; z-index: 10;">
-        <p>© 2025 LogVert. Todos os direitos reservados.</p>
+        <p>&copy; 2025 LogVert. Todos os direitos reservados.</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="/js/api/apiClient.js"></script>
     <script src="/pages/esqueci_senha.lojista/esqueci_senha.js"></script>
 </body>
 

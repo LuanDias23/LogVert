@@ -22,8 +22,6 @@
             <ul class="sidebar-menu">
                 <li><a class="sidebar-link active" href="../menu.cliente/menuCliente.html"><i
                             class="fa-solid fa-receipt"></i><span>Minhas Solicitações</span></a></li>
-                <li><a class="sidebar-link" href="../minha-venda/minhaVenda.html"><i
-                            class="fa-solid fa-bag-shopping"></i><span>Minha Venda</span></a></li>
                 <li><a class="sidebar-link" href="../solicitacao/solicitacao.html"><i
                             class="fa-solid fa-plus-circle"></i><span>Nova Solicitação</span></a></li>
                 <li><a class="sidebar-link" href="../dados-pessoais/meus_dados.html"><i
@@ -59,7 +57,6 @@
                                 <div class="dropdown-menu" id="accountDropdown">
                                     <ul>
                                         <li><a href="#"><i class="fa-solid fa-user-cog"></i> Meus Dados</a></li>
-                                        <li><a href="#"><i class="fa-solid fa-palette"></i> Mudar Tema</a></li>
                                     </ul>
                                     <div class="dropdown-footer">
                                         <a href="../login/login.html" class="logout-link"><i
@@ -80,67 +77,68 @@
                     </div>
                 </a>
 
+                <!-- Mensagem de feedback -->
+                <div id="feedback-message" class="feedback-message" style="display:none;"></div>
 
+                <h2 class="section-title">MINHAS SOLICITAÇÕES</h2>
 
-                <h2 class="section-title">SOLICITAÇÕES EM ANDAMENTO</h2>
-                <div class="cards-grid">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>Pedido #BR1023A</h3>
-                            <span class="status-badge status-approved">Aprovado</span>
-                        </div>
-                        <p class="card-product">Produto: Camiseta Azul P</p>
-                        <a href="#" class="card-details">Ver detalhes <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>Pedido #BR1019B</h3>
-                            <span class="status-badge status-sent">Produto Enviado</span>
-                        </div>
-                        <p class="card-product">Produto: Calça Jeans 38</p>
-                        <a href="#" class="card-details">Rastrear <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
+                <!-- Loading -->
+                <div id="loading-solicitacoes" style="text-align:center; padding:2rem; color: var(--text-muted);">
+                    <i class="fas fa-spinner fa-spin fa-2x"></i>
+                    <p>Carregando suas solicitações...</p>
+                </div>
+
+                <!-- Cards dinâmicos -->
+                <div id="solicitacoes-cliente-grid" class="cards-grid">
+                    <!-- Preenchido dinamicamente -->
+                </div>
+
+                <!-- Mensagem vazia -->
+                <div id="empty-message" style="display:none; text-align:center; padding:2rem; color: var(--text-muted);">
+                    <i class="fa-solid fa-inbox fa-3x" style="margin-bottom:1rem;"></i>
+                    <p>Você ainda não tem solicitações.</p>
                 </div>
             </main>
 
-            <!-- Rodapé Global -->
             <footer class="global-footer">
-                <p>© 2025 LogVert. Todos os direitos reservados.</p>
+                <p>&copy; 2025 LogVert. Todos os direitos reservados.</p>
             </footer>
         </div>
     </div>
     <div class="overlay"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="../menu.cliente/menuCliente.js"></script>
+    <!-- Modal de Detalhes -->
+    <div id="modalDetalhes" class="modal-detalhes">
+        <div class="modal-detalhes-content">
+            <button class="modal-close-btn">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="modal-header">
+                <h2 id="modalPedido"></h2>
+                <span id="modalStatus" class="status-badge"></span>
+            </div>
+            <div class="modal-body">
+                <p id="modalProduto"></p>
+                <div class="modal-info">
+                    <p><strong>Tipo:</strong> <span id="modalTipo"></span></p>
+                    <p><strong>Motivo:</strong> <span id="modalMotivo"></span></p>
+                    <p><strong>Data da Solicitação:</strong> <span id="modalData"></span></p>
+                    <p><strong>Última Atualização:</strong> <span id="modalAtualizacao"></span></p>
+                </div>
 
-    <!-- MODAL DETALHES -->
-<div id="modalDetalhes" class="modal-detalhes">
-    <div class="modal-detalhes-content">
-        
-        <button class="modal-close-btn">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-
-        <div class="modal-header">
-            <h2 id="modalPedido"></h2>
-            <span id="modalStatus" class="status-badge"></span>
-        </div>
-
-        <div class="modal-body">
-            <p id="modalProduto"></p>
-
-            <div class="modal-info">
-                <p><strong>Data da Solicitação:</strong> 26/03/2026</p>
-                <p><strong>Tipo:</strong> Troca / Devolução</p>
-                <p><strong>Descrição:</strong> Solicitação registrada pelo cliente.</p>
+                <!-- Ações do Consumidor (condicional) -->
+                <div id="modal-consumer-actions" style="display:none; margin-top:15px;">
+                    <button class="btn btn-danger" id="btn-cancelar-sol" style="width:100%; margin-bottom:8px;">
+                        <i class="fas fa-times-circle"></i> Cancelar Solicitação
+                    </button>
+                </div>
             </div>
         </div>
-
     </div>
-</div>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="/js/api/apiClient.js"></script>
+    <script src="../menu.cliente/menuCliente.js"></script>
 </body>
 
 </html>

@@ -153,6 +153,16 @@ app.get('/esqueci-senha-lojista', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/pages/esqueci_senha.lojista/esqueci_senha.html'));
 });
 
+// Rota para Central de Trocas e Devoluções (Lojista)
+app.get('/solicitacoes', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/pages/devolucoes/devolucoes.html'));
+});
+
+// Rota para Nova Solicitação (Consumidor)
+app.get('/solicitacoes/nova', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/pages/solicitacao/solicitacao.html'));
+});
+
 
 
 

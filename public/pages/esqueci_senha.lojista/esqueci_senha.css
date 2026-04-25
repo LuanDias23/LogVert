@@ -132,3 +132,39 @@ input:focus {
 .back-to-login i { margin: 0 17px; font-size: 1.2rem; }
 .back-to-login span { opacity: 0; transition: opacity 0.3s ease 0.1s; }
 .back-to-login:hover span { opacity: 1; }
+
+/* Mensagem de feedback */
+.form-message {
+    display: block;
+    text-align: center;
+    font-size: 0.9rem;
+    min-height: 1.2em;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+.form-message.success {
+    color: #4CAF50;
+    background-color: rgba(76, 175, 80, 0.1);
+}
+.form-message.error {
+    color: #e53935;
+    background-color: rgba(229, 57, 53, 0.1);
+}
+
+/* Spinner do botão */
+.btn-spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    vertical-align: middle;
+    margin-left: 8px;
+}
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}

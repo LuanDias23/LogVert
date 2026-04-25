@@ -430,3 +430,117 @@ tbody tr.row-clickable:hover {
         max-width: 90vw;
     }
 }
+
+/* ============================================= */
+/* 6. ESTILOS ADICIONAIS — INTEGRAÇÃO API */
+/* ============================================= */
+
+/* Paginação */
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding: 1rem;
+}
+.pagination-info {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Feedback */
+.feedback-message {
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+}
+.feedback-message.success {
+    background-color: rgba(56, 142, 60, 0.15);
+    color: var(--primary-green);
+    border: 1px solid var(--primary-green);
+}
+.feedback-message.error {
+    background-color: rgba(229, 57, 53, 0.15);
+    color: #e53935;
+    border: 1px solid #e53935;
+}
+
+/* Status badges adicionais */
+.status-badge.status-transit { background-color: var(--primary-blue); }
+.status-badge.status-rejected { background-color: #e53935; }
+.status-badge.status-cancelled { background-color: #78909c; }
+
+/* Botão secundário */
+.btn-secondary {
+    background-color: var(--card-background);
+    color: var(--text-light);
+    border: 1px solid var(--border-color-dark);
+}
+.btn-secondary:hover { background-color: rgba(255,255,255,0.1); }
+.btn-secondary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Header actions */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.header-action-item {
+    position: relative;
+}
+.header-action-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.2s, color 0.2s;
+}
+.header-action-btn:hover {
+    background-color: var(--card-background);
+    color: var(--text-light);
+}
+.header-user-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--background-blue-deep);
+    border: 1px solid var(--border-color-dark);
+    border-radius: 8px;
+    min-width: 200px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    z-index: 1200;
+}
+.dropdown-menu.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(5px);
+}
+.dropdown-menu ul { list-style: none; padding: 0.5rem 0; }
+.dropdown-menu li a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+.dropdown-menu li a:hover { background-color: var(--card-background); }

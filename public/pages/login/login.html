@@ -65,20 +65,16 @@
                     <form id="cliente-form">
                         <div class="input-group animate-item">
                             <label for="cliente-codigo">Serial</label>
-                            <!-- Valor pré-preenchido para teste -->
-                            <input type="text" id="cliente-codigo" value="SERIAL123" required>
+                            <input type="text" id="cliente-codigo" required>
                         </div>
                         <div class="input-group animate-item">
                             <label for="cliente-senha">Senha</label>
-                            <!-- Valor pré-preenchido para teste -->
-                            <input type="password" id="cliente-senha" value="123" required>
+                            <input type="password" id="cliente-senha" required>
                         </div>
 
                         <!-- ATUALIZAÇÃO: Adicionado <span> para mensagens de erro/sucesso -->
                         <span id="cliente-message" class="form-message animate-item"></span>
 
-                        <a href="/pages/esqueci_senha.cliente/esqueci_senha.html"
-                            class="forgot-password animate-item">Não sabe seu serial?</a>
                         <button type="submit" class="btn btn-login animate-item" id="cliente-submit-btn">
                             <span class="btn-text">Entrar</span>
                             <span class="btn-spinner" style="display:none;"></span>

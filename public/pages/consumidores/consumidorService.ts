@@ -65,7 +65,7 @@ const consumidorService = {
 
   /**
    * Listar Todos os Consumidores
-   * GET /doisv/consumidores
+   * GET /logvert/consumidores
    * @returns Array de objetos Consumidor
    */
   async listarTodos(): Promise<Consumidor[]> {
@@ -78,7 +78,7 @@ const consumidorService = {
 
   /**
    * Buscar Consumidor por ID
-   * GET /doisv/consumidores/{id}
+   * GET /logvert/consumidores/{id}
    * @param id - ID do consumidor
    */
   async buscarPorId(id: number): Promise<Consumidor> {
@@ -91,7 +91,7 @@ const consumidorService = {
 
   /**
    * Criar novo Consumidor
-   * POST /doisv/consumidores
+   * POST /logvert/consumidores
    * Envia apenas: nome, cpf_cnpj, email, celular, endereco
    * @param payload - Dados do novo consumidor
    */
@@ -106,7 +106,7 @@ const consumidorService = {
 
   /**
    * Atualizar Consumidor existente
-   * PUT /doisv/consumidores/{id}
+   * PUT /logvert/consumidores/{id}
    * Envia: nome, cpf_cnpj, email, celular, telefone
    * ⚠️ Atenção: O PUT NÃO recebe 'endereco', conforme a regra do back-end.
    * @param id - ID do consumidor
@@ -123,7 +123,7 @@ const consumidorService = {
 
   /**
    * Desativar Consumidores em Lote
-   * PATCH /doisv/consumidores
+   * PATCH /logvert/consumidores
    * Envia um array de IDs no body: [1, 2, 3]
    * Espera resposta 204 (No Content) em caso de sucesso.
    * @param ids - Array de IDs para desativar
@@ -138,7 +138,7 @@ const consumidorService = {
 
   /**
    * Deletar Consumidor Permanentemente
-   * DELETE /doisv/consumidores/{id}
+   * DELETE /logvert/consumidores/{id}
    * Espera resposta 204 (No Content) em caso de sucesso.
    * @param id - ID do consumidor a excluir
    */
