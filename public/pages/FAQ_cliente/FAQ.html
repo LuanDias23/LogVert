@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LogVert | Ajuda & Suporte</title>
+    <title>LogVert | Meus Feedbacks</title>
     <link rel="icon" type="image/png" href="/assets/logosemfundo.png">
     <link rel="stylesheet" href="../menu.cliente/menuCliente.css">
-    <link rel="stylesheet" href="../solicitacao/form_solicitacao.css"> 
+    <link rel="stylesheet" href="../FAQ_cliente/ajuda.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="../FAQ_cliente/ajuda.css"> 
 </head>
 <body>
 
@@ -23,7 +22,7 @@
                 <li><a class="sidebar-link" href="../menu.cliente/menuCliente.html"><i class="fa-solid fa-receipt"></i><span>Minhas Solicitações</span></a></li>
                 <li><a class="sidebar-link" href="../solicitacao/solicitacao.html"><i class="fa-solid fa-plus-circle"></i><span>Nova Solicitação</span></a></li>
                 <li><a class="sidebar-link" href="../dados-pessoais/meus_dados.html"><i class="fa-solid fa-user-cog"></i><span>Meus Dados</span></a></li>
-                <li><a class="sidebar-link active" href="../FAQ_cliente/FAQ.html"><i class="fa-solid fa-question-circle"></i><span>Ajuda</span></a></li>
+                <li><a class="sidebar-link active" href="../FAQ_cliente/FAQ.html"><i class="fa-solid fa-star"></i><span>Feedbacks</span></a></li>
                 <li><a class="sidebar-link" href="../login/login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
             </ul>
             <div class="sidebar-toggle-wrapper">
@@ -39,8 +38,8 @@
                     <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
                         <i class="fas fa-bars"></i>
                     </button>
-                    <h1 class="header-title">Central de Ajuda e Suporte</h1>
-                    
+                    <h1 class="header-title">Meus Feedbacks</h1>
+
                     <div class="header-user-actions">
                         <span>Bem-vindo, Cliente</span>
                         <div class="header-actions">
@@ -51,7 +50,6 @@
                                 <div class="dropdown-menu" id="accountDropdown">
                                     <ul>
                                         <li><a href="../dados-pessoais/meus_dados.html"><i class="fa-solid fa-user-cog"></i> Meus Dados</a></li>
-                                        <li><a href="#"><i class="fa-solid fa-palette"></i> Mudar Tema</a></li>
                                     </ul>
                                     <div class="dropdown-footer">
                                         <a href="../login/login.html" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
@@ -64,71 +62,119 @@
             </header>
 
             <main class="main-content">
-                
-    <h2 class="section-title">Perguntas Frequentes (FAQ)</h2>
 
-    <div class="faq-list-container">
+                <!-- Mensagem de feedback global -->
+                <div id="feedback-message" class="feedback-msg" style="display:none;"></div>
 
-        <div class="faq-box">
-            <h3 class="faq-question">
-                <i class="fa-solid fa-circle-question"></i> Como iniciar uma nova solicitação de troca ou devolução?
-            </h3>
-            <div class="faq-answer">
-                <p>Basta clicar no item **"Nova Solicitação"** no menu lateral. Você precisará do **número do seu pedido** e do **e-mail** cadastrado para prosseguir.</p>
-            </div>
-        </div>
+                <!-- ===================================================== -->
+                <!-- SEÇÃO 1: ENVIAR FEEDBACK                               -->
+                <!-- POST /logvert/feedbacks                                -->
+                <!-- ===================================================== -->
+                <h2 class="section-title"><i class="fas fa-pen"></i> Enviar Feedback</h2>
+                <p class="section-subtitle">Envie sua avaliação sobre uma solicitação concluída.</p>
 
-        <div class="faq-box">
-            <h3 class="faq-question">
-                <i class="fa-solid fa-circle-question"></i> Qual o prazo para a devolução do meu dinheiro (reembolso)?
-            </h3>
-            <div class="faq-answer">
-                <p>Após a aprovação da devolução, o prazo para o reembolso é de **7 a 10 dias úteis**, dependendo da forma de pagamento original (crédito, débito, pix).</p>
-            </div>
-        </div>
-        
-        <div class="faq-box">
-            <h3 class="faq-question">
-                <i class="fa-solid fa-circle-question"></i> Onde posso acompanhar o status da minha solicitação?
-            </h3>
-            <div class="faq-answer">
-                <p>Todas as suas solicitações ativas e concluídas podem ser visualizadas na tela **"Minhas Solicitações"**, a primeira opção do menu. O status é atualizado em tempo real.</p>
-            </div>
-        </div>
+                <div class="feedback-form-card" id="feedback-form-card">
+                    <form id="form-criar-feedback">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="input-id-solicitacao"><i class="fas fa-clipboard-list"></i> ID da Solicitação *</label>
+                                <input type="number" id="input-id-solicitacao" placeholder="Ex: 1" min="1" required>
+                            </div>
 
-    </div> <h2 class="section-title">Precisa de Ajuda Pessoal?</h2>
-    
-    <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-        
-        <a href="mailto:suporte@logvert.com" class="card-link">
-            <div class="card card-contact">
-                <i class="fa-solid fa-envelope fa-2x"></i>
-                <h3>E-mail de Suporte</h3>
-                <p>Envie sua dúvida detalhada. Responderemos em até 24h úteis.</p>
-                <span class="card-details">suporte@logvert.com</span>
-            </div>
-        </a>
-        
-        <a href="https://wa.me/5511999999999" target="_blank" class="card-link">
-            <div class="card card-contact">
-                <i class="fa-brands fa-whatsapp fa-2x"></i>
-                <h3>WhatsApp</h3>
-                <p>Para suporte rápido, fale com nossa equipe de atendimento via chat.</p>
-                <span class="card-details">(11) 99999-9999</span>
-            </div>
-        </a>
+                            <div class="form-group">
+                                <label for="input-id-loja"><i class="fas fa-store"></i> ID da Loja *</label>
+                                <input type="number" id="input-id-loja" placeholder="Ex: 5" min="1" required>
+                            </div>
 
-    </div>
-</main>
+                            <div class="form-group">
+                                <label for="select-tipo-feedback"><i class="fas fa-tag"></i> Tipo de Feedback *</label>
+                                <select id="select-tipo-feedback" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="Atendimento">Atendimento</option>
+                                    <option value="Produto">Produto</option>
+                                    <option value="Entrega">Entrega</option>
+                                    <option value="Geral">Geral</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="fas fa-star"></i> Nota * <span id="nota-display" class="nota-display">(selecione)</span></label>
+                                <div class="star-rating" id="star-rating">
+                                    <button type="button" class="star-btn" data-value="1" title="1 estrela"><i class="fas fa-star"></i></button>
+                                    <button type="button" class="star-btn" data-value="2" title="2 estrelas"><i class="fas fa-star"></i></button>
+                                    <button type="button" class="star-btn" data-value="3" title="3 estrelas"><i class="fas fa-star"></i></button>
+                                    <button type="button" class="star-btn" data-value="4" title="4 estrelas"><i class="fas fa-star"></i></button>
+                                    <button type="button" class="star-btn" data-value="5" title="5 estrelas"><i class="fas fa-star"></i></button>
+                                </div>
+                                <input type="hidden" id="input-nota" value="">
+                            </div>
+                        </div>
+
+                        <div class="form-group form-group-full">
+                            <label for="input-comentario"><i class="fas fa-comment"></i> Comentário *</label>
+                            <textarea id="input-comentario" rows="3" placeholder="Descreva sua experiência..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-submit" id="btn-enviar-feedback">
+                            <i class="fas fa-paper-plane"></i>
+                            <span class="btn-text">Enviar Feedback</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Mensagem de sucesso -->
+                <div id="feedback-success" class="success-message" style="display:none;">
+                    <i class="fas fa-check-circle fa-3x"></i>
+                    <h3>Feedback enviado com sucesso!</h3>
+                    <p>Obrigado pela sua avaliação.</p>
+                    <button class="btn btn-secondary" id="btn-novo-feedback">
+                        <i class="fas fa-plus"></i> Enviar outro feedback
+                    </button>
+                </div>
+
+                <!-- ===================================================== -->
+                <!-- SEÇÃO 2: CONSULTAR FEEDBACKS POR SOLICITAÇÃO            -->
+                <!-- GET /logvert/feedbacks/solicitacoes/{idSolicitacao}     -->
+                <!-- ===================================================== -->
+                <h2 class="section-title mt-3"><i class="fas fa-search"></i> Consultar Feedbacks</h2>
+                <p class="section-subtitle">Veja os feedbacks de uma solicitação específica.</p>
+
+                <div class="feedback-form-card">
+                    <form id="form-consultar-feedbacks">
+                        <div class="search-input-group">
+                            <input type="number" id="input-consulta-solicitacao" placeholder="ID da Solicitação" min="1" required>
+                            <button type="submit" class="btn btn-primary" id="btn-consultar">
+                                <i class="fas fa-search"></i> Consultar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Resultados da consulta -->
+                <div id="consulta-results" class="consulta-results" style="display:none;">
+                    <h3 id="consulta-results-title" class="results-title"></h3>
+                    <div id="consulta-cards-container" class="feedback-cards-grid">
+                        <!-- Cards dinâmicos -->
+                    </div>
+                </div>
+
+                <!-- Estado vazio da consulta -->
+                <div id="consulta-empty" class="empty-state" style="display:none;">
+                    <i class="fas fa-comment-slash fa-3x"></i>
+                    <p>Nenhum feedback encontrado para esta solicitação.</p>
+                </div>
+
+            </main>
+
+            <footer class="global-footer">
+                <p>&copy; 2025 LogVert. Todos os direitos reservados.</p>
+            </footer>
         </div>
     </div>
     <div class="overlay"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    
-    <script src="../menu.cliente/menuCliente.js"></script> 
-</body>
-
-    
+    <script src="/js/api/apiClient.js"></script>
+    <script src="../FAQ_cliente/faq_cliente.js"></script>
 </body>
 </html>

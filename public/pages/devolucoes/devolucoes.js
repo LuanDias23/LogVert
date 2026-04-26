@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.status === 401) {
                 showFeedback('✗ Sessão expirada. Faça login novamente.', 'error');
-                setTimeout(() => { window.location.href = '/pages/login/login.html'; }, 2000);
+                setTimeout(() => { window.location.href = '/login'; }, 2000);
                 return;
             }
 
@@ -246,10 +246,62 @@ document.addEventListener('DOMContentLoaded', () => {
             currentSolicitacaoTipo = sol.tipo;
             renderModalDetails(sol);
 
+            // Carrega feedbacks via endpoint dedicado
+            loadFeedbacksBySolicitacao(id);
+
         } catch (error) {
             console.error('Erro ao carregar detalhes:', error);
             showFeedback('✗ Erro ao carregar detalhes da solicitação.', 'error');
             closeModal();
+        }
+    }
+
+    /**
+     * Carrega feedbacks via endpoint dedicado
+     * GET /logvert/feedbacks/solicitacoes/{idSolicitacao}
+     * Auth: Bearer Token (Lojista)
+     * Status: 200, 401, 404
+     */
+    async function loadFeedbacksBySolicitacao(idSolicitacao) {
+        const feedbacksDiv = document.getElementById('modal-feedbacks-list');
+        feedbacksDiv.innerHTML = '<p style="color:var(--text-muted);"><i class="fas fa-spinner fa-spin"></i> Carregando feedbacks...</p>';
+
+        try {
+            const response = await fetch(`${AUTH_API_URL}/feedbacks/solicitacoes/${idSolicitacao}`, {
+                method: 'GET',
+                headers: authHeaders()
+            });
+
+            if (response.status === 200) {
+                const feedbacks = await response.json();
+                if (feedbacks && feedbacks.length > 0) {
+                    feedbacksDiv.innerHTML = feedbacks.map(f => `
+                        <div class="data-group" style="margin-bottom:8px; padding:8px; border-left:3px solid #f39c12; background:rgba(243,156,18,0.05); border-radius:4px;">
+                            <p>
+                                <strong>${f.nomeConsumidor || 'Anônimo'}</strong>
+                                <span style="margin-left:8px; font-size:0.8rem; color:#f39c12; background:rgba(243,156,18,0.12); padding:2px 8px; border-radius:12px;">${f.tipoFeedback || '—'}</span>
+                                — ${'★'.repeat(Math.max(1, Math.min(5, f.nota)))}${'☆'.repeat(5 - Math.max(1, Math.min(5, f.nota)))}
+                            </p>
+                            <small style="color:var(--text-muted);">${f.comentario || ''} (${f.dataFeedback || '—'})</small>
+                        </div>
+                    `).join('');
+                } else {
+                    feedbacksDiv.innerHTML = '<p style="color:var(--text-muted);">Nenhum feedback registrado.</p>';
+                }
+
+            } else if (response.status === 401) {
+                feedbacksDiv.innerHTML = '<p style="color:var(--text-muted);">Sessão expirada.</p>';
+
+            } else if (response.status === 404) {
+                feedbacksDiv.innerHTML = '<p style="color:var(--text-muted);">Nenhum feedback registrado.</p>';
+
+            } else {
+                feedbacksDiv.innerHTML = '<p style="color:var(--text-muted);">Erro ao carregar feedbacks.</p>';
+            }
+
+        } catch (error) {
+            console.error('Erro ao carregar feedbacks:', error);
+            feedbacksDiv.innerHTML = '<p style="color:var(--text-muted);">Erro ao carregar feedbacks.</p>';
         }
     }
 
@@ -309,18 +361,8 @@ document.addEventListener('DOMContentLoaded', () => {
             historicoDiv.innerHTML = '<p style="color:var(--text-muted);">Nenhum histórico registrado.</p>';
         }
 
-        // Feedbacks
-        const feedbacksDiv = document.getElementById('modal-feedbacks-list');
-        if (sol.feedbacks && sol.feedbacks.length > 0) {
-            feedbacksDiv.innerHTML = sol.feedbacks.map(f => `
-                <div class="data-group" style="margin-bottom:8px; padding:8px; border-left:3px solid #f39c12; background:rgba(243,156,18,0.05); border-radius:4px;">
-                    <p><strong>${f.nomeConsumidor}</strong> — ${'★'.repeat(f.nota)}${'☆'.repeat(5 - f.nota)}</p>
-                    <small style="color:var(--text-muted);">${f.comentario} (${f.dataFeedback})</small>
-                </div>
-            `).join('');
-        } else {
-            feedbacksDiv.innerHTML = '<p style="color:var(--text-muted);">Nenhum feedback registrado.</p>';
-        }
+        // Feedbacks — carregados via endpoint dedicado (loadFeedbacksBySolicitacao)
+        // O div #modal-feedbacks-list será populado pela chamada à API
 
         // Ações condicionais
         const actionsPendente = document.getElementById('modal-actions-pendente');

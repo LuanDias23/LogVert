@@ -1,105 +1,224 @@
 /**
- * FAQ Page - JavaScript
- * Funcionalidades: Accordion, Filtro por Categoria, Busca
+ * FAQ Page (Lojista) - Feedbacks API Integration
+ * Endpoints:
+ *   1. GET /logvert/feedbacks/{id}             — Buscar feedback por ID (Bearer Token)
+ *   2. GET /logvert/feedbacks/solicitacoes/{id} — Buscar feedbacks por solicitação (Bearer Token)
  */
 
 document.addEventListener('DOMContentLoaded', function () {
-    // ========================================
-    // 1. FAQ ACCORDION
-    // ========================================
-    const faqItems = document.querySelectorAll('.faq-item');
 
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
+    // =============================================
+    // CONFIGURAÇÃO
+    // =============================================
+    const AUTH_API_URL = 'http://localhost:8080/logvert';
 
-        question.addEventListener('click', () => {
-            // Fecha outros itens abertos
-            faqItems.forEach(otherItem => {
-                if (otherItem !== item && otherItem.classList.contains('active')) {
-                    otherItem.classList.remove('active');
-                }
-            });
+    // =============================================
+    // ELEMENTOS DOM
+    // =============================================
+    const feedbackDiv = document.getElementById('feedback-message');
+    const formBuscaId = document.getElementById('form-busca-id');
+    const formBuscaSolicitacao = document.getElementById('form-busca-solicitacao');
+    const inputFeedbackId = document.getElementById('input-feedback-id');
+    const inputSolicitacaoId = document.getElementById('input-solicitacao-id');
+    const resultsSection = document.getElementById('feedback-results');
+    const resultsTitle = document.getElementById('results-title');
+    const cardsContainer = document.getElementById('feedback-cards-container');
+    const emptyResults = document.getElementById('empty-results');
+    const btnClearResults = document.getElementById('btn-clear-results');
 
-            // Toggle do item atual
-            item.classList.toggle('active');
-        });
+    // =============================================
+    // FUNÇÕES AUXILIARES
+    // =============================================
+    const getToken = () => localStorage.getItem('authToken');
+
+    const authHeaders = () => ({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${getToken()}`
     });
 
-    // ========================================
-    // 2. FILTRO POR CATEGORIA
-    // ========================================
-    const categoryBtns = document.querySelectorAll('.faq-category-btn');
+    const showFeedback = (message, type) => {
+        if (!feedbackDiv) return;
+        feedbackDiv.textContent = message;
+        feedbackDiv.className = `feedback-msg ${type}`;
+        feedbackDiv.style.display = 'block';
+        setTimeout(() => { feedbackDiv.style.display = 'none'; }, 5000);
+    };
 
-    categoryBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Remove active de todos os botões
-            categoryBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+    /**
+     * Renderiza estrelas (★/☆) com base na nota (1-5)
+     */
+    const renderStars = (nota) => {
+        const n = Math.max(1, Math.min(5, nota));
+        return '★'.repeat(n) + '☆'.repeat(5 - n);
+    };
 
-            const category = btn.dataset.category;
+    /**
+     * Renderiza um card de feedback seguindo o contrato da API:
+     * { idFeedback, tipoFeedback, nota, comentario, dataFeedback, idConsumidor, nomeConsumidor, idLoja, idSolicitacao }
+     */
+    const renderFeedbackCard = (f) => `
+        <div class="feedback-card">
+            <div class="feedback-card-header">
+                <span class="feedback-id">#${f.idFeedback}</span>
+                <span class="feedback-tipo-badge">${f.tipoFeedback || '—'}</span>
+            </div>
+            <div class="feedback-stars">${renderStars(f.nota)}</div>
+            <p class="feedback-comentario">${f.comentario || 'Sem comentário.'}</p>
+            <div class="feedback-card-footer">
+                <span class="feedback-consumidor">
+                    <i class="fas fa-user"></i> ${f.nomeConsumidor || 'Anônimo'}
+                </span>
+                <span class="feedback-data">
+                    <i class="fas fa-calendar-alt"></i> ${f.dataFeedback || '—'}
+                </span>
+            </div>
+            <div class="feedback-card-meta">
+                <span><i class="fas fa-store"></i> Loja: ${f.idLoja ?? '—'}</span>
+                <span><i class="fas fa-clipboard-list"></i> Solicitação: ${f.idSolicitacao ?? '—'}</span>
+            </div>
+        </div>
+    `;
 
-            faqItems.forEach(item => {
-                if (category === 'all' || item.dataset.category === category) {
-                    item.classList.remove('hidden');
-                    item.style.display = '';
-                } else {
-                    item.classList.add('hidden');
-                    item.style.display = 'none';
-                }
-            });
-        });
-    });
+    /**
+     * Exibe os feedbacks na área de resultados
+     */
+    const showResults = (feedbacks, title) => {
+        if (!feedbacks || feedbacks.length === 0) {
+            resultsSection.style.display = 'none';
+            emptyResults.style.display = 'block';
+            return;
+        }
 
-    // ========================================
-    // 3. BUSCA DE PERGUNTAS
-    // ========================================
-    const searchInput = document.getElementById('faqSearch');
+        emptyResults.style.display = 'none';
+        resultsTitle.innerHTML = `<i class="fas fa-list"></i> ${title}`;
+        cardsContainer.innerHTML = feedbacks.map(renderFeedbackCard).join('');
+        resultsSection.style.display = 'block';
+    };
 
-    if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase().trim();
+    const clearResults = () => {
+        resultsSection.style.display = 'none';
+        emptyResults.style.display = 'none';
+        cardsContainer.innerHTML = '';
+    };
 
-            // Reset categoria para "Todas" quando buscar
-            if (searchTerm) {
-                categoryBtns.forEach(b => b.classList.remove('active'));
-                document.querySelector('[data-category="all"]')?.classList.add('active');
+
+    // =============================================
+    // 1. BUSCAR FEEDBACK POR ID
+    // GET /logvert/feedbacks/{id}
+    // Auth: Bearer Token (Lojista)
+    // Status: 200, 401, 404
+    // =============================================
+    if (formBuscaId) {
+        formBuscaId.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const id = parseInt(inputFeedbackId.value);
+            if (!id || id < 1) {
+                showFeedback('✗ Informe um ID de feedback válido.', 'error');
+                return;
             }
 
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question span').textContent.toLowerCase();
-                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+            const btnSubmit = formBuscaId.querySelector('button[type="submit"]');
+            btnSubmit.disabled = true;
 
-                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
-                    item.classList.remove('hidden');
-                    item.style.display = '';
+            try {
+                const response = await fetch(`${AUTH_API_URL}/feedbacks/${id}`, {
+                    method: 'GET',
+                    headers: authHeaders()
+                });
+
+                if (response.status === 200) {
+                    const feedback = await response.json();
+                    showResults([feedback], `Feedback #${feedback.idFeedback}`);
+                    showFeedback('✓ Feedback encontrado.', 'success');
+
+                } else if (response.status === 401) {
+                    showFeedback('✗ Sessão expirada. Faça login novamente.', 'error');
+                    setTimeout(() => { window.location.href = '/login'; }, 2000);
+
+                } else if (response.status === 404) {
+                    clearResults();
+                    emptyResults.style.display = 'block';
+                    showFeedback('✗ Feedback não encontrado.', 'error');
+
                 } else {
-                    item.classList.add('hidden');
-                    item.style.display = 'none';
+                    showFeedback('✗ Erro inesperado ao buscar feedback.', 'error');
                 }
-            });
+
+            } catch (error) {
+                console.error('Erro ao buscar feedback por ID:', error);
+                showFeedback('✗ Erro de conexão. Verifique sua internet.', 'error');
+            } finally {
+                btnSubmit.disabled = false;
+            }
         });
     }
 
-    // ========================================
-    // 4. FORMULÁRIO DE SUPORTE (se existir)
-    // ========================================
-    const formSuporte = document.getElementById('form-suporte');
 
-    if (formSuporte) {
-        formSuporte.addEventListener('submit', async (e) => {
+    // =============================================
+    // 2. BUSCAR FEEDBACKS POR SOLICITAÇÃO
+    // GET /logvert/feedbacks/solicitacoes/{idSolicitacao}
+    // Auth: Bearer Token (Lojista ou Consumidor)
+    // Status: 200, 401, 404
+    // =============================================
+    if (formBuscaSolicitacao) {
+        formBuscaSolicitacao.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const formData = {
-                email: document.getElementById('email').value,
-                assunto: document.getElementById('assunto').value,
-                descricao: document.getElementById('descricao').value
-            };
+            const idSolicitacao = parseInt(inputSolicitacaoId.value);
+            if (!idSolicitacao || idSolicitacao < 1) {
+                showFeedback('✗ Informe um ID de solicitação válido.', 'error');
+                return;
+            }
 
-            // Aqui você pode implementar o envio para um endpoint
-            console.log('Dados do formulário:', formData);
+            const btnSubmit = formBuscaSolicitacao.querySelector('button[type="submit"]');
+            btnSubmit.disabled = true;
 
-            alert('Mensagem enviada com sucesso! Nossa equipe entrará em contato em breve.');
-            formSuporte.reset();
+            try {
+                const response = await fetch(`${AUTH_API_URL}/feedbacks/solicitacoes/${idSolicitacao}`, {
+                    method: 'GET',
+                    headers: authHeaders()
+                });
+
+                if (response.status === 200) {
+                    const feedbacks = await response.json();
+                    showResults(feedbacks, `Feedbacks da Solicitação #${idSolicitacao} (${feedbacks.length} encontrado${feedbacks.length !== 1 ? 's' : ''})`);
+                    if (feedbacks.length > 0) {
+                        showFeedback(`✓ ${feedbacks.length} feedback(s) encontrado(s).`, 'success');
+                    }
+
+                } else if (response.status === 401) {
+                    showFeedback('✗ Sessão expirada. Faça login novamente.', 'error');
+                    setTimeout(() => { window.location.href = '/login'; }, 2000);
+
+                } else if (response.status === 404) {
+                    clearResults();
+                    emptyResults.style.display = 'block';
+                    showFeedback('✗ Solicitação não encontrada ou sem acesso.', 'error');
+
+                } else {
+                    showFeedback('✗ Erro inesperado ao buscar feedbacks.', 'error');
+                }
+
+            } catch (error) {
+                console.error('Erro ao buscar feedbacks por solicitação:', error);
+                showFeedback('✗ Erro de conexão. Verifique sua internet.', 'error');
+            } finally {
+                btnSubmit.disabled = false;
+            }
+        });
+    }
+
+
+    // =============================================
+    // LIMPAR RESULTADOS
+    // =============================================
+    if (btnClearResults) {
+        btnClearResults.addEventListener('click', () => {
+            clearResults();
+            if (inputFeedbackId) inputFeedbackId.value = '';
+            if (inputSolicitacaoId) inputSolicitacaoId.value = '';
         });
     }
 });

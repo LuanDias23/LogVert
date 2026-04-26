@@ -25,13 +25,18 @@
                 <img src="/assets/logosemfundo.png" alt="Logo LogVert" class="sidebar-logo">
             </div>
             <ul class="sidebar-menu">
-            <li><a class="sidebar-link" href="/pages/menu.lojista/menuLojista.html"><i class="fa-solid fa-house"></i><span>Início</span></a></li>
-            <li><a class="sidebar-link" href="/produtos"><i class="fa-solid fa-box"></i><span>Produto</span></a></li>
-            <li><a class="sidebar-link" href="/vendas"><i class="fa-solid fa-truck"></i><span>Venda</span></a></li>
-            <li><a class="sidebar-link" href="/consumidores"><i class="fa-solid fa-users"></i><span>Consumidores</span></a></li>
-            <li><a class="sidebar-link active" href="/pages/devolucoes/devolucoes.html"><i class="fa-solid fa-arrow-rotate-left"></i><span>Trocas e Devoluções</span></a></li>
-            <li><a class="sidebar-link" href="/pages/FAQ/FAQ.html"><i class="fa-solid fa-circle-question"></i><span>Central de Ajuda</span></a></li>
-            <li><a class="sidebar-link" href="/pages/login/login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
+                <li><a class="sidebar-link" href="/menu.lojista"><i
+                            class="fa-solid fa-house"></i><span>Início</span></a></li>
+                <li><a class="sidebar-link" href="/produtos"><i class="fa-solid fa-box"></i><span>Produto</span></a>
+                </li>
+                <li><a class="sidebar-link" href="/vendas"><i class="fa-solid fa-truck"></i><span>Venda</span></a></li>
+                <li><a class="sidebar-link" href="/consumidores"><i
+                            class="fa-solid fa-users"></i><span>Consumidores</span></a></li>
+                <li><a class="sidebar-link active" href="/devolucoes"><i
+                            class="fa-solid fa-arrow-rotate-left"></i><span>Trocas e Devoluções</span></a></li>
+                <li><a class="sidebar-link" href="/FAQ"><i class="fa-solid fa-star"></i><span>Feedbacks</span></a></li>
+                <li><a class="sidebar-link" href="/login"><i
+                            class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
             </ul>
             <div class="sidebar-toggle-wrapper">
                 <button class="sidebar-toggle" id="sidebarToggle" title="Minimizar menu">
@@ -57,9 +62,12 @@
                                 </button>
                                 <div class="dropdown-menu" id="accountDropdown">
                                     <ul>
-                                        <li><a href="/pages/configuracao/configuracao.html"><i class="fa-solid fa-cog"></i> Configurações da Conta</a></li>
-                                        <li><a href="/assinatura"><i class="fa-solid fa-file-invoice-dollar"></i> Minha Assinatura</a></li>
-                                        <li><a href="/login"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a></li>
+                                        <li><a href="/pages/configuracao/configuracao.html"><i
+                                                    class="fa-solid fa-cog"></i> Configurações da Conta</a></li>
+                                        <li><a href="/assinatura"><i class="fa-solid fa-file-invoice-dollar"></i> Minha
+                                                Assinatura</a></li>
+                                        <li><a href="/login"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                                Sair</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -86,7 +94,8 @@
                         </div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-icon" style="color: var(--primary-green);"><i class="fas fa-check-circle"></i></div>
+                        <div class="stat-icon" style="color: var(--primary-green);"><i class="fas fa-check-circle"></i>
+                        </div>
                         <div class="stat-info">
                             <span class="stat-title">Total</span>
                             <span class="stat-value" id="stat-total">--</span>
@@ -159,35 +168,71 @@
                         <div class="modal-details-col">
                             <!-- Dados do Consumidor -->
                             <h3><i class="fas fa-user"></i> Dados do Consumidor</h3>
-                            <div class="data-group"><span>Nome:</span><p id="modal-consumidor-nome"></p></div>
-                            <div class="data-group"><span>CPF/CNPJ:</span><p id="modal-consumidor-cpf"></p></div>
-                            <div class="data-group"><span>E-mail:</span><p id="modal-consumidor-email"></p></div>
-                            <div class="data-group"><span>Celular:</span><p id="modal-consumidor-celular"></p></div>
-                            <div class="data-group"><span>Endereço:</span><p id="modal-consumidor-endereco"></p></div>
+                            <div class="data-group"><span>Nome:</span>
+                                <p id="modal-consumidor-nome"></p>
+                            </div>
+                            <div class="data-group"><span>CPF/CNPJ:</span>
+                                <p id="modal-consumidor-cpf"></p>
+                            </div>
+                            <div class="data-group"><span>E-mail:</span>
+                                <p id="modal-consumidor-email"></p>
+                            </div>
+                            <div class="data-group"><span>Celular:</span>
+                                <p id="modal-consumidor-celular"></p>
+                            </div>
+                            <div class="data-group"><span>Endereço:</span>
+                                <p id="modal-consumidor-endereco"></p>
+                            </div>
 
                             <!-- Dados da Venda -->
                             <h3 class="mt-2"><i class="fas fa-box-open"></i> Dados da Venda</h3>
-                            <div class="data-group"><span>ID Venda:</span><p id="modal-venda-id"></p></div>
-                            <div class="data-group"><span>Serial:</span><p id="modal-venda-serial"></p></div>
-                            <div class="data-group"><span>Data Criação:</span><p id="modal-venda-criacao"></p></div>
-                            <div class="data-group"><span>Data Entrega:</span><p id="modal-venda-entrega"></p></div>
+                            <div class="data-group"><span>ID Venda:</span>
+                                <p id="modal-venda-id"></p>
+                            </div>
+                            <div class="data-group"><span>Serial:</span>
+                                <p id="modal-venda-serial"></p>
+                            </div>
+                            <div class="data-group"><span>Data Criação:</span>
+                                <p id="modal-venda-criacao"></p>
+                            </div>
+                            <div class="data-group"><span>Data Entrega:</span>
+                                <p id="modal-venda-entrega"></p>
+                            </div>
 
                             <!-- Dados do Produto -->
                             <h3 class="mt-2"><i class="fas fa-tag"></i> Produto</h3>
-                            <div class="data-group"><span>Descrição:</span><p id="modal-produto-descricao"></p></div>
-                            <div class="data-group"><span>Preço Original:</span><p id="modal-produto-preco-original"></p></div>
-                            <div class="data-group"><span>Preço Vendido:</span><p id="modal-produto-preco-vendido"></p></div>
-                            <div class="data-group"><span>Quantidade:</span><p id="modal-produto-quantidade"></p></div>
+                            <div class="data-group"><span>Descrição:</span>
+                                <p id="modal-produto-descricao"></p>
+                            </div>
+                            <div class="data-group"><span>Preço Original:</span>
+                                <p id="modal-produto-preco-original"></p>
+                            </div>
+                            <div class="data-group"><span>Preço Vendido:</span>
+                                <p id="modal-produto-preco-vendido"></p>
+                            </div>
+                            <div class="data-group"><span>Quantidade:</span>
+                                <p id="modal-produto-quantidade"></p>
+                            </div>
                         </div>
 
                         <div class="modal-details-col">
                             <!-- Dados da Solicitação -->
                             <h3><i class="fas fa-comment-dots"></i> Detalhes da Solicitação</h3>
-                            <div class="data-group"><span>Tipo:</span><p id="modal-sol-tipo"></p></div>
-                            <div class="data-group"><span>Motivo:</span><p id="modal-sol-motivo"></p></div>
-                            <div class="data-group"><span>Quantidade Solicitada:</span><p id="modal-sol-quantidade"></p></div>
-                            <div class="data-group"><span>Data Solicitação:</span><p id="modal-sol-data"></p></div>
-                            <div class="data-group"><span>Status:</span><p id="modal-sol-status"></p></div>
+                            <div class="data-group"><span>Tipo:</span>
+                                <p id="modal-sol-tipo"></p>
+                            </div>
+                            <div class="data-group"><span>Motivo:</span>
+                                <p id="modal-sol-motivo"></p>
+                            </div>
+                            <div class="data-group"><span>Quantidade Solicitada:</span>
+                                <p id="modal-sol-quantidade"></p>
+                            </div>
+                            <div class="data-group"><span>Data Solicitação:</span>
+                                <p id="modal-sol-data"></p>
+                            </div>
+                            <div class="data-group"><span>Status:</span>
+                                <p id="modal-sol-status"></p>
+                            </div>
 
                             <!-- Anexos -->
                             <h3 class="mt-2"><i class="fas fa-paperclip"></i> Anexos</h3>
@@ -225,15 +270,18 @@
                                 <h3 class="mt-2"><i class="fas fa-sync-alt"></i> Atualizar Status</h3>
                                 <form id="form-atualizar-status">
                                     <div class="data-group" style="margin-bottom: 10px;">
-                                        <label for="status-novo" style="display:block; margin-bottom:5px;"><span>Novo Status:</span></label>
-                                        <select id="status-novo" required style="width:100%; padding:8px; border-radius:6px; border:1px solid var(--border-color); background: var(--card-background); color: var(--text-light);">
+                                        <label for="status-novo" style="display:block; margin-bottom:5px;"><span>Novo
+                                                Status:</span></label>
+                                        <select id="status-novo" required
+                                            style="width:100%; padding:8px; border-radius:6px; border:1px solid var(--border-color); background: var(--card-background); color: var(--text-light);">
                                             <option value="">Selecione...</option>
                                             <option value="Em Trânsito">Em Trânsito</option>
                                             <option value="Concluída">Concluída</option>
                                         </select>
                                     </div>
                                     <div class="data-group" style="margin-bottom: 10px;">
-                                        <label for="observacao-status" style="display:block; margin-bottom:5px;"><span>Observação:</span></label>
+                                        <label for="observacao-status"
+                                            style="display:block; margin-bottom:5px;"><span>Observação:</span></label>
                                         <textarea id="observacao-status" rows="3" required
                                             style="width:100%; padding:8px; border-radius:6px; border:1px solid var(--border-color); background: var(--card-background); color: var(--text-light);"
                                             placeholder="Descreva a atualização..."></textarea>
@@ -241,14 +289,17 @@
 
                                     <!-- Novos Produtos (opcional, para trocas concluídas) -->
                                     <div id="novos-produtos-section" style="display:none;">
-                                        <label style="display:block; margin-bottom:5px;"><span>Novos Produtos (Troca):</span></label>
+                                        <label style="display:block; margin-bottom:5px;"><span>Novos Produtos
+                                                (Troca):</span></label>
                                         <div id="novos-produtos-list"></div>
-                                        <button type="button" class="btn btn-secondary" id="btn-add-produto" style="margin-top:5px;">
+                                        <button type="button" class="btn btn-secondary" id="btn-add-produto"
+                                            style="margin-top:5px;">
                                             <i class="fas fa-plus"></i> Adicionar Produto
                                         </button>
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary" style="margin-top: 15px; width: 100%;">
+                                    <button type="submit" class="btn btn-primary"
+                                        style="margin-top: 15px; width: 100%;">
                                         <i class="fas fa-save"></i> Salvar Atualização
                                     </button>
                                 </form>

@@ -348,38 +348,41 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // --- 4. EXPORTAÇÃO PARA EXCEL ---
+    // --- 4. EXPORTAÇÃO PARA EXCEL (via endpoint do backend) ---
+    // GET /logvert/relatorios/produtos/excel
     const exportarParaExcel = async () => {
         try {
-            const response = await fetch(`${PRODUTOS_URL}?page=0&size=1000`, {
+            const token = localStorage.getItem('authToken');
+            const response = await fetch(`${API_BASE_URL}/relatorios/produtos/excel`, {
                 method:  'GET',
-                headers: getAuthHeaders()
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
             });
 
-            if (!response.ok) throw new Error(`Falha ao buscar produtos para exportação. Status: ${response.status}`);
-
-            const dados    = await response.json();
-            const produtos = Array.isArray(dados)
-                           ? dados
-                           : Array.isArray(dados.content) ? dados.content : [];
-
-            if (produtos.length === 0) {
+            if (response.status === 401) {
+                showToast('Token inválido. Faça login novamente.', 'error');
+                return;
+            }
+            if (response.status === 204) {
                 showToast('Não há produtos para exportar.', 'info');
                 return;
             }
+            if (!response.ok) {
+                throw new Error(`Falha na exportação. Status: ${response.status}`);
+            }
 
-            const dadosParaPlanilha = produtos.map(p => ({
-                'ID':        p.idProduto,
-                'Descrição': p.descricao,
-                'Preço':     p.preco,
-                'Unidade':   p.unidadeMedida,
-                'Status':    p.status
-            }));
+            // Faz download do blob como arquivo Excel
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'produtos_logvert.xlsx';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            window.URL.revokeObjectURL(url);
 
-            const ws = XLSX.utils.json_to_sheet(dadosParaPlanilha);
-            const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, 'Produtos');
-            XLSX.writeFile(wb, 'produtos_logvert.xlsx');
             showToast('Exportação realizada com sucesso!', 'success');
 
         } catch (error) {

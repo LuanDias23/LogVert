@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else if (response.status === 401) {
                     // 401 Unauthorized - Token inválido
                     showError('✗ Sessão expirada. Faça login novamente.');
-                    setTimeout(() => { window.location.href = '/pages/login/login.html'; }, 2000);
+                    setTimeout(() => { window.location.href = '/login'; }, 2000);
 
                 } else if (response.status === 404) {
                     // 404 Not Found - Venda ou item não encontrado

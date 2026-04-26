@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // 200 OK - Senha atualizada com sucesso
                     showMessage('✓ Senha atualizada com sucesso! Redirecionando para o login...', 'success');
                     setTimeout(() => {
-                        window.location.href = '/pages/login/login.html';
+                        window.location.href = '/login';
                     }, 2000);
                 } else if (response.status === 404) {
                     // 404 Not Found - Código inválido

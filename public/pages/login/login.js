@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     setTimeout(() => {
-                        window.location.href = "/pages/menu.lojista/menuLojista.html";
+                        window.location.href = "/menu.lojista";
                     }, 300);
 
                 } else if (response.status === 401) {
@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     setTimeout(() => {
-                        window.location.href = '/pages/menu.cliente/menuCliente.html';
+                        window.location.href = '/cliente/dashboard';
                     }, 300);
 
                 } else if (response.status === 401) {

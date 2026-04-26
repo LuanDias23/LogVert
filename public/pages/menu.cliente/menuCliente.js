@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.status === 401) {
                 showFeedback('✗ Sessão expirada. Faça login novamente.', 'error');
-                setTimeout(() => { window.location.href = '/pages/login/login.html'; }, 2000);
+                setTimeout(() => { window.location.href = '/login'; }, 2000);
                 return;
             }
 

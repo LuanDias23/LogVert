@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="/pages/consumidores/consumidores.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
 
     <div id="dashboard-particles"></div>
@@ -22,13 +24,18 @@
                 <img src="/assets/logosemfundo.png" alt="Logo LogVert" class="sidebar-logo">
             </div>
             <ul class="sidebar-menu">
-                <li><a class="sidebar-link" href="/pages/menu.lojista/menuLojista.html"><i class="fa-solid fa-house"></i><span>Início</span></a></li>
-                <li><a class="sidebar-link" href="/pages/produtos/produtos.html"><i class="fa-solid fa-box"></i><span>Produto</span></a></li>
-                <li><a class="sidebar-link" href="/pages/vendas/venda.html"><i class="fa-solid fa-truck"></i><span>Venda</span></a></li>
-                <li><a class="sidebar-link active" href="/pages/consumidores/consumidores.html"><i class="fa-solid fa-users"></i><span>Consumidores</span></a></li>
-                <li><a class="sidebar-link" href="/pages/devolucoes/devolucoes.html"><i class="fa-solid fa-arrow-rotate-left"></i><span>Trocas e Devoluções</span></a></li>
-                <li><a class="sidebar-link" href="/pages/FAQ/FAQ.html"><i class="fa-solid fa-circle-question"></i><span>Central de Ajuda</span></a></li>
-                <li><a class="sidebar-link" href="/pages/login/login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
+                <li><a class="sidebar-link" href="/menu.lojista"><i
+                            class="fa-solid fa-house"></i><span>Início</span></a></li>
+                <li><a class="sidebar-link" href="/produtos"><i class="fa-solid fa-box"></i><span>Produto</span></a>
+                </li>
+                <li><a class="sidebar-link" href="/vendas"><i class="fa-solid fa-truck"></i><span>Venda</span></a></li>
+                <li><a class="sidebar-link active" href="/consumidores"><i
+                            class="fa-solid fa-users"></i><span>Consumidores</span></a></li>
+                <li><a class="sidebar-link" href="/devolucoes"><i class="fa-solid fa-arrow-rotate-left"></i><span>Trocas
+                            e Devoluções</span></a></li>
+                <li><a class="sidebar-link" href="/FAQ"><i class="fa-solid fa-star"></i><span>Feedbacks</span></a></li>
+                <li><a class="sidebar-link" href="/login"><i
+                            class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a></li>
             </ul>
             <div class="sidebar-toggle-wrapper">
                 <button class="sidebar-toggle" id="sidebarToggle" title="Minimizar menu">
@@ -84,12 +91,14 @@
                                 </button>
                                 <div class="dropdown-menu" id="accountDropdown">
                                     <ul>
-                                        <li><a href="/pages/configuracao/configuracao.html"><i class="fa-solid fa-cog"></i> Configurações da Conta</a></li>
+                                        <li><a href="/pages/configuracao/configuracao.html"><i
+                                                    class="fa-solid fa-cog"></i> Configurações da Conta</a></li>
                                         <li><a href="#"><i class="fa-solid fa-palette"></i> Mudar Tema</a></li>
                                         <li><a href="#"><i class="fa-solid fa-life-ring"></i> Suporte</a></li>
                                     </ul>
                                     <div class="dropdown-footer">
-                                        <a href="/pages/login/login.html" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
+                                        <a href="/pages/login/login.html" class="logout-link"><i
+                                                class="fa-solid fa-arrow-right-from-bracket"></i> Sair</a>
                                     </div>
                                 </div>
                             </div>
@@ -121,7 +130,8 @@
                     <table>
                         <thead>
                             <tr>
-                                <th style="width: 40px;"><input type="checkbox" class="row-checkbox" id="selectAllCheckbox" title="Selecionar todos"></th>
+                                <th style="width: 40px;"><input type="checkbox" class="row-checkbox"
+                                        id="selectAllCheckbox" title="Selecionar todos"></th>
                                 <th>Nome</th>
                                 <th>CPF/CNPJ</th>
                                 <th>E-mail</th>
@@ -132,9 +142,75 @@
                         </thead>
                         <tbody id="consumidoresTableBody">
                             <!-- Skeleton loading -->
-                            <tr class="skeleton-row"><td><div class="skeleton-bar short"></div></td><td><div class="skeleton-bar"></div></td><td><div class="skeleton-bar medium"></div></td><td><div class="skeleton-bar"></div></td><td><div class="skeleton-bar short"></div></td><td><div class="skeleton-bar short"></div></td><td><div class="skeleton-bar short"></div></td></tr>
-                            <tr class="skeleton-row"><td><div class="skeleton-bar short"></div></td><td><div class="skeleton-bar"></div></td><td><div class="skeleton-bar medium"></div></td><td><div class="skeleton-bar"></div></td><td><div class="skeleton-bar short"></div></td><td><div class="skeleton-bar short"></div></td><td><div class="skeleton-bar short"></div></td></tr>
-                            <tr class="skeleton-row"><td><div class="skeleton-bar short"></div></td><td><div class="skeleton-bar"></div></td><td><div class="skeleton-bar medium"></div></td><td><div class="skeleton-bar"></div></td><td><div class="skeleton-bar short"></div></td><td><div class="skeleton-bar short"></div></td><td><div class="skeleton-bar short"></div></td></tr>
+                            <tr class="skeleton-row">
+                                <td>
+                                    <div class="skeleton-bar short"></div>
+                                </td>
+                                <td>
+                                    <div class="skeleton-bar"></div>
+                                </td>
+                                <td>
+                                    <div class="skeleton-bar medium"></div>
+                                </td>
+                                <td>
+                                    <div class="skeleton-bar"></div>
+                                </td>
+                                <td>
+                                    <div class="skeleton-bar short"></div>
+                                </td>
+                                <td>
+                                    <div class="skeleton-bar short"></div>
+                                </td>
+                                <td>
+                                    <div class="skeleton-bar short"></div>
+                                </td>
+                            </tr>
+                            <tr class="skeleton-row">
+                                <td>
+                                    <div class="skeleton-bar short"></div>
+                                </td>
+                                <td>
+                                    <div class="skeleton-bar"></div>
+                                </td>
+                                <td>
+                                    <div class="skeleton-bar medium"></div>
+                                </td>
+                                <td>
+                                    <div class="skeleton-bar"></div>
+                                </td>
+                                <td>
+                                    <div class="skeleton-bar short"></div>
+                                </td>
+                                <td>
+                                    <div class="skeleton-bar short"></div>
+                                </td>
+                                <td>
+                                    <div class="skeleton-bar short"></div>
+                                </td>
+                            </tr>
+                            <tr class="skeleton-row">
+                                <td>
+                                    <div class="skeleton-bar short"></div>
+                                </td>
+                                <td>
+                                    <div class="skeleton-bar"></div>
+                                </td>
+                                <td>
+                                    <div class="skeleton-bar medium"></div>
+                                </td>
+                                <td>
+                                    <div class="skeleton-bar"></div>
+                                </td>
+                                <td>
+                                    <div class="skeleton-bar short"></div>
+                                </td>
+                                <td>
+                                    <div class="skeleton-bar short"></div>
+                                </td>
+                                <td>
+                                    <div class="skeleton-bar short"></div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -229,4 +305,5 @@
     <script src="/pages/menu.lojista/menuLojista.js"></script>
     <script src="/pages/consumidores/consumidores.js"></script>
 </body>
+
 </html>

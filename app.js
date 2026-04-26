@@ -49,7 +49,6 @@ app.get('/produtos', (req, res) => {
     `,
     pageScripts: `
       <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
       <script src="/pages/menu.lojista/menuLojista.js"></script>
       <script src="/pages/produtos/produtos.js"></script>
     `
@@ -90,10 +89,7 @@ app.get('/consumidores', (req, res) => {
   });
 });
 
-// Rota para Minha Venda (Consumidor) - exibe detalhes da venda do consumidor autenticado
-app.get('/minha-venda', (req, res) => {
-  res.redirect('/pages/minha-venda/minhaVenda.html');
-});
+
 
 // Rota para Painel do Cliente (Minhas Solicitações) com Handlebars
 app.get('/cliente/dashboard', (req, res) => {
@@ -163,14 +159,32 @@ app.get('/solicitacoes/nova', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/pages/solicitacao/solicitacao.html'));
 });
 
+// Rota para Feedbacks do Lojista (FAQ)
+app.get('/FAQ', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/pages/FAQ/faq.html'));
+});
+
+// Rota para o Dashboard do Lojista
+app.get('/menu.lojista', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/pages/menu.lojista/menuLojista.html'));
+});
+
+// Rota para Feedbacks do Consumidor (FAQ Cliente)
+app.get('/FAQ-cliente', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/pages/FAQ_cliente/FAQ.html'));
+});
+
+
+
 
 
 
 // Fallback para servir arquivos estáticos por caminho (mantém comportamento anterior)
+// CORREÇÃO: Não redireciona para '/' em caso de erro — retorna 404
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', req.path), (err) => {
     if (err) {
-      res.redirect('/');
+      res.status(404).send('Página não encontrada');
     }
   });
 });
